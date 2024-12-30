@@ -1,0 +1,101 @@
+level,xpToNext,xpTotal,pct,title,border,skin
+0,64,0,0.00%,Novice,none,0
+1,72,64,0.05%,Novice,none,0
+2,80,136,0.11%,Novice,none,0
+3,91,216,0.18%,Novice,none,0
+4,106,307,0.25%,Novice,none,0
+5,122,413,0.34%,Beginner,none,1
+6,138,535,0.44%,Beginner,none,1
+7,154,673,0.56%,Beginner,none,1
+8,171,827,0.68%,Beginner,none,1
+9,188,998,0.82%,Beginner,none,1
+10,206,1186,0.98%,Student,none,2
+11,224,1392,1.15%,Student,none,2
+12,242,1616,1.33%,Student,none,2
+13,261,1858,1.53%,Student,none,2
+14,280,2119,1.75%,Student,none,2
+15,299,2399,1.98%,Intermediate,bronze,0
+16,319,2698,2.23%,Intermediate,bronze,0
+17,339,3017,2.49%,Intermediate,bronze,0
+18,360,3356,2.77%,Intermediate,bronze,0
+19,381,3716,3.07%,Intermediate,bronze,0
+20,402,4097,3.38%,Enthusiast,bronze,1
+21,423,4499,3.71%,Enthusiast,bronze,1
+22,445,4922,4.06%,Enthusiast,bronze,1
+23,467,5367,4.43%,Enthusiast,bronze,1
+24,489,5834,4.82%,Enthusiast,bronze,1
+25,512,6323,5.22%,Practitioner,bronze,2
+26,534,6835,5.64%,Practitioner,bronze,2
+27,558,7369,6.08%,Practitioner,bronze,2
+28,581,7927,6.54%,Practitioner,bronze,2
+29,605,8508,7.02%,Practitioner,bronze,2
+30,629,9113,7.52%,Adept,silver,0
+31,653,9742,8.04%,Adept,silver,0
+32,677,10395,8.58%,Adept,silver,0
+33,702,11072,9.14%,Adept,silver,0
+34,727,11774,9.72%,Adept,silver,0
+35,752,12501,10.32%,Expert,silver,1
+36,778,13253,10.94%,Expert,silver,1
+37,803,14031,11.58%,Expert,silver,1
+38,829,14834,12.25%,Expert,silver,1
+39,856,15663,12.93%,Expert,silver,1
+40,882,16519,13.64%,Enlightened,silver,2
+41,909,17401,14.37%,Enlightened,silver,2
+42,936,18310,15.12%,Enlightened,silver,2
+43,963,19246,15.89%,Enlightened,silver,2
+44,990,20209,16.69%,Enlightened,silver,2
+45,1018,21199,17.50%,Envoy,gold,0
+46,1046,22217,18.34%,Envoy,gold,0
+47,1074,23263,19.21%,Envoy,gold,0
+48,1102,24337,20.09%,Envoy,gold,0
+49,1131,25439,21.00%,Envoy,gold,0
+50,1159,26570,21.94%,Master,gold,1
+51,1188,27729,22.89%,Master,gold,1
+52,1217,28917,23.88%,Master,gold,1
+53,1247,30134,24.88%,Master,gold,1
+54,1276,31381,25.91%,Master,gold,1
+55,1306,32657,26.96%,Supreme Master,gold,2
+56,1336,33963,28.04%,Supreme Master,gold,2
+57,1366,35299,29.14%,Supreme Master,gold,2
+58,1397,36665,30.27%,Supreme Master,gold,2
+59,1428,38062,31.43%,Supreme Master,gold,2
+60,1458,39490,32.60%,Elite Master,platinum,0
+61,1489,40948,33.81%,Elite Master,platinum,0
+62,1521,42437,35.04%,Elite Master,platinum,0
+63,1552,43958,36.29%,Elite Master,platinum,0
+64,1584,45510,37.57%,Elite Master,platinum,0
+65,1616,47094,38.88%,Grandmaster,platinum,1
+66,1648,48710,40.22%,Grandmaster,platinum,1
+67,1680,50358,41.58%,Grandmaster,platinum,1
+68,1712,52038,42.96%,Grandmaster,platinum,1
+69,1745,53750,44.38%,Grandmaster,platinum,1
+70,1778,55495,45.82%,Supreme GM,platinum,2
+71,1811,57273,47.29%,Supreme GM,platinum,2
+72,1844,59084,48.78%,Supreme GM,platinum,2
+73,1877,60928,50.30%,Supreme GM,platinum,2
+74,1911,62805,51.85%,Supreme GM,platinum,2
+75,1945,64716,53.43%,Ascendent,ascend,3
+76,1979,66661,55.04%,Ascendent,ascend,3
+77,2013,68640,56.67%,Ascendent,ascend,3
+78,2047,70653,58.33%,Ascendent,ascend,3
+79,2081,72700,60.02%,Ascendent,ascend,3
+80,2116,74781,61.74%,Ascendent,ascend,3
+81,2151,76897,63.49%,Ascendent,ascend,3
+82,2186,79048,65.27%,Ascendent,ascend,3
+83,2221,81234,67.07%,Ascendent,ascend,3
+84,2257,83455,68.90%,Ascendent,ascend,3
+85,2292,85712,70.77%,Ascendent,ascend,3
+86,2328,88004,72.66%,Ascendent,ascend,3
+87,2364,90332,74.58%,Ascendent,ascend,3
+88,2400,92696,76.53%,Ascendent,ascend,3
+89,2436,95096,78.52%,Ascendent,ascend,3
+90,2473,97532,80.53%,Ascendent,ascend,3
+91,2509,100005,82.57%,Ascendent,ascend,3
+92,2546,102514,84.64%,Ascendent,ascend,3
+93,2583,105060,86.74%,Ascendent,ascend,3
+94,2620,107643,88.87%,Ascendent,ascend,3
+95,2657,110263,91.04%,Ascendent,ascend,3
+96,2695,112920,93.23%,Ascendent,ascend,3
+97,2733,115615,95.46%,Ascendent,ascend,3
+98,2770,118348,97.71%,Ascendent,ascend,3
+99,0,121118,100.00%,Ascendent,ascend,3

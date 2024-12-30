@@ -213,40 +213,40 @@
 			"Name": "ShapeProbabilityWeight",
 			"Value": [
 				[
-					{ "$type":"UAssetAPI.PropertyTypes.Objects.EnumPropertyData, UAssetAPI", "EnumType":null, "InnerType":null, "Name":"ShapeProbabilityWeight", "Value":"ERosaryShape::Circle" },
-					{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"ShapeProbabilityWeight", "Value":485 }
+					{ "$type":"UAssetAPI.PropertyTypes.Objects.EnumPropertyData, UAssetAPI", "EnumType":null, "InnerType":null, "Name":"Key", "Value":"ERosaryShape::Circle" },
+					{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"Value", "Value":940 }
 				],
 				[
-					{ "$type":"UAssetAPI.PropertyTypes.Objects.EnumPropertyData, UAssetAPI", "EnumType":null, "InnerType":null, "Name":"ShapeProbabilityWeight", "Value":"ERosaryShape::Spiral" },
-					{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"ShapeProbabilityWeight", "Value":"+0" }
+					{ "$type":"UAssetAPI.PropertyTypes.Objects.EnumPropertyData, UAssetAPI", "EnumType":null, "InnerType":null, "Name":"Key", "Value":"ERosaryShape::Spiral" },
+					{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"Value", "Value":15 }
 				],
 				[
-					{ "$type":"UAssetAPI.PropertyTypes.Objects.EnumPropertyData, UAssetAPI", "EnumType":null, "InnerType":null, "Name":"ShapeProbabilityWeight", "Value":"ERosaryShape::Star" },
-					{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"ShapeProbabilityWeight", "Value":3 }
+					{ "$type":"UAssetAPI.PropertyTypes.Objects.EnumPropertyData, UAssetAPI", "EnumType":null, "InnerType":null, "Name":"Key", "Value":"ERosaryShape::Star" },
+					{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"Value", "Value":6 }
 				],
 				[
-					{ "$type":"UAssetAPI.PropertyTypes.Objects.EnumPropertyData, UAssetAPI", "EnumType":null, "InnerType":null, "Name":"ShapeProbabilityWeight", "Value":"ERosaryShape::Infinity" },
-					{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"ShapeProbabilityWeight", "Value":"+0" }
+					{ "$type":"UAssetAPI.PropertyTypes.Objects.EnumPropertyData, UAssetAPI", "EnumType":null, "InnerType":null, "Name":"Key", "Value":"ERosaryShape::Infinity" },
+					{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"Value", "Value":10 }
 				],
 				[
-					{ "$type":"UAssetAPI.PropertyTypes.Objects.EnumPropertyData, UAssetAPI", "EnumType":null, "InnerType":null, "Name":"ShapeProbabilityWeight", "Value":"ERosaryShape::Trefoil" },
-					{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"ShapeProbabilityWeight", "Value":3 }
+					{ "$type":"UAssetAPI.PropertyTypes.Objects.EnumPropertyData, UAssetAPI", "EnumType":null, "InnerType":null, "Name":"Key", "Value":"ERosaryShape::Trefoil" },
+					{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"Value", "Value":6 }
 				],
 				[
-					{ "$type":"UAssetAPI.PropertyTypes.Objects.EnumPropertyData, UAssetAPI", "EnumType":null, "InnerType":null, "Name":"ShapeProbabilityWeight", "Value":"ERosaryShape::Heart" },
-					{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"ShapeProbabilityWeight", "Value":"+0" }
+					{ "$type":"UAssetAPI.PropertyTypes.Objects.EnumPropertyData, UAssetAPI", "EnumType":null, "InnerType":null, "Name":"Key", "Value":"ERosaryShape::Heart" },
+					{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"Value", "Value":1 }
 				],
 				[
-					{ "$type":"UAssetAPI.PropertyTypes.Objects.EnumPropertyData, UAssetAPI", "EnumType":null, "InnerType":null, "Name":"ShapeProbabilityWeight", "Value":"ERosaryShape::Square" },
-					{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"ShapeProbabilityWeight", "Value":3 }
+					{ "$type":"UAssetAPI.PropertyTypes.Objects.EnumPropertyData, UAssetAPI", "EnumType":null, "InnerType":null, "Name":"Key", "Value":"ERosaryShape::Square" },
+					{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"Value", "Value":6 }
 				],
 				[
-					{ "$type":"UAssetAPI.PropertyTypes.Objects.EnumPropertyData, UAssetAPI", "EnumType":null, "InnerType":null, "Name":"ShapeProbabilityWeight", "Value":"ERosaryShape::Pentagon" },
-					{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"ShapeProbabilityWeight", "Value":3 }
+					{ "$type":"UAssetAPI.PropertyTypes.Objects.EnumPropertyData, UAssetAPI", "EnumType":null, "InnerType":null, "Name":"Key", "Value":"ERosaryShape::Pentagon" },
+					{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"Value", "Value":8 }
 				],
 				[
-					{ "$type":"UAssetAPI.PropertyTypes.Objects.EnumPropertyData, UAssetAPI", "EnumType":null, "InnerType":null, "Name":"ShapeProbabilityWeight", "Value":"ERosaryShape::Triangle" },
-					{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"ShapeProbabilityWeight", "Value":3 }
+					{ "$type":"UAssetAPI.PropertyTypes.Objects.EnumPropertyData, UAssetAPI", "EnumType":null, "InnerType":null, "Name":"Key", "Value":"ERosaryShape::Triangle" },
+					{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"Value", "Value":6 }
 				]
 			]
 		},

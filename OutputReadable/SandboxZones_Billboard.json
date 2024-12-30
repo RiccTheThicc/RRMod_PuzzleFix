@@ -1,0 +1,38 @@
+stdClass Object
+(
+    [RelativeLocation] => stdClass Object
+        (
+            [X] => -20151
+            [Y] => 66066
+            [Z] => 25847
+        )
+
+    [RelativeScale3D] => stdClass Object
+        (
+            [X] => 25
+            [Y] => 25
+            [Z] => 25
+        )
+
+    [UCSSerializationIndex] => 0
+    [bNetAddressable] => 1
+    [CreationMethod] => EComponentCreationMethod::SimpleConstructionScript
+    [UCSModifiedProperties] => Array
+        (
+            [0] => Array
+                (
+                    [MemberParent] => -72
+                    [MemberName] => RelativeLocation
+                    [MemberGuid] => {00000000-0000-0000-0000-000000000000}
+                )
+
+            [1] => Array
+                (
+                    [MemberParent] => -72
+                    [MemberName] => RelativeScale3D
+                    [MemberGuid] => {00000000-0000-0000-0000-000000000000}
+                )
+
+        )
+
+)

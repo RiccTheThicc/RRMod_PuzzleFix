@@ -1,0 +1,12 @@
+Array
+(
+    [EMainMapZoneName::Central] => 1
+    [EMainMapZoneName::Egypt] => 1
+    [EMainMapZoneName::Geyser] => 1
+    [EMainMapZoneName::Intro] => 0
+    [EMainMapZoneName::Lobby] => 0
+    [EMainMapZoneName::MAX] => 0
+    [EMainMapZoneName::NoZone] => 0
+    [EMainMapZoneName::Redwoods] => 1
+    [EMainMapZoneName::Riverlands] => 1
+)
