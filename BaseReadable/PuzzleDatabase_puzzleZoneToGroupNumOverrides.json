@@ -1,0 +1,143 @@
+Array
+(
+    [EMainMapZoneName::Central] => Array
+        (
+            [hiddenCube] => 34
+            [followTheShiny] => 20
+            [fractalMatch] => 12
+            [ghostObject] => 0
+            [mirrorMaze] => 0
+            [lightPillar] => 0
+            [matchbox] => 54
+            [lightPattern] => 19
+            [racingBallCourse] => 9
+            [racingRingCourse] => 5
+            [hiddenArchway] => 50
+            [seek5] => 6
+            [viewfinder] => 26
+            [hiddenRing] => 43
+            [logicGrid] => 45
+            [gyroRing] => 0
+            [klotski] => 0
+            [lockpick] => 2
+            [match3] => 6
+            [ryoanji] => 0
+            [rollingCube] => 0
+            [memoryGrid] => 2
+            [completeThePattern] => 6
+            [musicGrid] => 2
+        )
+
+    [EMainMapZoneName::Egypt] => Array
+        (
+            [hiddenCube] => 30
+            [followTheShiny] => 13
+            [fractalMatch] => 10
+            [ghostObject] => 0
+            [mirrorMaze] => 6
+            [lightPillar] => 0
+            [matchbox] => 38
+            [lightPattern] => 11
+            [racingBallCourse] => 5
+            [racingRingCourse] => 2
+            [hiddenArchway] => 50
+            [seek5] => 7
+            [viewfinder] => 7
+            [hiddenRing] => 52
+            [logicGrid] => 45
+            [gyroRing] => 0
+            [klotski] => 0
+            [lockpick] => 0
+            [match3] => 25
+            [ryoanji] => 5
+            [rollingCube] => 0
+            [memoryGrid] => 2
+            [completeThePattern] => 8
+            [musicGrid] => 0
+        )
+
+    [EMainMapZoneName::Geyser] => Array
+        (
+            [hiddenCube] => 43
+            [followTheShiny] => 14
+            [fractalMatch] => 0
+            [ghostObject] => 26
+            [mirrorMaze] => 6
+            [lightPillar] => 0
+            [matchbox] => 26
+            [lightPattern] => 21
+            [racingBallCourse] => 6
+            [racingRingCourse] => 13
+            [hiddenArchway] => 28
+            [seek5] => 9
+            [viewfinder] => 21
+            [hiddenRing] => 58
+            [logicGrid] => 43
+            [gyroRing] => 0
+            [klotski] => 25
+            [lockpick] => 15
+            [match3] => 0
+            [ryoanji] => 7
+            [rollingCube] => 10
+            [memoryGrid] => 3
+            [completeThePattern] => 1
+            [musicGrid] => 8
+        )
+
+    [EMainMapZoneName::Redwoods] => Array
+        (
+            [hiddenCube] => 39
+            [followTheShiny] => 12
+            [fractalMatch] => 0
+            [ghostObject] => 29
+            [mirrorMaze] => 5
+            [lightPillar] => 0
+            [matchbox] => 42
+            [lightPattern] => 18
+            [racingBallCourse] => 6
+            [racingRingCourse] => 3
+            [hiddenArchway] => 69
+            [seek5] => 8
+            [viewfinder] => 24
+            [hiddenRing] => 36
+            [logicGrid] => 43
+            [gyroRing] => 0
+            [klotski] => 9
+            [lockpick] => 9
+            [match3] => 0
+            [ryoanji] => 7
+            [rollingCube] => 8
+            [memoryGrid] => 8
+            [completeThePattern] => 1
+            [musicGrid] => 3
+        )
+
+    [EMainMapZoneName::Riverlands] => Array
+        (
+            [hiddenCube] => 21
+            [followTheShiny] => 14
+            [fractalMatch] => 10
+            [ghostObject] => 0
+            [mirrorMaze] => 6
+            [lightPillar] => 0
+            [matchbox] => 45
+            [lightPattern] => 22
+            [racingBallCourse] => 10
+            [racingRingCourse] => 7
+            [hiddenArchway] => 57
+            [seek5] => 8
+            [viewfinder] => 21
+            [hiddenRing] => 60
+            [logicGrid] => 44
+            [gyroRing] => 0
+            [klotski] => 2
+            [lockpick] => 24
+            [match3] => 4
+            [ryoanji] => 6
+            [rollingCube] => 6
+            [memoryGrid] => 2
+            [completeThePattern] => 1
+            [musicGrid] => 8
+        )
+
+)

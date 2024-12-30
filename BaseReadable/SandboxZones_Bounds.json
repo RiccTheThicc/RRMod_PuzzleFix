@@ -1,0 +1,840 @@
+Array
+(
+    [0] => Array
+        (
+            [MiscBounds1] => stdClass Object
+                (
+                    [bBlockSpawning] => 0
+                    [ShapeColor] => 255, 0, 0
+                    [AttachParent] => 416
+                    [bVisible] => 0
+                    [bHiddenInGame] => 0
+                    [UCSSerializationIndex] => 0
+                    [bNetAddressable] => 1
+                    [CreationMethod] => EComponentCreationMethod::Instance
+                )
+
+        )
+
+    [2] => Array
+        (
+            [EgyptBounds4] => stdClass Object
+                (
+                    [bBlockSpawning] => 0
+                    [ShapeColor] => 255, 0, 0
+                    [AttachParent] => 414
+                    [RelativeLocation] => stdClass Object
+                        (
+                            [X] => 78.949760437012
+                            [Y] => 1259.712890625
+                            [Z] => -1337.1999511719
+                        )
+
+                    [RelativeRotation] => stdClass Object
+                        (
+                            [Pitch] => 0
+                            [Yaw] => -3.0000001061126E-6
+                            [Roll] => 0
+                        )
+
+                    [RelativeScale3D] => stdClass Object
+                        (
+                            [X] => 86
+                            [Y] => 56
+                            [Z] => 78.5
+                        )
+
+                    [bVisible] => 0
+                    [bHiddenInGame] => 0
+                    [UCSSerializationIndex] => 0
+                    [bNetAddressable] => 1
+                    [CreationMethod] => EComponentCreationMethod::Instance
+                )
+
+            [EgyptBounds5] => stdClass Object
+                (
+                    [bBlockSpawning] => 0
+                    [ShapeColor] => 255, 0, 0
+                    [AttachParent] => 414
+                    [RelativeLocation] => stdClass Object
+                        (
+                            [X] => -367.1789855957
+                            [Y] => 587.62371826172
+                            [Z] => -594.79968261719
+                        )
+
+                    [RelativeRotation] => stdClass Object
+                        (
+                            [Pitch] => 0
+                            [Yaw] => 35.000110626221
+                            [Roll] => 0
+                        )
+
+                    [RelativeScale3D] => stdClass Object
+                        (
+                            [X] => 78.75
+                            [Y] => 25.5
+                            [Z] => 33.25
+                        )
+
+                    [bVisible] => 0
+                    [bHiddenInGame] => 0
+                    [UCSSerializationIndex] => 0
+                    [bNetAddressable] => 1
+                    [CreationMethod] => EComponentCreationMethod::Instance
+                )
+
+            [EgyptBounds6] => stdClass Object
+                (
+                    [bBlockSpawning] => 0
+                    [ShapeColor] => 255, 0, 0
+                    [AttachParent] => 414
+                    [RelativeLocation] => stdClass Object
+                        (
+                            [X] => -2030.6994628906
+                            [Y] => -900.79333496094
+                            [Z] => -1081.1591796875
+                        )
+
+                    [RelativeRotation] => stdClass Object
+                        (
+                            [Pitch] => 0
+                            [Yaw] => 35.000110626221
+                            [Roll] => 0
+                        )
+
+                    [RelativeScale3D] => stdClass Object
+                        (
+                            [X] => 13.75
+                            [Y] => 15.75
+                            [Z] => 13.5
+                        )
+
+                    [bVisible] => 0
+                    [bHiddenInGame] => 0
+                    [UCSSerializationIndex] => 0
+                    [bNetAddressable] => 1
+                    [CreationMethod] => EComponentCreationMethod::Instance
+                )
+
+            [EgyptBounds7] => stdClass Object
+                (
+                    [bBlockSpawning] => 0
+                    [ShapeColor] => 255, 0, 0
+                    [AttachParent] => 414
+                    [RelativeLocation] => stdClass Object
+                        (
+                            [X] => -787.42047119141
+                            [Y] => -963.04748535156
+                            [Z] => -1081.1591796875
+                        )
+
+                    [RelativeRotation] => stdClass Object
+                        (
+                            [Pitch] => 0
+                            [Yaw] => -1.5623940229416
+                            [Roll] => 0
+                        )
+
+                    [RelativeScale3D] => stdClass Object
+                        (
+                            [X] => 37.25
+                            [Y] => 15.75
+                            [Z] => 38
+                        )
+
+                    [bVisible] => 0
+                    [bHiddenInGame] => 0
+                    [UCSSerializationIndex] => 0
+                    [bNetAddressable] => 1
+                    [CreationMethod] => EComponentCreationMethod::Instance
+                )
+
+        )
+
+    [3] => Array
+        (
+            [CentralBounds1] => stdClass Object
+                (
+                    [bBlockSpawning] => 0
+                    [ShapeColor] => 255, 0, 0
+                    [AttachParent] => 413
+                    [RelativeLocation] => stdClass Object
+                        (
+                            [X] => -3.7574059963226
+                            [Y] => 15.174498558044
+                            [Z] => -33.280437469482
+                        )
+
+                    [RelativeRotation] => stdClass Object
+                        (
+                            [Pitch] => 0
+                            [Yaw] => -17.62914276123
+                            [Roll] => 0
+                        )
+
+                    [RelativeScale3D] => stdClass Object
+                        (
+                            [X] => 0.75
+                            [Y] => 0.80000001192093
+                            [Z] => 1
+                        )
+
+                    [bVisible] => 0
+                    [bHiddenInGame] => 0
+                    [UCSSerializationIndex] => 0
+                    [bNetAddressable] => 1
+                    [CreationMethod] => EComponentCreationMethod::Instance
+                )
+
+            [CentralBounds2] => stdClass Object
+                (
+                    [bBlockSpawning] => 0
+                    [ShapeColor] => 255, 0, 0
+                    [AttachParent] => 413
+                    [RelativeLocation] => stdClass Object
+                        (
+                            [X] => -5.0627369880676
+                            [Y] => -14.22173500061
+                            [Z] => -33.280475616455
+                        )
+
+                    [RelativeRotation] => stdClass Object
+                        (
+                            [Pitch] => 0
+                            [Yaw] => -49.390975952148
+                            [Roll] => 0
+                        )
+
+                    [RelativeScale3D] => stdClass Object
+                        (
+                            [X] => 0.75
+                            [Y] => 0.80000001192093
+                            [Z] => 1
+                        )
+
+                    [bVisible] => 0
+                    [bHiddenInGame] => 0
+                    [UCSSerializationIndex] => 0
+                    [bNetAddressable] => 1
+                    [CreationMethod] => EComponentCreationMethod::Instance
+                )
+
+        )
+
+    [4] => Array
+        (
+            [RiverlandsBounds1] => stdClass Object
+                (
+                    [bBlockSpawning] => 0
+                    [ShapeColor] => 255, 0, 0
+                    [AttachParent] => 419
+                    [bVisible] => 0
+                    [bHiddenInGame] => 0
+                    [UCSSerializationIndex] => 0
+                    [bNetAddressable] => 1
+                    [CreationMethod] => EComponentCreationMethod::Instance
+                )
+
+        )
+
+    [5] => Array
+        (
+            [RedwoodsBounds1] => stdClass Object
+                (
+                    [bBlockSpawning] => 0
+                    [ShapeColor] => 255, 0, 0
+                    [AttachParent] => 418
+                    [RelativeLocation] => stdClass Object
+                        (
+                            [X] => -14.320093154907
+                            [Y] => -1.2154719829559
+                            [Z] => 0
+                        )
+
+                    [RelativeRotation] => stdClass Object
+                        (
+                            [Pitch] => 0
+                            [Yaw] => 4.8129830360413
+                            [Roll] => 0
+                        )
+
+                    [bVisible] => 0
+                    [bHiddenInGame] => 0
+                    [UCSSerializationIndex] => 0
+                    [bNetAddressable] => 1
+                    [CreationMethod] => EComponentCreationMethod::Instance
+                )
+
+            [RedwoodsBounds2] => stdClass Object
+                (
+                    [bBlockSpawning] => 0
+                    [ShapeColor] => 255, 0, 0
+                    [AttachParent] => 418
+                    [RelativeLocation] => stdClass Object
+                        (
+                            [X] => 27.967395782471
+                            [Y] => -18.388179779053
+                            [Z] => -12.610793113708
+                        )
+
+                    [RelativeRotation] => stdClass Object
+                        (
+                            [Pitch] => 0
+                            [Yaw] => 4.8129830360413
+                            [Roll] => 0
+                        )
+
+                    [RelativeScale3D] => stdClass Object
+                        (
+                            [X] => 0.25
+                            [Y] => 0.25
+                            [Z] => 0.5
+                        )
+
+                    [bVisible] => 0
+                    [bHiddenInGame] => 0
+                    [UCSSerializationIndex] => 0
+                    [bNetAddressable] => 1
+                    [CreationMethod] => EComponentCreationMethod::Instance
+                )
+
+            [RedwoodsBounds3] => stdClass Object
+                (
+                    [bBlockSpawning] => 0
+                    [ShapeColor] => 255, 0, 0
+                    [AttachParent] => 418
+                    [RelativeLocation] => stdClass Object
+                        (
+                            [X] => 7.9377250671387
+                            [Y] => -11.97625541687
+                            [Z] => -8.4083909988403
+                        )
+
+                    [RelativeRotation] => stdClass Object
+                        (
+                            [Pitch] => 0
+                            [Yaw] => 40.213859558105
+                            [Roll] => 0
+                        )
+
+                    [RelativeScale3D] => stdClass Object
+                        (
+                            [X] => 0.25
+                            [Y] => 0.60000002384186
+                            [Z] => 0.5
+                        )
+
+                    [bVisible] => 0
+                    [bHiddenInGame] => 0
+                    [UCSSerializationIndex] => 0
+                    [bNetAddressable] => 1
+                    [CreationMethod] => EComponentCreationMethod::Instance
+                )
+
+            [RedwoodsBounds4] => stdClass Object
+                (
+                    [bBlockSpawning] => 0
+                    [ShapeColor] => 255, 0, 0
+                    [AttachParent] => 418
+                    [RelativeLocation] => stdClass Object
+                        (
+                            [X] => 13.572552680969
+                            [Y] => -8.7365655899048
+                            [Z] => -6.8444590568542
+                        )
+
+                    [RelativeRotation] => stdClass Object
+                        (
+                            [Pitch] => 0
+                            [Yaw] => 3.0607199668884
+                            [Roll] => 0
+                        )
+
+                    [RelativeScale3D] => stdClass Object
+                        (
+                            [X] => 0.5
+                            [Y] => 0.25
+                            [Z] => 0.5
+                        )
+
+                    [bVisible] => 0
+                    [bHiddenInGame] => 0
+                    [UCSSerializationIndex] => 0
+                    [bNetAddressable] => 1
+                    [CreationMethod] => EComponentCreationMethod::Instance
+                )
+
+            [RedwoodsBounds5] => stdClass Object
+                (
+                    [bBlockSpawning] => 0
+                    [ShapeColor] => 255, 0, 0
+                    [AttachParent] => 418
+                    [RelativeLocation] => stdClass Object
+                        (
+                            [X] => -7.2293767929077
+                            [Y] => -25.605527877808
+                            [Z] => -6.8444600105286
+                        )
+
+                    [RelativeRotation] => stdClass Object
+                        (
+                            [Pitch] => 0
+                            [Yaw] => 13.595443725586
+                            [Roll] => 0
+                        )
+
+                    [RelativeScale3D] => stdClass Object
+                        (
+                            [X] => 0.5
+                            [Y] => 0.5
+                            [Z] => 0.5
+                        )
+
+                    [bVisible] => 0
+                    [bHiddenInGame] => 0
+                    [UCSSerializationIndex] => 0
+                    [bNetAddressable] => 1
+                    [CreationMethod] => EComponentCreationMethod::Instance
+                )
+
+            [RedwoodsBounds6] => stdClass Object
+                (
+                    [bBlockSpawning] => 0
+                    [ShapeColor] => 255, 0, 0
+                    [AttachParent] => 418
+                    [RelativeLocation] => stdClass Object
+                        (
+                            [X] => -1.8469120264053
+                            [Y] => -6.4569602012634
+                            [Z] => -6.8444600105286
+                        )
+
+                    [RelativeRotation] => stdClass Object
+                        (
+                            [Pitch] => 0
+                            [Yaw] => -50.949573516846
+                            [Roll] => 0
+                        )
+
+                    [RelativeScale3D] => stdClass Object
+                        (
+                            [X] => 0.5
+                            [Y] => 0.5
+                            [Z] => 0.5
+                        )
+
+                    [bVisible] => 0
+                    [bHiddenInGame] => 0
+                    [UCSSerializationIndex] => 0
+                    [bNetAddressable] => 1
+                    [CreationMethod] => EComponentCreationMethod::Instance
+                )
+
+        )
+
+    [6] => Array
+        (
+            [MountainBounds1] => stdClass Object
+                (
+                    [bBlockSpawning] => 0
+                    [ShapeColor] => 255, 0, 0
+                    [AttachParent] => 417
+                    [RelativeLocation] => stdClass Object
+                        (
+                            [X] => -17.3392162323
+                            [Y] => 29.930559158325
+                            [Z] => -0.5549950003624
+                        )
+
+                    [RelativeRotation] => stdClass Object
+                        (
+                            [Pitch] => 0
+                            [Yaw] => -0.51075398921967
+                            [Roll] => 0
+                        )
+
+                    [RelativeScale3D] => stdClass Object
+                        (
+                            [X] => 0.30000001192093
+                            [Y] => 0.10000000149012
+                            [Z] => 0.25
+                        )
+
+                    [bVisible] => 0
+                    [bHiddenInGame] => 0
+                    [UCSSerializationIndex] => 0
+                    [bNetAddressable] => 1
+                    [CreationMethod] => EComponentCreationMethod::Instance
+                )
+
+            [MountainBounds10] => stdClass Object
+                (
+                    [bBlockSpawning] => 0
+                    [ShapeColor] => 255, 0, 0
+                    [AttachParent] => 417
+                    [RelativeLocation] => stdClass Object
+                        (
+                            [X] => -8.3104295730591
+                            [Y] => 27.493072509766
+                            [Z] => -4.4761910438538
+                        )
+
+                    [RelativeRotation] => stdClass Object
+                        (
+                            [Pitch] => 0
+                            [Yaw] => -34.937286376953
+                            [Roll] => 0
+                        )
+
+                    [RelativeScale3D] => stdClass Object
+                        (
+                            [X] => 0.30000001192093
+                            [Y] => 0.10000000149012
+                            [Z] => 0.25
+                        )
+
+                    [bVisible] => 0
+                    [bHiddenInGame] => 0
+                    [UCSSerializationIndex] => 0
+                    [bNetAddressable] => 1
+                    [CreationMethod] => EComponentCreationMethod::Instance
+                )
+
+            [MountainBounds11] => stdClass Object
+                (
+                    [bBlockSpawning] => 0
+                    [ShapeColor] => 255, 0, 0
+                    [AttachParent] => 417
+                    [RelativeLocation] => stdClass Object
+                        (
+                            [X] => -12.126781463623
+                            [Y] => -1.3449059724808
+                            [Z] => 7.4976410865784
+                        )
+
+                    [RelativeRotation] => stdClass Object
+                        (
+                            [Pitch] => 0
+                            [Yaw] => -26.297422409058
+                            [Roll] => 0
+                        )
+
+                    [RelativeScale3D] => stdClass Object
+                        (
+                            [X] => 1.1000000238419
+                            [Y] => 1
+                            [Z] => 0.25
+                        )
+
+                    [bVisible] => 0
+                    [bHiddenInGame] => 0
+                    [UCSSerializationIndex] => 0
+                    [bNetAddressable] => 1
+                    [CreationMethod] => EComponentCreationMethod::Instance
+                )
+
+            [MountainBounds2] => stdClass Object
+                (
+                    [bBlockSpawning] => 0
+                    [ShapeColor] => 255, 0, 0
+                    [AttachParent] => 417
+                    [RelativeLocation] => stdClass Object
+                        (
+                            [X] => 4.3975930213928
+                            [Y] => 28.650798797607
+                            [Z] => -0.80193901062012
+                        )
+
+                    [RelativeRotation] => stdClass Object
+                        (
+                            [Pitch] => 0
+                            [Yaw] => -0.67520201206207
+                            [Roll] => 0
+                        )
+
+                    [RelativeScale3D] => stdClass Object
+                        (
+                            [X] => 0.15000000596046
+                            [Y] => 0.10000000149012
+                            [Z] => 0.050000000745058
+                        )
+
+                    [bVisible] => 0
+                    [bHiddenInGame] => 0
+                    [UCSSerializationIndex] => 0
+                    [bNetAddressable] => 1
+                    [CreationMethod] => EComponentCreationMethod::Instance
+                )
+
+            [MountainBounds3] => stdClass Object
+                (
+                    [bBlockSpawning] => 0
+                    [ShapeColor] => 255, 0, 0
+                    [AttachParent] => 417
+                    [RelativeLocation] => stdClass Object
+                        (
+                            [X] => 5.2424907684326
+                            [Y] => 28.057670593262
+                            [Z] => -1.4203439950943
+                        )
+
+                    [RelativeRotation] => stdClass Object
+                        (
+                            [Pitch] => 0
+                            [Yaw] => 45.116458892822
+                            [Roll] => 0
+                        )
+
+                    [RelativeScale3D] => stdClass Object
+                        (
+                            [X] => 0.15000000596046
+                            [Y] => 0.10000000149012
+                            [Z] => 0.050000000745058
+                        )
+
+                    [bVisible] => 0
+                    [bHiddenInGame] => 0
+                    [UCSSerializationIndex] => 0
+                    [bNetAddressable] => 1
+                    [CreationMethod] => EComponentCreationMethod::Instance
+                )
+
+            [MountainBounds4] => stdClass Object
+                (
+                    [bBlockSpawning] => 0
+                    [ShapeColor] => 255, 0, 0
+                    [AttachParent] => 417
+                    [RelativeLocation] => stdClass Object
+                        (
+                            [X] => -4.6203908920288
+                            [Y] => 27.803245544434
+                            [Z] => -2.6050999164581
+                        )
+
+                    [RelativeRotation] => stdClass Object
+                        (
+                            [Pitch] => 0
+                            [Yaw] => 111.04776763916
+                            [Roll] => 0
+                        )
+
+                    [RelativeScale3D] => stdClass Object
+                        (
+                            [X] => 0.15000000596046
+                            [Y] => 0.10000000149012
+                            [Z] => 0.050000000745058
+                        )
+
+                    [bVisible] => 0
+                    [bHiddenInGame] => 0
+                    [UCSSerializationIndex] => 0
+                    [bNetAddressable] => 1
+                    [CreationMethod] => EComponentCreationMethod::Instance
+                )
+
+            [MountainBounds5] => stdClass Object
+                (
+                    [bBlockSpawning] => 0
+                    [ShapeColor] => 255, 0, 0
+                    [AttachParent] => 417
+                    [RelativeLocation] => stdClass Object
+                        (
+                            [X] => -8.8193817138672
+                            [Y] => 26.931898117065
+                            [Z] => -0.12697799503803
+                        )
+
+                    [RelativeRotation] => stdClass Object
+                        (
+                            [Pitch] => 0
+                            [Yaw] => 181.44723510742
+                            [Roll] => 0
+                        )
+
+                    [RelativeScale3D] => stdClass Object
+                        (
+                            [X] => 0.5
+                            [Y] => 0.10000000149012
+                            [Z] => 0.25
+                        )
+
+                    [bVisible] => 0
+                    [bHiddenInGame] => 0
+                    [UCSSerializationIndex] => 0
+                    [bNetAddressable] => 1
+                    [CreationMethod] => EComponentCreationMethod::Instance
+                )
+
+            [MountainBounds6] => stdClass Object
+                (
+                    [bBlockSpawning] => 0
+                    [ShapeColor] => 255, 0, 0
+                    [AttachParent] => 417
+                    [RelativeLocation] => stdClass Object
+                        (
+                            [X] => 11.919083595276
+                            [Y] => 26.668840408325
+                            [Z] => -1.3659689426422
+                        )
+
+                    [RelativeRotation] => stdClass Object
+                        (
+                            [Pitch] => 0
+                            [Yaw] => 43.542533874512
+                            [Roll] => 0
+                        )
+
+                    [RelativeScale3D] => stdClass Object
+                        (
+                            [X] => 0.15000000596046
+                            [Y] => 0.070000000298023
+                            [Z] => 0.25
+                        )
+
+                    [bVisible] => 0
+                    [bHiddenInGame] => 0
+                    [UCSSerializationIndex] => 0
+                    [bNetAddressable] => 1
+                    [CreationMethod] => EComponentCreationMethod::Instance
+                )
+
+            [MountainBounds7] => stdClass Object
+                (
+                    [bBlockSpawning] => 0
+                    [ShapeColor] => 255, 0, 0
+                    [AttachParent] => 417
+                    [RelativeLocation] => stdClass Object
+                        (
+                            [X] => 7.333508014679
+                            [Y] => 27.694120407104
+                            [Z] => 0.37293100357056
+                        )
+
+                    [RelativeRotation] => stdClass Object
+                        (
+                            [Pitch] => 0
+                            [Yaw] => 61.926376342773
+                            [Roll] => 0
+                        )
+
+                    [RelativeScale3D] => stdClass Object
+                        (
+                            [X] => 0.15000000596046
+                            [Y] => 0.070000000298023
+                            [Z] => 0.25
+                        )
+
+                    [bVisible] => 0
+                    [bHiddenInGame] => 0
+                    [UCSSerializationIndex] => 0
+                    [bNetAddressable] => 1
+                    [CreationMethod] => EComponentCreationMethod::Instance
+                )
+
+            [MountainBounds8] => stdClass Object
+                (
+                    [bBlockSpawning] => 0
+                    [ShapeColor] => 255, 0, 0
+                    [AttachParent] => 417
+                    [RelativeLocation] => stdClass Object
+                        (
+                            [X] => 16.260383605957
+                            [Y] => 26.934099197388
+                            [Z] => -0.70051097869873
+                        )
+
+                    [RelativeRotation] => stdClass Object
+                        (
+                            [Pitch] => 0
+                            [Yaw] => 47.339603424072
+                            [Roll] => 0
+                        )
+
+                    [RelativeScale3D] => stdClass Object
+                        (
+                            [X] => 0.050000000745058
+                            [Y] => 0.03999999910593
+                            [Z] => 0.050000000745058
+                        )
+
+                    [bVisible] => 0
+                    [bHiddenInGame] => 0
+                    [UCSSerializationIndex] => 0
+                    [bNetAddressable] => 1
+                    [CreationMethod] => EComponentCreationMethod::Instance
+                )
+
+            [MountainBounds9] => stdClass Object
+                (
+                    [bBlockSpawning] => 0
+                    [ShapeColor] => 255, 0, 0
+                    [AttachParent] => 417
+                    [RelativeLocation] => stdClass Object
+                        (
+                            [X] => 13.428847312927
+                            [Y] => 13.438478469849
+                            [Z] => -0.7005569934845
+                        )
+
+                    [RelativeRotation] => stdClass Object
+                        (
+                            [Pitch] => 0
+                            [Yaw] => 62.867488861084
+                            [Roll] => 0
+                        )
+
+                    [RelativeScale3D] => stdClass Object
+                        (
+                            [X] => 0.75
+                            [Y] => 0.25
+                            [Z] => 0.5
+                        )
+
+                    [bVisible] => 0
+                    [bHiddenInGame] => 0
+                    [UCSSerializationIndex] => 0
+                    [bNetAddressable] => 1
+                    [CreationMethod] => EComponentCreationMethod::Instance
+                )
+
+        )
+
+    [7] => Array
+        (
+            [IntroBounds1] => stdClass Object
+                (
+                    [bBlockSpawning] => 0
+                    [ShapeColor] => 255, 0, 0
+                    [AttachParent] => 415
+                    [RelativeLocation] => stdClass Object
+                        (
+                            [X] => 4.8204298019409
+                            [Y] => -2.4443230628967
+                            [Z] => 0
+                        )
+
+                    [RelativeRotation] => stdClass Object
+                        (
+                            [Pitch] => 0
+                            [Yaw] => -39.467502593994
+                            [Roll] => 0
+                        )
+
+                    [RelativeScale3D] => stdClass Object
+                        (
+                            [X] => 0.71875
+                            [Y] => 0.90625
+                            [Z] => 0.0625
+                        )
+
+                    [bVisible] => 0
+                    [bHiddenInGame] => 0
+                    [UCSSerializationIndex] => 0
+                    [bNetAddressable] => 1
+                    [CreationMethod] => EComponentCreationMethod::Instance
+                )
+
+        )
+
+)
