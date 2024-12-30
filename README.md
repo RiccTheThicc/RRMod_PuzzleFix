@@ -10,17 +10,22 @@ See [here](https://github.com/RiccTheThicc/RRMod_Puzzlefix/releases) to download
 
 ## Key Features
 - All puzzles now stay solved permanently.*
-- All puzzles should now spawn in properly and match daily counts.
+- All puzzles always spawn in properly and match daily counts.
 - Restored 50+ broken sentinel stone puzzles.
 - Fixed dozens of missing, broken, and stuck-in-wall puzzles.
 - You can actually 100% the game now.
 - Tripled the spawnpoints for "cluster" logic grids (east of lucent fast travel, bent into shape, nearsighted).
 - Superjump cooldown reduced from 300 to 60 seconds.*
 - Implemented automatic save file backups.*
-- Fixed the positions of all floor slabs.
+- Fixed double quest reward / negative spark bug.*
 - All flow orbs always display your all-time best.*
 - All glide rings remember your actual best score.*
 - Enabled more rare skydrop shapes.
+- Fixed the positions of all floor slabs.
+- Rotated some Autumn slabs to reduce camera/tree clipping.
+- Slightly expanded 3 floor slabs to allow for larger mazes in some cases.
+- Adjusted glide ring 10410 (last ring lowered down a tiny bit, believed to be an error).
+- Slightly adjusted positions of some hidden objects around Lucent to reduce puzzles overlapping.
 
 *Feature implemented in .dll mod. Some .dll mod features can be disabled/adjusted in dxgi.ini
 

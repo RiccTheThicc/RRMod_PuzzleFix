@@ -219,6 +219,24 @@ foreach($sandboxZones->Containers as $localID => &$container_ref){
 // Final touches....
 ///////////////////////////////////////////////////////////////////////////////
 
+// Matchbox slight scale to fit - experimental.
+$scaleTest = [
+	// Lucent
+	"10146/2/1.21",
+	"10164/1/1.21",
+	"10139/1/1.21",
+];
+foreach($scaleTest as $amalgam){
+	list($pid, $meshId, $scale) = explode("/", $amalgam);
+	$miniJson = json_decode($puzzleDatabase->krakenIDToWorldPuzzleData[$pid]);
+	$t = UeTransformUnpack($miniJson->{"Mesh" . $meshId . "Transform"});
+	$t->Scale3D->X *= (float)$scale;
+	$t->Scale3D->Y *= (float)$scale;
+	$t->Scale3D->Z *= (float)$scale;
+	UeTransformPackInto($t, $miniJson->{"Mesh" . $meshId . "Transform"});
+	$puzzleDatabase->krakenIDToWorldPuzzleData[$pid] = json_encode($miniJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+}
+
 // Fix baby monuments in autumn.
 foreach($sandboxZones->Containers as $localID => &$container_ref){
 	if($container_ref->containerType == "Monument" && isset($container_ref->monumentTransform)){
@@ -230,6 +248,20 @@ foreach($sandboxZones->Containers as $localID => &$container_ref){
 		UeTransformPackInto($t, $container_ref->monumentTransform);
 	}
 }unset($container_ref);
+
+// Expand a few maze-only slabs slightly so that they could hold larger mazes.
+$sandboxZones->Containers["SlabSocket_C--jonat--LFGPAXXJEXVZCYFVLCQSKLMSVMLR--1681748341--SlabSocket_C " .
+	"/Game/ASophia/Maps/MainMapSubmaps/RiverlandEscarpment/RiverlandPuzzles/RiverlandSlabs.RiverlandSlabs:PersistentLevel.SlabSocket8"]->PuzzleBoxExtent->X = 830;
+$sandboxZones->Containers["SlabSocket_C--jonat--LFGPAXXJEXVZCYFVLCQSKLMSVMLR--1681748341--SlabSocket_C " .
+	"/Game/ASophia/Maps/MainMapSubmaps/RiverlandEscarpment/RiverlandPuzzles/RiverlandSlabs.RiverlandSlabs:PersistentLevel.SlabSocket8"]->PuzzleBoxExtent->Y = 830;
+$sandboxZones->Containers["SlabSocket_C--jbard--AVHFOKBQULBYXCGFFSPSBWQFXMEO--1679963602--SlabSocket_C " .
+	"/Game/ASophia/Maps/MainMapSubmaps/RiverlandEscarpment/RiverlandPuzzles/RiverlandSlabs.RiverlandSlabs:PersistentLevel.SlabSocket5"]->PuzzleBoxExtent->X = 840;
+$sandboxZones->Containers["SlabSocket_C--jbard--AVHFOKBQULBYXCGFFSPSBWQFXMEO--1679963602--SlabSocket_C " .
+	"/Game/ASophia/Maps/MainMapSubmaps/RiverlandEscarpment/RiverlandPuzzles/RiverlandSlabs.RiverlandSlabs:PersistentLevel.SlabSocket5"]->PuzzleBoxExtent->Y = 840;
+$sandboxZones->Containers["SlabSocket_C--alyss--FSOTMDRPDCLLGHAETOHLQZUVXHNM--1679313245--SlabSocket_C " .
+	"/Game/ASophia/Maps/MainMapSubmaps/Mountain/MountainPuzzles/Mountain_Slabs.Mountain_Slabs:PersistentLevel.SlabSocket5"]->PuzzleBoxExtent->X = 760;
+$sandboxZones->Containers["SlabSocket_C--alyss--FSOTMDRPDCLLGHAETOHLQZUVXHNM--1679313245--SlabSocket_C " .
+	"/Game/ASophia/Maps/MainMapSubmaps/Mountain/MountainPuzzles/Mountain_Slabs.Mountain_Slabs:PersistentLevel.SlabSocket5"]->PuzzleBoxExtent->Y = 760;
 
 
 
