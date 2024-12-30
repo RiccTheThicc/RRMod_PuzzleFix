@@ -1,0 +1,3 @@
+localID,pid,fields,dx,dy,dz,dpitch,dyaw,droll,comment
+hiddenCube--jonat--AGVOUPLBUSQCHXETZBITXSWVWJOE--1677864030--BP_HiddenCube_C /Game/ASophia/Maps/TestingSubmaps/PuzzlePlacementMaps/WorkspaceJonathan.WorkspaceJonathan:PersistentLevel.BP_HiddenCube158,13828,ActorTransform,-340,-685,0,0,0,0,this cube may block a matchbox from being solved; moved it to the other column on the other side of the jumppad
+hiddenArchway--Joey--VMNCNUVKXNBQOHQSJPIFIIEQTNTQ--1687462648--BP_ArchwayFind_C /Game/ASophia/Maps/TestingSubmaps/RedwoodsPlacement/Redwoods_Joey.Redwoods_Joey:PersistentLevel.BP_ArchwayFind473,15303,ActorTransform,90,135,0,0,90,0,blocks a florb

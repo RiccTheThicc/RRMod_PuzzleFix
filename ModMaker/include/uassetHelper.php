@@ -20,6 +20,7 @@ function &ParseUassetPuzzleDatabase(&$json_ref){
 		$result[$key] = &$subNode_ref;
 	}unset($subNode_ref);
 	$result = (object)$result;
+	unset($dataNode);
 	return $result;
 }
 
@@ -226,7 +227,7 @@ function ShrinkSerializedBounds(string &$ser){
 	$ser = json_encode($miniJson, JSON_UNESCAPED_SLASHES);
 }
 
-
+/*
 function YeetSerializedBounds(string &$ser){
 	
 	$miniJson = json_decode($ser);
@@ -269,7 +270,7 @@ function YeetSerializedBounds(string &$ser){
 	
 	$ser = json_encode($miniJson, JSON_UNESCAPED_SLASHES);
 }
-
+*/
 
 function FixSlabPtype(&$jsonSandboxZones, string $csvPath){
 	$desiredSlabPtypes = LoadCsvMap($csvPath, "localID");
@@ -327,15 +328,37 @@ function FixSlabPtype(&$jsonSandboxZones, string $csvPath){
 	unset($exports_ref);
 }
 
+$adjustedItems = [];
 function AdjustAssetCoordinates(&$puzzleDatabase, &$sandboxZones, string $csvPath){
+	global $adjustedItems;
+	
 	$adjuster = LoadCsv($csvPath);
-
+	$puzzleMap = GetPuzzleMap(true);
+	
+	$myZone = -1;
+	if(preg_match("/adjust_([\w\W_]+)\.csv$/", $csvPath, $matches)){
+		$zoneName = $matches[1];
+		$zoneIndex = ZoneNameToInt(str_replace("_", "", $zoneName));
+		if(IsHubZone($zoneIndex)){
+			$myZone = $zoneIndex;
+			//printf("Matched |%s| (%d) in %s\n", $zoneName, $zoneIndex, $csvPath);
+		}
+	}
+	
+	$adjustCount = 0;
+	
 	foreach($adjuster as $entry){
 		//localID,pid,fields,dx,dy,dz,comment
 		$localID   = $entry["localID"];
 		$pid       = $entry["pid"];
 		$fieldList = explode("|", $entry["fields"]);
 		$comment   = (empty($entry["comment"]) ? "nocomment" : $entry["comment"]);
+		$itemKey   = $localID . "," . $pid . "," . $entry["fields"];
+		
+		//$zeroCoord = (object)[ "x" => 0, "y" => 0, "z" => 0 ];
+		//$diffCoord = (object)[ "x" => $entry["dx"], "y" => $entry["dy"], "z" => $entry["dz"] ];
+		//$dist = Distance($zeroCoord, $diffCoord);
+		//printf("Distance: %.1f\n", $dist / 100.0);
 		
 		if(is_numeric($pid) && $pid > 0){
 			// We assume it's a puzzle. So we look for it in the puzzleDatabase.
@@ -346,6 +369,10 @@ function AdjustAssetCoordinates(&$puzzleDatabase, &$sandboxZones, string $csvPat
 			}
 			$ser_ref = &$puzzleDatabase->krakenIDToWorldPuzzleData[$pid];
 			$ptype = json_decode($ser_ref)->PuzzleType;
+			$zoneIndex = $puzzleMap[$pid]->actualZoneIndex;
+			if($myZone != -1 && $myZone != $zoneIndex){
+				printf("%s\n", ColorStr(sprintf("Warning: entry from %s should belong to %s:\n%s\n", ZoneToPrettyNoColor($myZone), ZoneToPrettyNoColor($zoneIndex), implode(",", $entry)), 200, 200, 40));
+			}
 			
 			//printf("\n%s\n", addslashes($ser_ref));
 			
@@ -357,7 +384,7 @@ function AdjustAssetCoordinates(&$puzzleDatabase, &$sandboxZones, string $csvPat
 				//$miniJson = json_decode($puzzleDatabase->krakenIDToWorldPuzzleData[$pid]);
 				//var_dump($miniJson);
 				if(!preg_match("/\\\"" . $fieldName . "\\\"\s*\:\s*\\\"([\d\.\-\+\|,]+)\\\"/", $ser_ref, $matches)){
-					printf("%s: preg_match for field %s failed, serialized string and request:\n%s\n%s\n", __FUNCTION__, addslashes($ser_ref), json_encode($entry, JSON_UNESCAPED_SLASHES));
+					printf("%s: preg_match for field %s failed, serialized string and request:\n%s\n%s\n", __FUNCTION__, $fieldName, addslashes($ser_ref), json_encode($entry, JSON_UNESCAPED_SLASHES));
 					exit(1);
 				}
 				//printf("%5d |%s| = |%s|\n", $pid, $fieldName, $matches[1]);
@@ -379,6 +406,20 @@ function AdjustAssetCoordinates(&$puzzleDatabase, &$sandboxZones, string $csvPat
 		}elseif(isset($sandboxZones->Containers[$localID])){
 			// SandboxZones-defined object.
 			$obj_ref = &$sandboxZones->Containers[$localID];
+			
+			if($myZone != -1){
+				if(!isset($obj_ref->ownerZone)){
+					printf("%s\n", ColorStr("Something is wrong! Dump:", 255, 128, 128));
+					var_dump($obj_ref);
+					var_dump($entry);
+					var_dump($csvPath);
+					exit(1);
+				}
+				$zoneIndex = ZoneNameToInt($obj_ref->ownerZone);
+				if($myZone != $zoneIndex){
+					printf("%s\n", ColorStr(sprintf("Warning: entry from %s should belong to %s:\n%s\n", ZoneToPrettyNoColor($myZone), ZoneToPrettyNoColor($zoneIndex), implode(",", $entry)), 200, 200, 40));
+				}
+			}
 			
 			foreach($fieldList as $fieldName){
 				if(isset($obj_ref->$fieldName)){
@@ -437,7 +478,15 @@ function AdjustAssetCoordinates(&$puzzleDatabase, &$sandboxZones, string $csvPat
 			printf("%s: unable to identify this entry:\n", __FUNCTION__, json_encode($entry, JSON_UNESCAPED_SLASHES));
 			exit(1);
 		}
+		
+		if(in_array($itemKey, $adjustedItems)){
+			printf("%s\n", ColorStr(sprintf("Warning: multiple adjustments for %s\n", $itemKey), 200, 200, 40));
+		}else{
+			$adjustedItems[] = $itemKey;
+		}
+		++$adjustCount;
 	}
+	printf("  %s\n", ColorStr(sprintf("Adjusted %4d objects from %s", $adjustCount, $csvPath), 160, 160, 160));
 }
 
 function SaveUassetSubNodeAs($path, $node){

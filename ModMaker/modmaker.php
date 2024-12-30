@@ -35,7 +35,7 @@ $outputSandboxZones   = "..\\OutputJsons\\SandboxZones.json";
 $outputReadables      = "..\\OutputReadable\\";
 
 $doExportFiles = true;
-$spawnBehaviourOverride = false;
+$forceOnlyZone = -1;
 
 
 
@@ -63,15 +63,224 @@ SaveReadableUassetDataTo($inputReadables, $puzzleDatabase, $sandboxZones);
 // Override spawn behavior to spawn every World puzzle at once - if needed.
 ///////////////////////////////////////////////////////////////////////////////
 
-if($spawnBehaviourOverride){
-	// Spawn everything.
+//if($forceOnlyZone >= 2 && $forceOnlyZone <= 6){
+if($forceOnlyZone >= 2){
+	foreach($puzzleDatabase->puzzleZoneToGroupNumOverrides as $zoneEnumName => &$ptypeArray_ref){
+		//$zoneIndex = ZoneNameToInt($zoneEnumName);
+		//if($zoneIndex == $forceOnlyZone){
+		//	$ptypeArray_ref["logicGrid"] = 200;
+		//	continue;
+		//}
+		//foreach($ptypeArray_ref as $ptype => &$groupSize_ref){
+		//	$groupSize_ref = 0;
+		//}unset($groupSize_ref);
+		$zoneIndex = ZoneNameToInt($zoneEnumName);
+		foreach($ptypeArray_ref as $ptype => &$groupSize_ref){
+			if(in_array($ptype, [ "logicGrid", "completeThePattern", "musicGrid", "memoryGrid" ])){// || $zoneIndex != $forceOnlyZone){
+				printf("%s\n", ColorStr(sprintf("  Removing group %-18s in %s", $ptype, ZoneToPrettyNoColor($zoneIndex)), 160, 160, 160));
+				$groupSize_ref = 0;
+			}
+		}unset($groupSize_ref);
+	}unset($ptypeArray_ref);
+	
+	$hubPids = GetAllHubPids();
+	$zonePids = (ReduceProfileToZones(GetHubProfile()))[$forceOnlyZone];
+	$wrongHubPids = array_diff($hubPids, $zonePids);
+	$allRoughBounds = LoadCsvMap("media\\mod\\roughZoneBounds.csv", "zoneIndex");
+	$roughBounds = (object)($allRoughBounds[$forceOnlyZone]);
+	
 	foreach($puzzleDatabase->krakenIDToWorldPuzzleData as $pid => &$ser_ref){
 		$miniJson = json_decode($ser_ref);
-		$miniJson->SpawnBehaviour = 0;
+		$t = UeTransformUnpack($miniJson->ActorTransform);
+		if($t->Translation->X >= $roughBounds->minX &&
+		   $t->Translation->X <= $roughBounds->maxX &&
+		   $t->Translation->Y >= $roughBounds->minY &&
+		   $t->Translation->Y <= $roughBounds->maxY &&
+		   //!in_array($pid, $wrongHubPids) &&
+		   (in_array($pid, GetAllHubPids()) || in_array($pid, GetAllStaticPids()))
+		   //|| ($miniJson->PuzzleType == "viewfinder" && $miniJson->Zone == 3)
+		   ){
+			   $miniJson->SpawnBehaviour = 0;
+		}else{
+			$miniJson->SpawnBehaviour = 1;
+			//$miniJson->Disabled = true; // doesn't work
+		}
 		$ser_ref = json_encode($miniJson, JSON_UNESCAPED_SLASHES);
 	}unset($ser_ref);
+	
+	$profileHub = GetHubProfile();
+	$reduced = ReduceProfileToPtypes($profileHub);
+	$gridPids = $reduced["logicGrid"] + $reduced["completeThePattern"] + $reduced["musicGrid"] + $reduced["memoryGrid"];
+	shuffle($gridPids);
+	$nextRandomPid = 0;
+	//printf("%s\n", implode(",", $gridPids));
+	
+	$exports_ref = &$jsonSandboxZones->Exports;
+	$zoneContainerMap = [];
+	
+	foreach($exports_ref as $exportIndex => &$jsonContainer_ref){
+		$objectName = $jsonContainer_ref->ObjectName;
+		if(!preg_match("/([\w]+)Zone1?/", $objectName, $matches)){
+			continue;
+		}
+		$zoneName = $matches[1];
+		if($zoneName == "Sandbox"){
+			// Boring empty node.
+			continue;
+		}
+		$zoneIndex = ZoneNameToInt($zoneName);
+		//printf("Found %s (%d)\n", $matches[1], $zoneIndex);
+		$zoneContainerMap[$zoneIndex] = (object)[];
+		
+		foreach($jsonContainer_ref->Data as $blobIndex => &$blob_ref){
+			if(!isset($blob_ref->Name) || !isset($blob_ref->Value)){
+				continue;
+			}
+			//$name_ref = &$blob_ref->Name;
+			//$value_ref = &$blob_ref->Value;
+			//if($name_ref == "alwaysSpawnContainerPuzzlesToBeSpawned"){
+			//	$zoneContainerMap[$zoneIndex]->alwaysContainers = &$value_ref;
+			//}elseif($name_ref == "defaultContainerPuzzlesToBeSpawned"){
+			//	$zoneContainerMap[$zoneIndex]->defaultContainers = &$value_ref;
+			//}
+			//printf("%-18s %-40s %s\n", ZoneToPrettyNoColor($zoneIndex), $name_ref, (is_scalar($value_ref) ? $value_ref : "<node>"));
+			$zoneContainerMap[$zoneIndex]->{$blob_ref->Name} = &$blob_ref->Value;
+			
+			//unset($name_ref);
+			//unset($value_ref);
+		}unset($blob_ref);
+	}unset($jsonContainer_ref);
+	ksort($zoneContainerMap);
+	
+	$runeCount = [];
+	foreach($exports_ref as $iii => &$jsonContainer_ref){
+		$exportIndex = $iii + 1;
+		$localID = "";
+		$isRune = false;
+		$isHubContainer = false;
+		$zoneIndex = -1;
+		$isInbounds = false;
+		
+		$dataIndexSpawnBehaviour = -1;
+		$dataIndexOwnerZone = -1;
+		$dataIndexSerializedString = -1;
+		
+		foreach($jsonContainer_ref->Data as $blobIndex => &$blob_ref){
+			//var_dump($blob_ref); exit(1);
+			if(!isset($blob_ref->Name) || !isset($blob_ref->Value)){
+				continue;
+			}
+			$name_ref = &$blob_ref->Name;
+			$value_ref = &$blob_ref->Value;
+			//printf("%s = %s\n", $name_ref, json_encode($value_ref));
+			if($name_ref == "localID"){
+				$localID = $value_ref;
+			}elseif($name_ref == "possiblePuzzleTypes"){
+				foreach($value_ref as $subValue){
+					if($subValue->Value == "logicGrid"){
+						$isRune = true;
+					}
+				}
+			}elseif($name_ref == "ownerZone"){
+				$zoneIndex = ZoneNameToInt($value_ref);
+				$dataIndexOwnerZone = $blobIndex;
+				//$isHubContainer = IsHubZone($zoneIndex); // nonono
+			}elseif($name_ref == "serializedString"){
+				$miniJson = json_decode($value_ref);
+				$t = UeTransformUnpack($miniJson->ActorTransform);
+				$isInBounds = ($t->Translation->X >= $roughBounds->minX &&
+							   $t->Translation->X <= $roughBounds->maxX &&
+							   $t->Translation->Y >= $roughBounds->minY &&
+							   $t->Translation->Y <= $roughBounds->maxY );
+				$isHubContainer = ($miniJson->SpawnBehaviour == 2);
+				//printf("Export #%d, localID |%s|, spawnbehaviour is %d, thus it is a %s container, raw serialized string: |%s|\n",
+				//		$exportIndex, $localID, $miniJson->SpawnBehaviour, ($isHubContainer ? "hub" : "static"), $value_ref);
+				//var_dump($miniJson);
+				unset($miniJson);
+				$dataIndexSerializedString = $blobIndex;
+			}elseif($name_ref == "SpawnBehaviour"){
+				$dataIndexSpawnBehaviour = $blobIndex;
+			}
+			unset($name_ref);
+			unset($value_ref);
+		}unset($blob_ref);
+		if(empty($localID) || !$isRune || !$isHubContainer){
+			continue;
+		}
+		if(!$isInBounds){ continue; }
+		
+		// Turn this hub grid into a static grid.
+		unset($jsonContainer_ref->Data[$dataIndexSpawnBehaviour]);
+		//$jsonContainer_ref->Data[$indexSpawnBehaviour]->Value = "ESpawnBehaviour::AlwaysSpawn";
+		unset($jsonContainer_ref->Data[$dataIndexOwnerZone]);
+		$miniJson = json_decode($jsonContainer_ref->Data[$dataIndexSerializedString]->Value);
+		$miniJson->SpawnBehaviour = 0;
+		$miniJson->Zone = 0;
+		$jsonContainer_ref->Data[$dataIndexSerializedString]->Value = CreateJson($miniJson); //json_encode($miniJson, JSON_PRETTY_PRINT);
+		unset($miniJson);
+		
+		$jsonContainer_ref->Data[] = (object)[
+          "\$type" => "UAssetAPI.PropertyTypes.Objects.IntPropertyData, UAssetAPI",
+          "Name" => "desiredKrakenIDOverride",
+          "DuplicationIndex" => 0,
+          "IsZero" => false,
+          //"Value" => 232,
+		  "Value" => $gridPids[$nextRandomPid],
+        ];
+		
+		// krakenIDToPuzzleStatus ?
+		$jsonContainer_ref->Data = array_values($jsonContainer_ref->Data);
+		$puzzleDatabase->krakenIDToContainedPuzzleData[$nextRandomPid]["Status"] = "dungeon";
+		$puzzleDatabase->krakenIDToPuzzleStatus[$nextRandomPid] = "dungeon";
+		//$puzzleDatabase->krakenIDToContainedPuzzleData[232]["Status"] = "dungeon";
+		//var_dump($jsonContainer_ref); exit(1);
+		
+		if(!isset($runeCount[$zoneIndex])){
+			$runeCount[$zoneIndex] = 0;
+		}
+		++$runeCount[$zoneIndex];
+		
+		// Here's a problem though. None of that is enough.
+		// We must now turn this rune from a "default spawn" rune to an "always spawn" rune.
+		// This gets tricky and messy really fast.
+		$isFound = false;
+		$internalIndex = -1;
+		foreach($zoneContainerMap[$zoneIndex]->defaultContainerPuzzlesToBeSpawned as $arrayIndex => &$element_ref){
+			if($element_ref->Value == $exportIndex){
+				$internalIndex = $arrayIndex;
+				//printf("Found exportIndex %d as array index %d for zone %s\n", $exportIndex, $internalIndex, ZoneToPrettyNoColor($zoneIndex));
+				$isFound = true;
+				break;
+			}
+		}unset($element_ref);
+		if(!$isFound){
+			printf("Could not find exportIndex %d as some array index for zone %s\n", $exportIndex, ZoneToPrettyNoColor($zoneIndex));
+			var_dump($jsonContainer_ref); exit(1);
+		}
+		
+		$zoneContainerMap[$zoneIndex]->alwaysSpawnContainerPuzzlesToBeSpawned[] = $zoneContainerMap[$zoneIndex]->defaultContainerPuzzlesToBeSpawned[$internalIndex];
+		unset($zoneContainerMap[$zoneIndex]->defaultContainerPuzzlesToBeSpawned[$internalIndex]);
+		
+		$zoneContainerMap[$zoneIndex]->defaultContainerPuzzlesToBeSpawned = array_values($zoneContainerMap[$zoneIndex]->defaultContainerPuzzlesToBeSpawned);
+		foreach($zoneContainerMap[$zoneIndex]->defaultContainerPuzzlesToBeSpawned as $arrayIndex => &$element_ref){
+			$element_ref->Name = (string)$arrayIndex;
+		}unset($element_ref);
+		
+		$zoneContainerMap[$zoneIndex]->alwaysSpawnContainerPuzzlesToBeSpawned = array_values($zoneContainerMap[$zoneIndex]->alwaysSpawnContainerPuzzlesToBeSpawned);
+		foreach($zoneContainerMap[$zoneIndex]->alwaysSpawnContainerPuzzlesToBeSpawned as $arrayIndex => &$element_ref){
+			$element_ref->Name = (string)$arrayIndex;
+		}unset($element_ref);
+		
+		//printf("\n\n\n");
+		++$nextRandomPid;
+	}unset($jsonContainer_ref);
+	ksort($runeCount);
+	//print_r($runeCount);
+	
+	unset($zoneContainerMap);
+	unset($exports_ref);
 }
-
+//exit(1);
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -79,7 +288,15 @@ if($spawnBehaviourOverride){
 ///////////////////////////////////////////////////////////////////////////////
 
 printf("> Adjusting asset coordinates...\n");
-AdjustAssetCoordinates($puzzleDatabase, $sandboxZones, "media\\mod\\adjuster3.csv");
+AdjustAssetCoordinates($puzzleDatabase, $sandboxZones, "media\\mod\\adjust_slab_sockets.csv");
+AdjustAssetCoordinates($puzzleDatabase, $sandboxZones, "media\\mod\\adjust_cluster_runes.csv");
+AdjustAssetCoordinates($puzzleDatabase, $sandboxZones, "media\\mod\\adjust_miscellaneous.csv");
+AdjustAssetCoordinates($puzzleDatabase, $sandboxZones, "media\\mod\\adjust_verdant_glen.csv");
+AdjustAssetCoordinates($puzzleDatabase, $sandboxZones, "media\\mod\\adjust_lucent_waters.csv");
+AdjustAssetCoordinates($puzzleDatabase, $sandboxZones, "media\\mod\\adjust_autumn_falls.csv");
+AdjustAssetCoordinates($puzzleDatabase, $sandboxZones, "media\\mod\\adjust_shady_wildwoods.csv");
+AdjustAssetCoordinates($puzzleDatabase, $sandboxZones, "media\\mod\\adjust_serene_deluge.csv");
+//AdjustAssetCoordinates($puzzleDatabase, $sandboxZones, "media\\mod\\adjust_ztemp.csv");
 
 
 
@@ -215,6 +432,7 @@ foreach($sandboxZones->Containers as $localID => &$container_ref){
 
 
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Final touches....
 ///////////////////////////////////////////////////////////////////////////////
@@ -225,16 +443,26 @@ $scaleTest = [
 	"10146/2/1.21",
 	"10164/1/1.21",
 	"10139/1/1.21",
+	"9883/1/1.33",
+	"9905/1/1.33",
+	"10143/1/1.27",
+	"10145/1/1.27",
+	"10138/1/0.8",
+	"10082/1/1.13",
+	//Autumn
+	//"6803/2/1.55",
 ];
 foreach($scaleTest as $amalgam){
 	list($pid, $meshId, $scale) = explode("/", $amalgam);
+	$hadPrettyPrint = str_contains($puzzleDatabase->krakenIDToWorldPuzzleData[$pid], "\n");
 	$miniJson = json_decode($puzzleDatabase->krakenIDToWorldPuzzleData[$pid]);
 	$t = UeTransformUnpack($miniJson->{"Mesh" . $meshId . "Transform"});
 	$t->Scale3D->X *= (float)$scale;
 	$t->Scale3D->Y *= (float)$scale;
 	$t->Scale3D->Z *= (float)$scale;
 	UeTransformPackInto($t, $miniJson->{"Mesh" . $meshId . "Transform"});
-	$puzzleDatabase->krakenIDToWorldPuzzleData[$pid] = json_encode($miniJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+	//$puzzleDatabase->krakenIDToWorldPuzzleData[$pid] = json_encode($miniJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+	$puzzleDatabase->krakenIDToWorldPuzzleData[$pid] = json_encode($miniJson, JSON_UNESCAPED_SLASHES | ($hadPrettyPrint ? JSON_PRETTY_PRINT : 0x00));
 }
 
 // Fix baby monuments in autumn.
@@ -263,10 +491,19 @@ $sandboxZones->Containers["SlabSocket_C--alyss--FSOTMDRPDCLLGHAETOHLQZUVXHNM--16
 $sandboxZones->Containers["SlabSocket_C--alyss--FSOTMDRPDCLLGHAETOHLQZUVXHNM--1679313245--SlabSocket_C " .
 	"/Game/ASophia/Maps/MainMapSubmaps/Mountain/MountainPuzzles/Mountain_Slabs.Mountain_Slabs:PersistentLevel.SlabSocket5"]->PuzzleBoxExtent->Y = 760;
 
+// Fix two broken mazes.
+$maze25027_ref = &$puzzleDatabase->krakenIDToContainedPuzzleData[25027]["Serialized"]; //var_dump($maze25027_ref);
+$maze25027_ref = str_replace("ew0KCSJyYW5kU2VlZCI6ID" . "kwMzUz", "ew0KCSJyYW5kU2VlZCI6ID" . "kwMzUw", $maze25027_ref);
+unset($maze25027_ref); // serene broken maze, change randSeed carefully so that it stays in serene
+
+$maze25037_ref = &$puzzleDatabase->krakenIDToContainedPuzzleData[25037]["Serialized"]; //var_dump($maze25037_ref);
+$maze25037_ref = str_replace("ew0KCSJyYW5kU2VlZCI6ID" . "Q1NDAx", "ew0KCSJyYW5kU2VlZCI6ID" . "Q1NDA0", $maze25037_ref);
+unset($maze25037_ref); // shady broken maze, change randSeed carefully so that it stays in shady
+
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// Extras - currently unused.
+// Graveyard.
 ///////////////////////////////////////////////////////////////////////////////
 
 

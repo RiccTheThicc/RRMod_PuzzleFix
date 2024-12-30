@@ -18,14 +18,19 @@ See [here](https://github.com/RiccTheThicc/RRMod_Puzzlefix/releases) to download
 - Superjump cooldown reduced from 300 to 60 seconds.*
 - Implemented automatic save file backups.*
 - Fixed double quest reward / negative spark bug.*
+- Sightseer images now have higher quality (no more weird artifacts).*
 - All flow orbs always display your all-time best.*
 - All glide rings remember your actual best score.*
 - Enabled more rare skydrop shapes.
+- All Verdant Glen puzzles are now mutually compatible.
+- All Lucent Waters puzzles are now mutually compatible.
+- Glide rings starting platforms now fit the environment properly (Verdant Glen and Lucent Waters).
+- Fixed two partially broken mazes (#25027, #25037).
 - Fixed the positions of all floor slabs.
 - Rotated some Autumn slabs to reduce camera/tree clipping.
 - Slightly expanded 3 floor slabs to allow for larger mazes in some cases.
 - Adjusted glide ring 10410 (last ring lowered down a tiny bit, believed to be an error).
-- Slightly adjusted positions of some hidden objects around Lucent to reduce puzzles overlapping.
+- Wanderer's Quests (automatic ones) can now be disabled (see dxgi.ini). This is an optional feature not used by default.*
 
 *Feature implemented in .dll mod. Some .dll mod features can be disabled/adjusted in dxgi.ini
 
@@ -95,9 +100,6 @@ Location of each file within the IslandsOfInsight folder:
 - **SandboxZones:** "Content\ASophia\Maps\MainMapSubmaps\RiverlandEscarpment\RiverlandPuzzles\"
 - **Central_CampaignObjects:** "Content\ASophia\Maps\MainMapSubmaps\Central\CentralZone\"
 - **BP_Rosary**: "Content\ASophia\Puzzle\Rosary"
-- **BP_PuzzleTotem**: "Content\ASophia\Puzzle\PuzzleTotem"
-
-Note: BP_PuzzleTotem and BP_Rosary were accidentally packed into "Content\ASophia\Puzzles" for this version. This essectially means the changes to these files do nothing.
 
 For the version of UE Islands Of Insight was developed with, the packing itself takes place in the Engine/Binaries/Win64 folder within the project root. This results in assets having locations like "..\\..\\..\\IslandsofInsight\\Content\\...", so we pack the IslandsofInsight folder with our new assets from a folder with the same relative location. i.e. The UnrealPak.exe file used for packing is inside "Engine/Binaries/Win64" and the "IslandsofInsight" folder is in the same directory as the "Engine" folder.
 
