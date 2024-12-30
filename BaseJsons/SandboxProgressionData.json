@@ -57,7 +57,7 @@
 "$type": "UAssetAPI.ExportTypes.NormalExport, UAssetAPI",
 "ObjectName": "SandboxProgressionData",
 "ObjectFlags": "RF_Public, RF_Standalone, RF_Transactional",
-"SerialSize": 39807,
+"SerialSize": 39799,
 "SerialOffset": 4610,
 "ScriptSerializationStartOffset": 0,
 "ScriptSerializationEndOffset": 0,
@@ -1710,7 +1710,7 @@
 												"Value": [
 													{ "$type":"UAssetAPI.PropertyTypes.Objects.IntPropertyData, UAssetAPI", "Name":"CoinAmount", "Value":0 },
 													{ "$type":"UAssetAPI.PropertyTypes.Objects.IntPropertyData, UAssetAPI", "Name":"BlueOrbAmount", "Value":1 },
-													{ "$type":"UAssetAPI.PropertyTypes.Objects.StrPropertyData, UAssetAPI", "Name":"LorePageID", "Value":"lore2_5" },
+													{ "$type":"UAssetAPI.PropertyTypes.Objects.StrPropertyData, UAssetAPI", "Name":"LorePageID", "Value":null },
 													{ "$type":"UAssetAPI.PropertyTypes.Objects.StrPropertyData, UAssetAPI", "Name":"CosmeticID", "Value":null },
 													{ "$type":"UAssetAPI.PropertyTypes.Objects.IntPropertyData, UAssetAPI", "Name":"TrailLengthAmount", "Value":0 }
 												]

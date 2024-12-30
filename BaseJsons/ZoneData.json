@@ -333,7 +333,7 @@
 			"Name": "Name",
 			"Value": "ZoneDataEntry-62427"
 		},
-		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"Icon", "Value":-13 },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"Icon", "Value":-14 },
 		{ "$type":"UAssetAPI.PropertyTypes.Objects.IntPropertyData, UAssetAPI", "Name":"BlueOrbsToUnlock", "Value":30 }
 	]
 },
@@ -385,7 +385,7 @@
 			"Name": "Name",
 			"Value": "ZoneDataEntry-62428"
 		},
-		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"Icon", "Value":-14 },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"Icon", "Value":-13 },
 		{ "$type":"UAssetAPI.PropertyTypes.Objects.IntPropertyData, UAssetAPI", "Name":"BlueOrbsToUnlock", "Value":50 }
 	]
 },

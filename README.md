@@ -11,26 +11,37 @@ See [here](https://github.com/RiccTheThicc/RRMod_Puzzlefix/releases) to download
 ## Key Features
 - All puzzles now stay solved permanently.*
 - All puzzles always spawn in properly and match daily counts.
-- Restored 50+ broken sentinel stone puzzles.
-- Fixed dozens of missing, broken, and stuck-in-wall puzzles.
 - You can actually 100% the game now.
-- Tripled the spawnpoints for "cluster" logic grids (east of lucent fast travel, bent into shape, nearsighted).
 - Superjump cooldown reduced from 300 to 60 seconds.*
-- Implemented automatic save file backups.*
+- Implemented automatic save file backups (upon launch + every 30 minutes).*
 - Fixed double quest reward / negative spark bug.*
 - Sightseer images now have higher quality (no more weird artifacts).*
+- Potentially fixed the bug where most hub puzzles fail to spawn upon launch.*
+- Tripled the spawnpoints for "cluster" logic grids (east of lucent fast travel, bent into shape, nearsighted).
 - All flow orbs always display your all-time best.*
 - All glide rings remember your actual best score.*
 - Enabled more rare skydrop shapes.
-- All Verdant Glen puzzles are now mutually compatible.
-- All Lucent Waters puzzles are now mutually compatible.
-- Glide rings starting platforms now fit the environment properly (Verdant Glen and Lucent Waters).
-- Fixed two partially broken mazes (#25027, #25037).
+- All Verdant/Lucent/Autumn/Shady puzzles are now mutually compatible.
+- Fixed Lucent Waters Movement track awarding a lore fragment twice.
+- Fixed zone icons for Shady Wildwoods and Serene Deluge (those tiny icons in hub tracks, they were swapped all along).
+- Slightly tweaked positions of numerous puzzles to better fit the environment.
 - Fixed the positions of all floor slabs.
 - Rotated some Autumn slabs to reduce camera/tree clipping.
 - Slightly expanded 3 floor slabs to allow for larger mazes in some cases.
+- Moved a wall slab that had a tree branch stuck in it (Serene, at The Highest Viewpoint).
+- Boosted a jumppad in Shady (at Divide by Two) by ~4% so that you can actually reach the top.
+- Restored 50+ broken sentinel stone puzzles.
 - Adjusted glide ring 10410 (last ring lowered down a tiny bit, believed to be an error).
+- Fixed two partially broken mazes (#25027, #25037).
+- Fixed several really bad Light Motifs drawn on leaves (#5859 #5840 Autumn).
+- Fixed several nearly unobtainable Shy Auras (#8061 Shady, #17035 #16943 Serene).
+- Fixed a Wandering Echo that couldn't reset properly (#12233 Verdant).
+- Fixed a Hidden Ring stuck in a rock (#15386 Shady).
+- Fixed two logic grids having multiple solutions (#25122 Cong cluster, #184 Lucent cluster).
+- Fixed a particular music grid having a silent instrument (#18700 Serene).
+- Added a small indicator for when the mod is properly installed*: [Example of indicator within the game's pause menu](https://github.com/user-attachments/assets/475d8ce6-7c02-43a0-a267-2950d7b20d72)
 - Wanderer's Quests (automatic ones) can now be disabled (see dxgi.ini). This is an optional feature not used by default.*
+- Implemented the Show Logic Grids feature (see dxgi.ini) that adds a marker to the nearest unsolved Logic Grid. This is an optional feature not used by default.*
 
 *Feature implemented in .dll mod. Some .dll mod features can be disabled/adjusted in dxgi.ini
 
@@ -96,10 +107,12 @@ The asset files retain the folder structure they had when they were packed, and 
 In order to have our .pak replace an asset file in the game's pak on load, we need to make sure it's location is exactly the same as the one within the vanilla file.
 
 Location of each file within the IslandsOfInsight folder:
-- **PuzzleDatabase:** "Content\ASophia\Data\"
+- **PuzzleDatabase, Zone_Data, SandboxProgressionData:** "Content\ASophia\Data\"
 - **SandboxZones:** "Content\ASophia\Maps\MainMapSubmaps\RiverlandEscarpment\RiverlandPuzzles\"
 - **Central_CampaignObjects:** "Content\ASophia\Maps\MainMapSubmaps\Central\CentralZone\"
+- **Redwood_Kailasa**: "Content\ASophia\Maps\MainMapSubmaps\Redwood\RedwoodZone"
 - **BP_Rosary**: "Content\ASophia\Puzzle\Rosary"
+
 
 For the version of UE Islands Of Insight was developed with, the packing itself takes place in the Engine/Binaries/Win64 folder within the project root. This results in assets having locations like "..\\..\\..\\IslandsofInsight\\Content\\...", so we pack the IslandsofInsight folder with our new assets from a folder with the same relative location. i.e. The UnrealPak.exe file used for packing is inside "Engine/Binaries/Win64" and the "IslandsofInsight" folder is in the same directory as the "Engine" folder.
 

@@ -498,7 +498,7 @@
 		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"onOverlapColliderComponent", "Value":286 },
 		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"enableTickSphere", "Value":116 },
 		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"SplineComponent", "Value":123 },
-		{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"addedDirectionalSpeed", "Value":1700 },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"addedDirectionalSpeed", "Value":1770 },
 		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"RootComponent", "Value":288 },
 		{
 			"$type": "UAssetAPI.PropertyTypes.Objects.ArrayPropertyData, UAssetAPI",

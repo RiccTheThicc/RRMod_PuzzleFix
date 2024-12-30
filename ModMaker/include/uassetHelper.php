@@ -475,7 +475,7 @@ function AdjustAssetCoordinates(&$puzzleDatabase, &$sandboxZones, string $csvPat
 			unset($obj_ref);
 			
 		}else{
-			printf("%s: unable to identify this entry:\n", __FUNCTION__, json_encode($entry, JSON_UNESCAPED_SLASHES));
+			printf("%s: unable to identify this entry:\n%s\n\n", __FUNCTION__, json_encode($entry, JSON_UNESCAPED_SLASHES));
 			exit(1);
 		}
 		
