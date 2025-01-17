@@ -111,8 +111,12 @@ Location of each file within the IslandsOfInsight folder:
 - **SandboxZones:** "Content\ASophia\Maps\MainMapSubmaps\RiverlandEscarpment\RiverlandPuzzles\"
 - **Central_CampaignObjects:** "Content\ASophia\Maps\MainMapSubmaps\Central\CentralZone\"
 - **Redwood_Kailasa**: "Content\ASophia\Maps\MainMapSubmaps\Redwood\RedwoodZone"
+- **Rainforest_PyramidMirrorMaze_Puzzles**: "Content\ASophia\Maps\MainMapSubmaps\RainForest\Dungeons\"
+- **MM_Master_Material_01a**: "Content\AncientTreasures\Materials\Masters\"
+- **BP_MatchboxRadar**: "Content\ASophia\Data\Items\"
+- **BP_RacingBalls**: "Content\ASophia\Puzzle\RacingBalls\"
+- **BP_RacingRings**: "Content\ASophia\Puzzle\RacingRings\Blueprints\"
 - **BP_Rosary**: "Content\ASophia\Puzzle\Rosary"
-
 
 For the version of UE Islands Of Insight was developed with, the packing itself takes place in the Engine/Binaries/Win64 folder within the project root. This results in assets having locations like "..\\..\\..\\IslandsofInsight\\Content\\...", so we pack the IslandsofInsight folder with our new assets from a folder with the same relative location. i.e. The UnrealPak.exe file used for packing is inside "Engine/Binaries/Win64" and the "IslandsofInsight" folder is in the same directory as the "Engine" folder.
 

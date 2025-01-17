@@ -143,6 +143,15 @@ function &ParseUassetValueNode(string $type, &$node_ref){
 				"Roll"  => &$node_ref->Roll,
 			];
 			return $custom;
+			
+		case "UAssetAPI.PropertyTypes.Structs.LinearColorPropertyData, UAssetAPI":
+			$custom = (object)[
+				"R" => &$node_ref->R,
+				"G" => &$node_ref->G,
+				"B" => &$node_ref->B,
+				"A" => &$node_ref->A,
+			];
+			return $custom;
 		
 		case "UAssetAPI.PropertyTypes.Objects.SoftObjectPropertyData, UAssetAPI":
 		case "UAssetAPI.PropertyTypes.Structs.SoftClassPathPropertyData, UAssetAPI":
@@ -371,6 +380,8 @@ function CompressUassetValueNode(&$node_ref){
 		case "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI":
 		case "UAssetAPI.PropertyTypes.Objects.DelegatePropertyData, UAssetAPI":
 		case "UAssetAPI.PropertyTypes.Objects.FDelegate, UAssetAPI":
+		case "UAssetAPI.PropertyTypes.Structs.LinearColorPropertyData, UAssetAPI":
+		case "UAssetAPI.PropertyTypes.Structs.RichCurveKeyPropertyData, UAssetAPI":
 			return;
 			
 		case "UAssetAPI.ExportTypes.FunctionExport, UAssetAPI":
