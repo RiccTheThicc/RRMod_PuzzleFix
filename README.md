@@ -21,7 +21,7 @@ See [here](https://github.com/RiccTheThicc/RRMod_Puzzlefix/releases) to download
 - All flow orbs always display your all-time best.*
 - All glide rings remember your actual best score.*
 - Enabled more rare skydrop shapes.
-- All Verdant/Lucent/Autumn/Shady puzzles are now mutually compatible.
+- All daily puzzles are now mutually compatible and properly working.
 - Fixed Lucent Waters Movement track awarding a lore fragment twice.
 - Fixed zone icons for Shady Wildwoods and Serene Deluge (those tiny icons in hub tracks, they were swapped all along).
 - Slightly tweaked positions of numerous puzzles to better fit the environment.
@@ -33,15 +33,21 @@ See [here](https://github.com/RiccTheThicc/RRMod_Puzzlefix/releases) to download
 - Restored 50+ broken sentinel stone puzzles.
 - Adjusted glide ring 10410 (last ring lowered down a tiny bit, believed to be an error).
 - Fixed two partially broken mazes (#25027, #25037).
+- Light motifs should now render at larger distances.
 - Fixed several really bad Light Motifs drawn on leaves (#5859 #5840 Autumn).
-- Fixed several nearly unobtainable Shy Auras (#8061 Shady, #17035 #16943 Serene).
+- Fixed all of the nearly unobtainable Shy Auras.
 - Fixed a Wandering Echo that couldn't reset properly (#12233 Verdant).
 - Fixed a Hidden Ring stuck in a rock (#15386 Shady).
-- Fixed two logic grids having multiple solutions (#25122 Cong cluster, #184 Lucent cluster).
+- Fixed numerous logic grids having multiple solutions (#25122 #184 #15170 #7686 #16462 #1999 #15127 #14590 #15132).
 - Fixed a particular music grid having a silent instrument (#18700 Serene).
-- Added a small indicator for when the mod is properly installed*: [Example of indicator within the game's pause menu](https://github.com/user-attachments/assets/475d8ce6-7c02-43a0-a267-2950d7b20d72)
+- Reordered the instruments for music grid #18643 to be consistent with all others.
+- Added a small indicator for when the mod is properly installed*: [Example of indicator within the game's pause menu](https://github.com/user-attachments/assets/5376624c-29ba-4df3-8437-3a5b3eb328e4)
 - Wanderer's Quests (automatic ones) can now be disabled (see dxgi.ini). This is an optional feature not used by default.*
 - Implemented the Show Logic Grids feature (see dxgi.ini) that adds a marker to the nearest unsolved Logic Grid. This is an optional feature not used by default.*
+- Fixed a Morphic Fractal in Archipelago of Curiosities being a duplicate puzzle. [This one](https://github.com/user-attachments/assets/e87d9d4f-42b8-4484-a95c-02afec9bc249)
+- Vault of the Vitric sub-entrances now look like entrances [Spoilers!!](https://github.com/user-attachments/assets/94b6a0f2-72ec-4318-80ed-fa836a5a5518).
+- Glide rings starting platforms should interrupt other puzzle solving less now.
+- Flow Orbs should no longer spawn in brown.
 
 *Feature implemented in .dll mod. Some .dll mod features can be disabled/adjusted in dxgi.ini
 

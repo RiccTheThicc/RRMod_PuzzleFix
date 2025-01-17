@@ -1042,8 +1042,8 @@
 					"Value": {
 						"$type": "UAssetAPI.UnrealTypes.FVector, UAssetAPI",
 						"X": 120,
-						"Y": 150,
-						"Z": 80
+						"Y": 94,
+						"Z": 60
 					}
 				}
 			]
@@ -1060,9 +1060,9 @@
 					"Name": "RelativeLocation",
 					"Value": {
 						"$type": "UAssetAPI.UnrealTypes.FVector, UAssetAPI",
-						"X": 15,
-						"Y": "+0",
-						"Z": 80
+						"X": "+0",
+						"Y": -24,
+						"Z": 60
 					}
 				}
 			]

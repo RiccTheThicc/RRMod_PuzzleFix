@@ -1,7 +1,7 @@
 {
 "$type": "UAssetAPI.UAsset, UAssetAPI",
 "Info": "Serialized with UAssetAPI 1.0.2.0 (46c4fbf)",
-"NameMap": ["/Game/ASophia/Data/Items/BP_MatchboxRadar","/Game/ASophia/Data/Items/Textures/PuzzleRadar","/Script/CoreUObject","/Script/Engine","/Script/IslandsofInsight","BlueprintGeneratedClass","BoolProperty","BP_MatchboxRadar_C","Class","Default__BlueprintGeneratedClass","Default__BP_MatchboxRadar_C","Default__Item","EItemType","EItemType::MatchboxRadar","Engine","EnumProperty","FloatProperty","IsPassiveItem","Item","itemEnum","itemImage","magnitude","name","None","Object","ObjectProperty","Package","PuzzleRadar","scalar","secondsUntilExpiry","TextProperty","Texture2D","timed"],
+"NameMap": ["/Game/ASophia/Data/Items/BP_MatchboxRadar","/Game/ASophia/Data/Items/Textures/PuzzleRadar","/Script/CoreUObject","/Script/Engine","/Script/IslandsofInsight","BlueprintGeneratedClass","BoolProperty","BP_MatchboxRadar_C","Class","Default__BlueprintGeneratedClass","Default__BP_MatchboxRadar_C","Default__Item","EItemType","EItemType::MatchboxRadar","Engine","EnumProperty","FloatProperty","IsPassiveItem","Item","itemEnum","itemImage","magnitude","name","None","Object","ObjectProperty","Package","PuzzleRadar","scalar","secondsUntilExpiry","TextProperty","Texture2D","timed","addTimes"],
 "OtherAssetsFailedToAccess": [],
 "LegacyFileVersion": -7,
 "DataResourceVersion": "Invalid",
@@ -145,6 +145,7 @@
 			"Name": "name",
 			"Value": "5E16F183439B96D5A3A66F86F2528ACE"
 		},
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"addTimes", "Value":0 },
 		{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"scalar", "Value":1 },
 		{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"timed", "Value":1 },
 		{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"IsPassiveItem", "Value":1 },

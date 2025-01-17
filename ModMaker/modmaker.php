@@ -66,7 +66,9 @@ SaveReadableUassetDataTo($inputReadables, $puzzleDatabase, $sandboxZones);
 ///////////////////////////////////////////////////////////////////////////////
 
 //if($forceOnlyZone >= 2 && $forceOnlyZone <= 6){
-if($forceOnlyZone >= 2){
+if($forceOnlyZone >= 1 || !empty($forceSpawnPids) || !empty($forceDebugGrids)){
+	printf("%s\n", ColorStr("Warning: debug mode enabled. Don't ship the .pak like this.", 255, 128, 128));
+	
 	foreach($puzzleDatabase->puzzleZoneToGroupNumOverrides as $zoneEnumName => &$ptypeArray_ref){
 		//$zoneIndex = ZoneNameToInt($zoneEnumName);
 		//if($zoneIndex == $forceOnlyZone){
@@ -86,10 +88,10 @@ if($forceOnlyZone >= 2){
 	}unset($ptypeArray_ref);
 	
 	$hubPids = GetAllHubPids();
-	$zonePids = (ReduceProfileToZones(GetHubProfile()))[$forceOnlyZone];
+	$zonePids = (IsHubZone($forceOnlyZone) ? (ReduceProfileToZones(GetHubProfile()))[$forceOnlyZone] : []);
 	$wrongHubPids = array_diff($hubPids, $zonePids);
 	$allRoughBounds = LoadCsvMap("media\\mod\\roughZoneBounds.csv", "zoneIndex");
-	$roughBounds = (object)($allRoughBounds[$forceOnlyZone]);
+	$roughBounds = (IsHubZone($forceOnlyZone) ? (object)($allRoughBounds[$forceOnlyZone]) : (object)[ "minX" => 1, "maxX" => 1, "minY" => 1, "maxY" => 1 ]);
 	
 	foreach($puzzleDatabase->krakenIDToWorldPuzzleData as $pid => &$ser_ref){
 		$miniJson = json_decode($ser_ref);
@@ -449,35 +451,86 @@ foreach($sandboxZones->Containers as $localID => &$container_ref){
 // Matchbox slight scale to fit - experimental.
 $scaleTest = [
 	// Lucent
-	"10146/2/1.21",
-	"10164/1/1.21",
-	"10139/1/1.21",
-	"9883/1/1.33",
-	"9905/1/1.33",
-	"10143/1/1.27",
-	"10145/1/1.27",
-	"10138/1/0.8",
-	"10082/1/1.13",
-	"10057/2/0.85",
+	"10146/Mesh2Transform/1.21",
+	"10164/Mesh1Transform/1.21",
+	"10139/Mesh1Transform/1.21",
+	"9883/Mesh1Transform/1.33",
+	"9905/Mesh1Transform/1.33",
+	"10143/Mesh1Transform/1.27",
+	"10145/Mesh1Transform/1.27",
+	"10138/Mesh1Transform/0.8",
+	"10082/Mesh1Transform/1.13",
+	"10057/Mesh2Transform/0.85",
 	// Autumn
-	"6803/2/1.50",
+	"6803/Mesh2Transform/1.50",
 	// Shsdy
-	"8843/1/0.90",
-	"8843/2/0.85",
-	"13727/1/0.80",
-	"13727/2/0.80",
-	"8804/1/0.93",
-	"8817/1/0.92",
+	"8843/Mesh1Transform/0.90",
+	"8843/Mesh2Transform/0.85",
+	"13727/Mesh1Transform/0.80",
+	"13727/Mesh2Transform/0.80",
+	"8804/Mesh1Transform/0.93",
+	"8817/Mesh1Transform/0.92",
+	// Serene
+	"17091/Mesh1Transform/1.10",
+	"17471/DuplicateTransform-4/0.80",
+	"17471/DuplicateTransform-3/0.80",
+	"16864/Mesh1Transform/0.90",
 ];
 foreach($scaleTest as $amalgam){
-	list($pid, $meshId, $scale) = explode("/", $amalgam);
+	list($pid, $element, $scale) = explode("/", $amalgam);
 	$hadPrettyPrint = str_contains($puzzleDatabase->krakenIDToWorldPuzzleData[$pid], "\n");
 	$miniJson = json_decode($puzzleDatabase->krakenIDToWorldPuzzleData[$pid]);
-	$t = UeTransformUnpack($miniJson->{"Mesh" . $meshId . "Transform"});
-	$t->Scale3D->X *= (float)$scale;
-	$t->Scale3D->Y *= (float)$scale;
-	$t->Scale3D->Z *= (float)$scale;
-	UeTransformPackInto($t, $miniJson->{"Mesh" . $meshId . "Transform"});
+	$isScaleApplied = false;
+	foreach((array)($miniJson) as $key => $value){
+		if($isScaleApplied){
+			break;
+		}
+		//printf("  Checking key |%s|\n", $key);
+		if($key == $element){
+			$t = UeTransformUnpack($miniJson->$key);
+			$c = json_decode(json_encode($t));
+			$t->Scale3D->X *= (float)$scale;
+			$t->Scale3D->Y *= (float)$scale;
+			$t->Scale3D->Z *= (float)$scale;
+			UeTransformPackInto($t, $miniJson->$key);
+			$isScaleApplied = true;
+			printf("%s\n", ColorStr(sprintf("  Scaled pid %5d, element %-20s, scale %.2f, (%.2f, %.2f, %.2f) -> (%.2f, %.2f, %.2f)",
+												$pid, $element, $scale,
+												$c->Scale3D->X, $c->Scale3D->Y, $c->Scale3D->Z,
+												$t->Scale3D->X, $t->Scale3D->Y, $t->Scale3D->Z),
+												160, 160, 160));
+			break;
+		}
+		elseif(is_object($value)){
+			foreach((array)($value) as $subKey => $subValue){
+				//printf("    Checking subKey |%s| (%s)\n", $subKey, $subValue);
+				if($subKey == $element){
+					$t = UeTransformUnpack($miniJson->$key->$subKey);
+					$c = json_decode(json_encode($t));
+					$t->Scale3D->X *= (float)$scale;
+					$t->Scale3D->Y *= (float)$scale;
+					$t->Scale3D->Z *= (float)$scale;
+					UeTransformPackInto($t, $miniJson->$key->$subKey);
+					$isScaleApplied = true;
+					printf("%s\n", ColorStr(sprintf("  Scaled pid %5d, element %-20s, scale %.2f, (%.2f, %.2f, %.2f) -> (%.2f, %.2f, %.2f)",
+														$pid, $element, $scale,
+														$c->Scale3D->X, $c->Scale3D->Y, $c->Scale3D->Z,
+														$t->Scale3D->X, $t->Scale3D->Y, $t->Scale3D->Z),
+														160, 160, 160));
+					break;
+				}
+			}
+		}
+	}
+	if(!$isScaleApplied){
+		printf("%s\n", ColorStr(sprintf("Warning: failed to scale pid %5d, element %-20s, scaler %.2f\n", $pid, $element, $scale)));
+		continue;
+	}
+//	$t = UeTransformUnpack($miniJson->$element);
+//	$t->Scale3D->X *= (float)$scale;
+//	$t->Scale3D->Y *= (float)$scale;
+//	$t->Scale3D->Z *= (float)$scale;
+//	UeTransformPackInto($t, $miniJson->$element);
 	//$puzzleDatabase->krakenIDToWorldPuzzleData[$pid] = json_encode($miniJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 	$puzzleDatabase->krakenIDToWorldPuzzleData[$pid] = json_encode($miniJson, JSON_UNESCAPED_SLASHES | ($hadPrettyPrint ? JSON_PRETTY_PRINT : 0x00));
 }
@@ -516,6 +569,27 @@ unset($maze25027_ref); // serene broken maze, change randSeed carefully so that 
 $maze25037_ref = &$puzzleDatabase->krakenIDToContainedPuzzleData[25037]["Serialized"]; //var_dump($maze25037_ref);
 $maze25037_ref = str_replace("ew0KCSJyYW5kU2VlZCI6ID" . "Q1NDAx", "ew0KCSJyYW5kU2VlZCI6ID" . "Q1NDA0", $maze25037_ref);
 unset($maze25037_ref); // shady broken maze, change randSeed carefully so that it stays in shady
+
+// Change shy aura 17049 type. It's a blue one located on a tree branch that has no collision. No chance of fixing that.
+$miniJson = json_decode($puzzleDatabase->krakenIDToWorldPuzzleData[17049]);
+$miniJson->ghostType = 5; // 1=green/stop, 2=red/sight, 3=blue/crawl, 5=pink/fly
+$puzzleDatabase->krakenIDToWorldPuzzleData[17049] = json_encode($miniJson, JSON_UNESCAPED_SLASHES);
+
+// Fix light motif render distances.
+foreach($puzzleDatabase->krakenIDToWorldPuzzleData as $pid => &$ser_ref){
+	$miniJson = json_decode($ser_ref);
+	if($miniJson->PuzzleType != "lightPattern"){
+		continue;
+	}
+	$t = UeTransformUnpack($miniJson->lightDecalTransform);
+	// The "scale" of the decal doesn't change the decal itself, yet affects the distance at which they fade out.
+	// Smaller motifs result in (auto-generated) smaller render distances. Some tiny ones are invisible a few steps away.
+	$t->Scale3D->X = max(60, $t->Scale3D->X); // pick 36 or 60
+	$t->Scale3D->Y = max(20, $t->Scale3D->Y); // pick 12 or 20
+	$t->Scale3D->Z = max(20, $t->Scale3D->Z); // pick 12 or 20
+	UeTransformPackInto($t, $miniJson->lightDecalTransform);
+	$ser_ref = json_encode($miniJson, JSON_UNESCAPED_SLASHES);
+}unset($ser_ref);
 
 
 
