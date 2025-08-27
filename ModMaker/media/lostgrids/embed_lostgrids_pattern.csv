@@ -1,0 +1,98 @@
+pid	difficulty	solvePath	pdata	status	zone
+					
+					
+306	2	apparently ignored by the game - needs testing	AAECAAoKAAIAIQQFBgcREhQcHR4kJyguMTI7PD9AQUVGR0pLT1FSXF1eXwElAAgJCg4PEBMYGRobIiMlJiwtLzA2Nzg5Oj0+SElQU1RVWVpbYwHA55Pxtm2f5hjMnnAwAA==	dungeon	lostgridsPattern
+830	4	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+836	3	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+1299	3	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+3254	4	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+3264	3	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+3265	6	apparently ignored by the game - needs testing	AAECAAsPAAIAcwABAgMEBQYHCAkLDA0PEBESExQVFhcYGhscHh8gISIjJCUmJykqKy0uLzAxMjM0NTY4OTo8PT4/QEFDRUdISUtMTU5PUFFSVFZXWFpbXF1eX2BhY2VnaWpsbW9wcnR2eHl6e35/gQOBBYEJgQqBDYEOgRKBFIEYgRmBHIEdgSGBIwEcQkRTYmZrbnF1fH2BAIEBgQSBB4EIgQuBDIEPgRCBE4EWgReBGoEbgR6BH4EiAQAAAEAAAAAAKAAQACKSRAzJmZMzIAAA	dungeon	lostgridsPattern
+3646	2	apparently ignored by the game - needs testing	AAECAA4PAAIAIAABAgMEBQYHCAkKDxEUGB4fICEiIyQlJicogTGBM4FCgU+BUIFRAQoQEhMVFhcZgTKBQIFBAQAAt3gAA/6gAUt6lBUqKlfQoCl90gAl/cAAAAAA	dungeon	lostgridsPattern
+3652	1	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+3676	4	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+3679	2	apparently ignored by the game - needs testing	AAECAAUPAQEjAAIDBAYHCAoLDA4PEBESExQVFhcYGRobHB0hJSkwNDg/Q0cEABEBBQkNIyotLjEyNjc6PkJGSQELHh8iKDM1Oz1ERUgFAToGAiICKgABAAAAA6CIFFSMgAAA	dungeon	lostgridsPattern
+3721	1	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+3730	4	apparently ignored by the game - needs testing	AAECAAcXAQEHCyI5UGd+gRUCAFsAAQIDBAUGBwgJCgwNDg8QERITFBUWFxgbICElJigpKisuMDEzNDY4Ojw9P0BCREVGSElLTk9TVlhZXF1eYGFkZWZoaWpsbXBxcnN2eXt8fYEKgQuBDIENgQ6BD4EQgRGBEoETgRQBKRkaHB0eHyMkJywtLzI1Nzs+QUNHSkxNUVJUVVdaW19iY2tub3R1d3h6AQAAAG8ZDSUSUSxtMTATDaElwAAAAAAA	dungeon	lostgridsPattern
+3731	4	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+3746	3	apparently ignored by the game - needs testing	AAECAAUXAQEPBQsRHCIoMzk/SlBWYWdtAgAsAggODxAXGR0fIyUmJy8xMjQ1Nzg6Oz0+R0hJS0xNTk9RUlNUVV5iY2RoaWoBHwABAwQGBwkKDA0YGhseICEkLjA2PEVGXF1fYGVma2wB22wAssgCgggmAAANhhhgAAA=	dungeon	lostgridsPattern
+3767	3	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+3773	3	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+3774	3	apparently ignored by the game - needs testing	AAECAAoJAQELAAgJHzs/SElRUlkCAAwLDA0ODxQYGRwdISIBFAECAwQFBgcKEBESExUWFxobHiAjAX8g9zKZzHcq3SGfgAAA	dungeon	lostgridsPattern
+3779	4	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+3785	2	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+3813	3	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+3814	2	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+3863	2	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+13675	5	apparently ignored by the game - needs testing	AAECABYWAgCCcIEfgSOBS4FNgU+BUYF5gX2CS4JNgk+CU4JVgleCW4J3gnmCe4J9gn+DAYMDgwWDB4MJgyWDJ4Mpgy2DL4MxgzWDUYNTg1WDV4NZg1uDXYNfg3eDe4N/hAGEA4QHhAmEC4QPhCOEJYQnhCmEK4QthC+EMYQzhDWEN4Q5hDuEPYRRhFWEWYRbhF2EYYRjhGWEaYUnhSuFLYUvhTOFNYU3hTmFO4U9hT+FQ4VFhUeFU4VVhVeFWYVbhV2FX4VhhWOFZYVnhWmFa4VthW+FcYVzhXWGAYYFhgeGCYYNhg+GEYYThhWGF4YZhh2GH4YhhjGGM4Y1hjeGOYY7hj2GP4ZBhkOGRYZHhkmGS4ZNhk+GW4ZfhmGGY4ZnhmmGa4Zthm+GcYZzhneGeYZ7hweHCYcLhw2HD4cRhxOHFYcXhxmHG4cdhx+HIYcjhyWHJ4cphzWHOYc7hz2HQYdDh0WHR4dJh0uHTYdRh1OHVYdth2+HcYdzh3WHd4d5h3uIE4gViBeIG4gdiB+IIYgjiCWIJ4griC2IL4gziD+IQYhDiEWIR4hJiEuITYhPiFGIU4hViFeIWYhbiF2IX4hhiG2Ib4hxiHWId4h5iHuIfYh/iQGJBYkHiQmJDYkZiRuJHYkfiSGJI4kliSeJKYkriS2JL4kxiTOJNYk3iUeJSYlLiU+JUYlTiVWJV4lZiVuJX4lhiWOJZ4lziXWJd4l5iXuJfYl/igGKA4oFigeKCYoLig2KD4oRihOKFYohiiOKJYopiiuKLYovijGKM4o1ijmKO4o9ikGKf4sDiwWLB4sLiw2LD4sTixeLK4stiy+LMYszizWLN4s5izuLPYs/i0GLQ4tFi1mLXYtfi2GLZYtni2mLbYtxjAmMC4wNjA+MEYwTjBWMF4wzjDeMOYw7jD+MQYxDjF+MYYxjjGWMZ4xpjGuMbYxvjHGNDY0RjRONFY0ZjRuNHY1rjW+OF44ZjhuOHY5FjkkBgUwAAQIDBAUGBwgJCgsMDxAREhMUFRYXGBkaGxwdHh8gJicoKSorLC0uLzAxMjM0NTY8PT4/QEFCQ0RFRkdIU1RVVldYWVpbXGlqa2xtbm9wgQCBAYECgQOBBIEWgReBGIEZgS2BLoEvgUOBRIFFgUaBWYFagVuBXIFvgXCBcYFygXOBdIIHggiCCYIKgh2CHoIfgiCCNII1gjaCSoJLgkyCTYJfgmCCYYJigmOCc4J0gnWCdoJ3gniCeYJ6gweDCIMJgwqDC4MMgw2DDoMPgxCDG4Mcgx2DHoMfgyCDIYMigyODJIMlgyaDJ4Mtgy6DL4MwgzGDMoMzgzSDNYM2gzeDOIM5gzqDO4M8gz2DQ4NEg0WDRoNHg0iDSYNKg0uDTINNg06DT4NQg1GDUoNTg1SDV4NYg1mDWoNbg1yDXYNeg1+DYINhg2KDYwIAEElKS0xfYGFidXZ3eIELgQyBDYEOAVBNTk9QY2RlZnl6e3yBD4EQgRGBEoEhgSKBI4EkgSWBJoEngSiBN4E4gTmBOoE7gTyBPYE+gU2BToFPgVCBUYFSgVOBVIFjgWSBZYFmgWeBaIFpgWqBeYF6gXuBfIF9gX6Bf4IAgg+CEIIRghKCE4IUghWCFoIlgiaCJ4IogimCKoIrgiyCO4I8gj2CPoI/gkCCQYJCAQACAAAYAABwAAeAAh4AGH4CYfw//4B//gB/+AH/4AB/+AH/4Af/4B//w/hkB+GAB4QAHgAA4AABgAAEAAAAAA==	dungeon	lostgridsPattern
+14138	4	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+14160	4	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+14468	5	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+14864	6	apparently ignored by the game - needs testing	AAECAAsUAQGBDgAEBQYHCwwNDhITFBgaGx8hIiYoLC0uLzM0NTY6Oz0+P0FCREVGSElLTE1PUFFTVFVWV1haW1xdXl9hYmNkZWZnaGlqa2xtbm9wcXJzdHV2d3h8fX5/gQOBBIEFgQaBCoELgQyBEIESgROBF4EZgRqBHoEggSSBJYEmgSeBK4EsgS2BLoEygTOBNYE2gTeBOYE6gTyBPYE+gUCBQYFDgUSBRYFHgUiBSYFLgUyBTYFOgU+BUIFSgVOBVIFVgVaBV4FZgVqBWwIAEQIDCAoPFxknMDI5QFJggQiBFoEiAS0BCRARFRYcHR4gIyQlKSorMTc4PENHSk5ZeXp7gQCBAYECgQeBDYEOgQ+BFYEcgR+BIYEjgSiBKYEqgUKBUQFAQMYOnHBBiBEiAEAAAABw4UcEiVDhQAAiIECAAAA=	dungeon	lostgridsPattern
+16325	3	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+16329	2	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+16396	3	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+16451	4	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+16453	2	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+16454	4	apparently ignored by the game - needs testing	AAECABQYAAIAJhQVFhcvR1+BQIFyggqCIoI6glCCUYJSglOCVIJVglaCaoJvgwKDB4Magx+DMIMxgzKDM4M0gzWDNoM3gziDOYM6g0qDTwEyLS5GgViBWYFwgXGCCIIJgguCIIIhgiOCJII4gjmCO4I8gj2CaIJpgmuCbIJtgm6DAIMBgwODBIMFgwaDCIMYgxmDG4Mcgx2DHoMggyGDSINJg0uDTINNg06DUINRg1KDUwEAAADe/f7e/f7e/f7e/f7e/f7e/f7e/f4AAADe/f7e/f7e/f7e/f7e/f4AAADe/f7e/f7e/f4AAADe/f4AAA==	dungeon	lostgridsPattern
+16466	4	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+16470	5	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+19802	8	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+20061	4	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+25123	6	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+3725	2	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+14863	6	apparently ignored by the game - needs testing	AAECAA8OAgA4HyMnKy8zN1tfY2drb4EXgRuBH4EjgSeBU4FXgVuBX4IPghOCF4JLgk+DB4Nvg3ODd4N7g3+EA4QHhCuEL4QzhDeEO4Q/hGeEa4RvhHOEd4UjhSeFK4UvhV+FY4VnhhuGH4ZXAWIOGxwdKCkqKyw1Njc4OTo7QkNERUZHSElKT1BRUlNUVVZXWFlcXV5fYGFiY2RlZmdoaWprbG1ub36BC4EMgQ2BGIEZgRqBG4EcgSWBJoEngSiBKYEqgSuBMoEzgTSBNYE2gTeBOIE5gTqBP4FAgUGBQoFDgUSBRYFGgUeBSIFJgUyBTYFOgU+BUIFRAgAkAgMICQoLDxAREhUWGRogISIjJCUmJy0uPD1LTFpbdHV6e3x9ASIAAQQFBgcMDRMUFxgeHy8wMTIzND4/QEFNTnBxcnN2d3h5Ac8MGYMAAfgDwAYAAAAA88GGYMAAeAzAAAAwAAAA	dungeon	lostgridsPattern
+14910	6	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+14139	5	apparently ignored by the game - needs testing	AAECAA8LAQFUAwQFBgcICQoOEhMUFRkdISIjJCgsLS4vMDEyMzo7PD0+P0BBRUlKS0xQVFhZWltfY2RlZmdoaWpxcnN0dXZ3eHyBAIEBgQKBA4EHgQuBD4EQgRGBEoEWgRqBG4EcgR2BHoEfgSCBIQIAKAsNDxARFhgaHh8gJSkrNDY3ODlERkdOT1FVVldcXV5gYmtsbW5+gQaBCQEgAAECDBcbHCYnKjVCQ0hNUlNhb3B5ent9f4EEgQWBCIEKgROBFIEVAeAIARgDIAQAMIQwAEABgHUMoh1AMAAA	dungeon	lostgridsPattern
+					
+					
+					
+16447	4	apparently ignored by the game - needs testing	AAECAA4OAAIANDg7PD0+RkdISUtMTU5WV1hZXGZnanBxdHd4fn+BAIEBgQKBBYEGgQyBD4EQgRGBEoETgRqBHYEggSGBIoEqgSuBMIE4gTmBOoE7gT4BJjk6P0BKVFVaW2JjZGVoaXJzdXaBA4EEgQ2BDoEUgRuBHIEegR+BKIEpgSyBLYEugS+BNoE3gTyBPQGDDMEDYZnmYbAgzDB82DZ4GGYIGwzPNw2QAAA=	dungeon	lostgridsPattern
+16469	3	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+16472	4	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+16473	4	apparently ignored by the game - needs testing		dungeon	lostgridsPattern
+					
+					
+					
+					
+16407		apparently ignored by the game - needs testing			
+19809		apparently ignored by the game - needs testing			
+19819		apparently ignored by the game - needs testing			
+					
+					
+					
+871		apparently ignored by the game - needs testing			
+3650		apparently ignored by the game - needs testing			
+3660		apparently ignored by the game - needs testing			
+3661		apparently ignored by the game - needs testing			
+3682		apparently ignored by the game - needs testing			
+3714		apparently ignored by the game - needs testing			
+3715		apparently ignored by the game - needs testing			
+3748		apparently ignored by the game - needs testing			
+14271		apparently ignored by the game - needs testing			
+14645		apparently ignored by the game - needs testing			
+14811		apparently ignored by the game - needs testing			
+14816		apparently ignored by the game - needs testing			
+16405		apparently ignored by the game - needs testing			
+16457		apparently ignored by the game - needs testing			
+16458		apparently ignored by the game - needs testing			
+16465		apparently ignored by the game - needs testing			
+19954		apparently ignored by the game - needs testing			
+20075		apparently ignored by the game - needs testing			
+20076		apparently ignored by the game - needs testing			
+20077		apparently ignored by the game - needs testing			
+20078		apparently ignored by the game - needs testing			
+3749	4	apparently ignored by the game - needs testing	AAECAAkOAQEiAQQGCQsSFBcZHSAlKy4zNTxBQ0dKT1FVWF1fZmttcXR2eQIAJgACDg8QERweJic0PT4/QEJGSEtMTU5ZWltcXmNlZ2hpamx1d3p7ASQDBQcIChMVFhgfISIjJCosLS8wMTI4OTo7SVBUVldiZHByc3gBFawWsXgt4fAEQLsAaAGwgAAA		
+835		apparently ignored by the game - needs testing			
+13676		apparently ignored by the game - needs testing	AAECABERAQGBUAABAgMEBQYHCQoLDA0ODxAREhMUFRYXGRscHR4fICEiIyQlJicpKy0uLzAxMjM0NTY3OTs9P0BBQkNERUZHSUtNT1FSU1RVVldZW11fYWNkZWZnaWttb3FzdXZ3eXt9f4EBgQOBBYEHgQmBC4ENgQ+BEYETgRWBF4EZgRuBHYEfgSGBI4ElgSeBKYEqgSuBLYEvgTGBM4E1gTeBOYE6gTuBPIE9gT+BQYFDgUWBR4FJgUqBS4FMgU2BToFPgVGBU4FVgVeBWYFagVuBXIFdgV6BX4FggWGBY4FlgWeBaYFqgWuBbIFtgW6Bb4FwgXGBcoFzgXWBd4F5gXqBe4F8gX2BfoF/ggCCAYICggOCBIIFggeCCYIKgguCDIINgg6CD4IQghGCEoITghSCFYIWgheCGYIaghuCHIIdgh6CH4IgAgAlCBgaKCw4Ojw+SExQWFxeYmh0eIEGgQiBGIEagSiBLIE4gT6BSIFQgViBYoFogXSBeIIGggiCGAERWmBscH6BAIEQgSCBIoEwgTKBNIFAgUaBUoFWgXYBAAAAAAAgAAAAIgAggCqgAoAiogCgAqoAggAiAAAAAgAAAAAAAAAA		
+16475		apparently ignored by the game - needs testing			
+16476		apparently ignored by the game - needs testing			
+16477		apparently ignored by the game - needs testing			
+14876		apparently ignored by the game - needs testing			
+13677	4	apparently ignored by the game - needs testing	AAECABERAgBkVXd5gRuBIYFDgUWBY4FnggWCB4IlgimCR4JJgmuCcYMTgxWDKYMzgzeDPYNLg02DVYNXg1+DYYNvg3WDeYN/hAOECYQXhBmEIYQjhCuELYQ3hDuEQYRFhEuET4RZhFuEY4RlhG2Eb4R5hH2FA4UHhQ2FEYUbhR2FJYUnhS+FMYU/hUWFSYVPhVOFWYVnhWmFcYVzhXuFfYYLhhGGFYYfhjOGNYZXhl2Gf4cBhx+HI4dBh0OHYYdliAOIBYgniC2IT4hRiHMBgSQAAQIDBAUGCAkKCwwNDg8QERITFBUWGhwdHh8gISIjJCUmJyguLzAxMjM0NTY3OD4/QEFCQ0RFRkdITk9QUVJTVFVWWFlaYGJjZGVmanR2d3iBCIEYgSiBKYEqgSyBNoE6gTuBPIE9gT6BQIFGgUeBSIFKgUuBTIFNgU6BT4FQgVGBUoFYgVmBWoFbgVyBXYFegV+BYIFhgWKBaIFpgWqBa4FsgW2BboFvgXCBcYFygXiBeYF6gXuBfIF9gX6Bf4IAggGCAoIDggSCBoIKgguCDIINgg6CD4IQghGCEoITghSCFYIWgheCGIIaghuCHIIdgh6CH4IgAgAPBxcYGSl/gQ+BEIERgSGBd4IHggiCCYIZARRcbG1ucH6BAIEBgQKBDoESgR6BH4EggSKBMIEygTOBNIFEAQAAAAAAIAA4AAgACAAOgCLoOi4LogC4AAgACAAOAAIAAAAAAAAAAA==		
+					
+					
+					
+					
+					
+					

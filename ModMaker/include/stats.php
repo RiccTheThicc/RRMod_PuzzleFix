@@ -15,8 +15,19 @@ function GetAllStaticPids(){ // does NOT include mysteries
 	static $allStaticPids = null;
 	if($allStaticPids === null){
 		$megaTable = GetMegaTable();
-		$excludePtypes = [ "dungeon", "obelisk", "object", "puzzleTotem" ];
-		$excludePaths = [ "DailyPuzzle", "ClusterPuzzle", "QfpPuzzle" ];
+		$excludePtypes = [
+			"dungeon",     // enclaves, quests, scripts, basically any non-tangible container of puzzles is a dungeon.
+			"obelisk",     // monoliths. Rather than a single puzzle for each, we use monolithFragments like matchboxes (pairing fragments with their monoliths).
+			"object",      // the megatable contains entries for jumppads and other non-puzzles.
+			"puzzleTotem", // pillars of insight. They themselves are also puzzles, but enclaves count individual grids inside them instead.
+		];
+		$excludePaths = [
+			"DailyPuzzle",           // hub puzzles that change daily.
+			"ClusterPuzzle",         // special logic grids that are selected randomly upon game start from a large pool.
+			"QfpPuzzle",             // Quest for Perfection logic grids.
+			"Match3ChallengePuzzle", // Match3 Challenge puzzles.
+			"TempleArmillary",       // Armillary rings from the Temple of Infinite Rings (same ones spawn across all hubs randomly).
+		];
 		$excludePids = [
 			15379, // EntranceUnlock at the starting island; it exists but spawns in pre-solved, so your save file can't have it as a puzzle that YOU solved
 			18616, // same as above
@@ -24,14 +35,12 @@ function GetAllStaticPids(){ // does NOT include mysteries
 		$allStaticPids = [];
 		foreach($megaTable as $entry){
 			$ptype = $entry["ptype"];
-			if(in_array($ptype, $excludePtypes)){
-				// Don't draw unwanted puzzle types, such as Enclaves (which themselves are puzzles and are solved by meeting minimum enclave-completion requirements).
-				continue;
-			}
 			$pid = (int)$entry["pid"];
-			if(in_array($pid, $excludePids)){
+			// Skip unwanted puzzle types and/or specific pids.
+			if(in_array($ptype, $excludePtypes) || in_array($pid, $excludePids)){
 				continue;
 			}
+			// Skip mysteries.
 			if(!empty($entry["extraData"])){
 				// Why am I doing this again rather than reading $puzzleMap?
 				$extraData = json_decode(str_replace("|", ",", $entry["extraData"]));
@@ -41,6 +50,7 @@ function GetAllStaticPids(){ // does NOT include mysteries
 					continue;
 				}
 			}
+			// Skip puzzles containing unwanted keywords in their paths.
 			$isOk = true;
 			$path = $entry["path"];
 			foreach($excludePaths as $excludePath){
@@ -159,7 +169,8 @@ function GetGlideTiers(){
 			if($data->actualPtype != "racingRingCourse"){
 				continue;
 			}
-			$ringCount = count((array)$data->{"DuplicatedObjectOfType-RacingRingsMeshComponent"});
+			//$ringCount = count((array)$data->{"DuplicatedObjectOfType-RacingRingsMeshComponent"});
+			$ringCount = count($data->coords) - 1;
 			$maxScore = $ringCount * 4;
 			$glideTiers[$pid] = [
 				intval(round($maxScore * 0.60)),
@@ -370,5 +381,6 @@ function GetTotalMysteriesCount(){
 
 function GetMaxMirabilisCount(){
 	// Lazy
-	return 262;
+	//return 262; // vanilla
+	return 271; // offline restored mod 1.5
 }

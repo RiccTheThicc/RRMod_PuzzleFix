@@ -19,7 +19,7 @@ include_once("include\\steam.php");
 include_once("include\\jsonex.php");
 include_once("include\\uassetParse.php");
 include_once("include\\uassetHelper.php");
-
+include_once("include\\chests.php");
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -36,8 +36,12 @@ $outputReadables      = "..\\OutputReadable\\";
 
 $doExportFiles = true;
 $forceOnlyZone = -1;
-$forceDebugGrids = [ ];
-$forceSpawnPids = [ ];
+$forceAdjacentAlso = true;
+$forceAllFlorbs = false;
+$forceDebugGrids = [
+];
+$forceSpawnPids = [
+];
 
 
 
@@ -45,11 +49,13 @@ $forceSpawnPids = [ ];
 // Load files.
 ///////////////////////////////////////////////////////////////////////////////
 
-$jsonPuzzleDatabase = LoadDecodedUasset($inputPuzzleDatabase);
-$puzzleDatabase = &ParseUassetPuzzleDatabase($jsonPuzzleDatabase);
+$jsonPuzzleDatabase   = LoadDecodedUasset($inputPuzzleDatabase);
+$puzzleDatabase       = &ParseUassetPuzzleDatabase($jsonPuzzleDatabase);
+$containedRefMap      = &BuildContainedPuzzlesRefMap($jsonPuzzleDatabase);
+$externalStatusRefMap = &BuildExternalStatusRefMap($jsonPuzzleDatabase);
 
 $jsonSandboxZones = LoadDecodedUasset($inputSandboxZones);
-$sandboxZones = &ParseUassetSandboxZones($jsonSandboxZones);
+$sandboxZones     = &ParseUassetSandboxZones($jsonSandboxZones);
 
 SaveReadableUassetDataTo($inputReadables, $puzzleDatabase, $sandboxZones);
 
@@ -62,6 +68,345 @@ SaveReadableUassetDataTo($inputReadables, $puzzleDatabase, $sandboxZones);
 
 
 ///////////////////////////////////////////////////////////////////////////////
+// First, add new statics and clusters.
+///////////////////////////////////////////////////////////////////////////////
+
+$megaTableIn  = "media\\data\\megatable_v2.csv";
+$megaTableOut = "media\\data\\megatable_v2_ext.csv";
+$megaTableNew = LoadMegaTableNew($megaTableIn);
+
+function CreateMegaTableEntry(array $data = []){
+	// pid,parent,zoneIndex,ptype,category,path,comment,extraData,family,solveValue,coords
+	return [
+		"pid"        => $data["pid"]        ?? -1,
+		"parent"     => $data["parent"]     ?? -1,
+		"zoneIndex"  => $data["zoneIndex"]  ?? 7,
+		"ptype"      => $data["ptype"]      ?? "unknown",
+		"category"   => $data["category"]   ?? "",
+		"path"       => $data["path"]       ?? "Unknown Puzzle",
+		"comment"    => $data["comment"]    ?? "",
+		"extraData"  => $data["extraData"]  ?? (object)[],
+		"family"     => $data["family"]     ?? "unknown",
+		"solveValue" => $data["solveValue"] ?? 0,
+		"coords"     => $data["coords"]     ?? [],
+	];
+}
+
+$liarsCsvPath = "media\\lostgrids\\embed_liars.csv";
+EmbedUassetPuzzleMetadataFrom($liarsCsvPath, $containedRefMap, $externalStatusRefMap);
+$liarSpawns = LoadCsvMap($liarsCsvPath, "pid", "\t");
+
+foreach($liarSpawns as $pid => $data){
+	if(empty($pid)){
+		continue;
+	}
+	if(!in_array($data["status"], [ "dungeon", "tutorial", "tutorialA", "tutorialB" ])){
+		continue;
+	}
+	// Grids in tutorial pillars are included. Pillars themselves are not.
+	//$extraStaticPids[] = intval($pid);
+	if($data["status"] == "dungeon"){
+		$rune_ref = CreateStaticRune($jsonSandboxZones, [
+			"forcedPid"  => $pid,
+			"originX"    => 0,
+			"originY"    => 0,
+			"originZ"    => 0,
+			"localID"    => "BP_RuneAnimated_C Liar_pid" . $pid,
+		]);
+		$megaTableNew[] = CreateMegaTableEntry([
+			"pid" => $pid,
+			"zoneIndex" => 4,
+			"ptype" => "logicGrid",
+			"category" => "LogicGrid",
+			"path" => "World / Autumn Falls / Quest / Deceptive Whispers / LogicGrid_" . $pid,
+			"family" => "static",
+		]);
+		unset($rune_ref);
+	}
+}
+unset($sandboxZones); $sandboxZones = &ParseUassetSandboxZones($jsonSandboxZones);
+AdjustAssetCoordinates($puzzleDatabase, $sandboxZones, "media\\lostgrids\\adjust_liars.csv");
+
+
+
+
+
+
+$wrapLRCsvPath = "media\\lostgrids\\embed_wrapLR.csv";
+EmbedUassetPuzzleMetadataFrom($wrapLRCsvPath, $containedRefMap, $externalStatusRefMap);
+$wrapLRSpawns = LoadCsvMap($wrapLRCsvPath, "pid", "\t");
+
+$tempLRWrapCounter = 0;
+foreach($wrapLRSpawns as $pid => $data){
+	if(empty($pid)){
+		continue;
+	}
+	if(!in_array($data["status"], [ "dungeon", "tutorial", "tutorialA", "tutorialB" ])){
+		continue;
+	}
+	// Grids in tutorial pillars are included. Pillars themselves are not.
+	//$extraStaticPids[] = intval($pid);
+	if($data["status"] == "dungeon"){
+		$rune_ref = CreateStaticRune($jsonSandboxZones, [
+			"forcedPid"  => $pid,
+			"originX"    => 0, //7600 - ($tempLRWrapCounter++) * 100,
+			"originY"    => 0, //48600,
+			"originZ"    => 0, //8800,
+			"localID"    => "BP_RuneAnimated_C WrapLR_pid" . $pid,
+		]);
+		$megaTableNew[] = CreateMegaTableEntry([
+			"pid" => $pid,
+			"zoneIndex" => 3,
+			"ptype" => "logicGrid",
+			"category" => "LogicGrid",
+			"path" => "World / Lucent Waters / Enclave / A Warped Perspective / LogicGrid_" . $pid,
+			"family" => "static",
+		]);
+		unset($rune_ref);
+	}
+}
+unset($sandboxZones); $sandboxZones = &ParseUassetSandboxZones($jsonSandboxZones);
+//AdjustAssetCoordinates($puzzleDatabase, $sandboxZones, "media\\lostgrids\\adjust_wrapLR.csv");
+
+
+
+$wrapFourCsvPath = "media\\lostgrids\\embed_wrapFour.csv";
+EmbedUassetPuzzleMetadataFrom($wrapFourCsvPath, $containedRefMap, $externalStatusRefMap);
+$wrapFourSpawns = LoadCsvMap($wrapFourCsvPath, "pid", "\t");
+
+$tempFourWrapCounter = 0;
+foreach($wrapFourSpawns as $pid => $data){
+	if(empty($pid)){
+		continue;
+	}
+	if(!in_array($data["status"], [ "dungeon", "tutorial", "tutorialA", "tutorialB" ])){
+		continue;
+	}
+	// Grids in tutorial pillars are included. Pillars themselves are not.
+	//$extraStaticPids[] = intval($pid);
+	if($data["status"] == "dungeon"){
+		$rune_ref = CreateStaticRune($jsonSandboxZones, [
+			"forcedPid"  => $pid,
+			"originX"    => 0, //7600 - ($tempFourWrapCounter++) * 100,
+			"originY"    => 0, //48700,
+			"originZ"    => 0, //8800,
+			"localID"    => "BP_RuneAnimated_C WrapFour_pid" . $pid,
+		]);
+		$megaTableNew[] = CreateMegaTableEntry([
+			"pid" => $pid,
+			"zoneIndex" => 3,
+			"ptype" => "logicGrid",
+			"category" => "LogicGrid",
+			"path" => "World / Lucent Waters / Enclave / A Warped Perspective / LogicGrid_" . $pid,
+			"family" => "static",
+		]);
+		unset($rune_ref);
+	}
+}
+unset($sandboxZones); $sandboxZones = &ParseUassetSandboxZones($jsonSandboxZones);
+//AdjustAssetCoordinates($puzzleDatabase, $sandboxZones, "media\\lostgrids\\adjust_wrapFour.csv");
+
+
+
+
+
+
+EmbedUassetPuzzleMetadataFrom("media\\lostgrids\\embed_butterflies.csv", $containedRefMap, $externalStatusRefMap);
+$butterflyMap = [
+	(object)[ "pid" => 14056, "tag" => "A1", "x" => -6.0, "y" =>  7.0, "z" => 0.0 ],
+	(object)[ "pid" => 14057, "tag" => "A2", "x" =>  6.0, "y" =>  7.0, "z" => 0.0 ],
+	(object)[ "pid" => 14064, "tag" => "B1", "x" => -4.5, "y" => -4.5, "z" => 0.0 ],
+	(object)[ "pid" => 14065, "tag" => "B2", "x" =>  4.5, "y" => -4.5, "z" => 0.0 ],
+	(object)[ "pid" => 14074, "tag" => "C1", "x" => -6.5, "y" =>  3.5, "z" => 0.0 ],
+	(object)[ "pid" => 14077, "tag" => "C2", "x" =>  0.0, "y" =>  3.5, "z" => 0.0 ],
+	(object)[ "pid" => 14080, "tag" => "C3", "x" =>  6.5, "y" =>  3.5, "z" => 0.0 ],
+	(object)[ "pid" => 14082, "tag" => "D1", "x" => -9.0, "y" =>  1.0, "z" => 0.0 ],
+	(object)[ "pid" => 14085, "tag" => "D2", "x" =>  0.0, "y" =>  0.0, "z" => 0.0 ],
+	(object)[ "pid" => 14088, "tag" => "D3", "x" =>  9.0, "y" =>  1.0, "z" => 0.0 ],
+	(object)[ "pid" => 14083, "tag" => "E1", "x" => -9.5, "y" => -2.5, "z" => 0.0 ],
+	(object)[ "pid" => 14084, "tag" => "E2", "x" =>  9.5, "y" => -2.5, "z" => 0.0 ],
+	(object)[ "pid" => 14098, "tag" => "F1", "x" => -7.5, "y" => -5.0, "z" => 0.0 ],
+	(object)[ "pid" => 14099, "tag" => "F2", "x" =>  7.5, "y" => -5.0, "z" => 0.0 ],
+	(object)[ "pid" => 14062, "tag" => "E1", "x" => -3.0, "y" =>  8.0, "z" => 0.0 ],
+	(object)[ "pid" => 14070, "tag" => "E2", "x" =>  3.0, "y" =>  8.0, "z" => 0.0 ],
+	(object)[ "pid" => 14095, "tag" => "U1", "x" => -2.0, "y" => -3.0, "z" => 0.0 ],
+	(object)[ "pid" => 14096, "tag" => "U2", "x" =>  2.0, "y" => -3.0, "z" => 0.0 ],
+	(object)[ "pid" => 10639, "tag" => "U3", "x" =>  0.0, "y" =>  7.0, "z" => 0.0 ],
+];
+$butterflyOriginTransform = (object)[
+	"x"     => 63900 - 30 + 30 -100 +60,
+	"y"     => 65500 - 50 + 30 +100,
+	"z"     => 18200 - 100,
+	"pitch" => 1.5,
+	"yaw"   => -36 - 4,
+	"roll"  => 0.5,
+	"rot"   => 0, // legacy compat
+];
+$butterflyOriginScale = (object)[
+	"sx" => 58.0,
+	"sy" => 58.0,
+	"sz" => 58.0,
+];
+$butterflyLocalTransforms = array_map(function ($bfly) use ($butterflyOriginScale) {
+	return sprintf("%.6f,%.6f,%.6f|%.6f,%.6f,%.6f|%.6f,%.6f,%.6f",
+		$bfly->x * $butterflyOriginScale->sx,
+		$bfly->y * $butterflyOriginScale->sy,
+		$bfly->z * $butterflyOriginScale->sz,
+		0, 0, 0,
+		1, 1, 1);
+	}, $butterflyMap);
+//var_dump($butterflyLocalTransforms);
+$butterflyWorldTransforms = CombineLocalTransform($butterflyOriginTransform, $butterflyLocalTransforms);
+//var_dump($butterflyWorldTransforms);
+for($i = 0; $i < count($butterflyMap); ++$i){
+	$pid = $butterflyMap[$i]->pid;
+	//$extraStaticPids[] = intval($pid);
+	$worldTransform = $butterflyWorldTransforms[$i];
+	$rune_ref = CreateStaticRune($jsonSandboxZones, [
+		"parentName" => "MiscZone1",
+		"forcedPid"  => $pid,
+		"originX"    => $worldTransform->x,
+		"originY"    => $worldTransform->y,
+		"originZ"    => $worldTransform->z,
+		"localID"    => "BP_RuneAnimated_C Butterfly_pid" . $pid,
+	]);
+	$megaTableNew[] = CreateMegaTableEntry([
+		"pid" => $pid,
+		"zoneIndex" => 2,
+		"ptype" => "logicGrid",
+		"category" => "LogicGrid",
+		"path" => "World / Verdant Glen / Quest / Tango of the Butterflies / LogicGrid_" . $pid,
+		"family" => "static",
+	]);
+	unset($rune_ref);
+}
+unset($sandboxZones); $sandboxZones = &ParseUassetSandboxZones($jsonSandboxZones);
+//AdjustAssetCoordinates($puzzleDatabase, $sandboxZones, "media\\lostgrids\\adjust_butterflies.csv");
+
+
+$lostgridsMainClusterPath = "media\\lostgrids\\embed_lostgrids_logic.csv";
+EmbedUassetPuzzleMetadataFrom($lostgridsMainClusterPath, $containedRefMap, $externalStatusRefMap);
+$lostgridsMainClusterPids = array_keys(LoadCsvMap($lostgridsMainClusterPath, "pid", "\t"));
+
+$lostgridsPatternClusterPath = "media\\lostgrids\\embed_lostgrids_pattern.csv";
+EmbedUassetPuzzleMetadataFrom($lostgridsPatternClusterPath, $containedRefMap, $externalStatusRefMap);
+$lostgridsPatternClusterPids = array_keys(LoadCsvMap($lostgridsPatternClusterPath, "pid", "\t"));
+
+$lostgridsMusicClusterPath = "media\\lostgrids\\embed_lostgrids_music.csv";
+EmbedUassetPuzzleMetadataFrom($lostgridsMusicClusterPath, $containedRefMap, $externalStatusRefMap);
+$lostgridsMusicClusterPids = array_keys(LoadCsvMap($lostgridsMusicClusterPath, "pid", "\t"));
+//$lostgridsMusicClusterPids = [];
+
+$lostgridsClusterAllPids = array_values(array_merge($lostgridsMainClusterPids, $lostgridsPatternClusterPids, $lostgridsMusicClusterPids));
+$lostgridsClusterFilteredPids = [];
+
+
+foreach($lostgridsClusterAllPids as $pid){
+	if(empty($pid)){
+		continue;
+	}
+	$zone = ($containedRefMap[$pid]["Serialized"] != null ? json_decode($containedRefMap[$pid]["Serialized"])->PoolName : $containedRefMap[$pid]["Zone"]);
+	if(empty($zone) || !str_starts_with($zone, "lostgrids")){
+		continue;
+	}
+	$lostgridTestIndex = count($lostgridsClusterFilteredPids) - 1;
+	$row = intval(floor(($lostgridTestIndex / 20 + 1e-4))) + intval(floor(($lostgridTestIndex / 100 + 1e-4)));
+	$col = ($lostgridTestIndex % 20);
+	$x = 11700 + 150 + $col * 100 - 48654;
+	$y = 6200 + $row * 100 + 700 - 6579 - 100;
+	$z = 24750 - 200 - 200 + 1598 + 10;
+	
+	$base64Str = ($containedRefMap[$pid]["Pdata"] ?? ((json_decode($containedRefMap[$pid]["Serialized"]))->BinaryData));
+	$grid = GetGridBasics($base64Str);
+	$ptype = $grid->mt;
+	$prettyPtype = PuzzlePrettyName($ptype);
+	
+	//CreateStaticRune($jsonSandboxZones, [
+	//	"forcedPid"  => $pid,
+	//	"originX"    => $x,
+	//	"originY"    => $y,
+	//	"originZ"    => $z,
+	//	"localID"    => "BP_RuneAnimated_C LostGrid_pid" . $pid,
+	//]);
+	$clusterName = "lostgridsUnknown";
+	if(in_array($pid, $lostgridsMainClusterPids)){
+		$clusterName = "lostgridsLogic";
+	}elseif(in_array($pid, $lostgridsPatternClusterPids)){
+		$clusterName = "lostgridsPattern";
+	}elseif(in_array($pid, $lostgridsMusicClusterPids)){
+		$clusterName = "lostgridsMusic";
+	}
+	$megaTableNew[] = CreateMegaTableEntry([
+		"pid" => $pid,
+		"zoneIndex" => 2,
+		"ptype" => "logicGrid",
+		"category" => "LogicGrid",
+		"path" => "World / Verdant Glen / Cluster / Lost Grids / ClusterPuzzle / " . $prettyPtype . "_" . $pid,
+		"family" => "cluster",
+		"extraData" => (object)[ "cluster" => $clusterName ],
+	]);
+	
+	EnforceGridAssetFormat($pid, false, $containedRefMap); // force non-serialized format
+	
+	$lostgridsClusterFilteredPids[] = $pid;
+}
+
+
+//define("LOSTGRIDS_CLUSTER_SPAWNS", 30);
+//CreateClusterRunes($jsonSandboxZones, [
+//	"clusterName" => "lostgrids",
+//	"runeCount"   => LOSTGRIDS_CLUSTER_SPAWNS,
+//	"originX"     => 7300,
+//	"originY"     => 48400,
+//	"originZ"     => 8850,
+//	"localIDbase" => "LostGrid",
+//]);
+CreateClusterRunes($jsonSandboxZones, [
+	"clusterName" => "lostgridsMusic",
+	"runeCount"   => 1,
+	"originX"     => 7300,
+	"originY"     => 48500,
+	"originZ"     => 8850,
+	"localIDbase" => "LostgridMusic",
+]);
+CreateClusterRunes($jsonSandboxZones, [
+	"clusterName" => "lostgridsPattern",
+	"runeCount"   => 4,
+	"originX"     => 7300,
+	"originY"     => 48600,
+	"originZ"     => 8850,
+	"localIDbase" => "LostgridPattern",
+]);
+CreateClusterRunes($jsonSandboxZones, [
+	"clusterName" => "lostgridsLogic",
+	"runeCount"   => 25,
+	"originX"     => 7300,
+	"originY"     => 48400,
+	"originZ"     => 8850,
+	"localIDbase" => "LostgridLogic",
+]);
+
+unset($sandboxZones); $sandboxZones = &ParseUassetSandboxZones($jsonSandboxZones);
+AdjustAssetCoordinates($puzzleDatabase, $sandboxZones, "media\\lostgrids\\adjust_cluster.csv");
+printf("Lostgrids main cluster has %d pids.\n", count($lostgridsClusterFilteredPids));
+
+
+// Move a few extra things to make way for the new grids.
+AdjustAssetCoordinates($puzzleDatabase, $sandboxZones, "media\\lostgrids\\adjust_world.csv");
+
+// No longer needed.
+//$lostgridsClusterSaveStatsCsv = array_map(function($x) { return [ "pid" => $x, "ptype" => "logicGrid", "cluster" => "lostgrids" ]; }, $lostgridsClusterFilteredPids);
+//WriteFileSafe("..\\..\\SaveStats\\media\\data\\lostgridsCluster.csv", FormCsv($lostgridsClusterSaveStatsCsv), true);
+
+// Adjust camphor puzzles.
+AdjustAssetCoordinates($puzzleDatabase, $sandboxZones, "media\\lostgrids\\adjust_camphor_puzzles.csv");
+
+// Write the intermediate megatable.
+SaveMegaTableNew($megaTableNew, $megaTableOut);
+
+
+
+///////////////////////////////////////////////////////////////////////////////
 // Override spawn behavior to spawn every World puzzle at once - if needed.
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -70,19 +415,15 @@ if($forceOnlyZone >= 1 || !empty($forceSpawnPids) || !empty($forceDebugGrids)){
 	printf("%s\n", ColorStr("Warning: debug mode enabled. Don't ship the .pak like this.", 255, 128, 128));
 	
 	foreach($puzzleDatabase->puzzleZoneToGroupNumOverrides as $zoneEnumName => &$ptypeArray_ref){
-		//$zoneIndex = ZoneNameToInt($zoneEnumName);
-		//if($zoneIndex == $forceOnlyZone){
-		//	$ptypeArray_ref["logicGrid"] = 200;
-		//	continue;
-		//}
-		//foreach($ptypeArray_ref as $ptype => &$groupSize_ref){
-		//	$groupSize_ref = 0;
-		//}unset($groupSize_ref);
 		$zoneIndex = ZoneNameToInt($zoneEnumName);
 		foreach($ptypeArray_ref as $ptype => &$groupSize_ref){
 			if(in_array($ptype, [ "logicGrid", "completeThePattern", "musicGrid", "memoryGrid" ])){// || $zoneIndex != $forceOnlyZone){
 				printf("%s\n", ColorStr(sprintf("  Removing group %-18s in %s", $ptype, ZoneToPrettyNoColor($zoneIndex)), 160, 160, 160));
 				$groupSize_ref = 0;
+			}else{
+				$maxCount = (isset(GetHubProfile()[$zoneIndex][$ptype]) ? count(GetHubProfile()[$zoneIndex][$ptype]) : 0);
+				$groupSize_ref = ($zoneIndex == $forceOnlyZone ? $maxCount : 0);
+				printf("%s\n", ColorStr(sprintf("  Group %-18s in %s set to size %d", $ptype, ZoneToPrettyNoColor($zoneIndex), $groupSize_ref), 160, 160, 160));
 			}
 		}unset($groupSize_ref);
 	}unset($ptypeArray_ref);
@@ -93,37 +434,45 @@ if($forceOnlyZone >= 1 || !empty($forceSpawnPids) || !empty($forceDebugGrids)){
 	$allRoughBounds = LoadCsvMap("media\\mod\\roughZoneBounds.csv", "zoneIndex");
 	$roughBounds = (IsHubZone($forceOnlyZone) ? (object)($allRoughBounds[$forceOnlyZone]) : (object)[ "minX" => 1, "maxX" => 1, "minY" => 1, "maxY" => 1 ]);
 	
-	foreach($puzzleDatabase->krakenIDToWorldPuzzleData as $pid => &$ser_ref){
-		$miniJson = json_decode($ser_ref);
-		if($miniJson->PuzzleType == "ghostObject"){
-			$miniJson->forceTutorialColors = true;
-		}
-		//var_dump($miniJson); exit(1);
-		$t = UeTransformUnpack($miniJson->ActorTransform);
-		if($t->Translation->X >= $roughBounds->minX &&
-		   $t->Translation->X <= $roughBounds->maxX &&
-		   $t->Translation->Y >= $roughBounds->minY &&
-		   $t->Translation->Y <= $roughBounds->maxY &&
-		   //!in_array($pid, $wrongHubPids) &&
-		   (in_array($pid, GetAllHubPids()) || in_array($pid, GetAllStaticPids()))
-			//|| ($miniJson->PuzzleType == "lightPattern" && $miniJson->Zone == 3)
-			|| (isset($forceSpawnPids) && !empty($forceSpawnPids) && in_array($pid, $forceSpawnPids))
-		   ){
-			   $miniJson->SpawnBehaviour = 0;
-			   //printf("Enabling puzzle %d %s from %s\n", $pid, $miniJson->PuzzleType, ZoneToPretty(GetPuzzleMap(true)[$pid]->actualZoneIndex));
-			   //printf("Enabling puzzle %d %s from %s\n", $pid, $miniJson->PuzzleType, ZoneToPretty($miniJson->Zone));
-		}else{
-			$miniJson->SpawnBehaviour = 1;
-			//$miniJson->Disabled = true; // doesn't work
-		}
-		$ser_ref = json_encode($miniJson, JSON_UNESCAPED_SLASHES);
-	}unset($ser_ref);
+	if($forceAdjacentAlso){
+		foreach($puzzleDatabase->krakenIDToWorldPuzzleData as $pid => &$ser_ref){
+			$miniJson = json_decode($ser_ref);
+			if($miniJson->PuzzleType == "ghostObject"){
+				$miniJson->forceTutorialColors = true;
+			}
+			$t = UeTransformUnpack($miniJson->ActorTransform);
+			if($t->Translation->X >= $roughBounds->minX &&
+			   $t->Translation->X <= $roughBounds->maxX &&
+			   $t->Translation->Y >= $roughBounds->minY &&
+			   $t->Translation->Y <= $roughBounds->maxY &&
+			   //!in_array($pid, $wrongHubPids) &&
+			   (in_array($pid, GetAllHubPids()) || in_array($pid, GetAllStaticPids()))
+				//|| ($miniJson->PuzzleType == "lightPattern" && $miniJson->Zone == 3)
+				|| (isset($forceSpawnPids) && !empty($forceSpawnPids) && in_array($pid, $forceSpawnPids))
+			   ){
+				$miniJson->SpawnBehaviour = 0;
+				$miniJson->Disabled = false;
+				//$miniJson->AwakenIfAlwaysSpawn = true;
+				//$miniJson->CanAwardAutoQuest = true;
+				//$miniJson->Map = "BetaCampaign";
+				//$miniJson->Zone = 2;
+				$puzzleDatabase->krakenIDToPuzzleStatus[$pid] = "live";
+				//printf("Enabling puzzle %d %s from %s\n", $pid, $miniJson->PuzzleType, ZoneToPretty(GetPuzzleMap(true)[$pid]->actualZoneIndex));
+				////printf("Enabling puzzle %d %s from %s\n", $pid, $miniJson->PuzzleType, ZoneToPretty($miniJson->Zone));
+			}else{
+				$miniJson->SpawnBehaviour = 1;
+				//$miniJson->Disabled = true; // doesn't work
+			}
+			$ser_ref = json_encode($miniJson, JSON_UNESCAPED_SLASHES);
+		}unset($ser_ref);
+	}
 	
 	$profileHub = GetHubProfile();
 	$reduced = ReduceProfileToPtypes($profileHub);
 	$gridPids = $reduced["logicGrid"] + $reduced["completeThePattern"] + $reduced["musicGrid"] + $reduced["memoryGrid"];
 	shuffle($gridPids);
 	$nextPidIndex = 0;
+	//printf("%s\n", implode(",", $gridPids));
 	
 	$exports_ref = &$jsonSandboxZones->Exports;
 	$zoneContainerMap = [];
@@ -146,13 +495,6 @@ if($forceOnlyZone >= 1 || !empty($forceSpawnPids) || !empty($forceDebugGrids)){
 			if(!isset($blob_ref->Name) || !isset($blob_ref->Value)){
 				continue;
 			}
-			//$name_ref = &$blob_ref->Name;
-			//$value_ref = &$blob_ref->Value;
-			//if($name_ref == "alwaysSpawnContainerPuzzlesToBeSpawned"){
-			//	$zoneContainerMap[$zoneIndex]->alwaysContainers = &$value_ref;
-			//}elseif($name_ref == "defaultContainerPuzzlesToBeSpawned"){
-			//	$zoneContainerMap[$zoneIndex]->defaultContainers = &$value_ref;
-			//}
 			//printf("%-18s %-40s %s\n", ZoneToPrettyNoColor($zoneIndex), $name_ref, (is_scalar($value_ref) ? $value_ref : "<node>"));
 			$zoneContainerMap[$zoneIndex]->{$blob_ref->Name} = &$blob_ref->Value;
 			
@@ -217,7 +559,7 @@ if($forceOnlyZone >= 1 || !empty($forceSpawnPids) || !empty($forceDebugGrids)){
 		if(empty($localID) || !$isRune || !$isHubContainer){
 			continue;
 		}
-		if(!$isInBounds){ continue; }
+		if($forceOnlyZone >= 1 && !$isInBounds){ continue; }
 		
 		// Turn this hub grid into a static grid.
 		unset($jsonContainer_ref->Data[$dataIndexSpawnBehaviour]);
@@ -291,8 +633,16 @@ if($forceOnlyZone >= 1 || !empty($forceSpawnPids) || !empty($forceDebugGrids)){
 	unset($zoneContainerMap);
 	unset($exports_ref);
 }
-//exit(1);
 
+if($forceAllFlorbs){
+	$hubProfile = GetHubProfile();
+	$florbPids = ReduceProfileToPtypes($hubProfile)["racingBallCourse"];
+	foreach($florbPids as $pid){
+		$miniJson = json_decode($puzzleDatabase->krakenIDToWorldPuzzleData[$pid]);
+		$miniJson->SpawnBehaviour = 0;
+		$puzzleDatabase->krakenIDToWorldPuzzleData[$pid] = json_encode($miniJson, JSON_UNESCAPED_SLASHES);
+	}
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 // Move stuff around.
@@ -448,7 +798,7 @@ foreach($sandboxZones->Containers as $localID => &$container_ref){
 // Final touches....
 ///////////////////////////////////////////////////////////////////////////////
 
-// Matchbox slight scale to fit - experimental.
+// Scaling test. This is some legacy shit - original adjuster code could only move/rotate objects.
 $scaleTest = [
 	// Lucent
 	"10146/Mesh2Transform/1.21",
@@ -463,7 +813,7 @@ $scaleTest = [
 	"10057/Mesh2Transform/0.85",
 	// Autumn
 	"6803/Mesh2Transform/1.50",
-	// Shsdy
+	// Shady
 	"8843/Mesh1Transform/0.90",
 	"8843/Mesh2Transform/0.85",
 	"13727/Mesh1Transform/0.80",
@@ -475,6 +825,9 @@ $scaleTest = [
 	"17471/DuplicateTransform-4/0.80",
 	"17471/DuplicateTransform-3/0.80",
 	"16864/Mesh1Transform/0.90",
+	// Camphor
+	//"25264/Mesh1Transform/3.00",
+	//"25264/Mesh2Transform/2.60",
 ];
 foreach($scaleTest as $amalgam){
 	list($pid, $element, $scale) = explode("/", $amalgam);
@@ -591,11 +944,114 @@ foreach($puzzleDatabase->krakenIDToWorldPuzzleData as $pid => &$ser_ref){
 	$ser_ref = json_encode($miniJson, JSON_UNESCAPED_SLASHES);
 }unset($ser_ref);
 
+// Fix vanilla grids missing solve paths.
+EmbedUassetPuzzleMetadataFrom("media\\mod\\solvePaths_vanilla_fix.csv", $containedRefMap, $externalStatusRefMap);
+
+// Add pattern grid modifier to grids with nPositionalLiars if they don't have it.
+// UPD: this is no longer required. Thank you meltdown.
+//foreach($puzzleDatabase->krakenIDToContainedPuzzleData as $pid => &$arr_ref){
+//	$ser = (isset($arr_ref["Serialized"]) && !empty($arr_ref["Serialized"]) ? json_decode($arr_ref["Serialized"]) : (object)[]);
+//	$ptype = ($arr_ref["PuzzleType"] ?? $ser->PuzzleType);
+//	if($ptype != "logicGrid"){
+//		continue;
+//	}
+//	$pdata = ($arr_ref["Pdata"] ?? $ser->BinaryData);
+//	//printf("%5d %s\n", $pid, $pdata);
+//	$grid = GetGridBasics($pdata);
+//	if($grid->npl > 0 && !in_array(2, $grid->tm)){
+//		//printf("%5d - %d liars\n", $pid, $grid->npl);
+//		$bytes = array_map(function ($x) { return ord($x); }, str_split(base64_decode($pdata), 1));
+//		//printf("%s\n", implode(" ", $bytes));
+//		//$bytes[1]++;
+//		$newBytes = array_values(array_merge([ 0, $bytes[1] + 1, 2 ], array_slice($bytes, 2)));
+//		//$newBytes = array_values(array_merge([ 0, $bytes[1] + 1, 2 ], array_slice($bytes, 2), [ $grid->npl ]));
+//		//printf("%s\n\n", implode(" ", $newBytes));
+//		//array_walk($newBytes, function($x) { return chr($x); });
+//		//$newPdata = base64_encode(implode("", $newBytes));
+//		$newPdata = base64_encode(implode("", array_map(function ($x) { return chr($x); }, $newBytes)));
+//		//print_r($arr_ref);
+//		if(isset($arr_ref["Serialized"]) && $arr_ref["Serialized"] != null){
+//			$arr_ref["Serialized"] = preg_replace("/(\\\"BinaryData\\\":\s*)\\\"(.*?)\\\",/", "\${1}\"" . $newPdata . "\",", $arr_ref["Serialized"]);
+//		}else{
+//			$arr_ref["Pdata"] = $newPdata;
+//		}
+//		//print_r($arr_ref);
+//		printf("Grid %5d is now a pattern grid due to having %d liars.\n", $pid, $grid->npl);
+//		//printf("%s\n%s\n\n", $pdata, $newPdata);
+//	}
+//}unset($arr_ref);
+
+// Add puzzle tutorial texts to puzzleboxes that spawn wrap-around or nPositionalLiars grids.
+foreach($sandboxZones->Containers as $localID => &$container_ref){
+	if($container_ref->containerType != "Rune"){
+		continue;
+	}
+	$pid = -1;
+	if(isset($container_ref->desiredKrakenIDOverride) && !empty($container_ref->desiredKrakenIDOverride)){
+		$pid = intval($container_ref->desiredKrakenIDOverride);
+	}
+	$ser = json_decode($container_ref->serializedString);
+	if(isset($ser->desiredKrakenIDOverride) && !empty($ser->desiredKrakenIDOverride)){
+		$pid = intval($ser->desiredKrakenIDOverride);
+	}
+	if($pid == -1){
+		continue;
+	}
+	if(!isset($puzzleDatabase->krakenIDToContainedPuzzleData[$pid])){
+		printf("%s\n", ColorStr(sprintf("Rune %s wants to spawn non-existant puzzle %d!", $localID, $pid), 255, 128, 128));
+		exit(1);
+	}
+	$arr_ref = $puzzleDatabase->krakenIDToContainedPuzzleData[$pid];
+	$pdata = ($arr_ref["Pdata"] ?? (json_decode($arr_ref["Serialized"])->BinaryData));
+	unset($arr_ref);
+	$grid = GetGridBasics($pdata);
+	if($grid->w == 0 && $grid->npl <= 0){
+		continue;
+	}
+	if($grid->w > 0 && $grid->npl > 0){
+		printf("%s\n", ColorStr(sprintf("Rune %s wants to spawn puzzle %d which has BOTH liars and wrap-around!", $localID, $pid), 255, 128, 128));
+		exit(1);
+	}
+	$text = "";
+	if($grid->w == 1){
+		//$text = "Left and right edges are connected."; // no localization
+		$text = "NSLOCTEXT(\\\"RRMod\\\", \\\"WRAP_LR\\\", \\\"Left and right edges are connected.\\\")";
+	}elseif($grid->w == 2){
+		//$text = "Top and bottom edges are connected."; // no localization
+		$text = "NSLOCTEXT(\\\"RRMod\\\", \\\"WRAP_TB\\\", \\\"Top and bottom edges are connected.\\\")";
+	}elseif($grid->w == 3){
+		//$text = "All four edges are connected."; // no localization
+		$text = "NSLOCTEXT(\\\"RRMod\\\", \\\"WRAP_ALL\\\", \\\"All opposing edges are connected.\\\")";
+	}else{
+		//$text = sprintf("%d symbol%s lying.", $grid->npl, ($grid->npl == 1 ? " is" : "s are")); // no localization
+		//$text = "NSLOCTEXT(\\\"[EB3E14C54D948EFC0FF7F5B25A47CC2E]\\\", \\\"LIARS/LIARS1\\\", \\\"1 symbol is lying or some shit.\\\")"; // fail
+		//$text = "NSLOCTEXT(\\\"\\\", \\\"LIARS15\\\", \\\"X symbol is lying or some shit.\\\")"; // fail
+		//$text = "NSLOCTEXT(\\\"[LIARS]\\\", \\\"LIARS1\\\", \\\"1 symbol is lying.\\\")"; // fail
+		//$text = "NSLOCTEXT(\\\"LIARS\\\", \\\"LIARS1\\\", \\\"1 symbol is lying.\\\")"; // OK
+		//$text = "NSLOCTEXT(\\\"\\\", \\\"LIARS15\\\", \\\"15 symbols are lying.\\\")"; // OK
+		$keyName = "LIARS" . $grid->npl;
+		$helper = ($grid->npl == 1 ? "symbol is" : "symbols are");
+		$text = "NSLOCTEXT(\\\"RRMod\\\", \\\"" . $keyName . "\\\", \\\"" . $grid->npl . " " . $helper . " lying.\\\")";
+	}
+	
+	//printf("rune %s, grid %d, pdata %s, text %s:\n", $localID, $pid, $pdata, $text);
+	//print_r($container_ref);
+	
+	$container_ref->serializedString = preg_replace("/\"puzzleTutorialText\":\s*\"\"/", "\"puzzleTutorialText\":\"" . $text . "\"", $container_ref->serializedString);
+	if(isset($container_ref->puzzleTutorialText)){
+		$container_ref->puzzleTutorialText = $text;
+	}
+	printf("Added text |%s| to rune |%s| with grid %d.\n", $text, $localID, $pid);
+	
+}unset($container_ref);
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// Graveyard.
+// Puzzle radar stuff (chests).
 ///////////////////////////////////////////////////////////////////////////////
+
+// Moved to chestmaker.php
+//CreateChestBinary("media\\mod\\chest_locations.csv", "media\\mod\\puzzleradar.bin");
 
 
 
@@ -604,8 +1060,8 @@ foreach($puzzleDatabase->krakenIDToWorldPuzzleData as $pid => &$ser_ref){
 ///////////////////////////////////////////////////////////////////////////////
 
 if($doExportFiles){
-	SaveCompressedDecodedUasset($outputPuzzleDatabase, $jsonPuzzleDatabase);
-	SaveCompressedDecodedUasset($outputSandboxZones,   $jsonSandboxZones);
+	SaveCompressedDecodedUasset($outputPuzzleDatabase, $jsonPuzzleDatabase, [ "skipArrayIndices" => true, "scalarizeNodes" => [ "Solves" ] ]);
+	SaveCompressedDecodedUasset($outputSandboxZones,   $jsonSandboxZones, [ "skipArrayIndices" => false ]);
 }else{
 	printf("All done! Export omitted.\n");
 }

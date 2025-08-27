@@ -1,21 +1,70 @@
 <?php
 
-function UeTransformUnpack(mixed $input){
-	$obj = (object)[
+function UeDefaultTransform(){
+	$v = (object)[
 		"Translation" => (object)[ "X" => 0.0, "Y" => 0.0, "Z" => 0.0             ],
 		"Rotation"    => (object)[ "X" => 0.0, "Y" => 0.0, "Z" => 0.0, "W" => 1.0 ],
 		"Scale3D"     => (object)[ "X" => 1.0, "Y" => 1.0, "Z" => 1.0             ],
 	];
+	return $v;
+}
+
+function UeCompleteTransform(&$export_ref, bool $forceAdd = false){
+	$defaultNodeMap = [
+		"Translation" => json_decode('{ "$type":"UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI", "StructType":"Vector", "SerializeNone":true, "Name":"RelativeLocation", "Value": [ { "$type":"UAssetAPI.PropertyTypes.Structs.VectorPropertyData, UAssetAPI", "Name":"RelativeLocation", "Value": { "$type":"UAssetAPI.UnrealTypes.FRotator, UAssetAPI", "X":0.0, "Y":0.0, "Z":0.0 } } ] }'),
+		
+		"Rotation" => json_decode('{ "$type":"UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI", "StructType":"Rotator", "SerializeNone":true, "Name":"RelativeRotation", "Value": [ { "$type":"UAssetAPI.PropertyTypes.Structs.RotatorPropertyData, UAssetAPI", "Name":"RelativeRotation", "Value": { "$type":"UAssetAPI.UnrealTypes.FRotator, UAssetAPI", "Pitch":0.0, "Yaw":0.0, "Roll":0.0 } } ] }'),
+		
+		"Scale3D" => json_decode('{ "$type":"UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI", "StructType":"Vector", "SerializeNone":true, "Name":"RelativeScale3D", "Value": [ { "$type":"UAssetAPI.PropertyTypes.Structs.VectorPropertyData, UAssetAPI", "Name":"RelativeScale3D", "Value": { "$type":"UAssetAPI.UnrealTypes.FVector, UAssetAPI", "X":1.0, "Y":1.0, "Z":1.0 } } ] }'),
+	];
+	$jsonKeyToMyKey = array_flip(array_map(function($x) { return $x->Name; }, $defaultNodeMap));
+	//var_dump($jsonKeyToMyKey);
+	$foundMyKeys = [];
+	foreach($export_ref->Data as &$node_ref){
+		if(isset($jsonKeyToMyKey[$node_ref->Name])){
+			$foundMyKeys[] = $jsonKeyToMyKey[$node_ref->Name];
+			$actualValues_ref = &$node_ref->Value[0]->Value;
+			//printf("Found %s: %s\n", $node_ref->Name, json_encode($actualValues_ref));
+			//var_dump($actualValues_ref);
+			unset($actualValues_ref);
+		}
+	}unset($node_ref);
+	
+	if((count($foundMyKeys) > 0 && count($defaultNodeMap)) || $forceAdd){
+		foreach($defaultNodeMap as $myKey => $defaultNode){
+			if(!in_array($myKey, $foundMyKeys)){
+				$export_ref->Data[] = $defaultNode;
+			}
+		}
+	}
+}
+
+function UeTransformUnpack(mixed $input){
+	$obj = UeDefaultTransform();
 	$keyNames = array_keys((array)$obj);
+	
+	static $extraKeyMap = [
+		"RelativeLocation" => "Translation",
+		"RelativeRotation" => "Rotation",
+		"RelativeScale3D"  => "Scale3D",
+	];
+	
+	if(isset($input->Data) && isset($input->ObjectName)){
+		$input = $input->Data;
+	}
 	
 	//printf("Trying to unpack %s\n", json_encode($input));
 	if(is_object($input)){
 		foreach($keyNames as $key){
 			if(isset($obj->$key) && isset($input->$key)){
+				//var_dump($obj->$key);
 				if(isset($obj->$key->X) && isset($input->$key->X)){ $obj->$key->X = (float)$input->$key->X; }
 				if(isset($obj->$key->Y) && isset($input->$key->Y)){ $obj->$key->Y = (float)$input->$key->Y; }
 				if(isset($obj->$key->Z) && isset($input->$key->Z)){ $obj->$key->Z = (float)$input->$key->Z; }
 				if(isset($obj->$key->W) && isset($input->$key->W)){ $obj->$key->W = (float)$input->$key->W; }
+				if(isset($obj->$key->Pitch) && isset($input->$key->Pitch)){ $obj->$key->X = (float)$input->$key->Pitch; }
+				if(isset($obj->$key->Yaw)   && isset($input->$key->Yaw)  ){ $obj->$key->Y = (float)$input->$key->Yaw;   }
+				if(isset($obj->$key->Roll)  && isset($input->$key->Roll) ){ $obj->$key->Z = (float)$input->$key->Roll;  }
 			}
 		}
 		if(isset($input->x)){     $obj->Translation->X = (float)$input->x;     }
@@ -24,15 +73,43 @@ function UeTransformUnpack(mixed $input){
 		if(isset($input->pitch)){ $obj->Rotation->X    = (float)$input->pitch; }
 		if(isset($input->yaw)){   $obj->Rotation->Y    = (float)$input->yaw;   }
 		if(isset($input->roll)){  $obj->Rotation->Z    = (float)$input->roll;  }
+		if(isset($input->sx)){    $obj->Scale3D->X     = (float)$input->sx;    }
+		if(isset($input->sy)){    $obj->Scale3D->Y     = (float)$input->sy;    }
+		if(isset($input->sz)){    $obj->Scale3D->Z     = (float)$input->sz;    }
+		
+		if(isset($input->X)){     $obj->Translation->X = (float)$input->X;     }
+		if(isset($input->Y)){     $obj->Translation->Y = (float)$input->Y;     }
+		if(isset($input->Z)){     $obj->Translation->Z = (float)$input->Z;     }
+		if(isset($input->Pitch)){ $obj->Rotation->X    = (float)$input->Pitch; }
+		if(isset($input->Yaw)){   $obj->Rotation->Y    = (float)$input->Yaw;   }
+		if(isset($input->Roll)){  $obj->Rotation->Z    = (float)$input->Roll;  }
+		if(isset($input->SX)){    $obj->Scale3D->X     = (float)$input->SX;    }
+		if(isset($input->SY)){    $obj->Scale3D->Y     = (float)$input->SY;    }
+		if(isset($input->SZ)){    $obj->Scale3D->Z     = (float)$input->SZ;    }
 		
 	}elseif(is_array($input)){
 		foreach($input as $key => $value){
-			if(in_array($key, $keyNames)){
+			//printf("%s -> %s\n\n", $key, json_encode($value));
+			if(is_string($key) && in_array($key, $keyNames)){
 				if(isset($obj->$key->X) && isset($value->X)){ $obj->$key->X = (float)$value->X; }
 				if(isset($obj->$key->Y) && isset($value->Y)){ $obj->$key->Y = (float)$value->Y; }
 				if(isset($obj->$key->Z) && isset($value->Z)){ $obj->$key->Z = (float)$value->Z; }
 				if(isset($obj->$key->W) && isset($value->W)){ $obj->$key->W = (float)$value->W; }
 				//$obj->$key = (float)$value;
+			}elseif(is_object($value) && isset($value->Name) && isset($value->Value)){
+				if(isset($extraKeyMap[$value->Name])){
+					//$jsonKey = $value->Name;
+					$myKey   = $extraKeyMap[$value->Name];
+					$actualValues = $value->Value[0]->Value;
+					//printf("%s -> %s\n\n", $key, json_encode($value));
+					if(isset($obj->$myKey->X) && isset($actualValues->X)){ $obj->$myKey->X = (float)$actualValues->X; }
+					if(isset($obj->$myKey->Y) && isset($actualValues->Y)){ $obj->$myKey->Y = (float)$actualValues->Y; }
+					if(isset($obj->$myKey->Z) && isset($actualValues->Z)){ $obj->$myKey->Z = (float)$actualValues->Z; }
+					if(isset($obj->$myKey->W) && isset($actualValues->W)){ $obj->$myKey->W = (float)$actualValues->W; }
+					if(isset($obj->$myKey->X) && isset($actualValues->Pitch)){ $obj->$myKey->X = (float)$actualValues->Pitch; }
+					if(isset($obj->$myKey->Y) && isset($actualValues->Yaw)  ){ $obj->$myKey->Y = (float)$actualValues->Yaw;   }
+					if(isset($obj->$myKey->Z) && isset($actualValues->Roll) ){ $obj->$myKey->Z = (float)$actualValues->Roll;  }
+				}
 			}
 		}
 		
@@ -48,7 +125,7 @@ function UeTransformUnpack(mixed $input){
 			$obj->$keyName->X = (float)$triplet[0];
 			$obj->$keyName->Y = (float)$triplet[1];
 			$obj->$keyName->Z = (float)$triplet[2];
-			$obj->$keyName->W = (float)1.0;
+			//$obj->$keyName->W = (float)1.0;
 			// Yeah I'm not writing a quat to rotator conversion.
 		}
 	}
@@ -111,6 +188,7 @@ function UeTransformPackInto(object $t, mixed &$output){
 					$t->Scale3D->X,     $t->Scale3D->Y,     $t->Scale3D->Z
 					// still not writing a quat to rotator conversion.
 				);
+	
 	}elseif(is_array($output)){
 		foreach($output as $key => &$subArray_ref){
 			foreach($subArray_ref as $subKey => &$subValue_ref){
@@ -119,6 +197,43 @@ function UeTransformPackInto(object $t, mixed &$output){
 				//$subValue_ref = sprintf("%.10f", $t->$key->$subKey);
 			}unset($subValue_ref);
 		}unset($subArray_ref);
+	
+	}elseif(is_object($output) && isset($output->X) && isset($output->Y) && isset($output->Z)){
+		$output->X = (float)$t->Translation->X;
+		$output->Y = (float)$t->Translation->Y;
+		$output->Z = (float)$t->Translation->Z;
+	
+	}elseif(is_object($output) && isset($output->Pitch) && isset($output->Yaw) && isset($output->Roll)){
+		$output->Pitch = (float)$t->Rotation->Pitch;
+		$output->Yaw   = (float)$t->Rotation->Yaw;
+		$output->Roll  = (float)$t->Rotation->Roll;
+	
+	}elseif(is_object($output) && isset($output->Data)){
+		static $extraKeyMap = [
+			"RelativeLocation" => "Translation",
+			"RelativeRotation" => "Rotation",
+			"RelativeScale3D"  => "Scale3D",
+		];
+		foreach($output->Data as &$node_ref){
+			if(isset($node_ref->Name) && isset($extraKeyMap[$node_ref->Name])){
+				$myKey = $extraKeyMap[$node_ref->Name];
+				$actualValues_ref = &$node_ref->Value[0]->Value;
+				//var_dump($actualValues_ref);
+				if(isset($t->$myKey->X) && isset($actualValues_ref->X)){ $actualValues_ref->X = (float)$t->$myKey->X; }
+				if(isset($t->$myKey->Y) && isset($actualValues_ref->Y)){ $actualValues_ref->Y = (float)$t->$myKey->Y; }
+				if(isset($t->$myKey->Z) && isset($actualValues_ref->Z)){ $actualValues_ref->Z = (float)$t->$myKey->Z; }
+				if(isset($t->$myKey->W) && isset($actualValues_ref->W)){ $actualValues_ref->W = (float)$t->$myKey->W; }
+				if(isset($t->$myKey->X) && isset($actualValues_ref->Pitch)){ $actualValues_ref->Pitch = (float)$t->$myKey->X; }
+				if(isset($t->$myKey->Y) && isset($actualValues_ref->Yaw)  ){ $actualValues_ref->Yaw   = (float)$t->$myKey->Y; }
+				if(isset($t->$myKey->Z) && isset($actualValues_ref->Roll) ){ $actualValues_ref->Roll  = (float)$t->$myKey->Z; }
+				
+				unset($actualValues_ref);
+			}
+		}unset($node_ref);
+	
+	}else{
+		printf("[ERROR] Failed to pack:\n%s\n%s\n", json_encode($t, 0xc0), json_encode($output, 0xc0));
+		exit(1);
 	}
 }
 
@@ -149,6 +264,121 @@ function UeBoxPackInto(object $box, mixed &$output){
 	}
 }
 
+function UeTransformAdd($a, $b){
+	$result = unserialize(serialize($a));
+	$result->Translation->X += $b->Translation->X;
+	$result->Translation->Y += $b->Translation->Y;
+	$result->Translation->Z += $b->Translation->Z;
+	return $result;
+}
+
+function UeTransformSub($a, $b){
+	$result = unserialize(serialize($a));
+	$result->Translation->X -= $b->Translation->X;
+	$result->Translation->Y -= $b->Translation->Y;
+	$result->Translation->Z -= $b->Translation->Z;
+	return $result;
+}
+
+function UeBoxAdd($box, $v){
+	$result = unserialize(serialize($box));
+	$result->MinX += $v->Translation->X;
+	$result->MinY += $v->Translation->Y;
+	$result->MinZ += $v->Translation->Z;
+	$result->MaxX += $v->Translation->X;
+	$result->MaxY += $v->Translation->Y;
+	$result->MaxZ += $v->Translation->Z;
+	return $result;
+}
+
+function UeBoxSub($box, $v){
+	$result = unserialize(serialize($box));
+	$result->MinX -= $v->Translation->X;
+	$result->MinY -= $v->Translation->Y;
+	$result->MinZ -= $v->Translation->Z;
+	$result->MaxX -= $v->Translation->X;
+	$result->MaxY -= $v->Translation->Y;
+	$result->MaxZ -= $v->Translation->Z;
+	return $result;
+}
+
+function UeTransformRotateAround($t, $rotator){
+	// Does not support rotator scaling yet.
+	
+	$result = unserialize(serialize($t));
+	
+	$result = UeTransformSub($result, $rotator); // normalize to local space
+	
+	$pitchRad = deg2rad($rotator->Rotation->X);
+	$yawRad   = deg2rad($rotator->Rotation->Y);
+	$rollRad  = deg2rad($rotator->Rotation->Z);
+	
+	$newX = $result->Translation->X;
+	$newY = $result->Translation->Y;
+	$newZ = $result->Translation->Z;
+	
+	$x =  $newX * cos($pitchRad) + $newZ * sin($pitchRad);
+	$z = -$newX * sin($pitchRad) + $newZ * cos($pitchRad);
+	$newX = $x; // don't assign until BOTH calculations are done
+	$newZ = $z; // don't assign until BOTH calculations are done
+	
+	$x = $newX * cos($yawRad) - $newY * sin($yawRad);
+	$y = $newX * sin($yawRad) + $newY * cos($yawRad);
+	$newX = $x; // don't assign until BOTH calculations are done
+	$newY = $y; // don't assign until BOTH calculations are done
+	
+	$y = $newY * cos($rollRad) - $newZ * sin($rollRad);
+	$z = $newY * sin($rollRad) + $newZ * cos($rollRad);
+	$newY = $y; // don't assign until BOTH calculations are done
+	$newZ = $z; // don't assign until BOTH calculations are done
+	
+	$result->Translation->X = $newX;
+	$result->Translation->Y = $newY;
+	$result->Translation->Z = $newZ;
+	$result->Rotation->X += $rotator->Rotation->X;
+	$result->Rotation->Y += $rotator->Rotation->Y;
+	$result->Rotation->Z += $rotator->Rotation->Z;
+	
+	$result = UeTransformAdd($result, $rotator); // return to world space
+	
+	return $result;
+}
+
+function UeTransformChildToWorld($parent, $child){
+	// Does not support parent scaling yet.
+	
+	$p = UeTransformUnpack($parent);
+	$c = UeTransformUnpack($child);
+	$c->Translation->X *= $p->Scale3D->X;
+	$c->Translation->Y *= $p->Scale3D->Y;
+	$c->Translation->Z *= $p->Scale3D->Z;
+	$t = UeTransformAdd($p, $c);
+	$t = UeTransformRotateAround($t, $p);
+	return $t;
+}
+
+function UeBoxRotateAround($box, $rotator){
+	$tMin = UeDefaultTransform();
+	$tMin->Translation->X = $box->MinX;
+	$tMin->Translation->Y = $box->MinY;
+	$tMin->Translation->Z = $box->MinY;
+	$tMax = UeDefaultTransform();
+	$tMax->Translation->X = $box->MaxX;
+	$tMax->Translation->Y = $box->MaxY;
+	$tMax->Translation->Z = $box->MaxY;
+	$tMin = UeTransformRotateAround($tMin, $rotator);
+	$tMin = UeTransformRotateAround($tMax, $rotator);
+	$result = unserialize(serialize($box));
+	$result->MinX = $tMin->Translation->X;
+	$result->MinY = $tMin->Translation->Y;
+	$result->MinZ = $tMin->Translation->Z;
+	$result->MaxX = $tMax->Translation->X;
+	$result->MaxY = $tMax->Translation->Y;
+	$result->MaxZ = $tMax->Translation->Z;
+	return $result;
+}
+
+// Old-style format.
 function ExtractCoords(string $transform){
 	if(!preg_match("/^(-?[0-9\.]+),(-?[0-9\.]+),(-?[0-9\.]+)\|(-?[0-9\.]+),(\-?[0-9\.]+),(-?[0-9\.]+)\|-?[0-9\.]+,-?[0-9\.]+,-?[0-9\.]+[\r\n]*$/", $transform, $matches) || count($matches) < 7){
 		printf("Failed to extract coordinates from transform \"%s\"\n", $transform);
@@ -166,6 +396,7 @@ function ExtractCoords(string $transform){
 	];
 }
 
+// Old-style format.
 function ExtractBoxCenter(string $boxString){
 	// Sample: "Min=X=-24133.297 Y=103329.375 Z=26508.773|Max=X=-23928.496 Y=103534.172 Z=26713.574"
 	if(!preg_match("/^Min=X=(\-?\d+\.?(?:\d+)?) Y=(\-?\d+\.?(?:\d+)?) Z=(\-?\d+\.?(?:\d+)?)\|Max=X=(\-?\d+\.?(?:\d+)?) Y=(\-?\d+\.?(?:\d+)?) Z=(\-?\d+\.?(?:\d+)?)$/", $boxString, $matches) || count($matches) < 7){
@@ -185,31 +416,52 @@ function ExtractBoxCenter(string $boxString){
 	];
 }
 
+// Old-style format.
 function DistanceSquared($a, $b){
 	$a = (object)$a;
 	$b = (object)$b;
-	$dx = $b->x - $a->x;
-	$dy = $b->y - $a->y;
-	$dz = $b->z - $a->z;
+	if(isset($a->Translation) && isset($b->Translation)){
+		$dx = $b->Translation->X - $a->Translation->X;
+		$dy = $b->Translation->Y - $a->Translation->Y;
+		$dz = $b->Translation->Z - $a->Translation->Z;
+		return ($dx * $dx + $dy * $dy + $dz * $dz);
+	}
+	//$dx = $b->x - $a->x;
+	//$dy = $b->y - $a->y;
+	//$dz = $b->z - $a->z;
+	$dx = ($b->x ?? $b->X) - ($a->x ?? $a->X);
+	$dy = ($b->y ?? $b->Y) - ($a->y ?? $a->Y);
+	$dz = ($b->z ?? $b->Z) - ($a->z ?? $a->Z);
 	return ($dx * $dx + $dy * $dy + $dz * $dz);
 }
 
+// Old-style format.
 function Distance($a, $b){
 	return (sqrt(DistanceSquared($a, $b)));
 }
 
+// Old-style format.
 function Distance2dSquared($a, $b){
 	$a = (object)$a;
 	$b = (object)$b;
-	$dx = $b->x - $a->x;
-	$dy = $b->y - $a->y;
+	if(isset($a->Translation) && isset($b->Translation)){
+		$dx = $b->Translation->X - $a->Translation->X;
+		$dy = $b->Translation->Y - $a->Translation->Y;
+		return ($dx * $dx + $dy * $dy);
+	}
+	//$dx = $b->x - $a->x;
+	//$dy = $b->y - $a->y;
+	$dx = ($b->x ?? $b->X) - ($a->x ?? $a->X);
+	$dy = ($b->y ?? $b->Y) - ($a->y ?? $a->Y);
 	return ($dx * $dx + $dy * $dy);
 }
 
+// Old-style format.
 function Distance2d($a, $b){
 	return (sqrt(Distance2dSquared($a, $b)));
 }
 
+// Old-style format.
 function CombineLocalTransform(object $origin, array $transforms){
 	$result = [];
 	foreach($transforms as $transform){
@@ -286,10 +538,35 @@ function ParseCoordinates($pid, $ptype, $data){
 		}
 		case "matchbox":{
 			// Get actual coordinates of both boxes, ignore ActorTransform.
-			//$coords = [ ExtractCoords($data->Mesh1Transform), ExtractCoords($data->Mesh2Transform) ]; // outdated as of July 9th
+			// OUTDATED as of July 9th
+			//$coords = [ ExtractCoords($data->Mesh1Transform), ExtractCoords($data->Mesh2Transform) ];
+			
+			// OUTDATED since the implementation of Offline Restored Mod.
 			$coords = [
 				ExtractBoxCenter($data->{"SERIALIZEDSUBCOMP_PuzzleBounds-0"}->Box),
 				ExtractBoxCenter($data->{"SERIALIZEDSUBCOMP_PuzzleBounds-1"}->Box),
+			];
+			
+			//$coords = CombineLocalTransform($actorCoords, [ $data->Mesh1Transform, $data->Mesh2Transform ]);
+			$a = UeTransformChildToWorld($actorCoords, $data->Mesh1Transform);
+			$b = UeTransformChildToWorld($actorCoords, $data->Mesh2Transform);
+			$coords = [
+				(object)[
+					"x"     => $a->Translation->X,
+					"y"     => $a->Translation->Y,
+					"z"     => $a->Translation->Z,
+					"pitch" => $a->Rotation->X,
+					"yaw"   => $a->Rotation->X,
+					"roll"  => $a->Rotation->X,
+				],
+				(object)[
+					"x"     => $b->Translation->X,
+					"y"     => $b->Translation->Y,
+					"z"     => $b->Translation->Z,
+					"pitch" => $b->Rotation->X,
+					"yaw"   => $b->Rotation->X,
+					"roll"  => $b->Rotation->X,
+				],
 			];
 			break;
 		}
@@ -306,7 +583,7 @@ function ParseCoordinates($pid, $ptype, $data){
 			//sort($rings, SORT_NUMERIC); // meh
 			//$coords = CombineLocalTransform($actorCoords, $rings);
 			//$coords = [ $platform ];
-			$coords = [ $platform ] + CombineLocalTransform($actorCoords, $rings);
+			$coords = array_values(array_merge([ $platform ], CombineLocalTransform($actorCoords, $rings)));
 			//var_dump($coords);
 			break;
 		}

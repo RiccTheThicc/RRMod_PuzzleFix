@@ -9,7 +9,7 @@ include_once("include\\drawCommon.php");
 include_once("include\\renderCache.php");
 include_once("include\\icons.php");
 
-define("PC_IMAGE_VERSION",   "1.1");
+define("PC_IMAGE_VERSION",   "1.2");
 define("PC_MAX_PLAYERNAME",     30);
 define("PC_MAX_PLAYERTITLE",    60);
 
@@ -18,7 +18,9 @@ define("PC_FONT_BOLD",   "./taileb.ttf");
 //define("PC_FONT_NORMAL", "./arial.ttf");
 
 // Some sizes.
+define("PC_SMALL_SPACER",  8);
 define("PC_LARGE_SPACER", 20);
+define("PC_IS_SMALL_SIDE_SPACER", false);
 
 // Background colors.
 define("PC_CLR_TRANSPARENT",      "#0000007F");
@@ -74,6 +76,8 @@ function DrawPlayerCard($saveJson, $outputPath){
 	OverlayImageSmart($back, $fullGd, [ "blend" => true ]);
 	printf("%s\n", ColorStr("Rendering ". $outputPath, 128, 192, 255));
 	SaveImageAs($back, $outputPath);
+	
+	//printf(ColorStr("Debug exit!\n", 255, 128, 128)); exit(1);
 }
 
 function GenerateHeaderRow($saveJson, array $options = []){
@@ -87,19 +91,20 @@ function GenerateHeaderRow($saveJson, array $options = []){
 		printf("%s: I need forcedWidth!\n", __FUNCTION__);
 		exit(1);
 	}
-	$headerHeight = round(230);
+	$headerHeight = round(250);
 	
 	static $weights = [
-		"primary"    => 2.10,
-		"hubstatic"  => 1.2,
-		"cosmystery" => 1.00,
+		"primary"    => 2.03,
+		"hubstatic"  => 1.25,
+		"cosmystery" => 0.96,
 		"armidrop"   => 1.08,
-		"clusters"   => 1.1,
-		"florbs"     => 0.43,
+		"clusters"   => 1.22,
+		"florbs"     => 0.39,
+		"glides"     => 0.39,
 	];
 	$totalWeight = array_sum($weights);
 	
-	$headerSpacerHor = 8;
+	$headerSpacerHor = PC_SMALL_SPACER;
 	$headerSpacerVer = $headerSpacerHor;
 	$headerItemCount = count($weights) + 2; // extra for avatar and the manual spacer
 	$headerSpacerCount = $headerItemCount - 1;
@@ -151,72 +156,83 @@ function GenerateHeaderRow($saveJson, array $options = []){
 	$mysteriesSolvedCount = count($saveJson->solvedMysteries);
 	$isMysteriesComplete = ($mysteriesSolvedCount == $mysteriesAllCount);
 	
-	$clusterMap = GetClusterMap();
-	$solvedClusterMap = $saveJson->solvedClusterMap;
+	$consolidatedClusterMap = GetConsolidatedClusterMap();
 	$isClustersComplete = true;
 	$clusterItems = [];
-	foreach($clusterMap as $internalName => $allArray){
-		$publicName = GetPublicClusterName($internalName);
-		$allCount = count($allArray);
-		$solvedCount = count($saveJson->solvedClusterMap[$internalName]);
+	foreach($consolidatedClusterMap as $publicName => $allClusterPids){
+		$allCount = count($allClusterPids);
+		$solvedCount = count(array_intersect($allClusterPids, $saveJson->allSolvedPids));
 		$clusterItems[] = [ "curr" => $solvedCount, "total" => $allCount, "showPct" => true, "itemName" => $publicName ];
 		if($solvedCount != $allCount){
 			$isClustersComplete = false;
 		}
 	}
+	//printf("%s\n", json_encode($clusterItems, 0xc0));
 	
 	$defaultWidth = 300;
 	$headerHalfHeight = intval(round(($headerHeight - $headerSpacerVer) / 2));
 	
 	$isFlorbsComplete = ((count($saveJson->florbMedalMap[0]) + count($saveJson->florbMedalMap[1]) + count($saveJson->florbMedalMap[2]) == 0) && count($saveJson->florbMedalMap[3]) > 0);
+	$isGlidesComplete = ((count($saveJson->glideMedalMap[0]) + count($saveJson->glideMedalMap[1]) + count($saveJson->glideMedalMap[2]) == 0) && count($saveJson->glideMedalMap[3]) > 0);
 	
 	$gdAvatar    = GenerateAvatar([ "forcedHeight" => $avatarSize ]);
 	$gdManualSpacer = CreateBlankImage($manualSpacerWidth, $headerHeight);
 	$gdPrimary   = GeneratePrimaryInfo($saveJson, [ "forcedWidth" => $sizeMap["primary"], "forcedHeight" => $headerHeight ]);
+	
 	$gdStatics   = CreateGenericStatCard($sizeMap["hubstatic"], $headerHalfHeight, [
 						[ "curr" => $staticsSolvedCount,      "total" => $staticsAllCount,    "showPct" => true ]
-					],  [ "title" => "Statics", "titlePosX" => 0.55, "isComplete" => $isStaticsComplete,
-						  "titleIcon" => "special/hiddencube"
+					],  [ "title" => "Static puzzles", "titlePosX" => 0.55, "isComplete" => $isStaticsComplete,
+						  "titleIcon" => "special/hiddencube", "titleIconPos" => 50, "itemPos" => 0.52,
 					   ]);
 	$gdHubs      = CreateGenericStatCard($sizeMap["hubstatic"], $headerHalfHeight, [
 						[ "curr" => $hubSolvedCount,          "total" => $hubAllCount,        "showPct" => true ]
-					],  [ "title" => "Hubs", "titlePosX" => 0.55, "isComplete" => $isHubsComplete,
-						  "titleIcon" => "special/ryoanji"
+					],  [ "title" => "Hub puzzles", "titlePosX" => 0.55, "isComplete" => $isHubsComplete,
+						  "titleIcon" => "special/ryoanji",    "titleIconPos" => 50, "itemPos" => 0.52,
 					   ]);
 	$gdCosmetics = CreateGenericStatCard($sizeMap["cosmystery"], $headerHalfHeight, [
 						[ "curr" => $cosmeticsUnlockedCount,  "total" => $cosmeticsAllCount,  "showPct" => true, "showDeluxe" => $saveJson->hasDeluxe ]
 					],  [ "title" => "Cosmetics", "titlePosX" => 0.55, "isComplete" => $isCosmeticsComplete,
-						  "titleIcon" => "special/cosmetic"
+						  "titleIcon" => "special/cosmetic", "itemPos" => 0.52,
 					   ]);
 	$gdMysteries = CreateGenericStatCard($sizeMap["cosmystery"], $headerHalfHeight, [
 						[ "curr" => $mysteriesSolvedCount,    "total" => $mysteriesAllCount,  "showPct" => true ]
 					],  [ "title" => "Mysteries", "titlePosX" => 0.55, "isComplete" => $isMysteriesComplete,
-						  "titleIcon" => "special/mystery"
+						  "titleIcon" => "special/mystery", "itemPos" => 0.52,
 					   ]);
 	$gdArmillary = CreateGenericStatCard($sizeMap["armidrop"], $headerHalfHeight, [
 						[ "curr" => $templeArmiSolvedCount,   "total" => $templeArmiAllCount, "showPct" => true ]
-					],  [ "title" => "  Temple Armillaries", "titlePosX" => 0.58, "titleFontSize" => 19,  "isComplete" => $isTempleArmiComplete,
-						  "titleIcon" => "special/gyroring", //"titleIconPos" => 0.11,
+					],  [ "title" => "  Temple Armillaries", "titlePosX" => 0.58, "titleFontSize" => 20,  "isComplete" => $isTempleArmiComplete,
+						  "titleIcon" => "special/gyroring", "itemPos" => 0.52, //"titleIconSize" => 66, "titleIconPos" => 37,
 					   ]);
 	$gdSkydrop   = CreateGenericStatCard($sizeMap["armidrop"], $headerHalfHeight, [
 						[ "value" => $skydropPb, "iconSize" => 30, "icon" => "medal_scaled/" . $skydropMedalName, "iconPos" => 0.35,
 						  "checkmark" => ($skydropMedalName == "none" ? "special/none" : "special/checkmark"), "checkmarkSize" => 40, "checkmarkPos" => 0.85 ]
-					],  [ "title" => "  Skydrop Challenge", "titlePosX" => 0.58, "titleFontSize" => 19, "itemAlign" => "center", "isComplete" => $isSkydropComplete,
-						  "titleIcon" => "special/skydrop_challenge", "itemPos" => 0.55, // "titleIconPos" => 0.11, "titleIconSize" => 80, 
+					],  [ "title" => "  Skydrop Challenge", "titlePosX" => 0.58, "titleFontSize" => 20, "itemAlign" => "center", "isComplete" => $isSkydropComplete,
+						  "titleIcon" => "special/skydrop_challenge", "itemPos" => 0.55, //"titleIconSize" => 70, "titleIconPos" => 40,
 					   ]);
 					// "extraIcon" => "medal_scaled/" . $skydropMedalName, "extraIconSize" => 30, "extraIconPos" => 0.4
 	$gdFlorbs    = CreateGenericStatCard($sizeMap["florbs"], $headerHeight, [
-						[ "value" => count($saveJson->florbMedalMap[0]), "icon" => "medal_scaled/" . strtolower(MedalTierToName(0)), "iconSize" => 30, "iconPos" => 0.25 ],
-						[ "value" => count($saveJson->florbMedalMap[1]), "icon" => "medal_scaled/" . strtolower(MedalTierToName(1)), "iconSize" => 30, "iconPos" => 0.25 ],
-						[ "value" => count($saveJson->florbMedalMap[2]), "icon" => "medal_scaled/" . strtolower(MedalTierToName(2)), "iconSize" => 30, "iconPos" => 0.25 ],
-						[ "value" => count($saveJson->florbMedalMap[3]), "icon" => "medal_scaled/" . strtolower(MedalTierToName(3)), "iconSize" => 30, "iconPos" => 0.25 ],
+						[ "value" => count($saveJson->florbMedalMap[0]),  "icon" => "medal_scaled/" . strtolower(MedalTierToName(0)), "iconSize" => 30, "iconPos" => 0.25 ],
+						[ "value" => count($saveJson->florbMedalMap[1]),  "icon" => "medal_scaled/" . strtolower(MedalTierToName(1)), "iconSize" => 30, "iconPos" => 0.25 ],
+						[ "value" => count($saveJson->florbMedalMap[2]),  "icon" => "medal_scaled/" . strtolower(MedalTierToName(2)), "iconSize" => 30, "iconPos" => 0.25 ],
+						[ "value" => count($saveJson->florbMedalMap[3]),  "icon" => "medal_scaled/" . strtolower(MedalTierToName(3)), "iconSize" => 30, "iconPos" => 0.25 ],
+						[ "value" => $saveJson->florbTotalScore,          "icon" => null, "overridePos" => 0.5, "overrideAlign" => "center", "overrideFontSize" => 18 ],
 					],  [ "title" => "Florbs", "itemPos" => 0.42, "itemAlign" => "left", "iconSize" => 30, "isComplete" => $isFlorbsComplete,
-						  "titleIcon" => ""
+						  "titleIcon" => "", "itemFontSize" => 21,
+					   ]);
+	$gdGlides    = CreateGenericStatCard($sizeMap["glides"], $headerHeight, [
+						[ "value" => count($saveJson->glideMedalMap[0]),  "icon" => "medal_scaled/" . strtolower(MedalTierToName(0)), "iconSize" => 30, "iconPos" => 0.25 ],
+						[ "value" => count($saveJson->glideMedalMap[1]),  "icon" => "medal_scaled/" . strtolower(MedalTierToName(1)), "iconSize" => 30, "iconPos" => 0.25 ],
+						[ "value" => count($saveJson->glideMedalMap[2]),  "icon" => "medal_scaled/" . strtolower(MedalTierToName(2)), "iconSize" => 30, "iconPos" => 0.25 ],
+						[ "value" => count($saveJson->glideMedalMap[3]),  "icon" => "medal_scaled/" . strtolower(MedalTierToName(3)), "iconSize" => 30, "iconPos" => 0.25 ],
+						[ "value" => $saveJson->glideTotalScore . " pts", "icon" => null, "overridePos" => 0.5, "overrideAlign" => "center", "overrideFontSize" => 17 ],
+					],  [ "title" => "Glides", "itemPos" => 0.42, "itemAlign" => "left", "iconSize" => 30, "isComplete" => $isGlidesComplete,
+						  "titleIcon" => "", "itemFontSize" => 21,
 					   ]);
 	$gdClusters  = CreateGenericStatCard($sizeMap["clusters"], $headerHeight,
 						$clusterItems,
-					    [ "title" => "Clusters", "isComplete" => $isClustersComplete,
-						  "titleIcon" => ""
+					    [ "title" => "Clusters", "itemPos" => 0.60, "isComplete" => $isClustersComplete,
+						  "titleIcon" => "", "itemFontSize" => 22,
 					   ]);
 	
 	$gdArray = [
@@ -227,6 +243,7 @@ function GenerateHeaderRow($saveJson, array $options = []){
 		TileImages([ $gdCosmetics, $gdMysteries ], [ "mode" => "vertical", "align" => "center", "spacer" => $headerSpacerVer, "margin" => 0 ]),
 		TileImages([ $gdArmillary, $gdSkydrop   ], [ "mode" => "vertical", "align" => "center", "spacer" => $headerSpacerVer, "margin" => 0 ]),
 		$gdFlorbs,
+		$gdGlides,
 		$gdClusters,
 	];
 	$gd = TileImages($gdArray, [ "mode" => "horizontal", "align" => "center", "spacer" => $headerSpacerHor, "margin" => 0 ]);
@@ -269,7 +286,7 @@ function GenerateAvatar(array $options = []){
 		//usleep(3.0 * 1e6);
 	}
 	//printf("hash: %s\n", $hash);
-	$avatar = imagecreatefromstring($rawData);
+	$avatar = @imagecreatefromstring($rawData); // suppress gd-png: libpng warning: iCCP: known incorrect sRGB profile
 	if($avatar === false){
 		printf("%s\n", ColorStr("I couldn't read the \"" . $avatarPath . "\" file :( Is the picture ok?", 255, 128, 128));
 		return $gd;
@@ -305,7 +322,7 @@ function GeneratePrimaryInfo($saveJson, array $options = []){
 	$fontColorPlayerLevel = PC_CLR_PLAYERLEVEL;
 	$fontNamePlayerLevel  = PC_FONT_BOLD;
 	$fontSizePlayerLevel  = 29;
-	$levelIconSize        = 145;
+	$levelIconSize        = 135;
 	
 	$fontColorPlayerName  = PC_CLR_WHITE;
 	$fontNamePlayerName   = PC_FONT_BOLD;
@@ -361,16 +378,16 @@ function GeneratePrimaryInfo($saveJson, array $options = []){
 	
 	$gd = CreateCard($width, $height, [ "backColor" => PC_CLR_TRANSPARENT, "cardColor" => $cardColor, "cardMargin" => 0, "cardRadius" => 6 ]);
 	
-	OverlayImageSmart($gd, $iconLevelDiamondGd, [ "x" => $width * 0.12, "y" => $height * 0.35, "size" => $levelIconSize ]);
-	DrawSmartText    ($gd, $playerLevel,        [ "x" => $width * 0.12, "y" => $height * 0.36,
+	OverlayImageSmart($gd, $iconLevelDiamondGd, [ "x" => $width * 0.11, "y" => $height * 0.37, "size" => $levelIconSize ]);
+	DrawSmartText    ($gd, $playerLevel,        [ "x" => $width * 0.11, "y" => $height * 0.38,
 												"colorCode" => $fontColorPlayerLevel, "fontName" => $fontNamePlayerLevel, "fontSize" => $fontSizePlayerLevel ]);
 	
-	DrawSmartText    ($gd, $playerName,         [ "x" => $width * 0.24, "y" => $height * 0.23, "align" => "left", "maxWidth" => $width * 0.7,
+	DrawSmartText    ($gd, $playerName,         [ "x" => $width * 0.22, "y" => $height * 0.25, "align" => "left", "maxWidth" => $width * 0.7,
 												"colorCode" => $fontColorPlayerName,  "fontName" => $fontNamePlayerName,  "fontSize" => $fontSizePlayerName  ]);
-	DrawSmartText    ($gd, $playerTitle,        [ "x" => $width * 0.24, "y" => $height * 0.51, "align" => "left", "maxWidth" => $width * 0.7,
+	DrawSmartText    ($gd, $playerTitle,        [ "x" => $width * 0.22, "y" => $height * 0.54, "align" => "left", "maxWidth" => $width * 0.7,
 												"colorCode" => $fontColorPlayerTitle, "fontName" => $fontNamePlayerTitle, "fontSize" => $fontSizePlayerTitle ]);
 	
-	$statHeight = $height * 0.83;
+	$statHeight = $height * 0.85;
 	$iconHeightAdjust = -3;
 	OverlayImageSmart($gd, $iconSparkGd,        [ "x" => $width * 0.07, "y" => $statHeight + $iconHeightAdjust,    "size" => $smallIconSize ]);
 	DrawSmartText    ($gd, $sparkCount,         [ "x" => $width * 0.12, "y" => $statHeight,    "align" => "left",
@@ -389,64 +406,54 @@ function GeneratePrimaryInfo($saveJson, array $options = []){
 
 function CreateGenericStatCard($width, $height, array $items, array $options = []){
 	$defaultOptions = [
-		"title"         => "",
-		"titleColor"    => PC_CLR_WHITE,
-		"titleFontName" => PC_FONT_BOLD,
-		"titleFontSize" => 22,
-		"titlePosX"     => 0.5,
-		"itemColor"     => PC_CLR_WHITE,
-		"itemFontName"  => PC_FONT_BOLD,
-		"itemFontSize"  => 22,
-		"itemAlign"     => "center",
-		"itemPos"       => 0.5,
-		"titleIcon"     => "",
-		"titleIconSize" => 72,
-		"titleIconPos"  => 45,
-		"backColor"     => PC_CLR_TRANSPARENT,
-		"cardColor"     => PC_CLR_MASTERYNORMAL, //PC_CLR_GRAYBACK,
-		"cardMargin"    => 0,
-		"cardRadius"    => 3,
-		"isComplete"    => false,
+		"title"             => "",
+		"titleColor"        => PC_CLR_WHITE,
+		"titleFontName"     => PC_FONT_BOLD,
+		"titleFontSize"     => 22,
+		"titlePosX"         => 0.5,
+		"itemColor"         => PC_CLR_WHITE,
+		"itemFontName"      => PC_FONT_BOLD,
+		"itemFontSize"      => 22,
+		"itemAlign"         => "center",
+		"itemPos"           => 0.5,
+		"titleIcon"         => "",
+		"titleIconSize"     => 72,
+		"titleIconPos"      => 45,
+		"backColor"         => PC_CLR_TRANSPARENT,
+		"cardColor"         => PC_CLR_MASTERYNORMAL, //PC_CLR_GRAYBACK,
+		"cardMargin"        => 0,
+		"cardRadius"        => 3,
+		"isComplete"        => false,
 	];
 	$options = array_merge($defaultOptions, $options);
-	$title          = $options["title"];
-	$titleColor     = $options["titleColor"];
-	$titleFontName  = $options["titleFontName"];
-	$titleFontSize  = $options["titleFontSize"];
-	$titlePosX      = $options["titlePosX"];
-	$itemColor      = $options["itemColor"];
-	$itemFontName   = $options["itemFontName"];
-	$itemFontSize   = $options["itemFontSize"];
-	$itemAlign      = $options["itemAlign"];
-	$itemPos        = $options["itemPos"];
-	$titleIcon      = $options["titleIcon"];
-	$titleIconSize  = $options["titleIconSize"];
-	$titleIconPos   = $options["titleIconPos"];
-	$backColor      = $options["backColor"];
-	$cardColor      = $options["cardColor"];
-	$cardMargin     = round(max(0, $options["cardMargin"]));
-	$cardRadius     = round(max(0, $options["cardRadius"]));
-	$isComplete     = $options["isComplete"];
+	$title               = $options["title"];
+	$titleColor          = $options["titleColor"];
+	$titleFontName       = $options["titleFontName"];
+	$titleFontSize       = $options["titleFontSize"];
+	$titlePosX           = $options["titlePosX"];
+	$itemColor           = $options["itemColor"];
+	$itemFontName        = $options["itemFontName"];
+	$itemFontSizeDefault = $options["itemFontSize"];
+	$itemAlignDefault    = $options["itemAlign"];
+	$itemPosDefault      = $options["itemPos"];
+	$titleIcon           = $options["titleIcon"];
+	$titleIconSize       = $options["titleIconSize"];
+	$titleIconPos        = $options["titleIconPos"];
+	$backColor           = $options["backColor"];
+	$cardColor           = $options["cardColor"];
+	$cardMargin          = round(max(0, $options["cardMargin"]));
+	$cardRadius          = round(max(0, $options["cardRadius"]));
+	$isComplete          = $options["isComplete"];
 	
 	if($isComplete){
 		$cardColor = PC_CLR_MASTERYGOT;
 	}
+	$isSmallCard = (count($items) == 1);
 	
 	$gd = CreateCard($width, $height, [ "backColor" => $backColor, "cardColor" => $cardColor, "cardMargin" => $cardMargin, "cardRadius" => $cardRadius ]);
-	
-	$isSmallCard = null;
-	if(count($items) == 1){
-		$isSmallCard = true;
-	}elseif(count($items) == 4){
-		$isSmallCard = false;
-	}
-	if($isSmallCard === null){
-		printf("%s: Bad items count %d\n", __FUNCTION__, count($items));
-		exit(1);
-	}
-	$titleHeight = $height * ($isSmallCard ? 0.3 : 0.15);
-	$itemHeightStep = $height * 0.18;
-	$firstItemHeight = ($isSmallCard ? $height * 0.7 : $titleHeight + $itemHeightStep);
+	$titleHeight = $height * ($isSmallCard ? 0.32 : 0.12);
+	$itemHeightStep = $height * 0.16;
+	$firstItemHeight = ($isSmallCard ? $height * 0.72 : $titleHeight + $itemHeightStep);
 	
 	if(!empty($title)){
 		DrawSmartText($gd, $title, [ "x" => $titlePosX * $width, "y" => $titleHeight, "colorCode" => $titleColor, "fontName" => $titleFontName, "fontSize" => $titleFontSize ]);
@@ -470,19 +477,31 @@ function CreateGenericStatCard($width, $height, array $items, array $options = [
 	
 	for($index = 0; $index < count($items); ++$index){
 		$item = $items[$index];
+		$itemPos = $itemPosDefault;
 		$itemHeight = $firstItemHeight + $index * $itemHeightStep;
+		$itemAlign = $itemAlignDefault;
+		$itemFontSize = $itemFontSizeDefault;
+		if(isset($item["overridePos"])){
+			$itemPos = $item["overridePos"];
+		}
+		if(isset($item["overrideAlign"])){
+			$itemAlign = $item["overrideAlign"];
+		}
+		if(isset($item["overrideFontSize"])){
+			$itemFontSize = $item["overrideFontSize"];
+		}
 		if(isset($item["curr"]) && isset($item["total"])){
 			$curr = $item["curr"];
 			$total = $item["total"];
 			$midTextSpacer = 0;
-			$midTextSpacer = 0.08 + $maxLen * 0.014;
-			DrawSmartText($gd, $curr,  [ "x" => $width * (0.52 - $midTextSpacer), "y" => $itemHeight, "colorCode" => $itemColor, "fontName" => $itemFontName, "fontSize" => $itemFontSize ]);
-			DrawSmartText($gd, "/",    [ "x" => $width * (0.52                 ), "y" => $itemHeight, "colorCode" => $itemColor, "fontName" => $itemFontName, "fontSize" => $itemFontSize ]);
-			DrawSmartText($gd, $total, [ "x" => $width * (0.52 + $midTextSpacer), "y" => $itemHeight, "colorCode" => $itemColor, "fontName" => $itemFontName, "fontSize" => $itemFontSize ]);
+			$midTextSpacer = ($isSmallCard ? 0.08 : 0.06) + $maxLen * 0.012;
+			DrawSmartText($gd, $curr,  [ "x" => $width * ($itemPos - $midTextSpacer), "y" => $itemHeight, "colorCode" => $itemColor, "fontName" => $itemFontName, "fontSize" => $itemFontSize ]);
+			DrawSmartText($gd, "/",    [ "x" => $width * ($itemPos                 ), "y" => $itemHeight, "colorCode" => $itemColor, "fontName" => $itemFontName, "fontSize" => $itemFontSize ]);
+			DrawSmartText($gd, $total, [ "x" => $width * ($itemPos + $midTextSpacer), "y" => $itemHeight, "colorCode" => $itemColor, "fontName" => $itemFontName, "fontSize" => $itemFontSize ]);
 			if(isset($item["showPct"]) && $item["showPct"] == true){
 				$pctString = number_format(floor(100.0 * $curr / $total + 1e-6), 0, ".", ",") . "%";
 				DrawSmartText($gd, $pctString, [
-					"x" => $width * 0.96, "y" => $itemHeight,
+					"x" => $width * ($isSmallCard ? 0.97 : 0.98), "y" => $itemHeight,
 					"colorCode" => $itemColor, "fontName" => $itemFontName, "fontSize" => $itemFontSize * 0.85,
 					"align" => "right" ]);
 			}
@@ -516,8 +535,8 @@ function CreateGenericStatCard($width, $height, array $items, array $options = [
 		if(isset($item["itemName"])){
 			$itemName = $item["itemName"];
 			DrawSmartText($gd, $itemName, [
-				"x" => $width * 0.04, "y" => $itemHeight,
-				"colorCode" => $itemColor, "fontName" => $itemFontName , "fontSize" => $itemFontSize * 0.75,
+				"x" => $width * 0.02, "y" => $itemHeight,
+				"colorCode" => $itemColor, "fontName" => $itemFontName , "fontSize" => $itemFontSize * 0.82,
 				"align" => "left" ]);
 		}
 		if(isset($item["showDeluxe"]) && $item["showDeluxe"] == true){
@@ -530,7 +549,63 @@ function CreateGenericStatCard($width, $height, array $items, array $options = [
 	
 	return $gd;
 }
-	
+
+//function CreateClustersCard($width, $height, array $items, array $options = []){
+//	$defaultOptions = [
+//		"title"         => "",
+//		"titleColor"    => PC_CLR_WHITE,
+//		"titleFontName" => PC_FONT_BOLD,
+//		"titleFontSize" => 18,
+//		"itemColor"     => PC_CLR_WHITE,
+//		"itemFontName"  => PC_FONT_BOLD,
+//		"itemFontSize"  => 22,
+//		"backColor"     => PC_CLR_TRANSPARENT,
+//		"cardColor"     => PC_CLR_MASTERYNORMAL,
+//		"cardMargin"    => 0,
+//		"cardRadius"    => 3,
+//		"isComplete"    => false,
+//	];
+//	$options = array_merge($defaultOptions, $options);
+//	$title          = $options["title"];
+//	$titleColor     = $options["titleColor"];
+//	$titleFontName  = $options["titleFontName"];
+//	$titleFontSize  = $options["titleFontSize"];
+//	$itemColor      = $options["itemColor"];
+//	$itemFontName   = $options["itemFontName"];
+//	$itemFontSize   = $options["itemFontSize"];
+//	$backColor      = $options["backColor"];
+//	$cardColor      = $options["cardColor"];
+//	$cardMargin     = round(max(0, $options["cardMargin"]));
+//	$cardRadius     = round(max(0, $options["cardRadius"]));
+//	$isComplete     = $options["isComplete"];
+//	
+//	if($isComplete){
+//		$cardColor = PC_CLR_MASTERYGOT;
+//	}
+//	
+//	$gd = CreateCard($width, $height, [ "backColor" => $backColor, "cardColor" => $cardColor, "cardMargin" => $cardMargin, "cardRadius" => $cardRadius ]);
+//	
+//	foreach($items as $index => $item){
+//		$itemName = $item["itemName"] . " Cluster";
+//		$curr = $item["curr"];
+//		$total = $item["total"];
+//		$pctString = number_format(floor(100.0 * $curr / $total + 1e-6), 0, ".", ",") . "%";
+//		
+//		$myTitleY = $height * (0.12 + $index * 0.32);
+//		$myItemY  = $height * (0.26 + $index * 0.32);
+//		
+//		DrawSmartText($gd, $itemName, [ "y" => $myTitleY, "colorCode" => $titleColor, "fontName" => $titleFontName, "fontSize" => $titleFontSize ]);
+//		
+//		static $midTextSpacer = 0.12;
+//		DrawSmartText($gd, $curr,      [ "x" => $width * (0.32 - $midTextSpacer), "y" => $myItemY, "colorCode" => $itemColor, "fontName" => $itemFontName, "fontSize" => $itemFontSize ]);
+//		DrawSmartText($gd, "/",        [ "x" => $width * (0.32                 ), "y" => $myItemY, "colorCode" => $itemColor, "fontName" => $itemFontName, "fontSize" => $itemFontSize ]);
+//		DrawSmartText($gd, $total,     [ "x" => $width * (0.32 + $midTextSpacer), "y" => $myItemY, "colorCode" => $itemColor, "fontName" => $itemFontName, "fontSize" => $itemFontSize ]);
+//		DrawSmartText($gd, $pctString, [ "x" => $width * 0.90,                   "y" => $myItemY, "colorCode" => $itemColor, "fontName" => $itemFontName,
+//			"fontSize" => $itemFontSize * 0.85, "align" => "right" ]);
+//	}
+//	return $gd;
+//}
+
 function GeneratePcHubStats($saveJson){
 	$solvedPcatSplit = SplitProfileByCategories($saveJson->hubSolvedProfile);
 	$remainPcatSplit = SplitProfileByCategories($saveJson->hubRemainingProfile);
@@ -620,12 +695,12 @@ function GeneratePcHubZone(array $options){
 	$zoneSpacer = PC_LARGE_SPACER;
 	$gd = TileImages($gdArray, [ "mode" => "horizontal", "align" => "top", "spacer" => $zoneSpacer, "margin" => 0, "cardColor" => $zoneColorCode, "cardRadius" => $zoneCornerRadius, "blend" => true, "margin" => $zoneOuterMargin ]);
 	
-	$iconZoneGd = GetIcon("zone/" . $zoneIndex, [ "alpha" => 0.9 ]);
-	static $zoneIconScale = [ 2 => 1.37, 3 => 1.3, 4 => 1.15, 5 => 1.15, 6 => 1.11 ];
-	$myScale = $zoneIconScale[$zoneIndex];
-	$myX = imagesx($gd) - $zoneOuterMargin - imagesx($gdArray[1]) / 2.0; // please never mind ok
-	$myY = imagesy($gd) + 1; // why +1 and not -1? cuz looks a lil better with these, that's why
-	OverlayImageSmart($gd, $iconZoneGd, [ "x" => $myX, "y" => $myY, "scale" => $myScale, "alignX" => "center", "alignY" => "bottom" ]);
+	//$iconZoneGd = GetIcon("zone/" . $zoneIndex, [ "alpha" => 0.9 ]);
+	//static $zoneIconScale = [ 2 => 1.37, 3 => 1.3, 4 => 1.15, 5 => 1.15, 6 => 1.11 ];
+	//$myScale = $zoneIconScale[$zoneIndex];
+	//$myX = imagesx($gd) - $zoneOuterMargin - imagesx($gdArray[1]) / 2.0; // please never mind ok
+	//$myY = imagesy($gd) + 1; // why +1 and not -1? cuz looks a lil better with these, that's why
+	//OverlayImageSmart($gd, $iconZoneGd, [ "x" => $myX, "y" => $myY, "scale" => $myScale, "alignX" => "center", "alignY" => "bottom" ]);
 	
 	return $gd;
 }
@@ -651,23 +726,27 @@ function GeneratePcHubZoneName(array $options){
 	
 	$colorCode = GetZoneColorCode($zoneIndex);
 	$zoneName = ZoneToPrettyNoColor($zoneIndex);
-	list($s1, $s2) = explode(" ", $zoneName);
 	
-	$width = 140;
+	$width = 237;
 	$height = $forcedHeight;
 	$gd = CreateCard($width, $height, [ "cardColor" => $zoneTitleColor, "cardRadius" => 16, "margin" => 0 ]);
+	
+	$iconZoneGd = GetIcon("zone/" . $zoneIndex, [ "alpha" => 0.9 ]);
+	static $zoneIconScale = [ 2 => 1.72, 3 => 1.20, 4 => 1.25, 5 => 1.20, 6 => 1.15 ];
+	$myScale = $zoneIconScale[$zoneIndex];
+	OverlayImageSmart($gd, $iconZoneGd, [ "y" => $height + 1, "scale" => $myScale, "alignX" => "center", "alignY" => "bottom" ]);
 	
 	$solvedCount = number_format($solvedCount, 0, ".", ",");
 	$totalCount  = number_format($totalCount,  0, ".", ",");
 	
-	DrawSmartText($gd, $s1,          [ "y" => $height * 0.13, "colorCode" => $colorCode, "fontName" => PC_FONT_BOLD, "fontSize" => 20 ]);
-	DrawSmartText($gd, $s2,          [ "y" => $height * 0.26, "colorCode" => $colorCode, "fontName" => PC_FONT_BOLD, "fontSize" => ($zoneIndex == 5 ? 18 : 20) ]); // WILDWOOD is bigg
+	$fontSize = 21;
+	DrawSmartText($gd, $zoneName,    [ "y" => $height * 0.13, "colorCode" => $colorCode, "fontName" => PC_FONT_BOLD, "fontSize" => $fontSize * 1.1 * ($zoneIndex == 5 ? 0.95 : 1.0) ]);
 	
-	DrawSmartText($gd, $solvedCount, [ "y" => $height * 0.44, "colorCode" => $colorCode, "fontName" => PC_FONT_BOLD, "fontSize" => 20 ]);
-	DrawSmartText($gd, "of",         [ "y" => $height * 0.55, "colorCode" => $colorCode, "fontName" => PC_FONT_BOLD, "fontSize" => 16 ]);
-	DrawSmartText($gd, $totalCount,  [ "y" => $height * 0.66, "colorCode" => $colorCode, "fontName" => PC_FONT_BOLD, "fontSize" => 20 ]);
+	DrawSmartText($gd, $solvedCount,[ "x" => $width * 0.30, "y" => $height * 0.29, "colorCode" => $colorCode, "fontName" => PC_FONT_BOLD, "fontSize" => $fontSize ]);
+	DrawSmartText($gd, "/",         [ "x" => $width * 0.50, "y" => $height * 0.29, "colorCode" => $colorCode, "fontName" => PC_FONT_BOLD, "fontSize" => $fontSize ]);
+	DrawSmartText($gd, $totalCount, [ "x" => $width * 0.70, "y" => $height * 0.29, "colorCode" => $colorCode, "fontName" => PC_FONT_BOLD, "fontSize" => $fontSize ]);
 	
-	DrawSmartText($gd, $pctString,   [ "y" => $height * 0.88, "colorCode" => $colorCode, "fontName" => PC_FONT_BOLD, "fontSize" => 26 ]);
+	DrawSmartText($gd, $pctString,  [ "y" => $height * 0.45, "colorCode" => $colorCode, "fontName" => PC_FONT_BOLD, "fontSize" => $fontSize * 1.3 ]);
 	
 	return $gd;
 }
@@ -741,7 +820,7 @@ function GeneratePcHubItem(array $options){
 	$pctString   = sprintf("%d%%", floor(($solvedCount + 1e-4) / $totalCount * 100.0));
 	$nicePtype   = PuzzlePrettyName($ptype);
 	
-	$width  = round(430 * $scale);
+	$width  = round(440 * $scale);
 	$height = round( 80 * $scale);
 	
 	$isComplete = ($remainCount == 0);
@@ -850,6 +929,86 @@ function GeneratePcHubRewardItem(array $options = []){
 	return $gd;
 }
 
+//function CreateExtraContentCard($saveJson, $width, $height, array $options = []){
+//	$defaultOptions = [
+//		"title"         => "",
+//		"titleColor"    => PC_CLR_WHITE,
+//		"titleFontName" => PC_FONT_BOLD,
+//		"titleFontSize" => 18,
+//		"itemColor"     => PC_CLR_WHITE,
+//		"itemFontName"  => PC_FONT_BOLD,
+//		"itemFontSize"  => 22,
+//		"backColor"     => PC_CLR_TRANSPARENT,
+//		"cardColor"     => PC_CLR_MASTERYNORMAL,
+//		"cardMargin"    => 0,
+//		"cardRadius"    => 3,
+//		"fakeHeight"    => $height,
+//	];
+//	$options = array_merge($defaultOptions, $options);
+//	$title          = $options["title"];
+//	$titleColor     = $options["titleColor"];
+//	$titleFontName  = $options["titleFontName"];
+//	$titleFontSize  = $options["titleFontSize"];
+//	$itemColor      = $options["itemColor"];
+//	$itemFontName   = $options["itemFontName"];
+//	$itemFontSize   = $options["itemFontSize"];
+//	$backColor      = $options["backColor"];
+//	$cardColor      = $options["cardColor"];
+//	$cardMargin     = round(max(0, $options["cardMargin"]));
+//	$cardRadius     = round(max(0, $options["cardRadius"]));
+//	$fakeHeight     = $options["fakeHeight"];
+//	
+//	$staticLostgridsCount = count(GetStaticsBySource("lostgrids"));
+//	$staticLostgridsSolvedCount = count($saveJson->lostgridsSolvedPids);
+//	$isStaticLostgridsComplete = ($staticLostgridsCount == $staticLostgridsSolvedCount);
+//	//$pctStaticLostgrids = number_format(floor(100.0 * $staticLostgridsSolvedCount / $staticLostgridsCount + 1e-6), 0, ".", ",") . "%";
+//	
+//	$clusterLostgridsCount = count(GetClusterMap()["lostgrids"]);
+//	$clusterLostgridsSolvedCount = count($saveJson->solvedClusterMap["lostgrids"]);
+//	$isClusterLostgridsComplete = ($clusterLostgridsCount == $clusterLostgridsSolvedCount);
+//	//$pctClusterLostgrids = number_format(floor(100.0 * $clusterLostgridsSolvedCount / $clusterLostgridsCount + 1e-6), 0, ".", ",") . "%";
+//	
+//	$isLostgridsComplete = ($isStaticLostgridsComplete && $isClusterLostgridsComplete);
+//	
+//	if($isLostgridsComplete){
+//		$cardColor = PC_CLR_MASTERYGOT;
+//	}
+//	
+//	$gd = CreateCard($width, $height, [ "backColor" => $backColor, "cardColor" => $cardColor, "cardMargin" => $cardMargin, "cardRadius" => $cardRadius ]);
+//	
+//	$items = [];
+//	$items[] = [
+//		"itemName" => "LostGrids Cluster",
+//		"curr" => $clusterLostgridsSolvedCount,
+//		"total" => $clusterLostgridsCount,
+//	];
+//	$items[] = [
+//		"itemName" => "LostGrids Statics",
+//		"curr" => $staticLostgridsSolvedCount,
+//		"total" => $staticLostgridsCount,
+//	];
+//	
+//	foreach($items as $index => $item){
+//		$itemName = $item["itemName"];
+//		$curr = $item["curr"];
+//		$total = $item["total"];
+//		$pctString = number_format(floor(100.0 * $curr / $total + 1e-6), 0, ".", ",") . "%";
+//		
+//		$myTitleY = $fakeHeight * (0.12 + $index * 0.32);
+//		$myItemY  = $fakeHeight * (0.26 + $index * 0.32);
+//		
+//		DrawSmartText($gd, $itemName, [ "y" => $myTitleY, "colorCode" => $titleColor, "fontName" => $titleFontName, "fontSize" => $titleFontSize ]);
+//		
+//		static $midTextSpacer = 0.12;
+//		DrawSmartText($gd, $curr,      [ "x" => $width * (0.32 - $midTextSpacer), "y" => $myItemY, "colorCode" => $itemColor, "fontName" => $itemFontName, "fontSize" => $itemFontSize ]);
+//		DrawSmartText($gd, "/",        [ "x" => $width * (0.32                 ), "y" => $myItemY, "colorCode" => $itemColor, "fontName" => $itemFontName, "fontSize" => $itemFontSize ]);
+//		DrawSmartText($gd, $total,     [ "x" => $width * (0.32 + $midTextSpacer), "y" => $myItemY, "colorCode" => $itemColor, "fontName" => $itemFontName, "fontSize" => $itemFontSize ]);
+//		DrawSmartText($gd, $pctString, [ "x" => $width * 0.90,                   "y" => $myItemY, "colorCode" => $itemColor, "fontName" => $itemFontName,
+//			"fontSize" => $itemFontSize * 0.85, "align" => "right" ]);
+//	}
+//	return $gd;
+//}
+
 function GeneratePcMasteries($saveJson, array $options = []){
 	$defaultOptions = [
 		"forcedHeight" => -1,
@@ -868,7 +1027,8 @@ function GeneratePcMasteries($saveJson, array $options = []){
 	$masteryCardMargin = 0;
 	
 	$smallSpacerCount = count($saveJson->masteryTable) + 2;
-	$largeSpacerSize = max(0, PC_LARGE_SPACER - $masterySmallSpacer * 2);
+	//$largeSpacerSize = max(0, PC_LARGE_SPACER - $masterySmallSpacer * 2);
+	$largeSpacerSize = (PC_IS_SMALL_SIDE_SPACER ? 3 : max(0, PC_LARGE_SPACER - $masterySmallSpacer * 2));
 	
 	$totalWeight = (1.0 * count($saveJson->masteryTable) + $weightMasteryTitle + $weightGenerationTs);
 	$heightPerItem = round(1.0 * ($forcedHeightTotal - $largeSpacerSize - $smallSpacerCount * $masterySmallSpacer) / $totalWeight + 1e-4);
@@ -896,14 +1056,14 @@ function GeneratePcMasteries($saveJson, array $options = []){
 	
 	// Add mastery header.
 	$gdMasteryHeader = CreateCard($forcedWidth, $masteryTitleHeight, [ "cardColor" => PC_CLR_MASTERYTITLEBACK, "cardRadius" => 3, "cardMargin" => $masteryCardMargin ]);
-	DrawSmartText($gdMasteryHeader, "Mastery", [ "colorCode" => PC_CLR_WHITE, "fontName" => PC_FONT_BOLD, "fontSize" => 18 ]);
+	DrawSmartText($gdMasteryHeader, "Masteries", [ "colorCode" => PC_CLR_WHITE, "fontName" => PC_FONT_BOLD, "fontSize" => 22 ]);
 	
 	// Add generation date.
 	$localDt = GetLocalDt();
 	$generationDate = $localDt->format("M j, Y"); // "Oct 30, 2024";
 	$generationString = "Made on " . $generationDate . " (v" .PC_IMAGE_VERSION . ")";
 	$gdGenerationTs = CreateCard($forcedWidth, $generationTsHeight, [ "cardColor" => PC_CLR_GENTIMEBACK, "cardRadius" => 3, "margin" => 0 ]);
-	DrawSmartText($gdGenerationTs, $generationString, [ "colorCode" => PC_CLR_WHITE, "fontName" => PC_FONT_BOLD, "fontSize" => 16 ]);
+	DrawSmartText($gdGenerationTs, $generationString, [ "colorCode" => PC_CLR_WHITE, "fontName" => PC_FONT_BOLD, "fontSize" => 18 ]);
 	
 	// Add a spacer in between.
 	$gdSpacer = CreateBlankImage($forcedWidth, $largeSpacerSize);
@@ -940,7 +1100,7 @@ function GeneratePcMasteryItem(array $options = []){
 	$cardMargin    = $options["cardMargin"];
 	
 	$isMaxLevel = ($level >= 99);
-	$width  = round(480 * $scale);
+	$width  = round(540 * $scale);
 	$height = $forcedHeight;
 	
 	static $masteryColorMap = [
@@ -972,9 +1132,9 @@ function GeneratePcMasteryItem(array $options = []){
 	$iconSize = 50;
 	OverlayImageSmart($gd, $iconGd, [ "x" => $width * 0.10, "size" => $iconSize ]);
 	
-	DrawSmartText($gd, $level,    [ "x" => $width * 0.27, "colorCode" => $colorCode, "fontName" => PC_FONT_BOLD, "fontSize" => $fontSize ]);
-	DrawSmartText($gd, $xpString, [ "x" => $width * 0.73, "colorCode" => $colorCode, "fontName" => PC_FONT_BOLD, "fontSize" => $fontSize * 0.65, "align" => "right" ]);
-	DrawSmartText($gd, $pctString,[ "x" => $width * 0.97, "colorCode" => $colorCode, "fontName" => PC_FONT_BOLD, "fontSize" => $fontSize * 0.75, "align" => "right" ]);
+	DrawSmartText($gd, $level,    [ "x" => $width * 0.25, "colorCode" => $colorCode, "fontName" => PC_FONT_BOLD, "fontSize" => $fontSize ]);
+	DrawSmartText($gd, $xpString, [ "x" => $width * 0.72, "colorCode" => $colorCode, "fontName" => PC_FONT_BOLD, "fontSize" => $fontSize * 0.75, "align" => "right" ]);
+	DrawSmartText($gd, $pctString,[ "x" => $width * 0.97, "colorCode" => $colorCode, "fontName" => PC_FONT_BOLD, "fontSize" => $fontSize * 0.85, "align" => "right" ]);
 	
 	return $gd;
 }

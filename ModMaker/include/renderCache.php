@@ -54,11 +54,12 @@ function ClearCache(){
 	}
 }
 
-function UpdateCache(string $key, array $pids){
+function UpdateCache(string $key, array $pids, array $extraNumbers = []){
 	
 	$pids = array_values($pids);
 	sort($pids);
-	$value = sha1(implode($pids));
+	$data = array_merge($pids, $extraNumbers);
+	$value = sha1(implode($data));
 	
 	//printf("Requested update for key |%s|, %d pids, hash %s\n", $key, count($pids), $value);
 	
@@ -69,6 +70,7 @@ function UpdateCache(string $key, array $pids){
 		$cache[$key] = $value;
 		WriteCache($cache);
 	}
+	//printf("Cache for key |%s| updated: %d\n", $key, $isModified);
 	return $isModified;
 }
 

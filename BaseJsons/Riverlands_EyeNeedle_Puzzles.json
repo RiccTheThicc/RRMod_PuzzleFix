@@ -12241,7 +12241,6 @@
 		{ "$type":"UAssetAPI.PropertyTypes.Objects.StrPropertyData, UAssetAPI", "Name":"QuestDifficulty", "Value":"****." },
 		{ "$type":"UAssetAPI.PropertyTypes.Objects.StrPropertyData, UAssetAPI", "Name":"BonusDifficulty", "Value":"*****" },
 		{ "$type":"UAssetAPI.PropertyTypes.Objects.IntPropertyData, UAssetAPI", "Name":"XPReward", "Value":500 },
-		{ "$type":"UAssetAPI.PropertyTypes.Objects.IntPropertyData, UAssetAPI", "Name":"BlueOrbReward", "Value":1 },
 		{ "$type":"UAssetAPI.PropertyTypes.Objects.IntPropertyData, UAssetAPI", "Name":"GoldReward", "Value":250 },
 		{
 			"$type": "UAssetAPI.PropertyTypes.Objects.ArrayPropertyData, UAssetAPI",

@@ -36,4 +36,13 @@ if(!is_file($inputPath)){
 }
 
 $json = LoadDecodedUasset($inputPath);
-SaveCompressedDecodedUasset($inputPath, $json);
+SaveCompressedDecodedUasset($inputPath, $json, [
+	"skipArrayIndices" => true,
+	"bakeAutoObjectNames" => false,
+	"addObjectNamesToNameMap" => false,
+	"buildDefaultIndices" => false,
+	"simplifyImports" => false,
+]);
+
+// Uncomment to prepare the json for manual editing (breaks uassetgui compatibility).
+//SaveCompressedDecodedUasset($inputPath, $json, [ "skipArrayIndices" => true, "bakeAutoObjectNames" => true, "addObjectNamesToNameMap" => true, "buildDefaultIndices" => true ]);

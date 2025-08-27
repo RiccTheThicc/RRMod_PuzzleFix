@@ -6,10 +6,13 @@ include_once("include\\lookup.php");
 
 function GetClusterNameMap(){
 	static $clusterNameMap = [
-		"HardCOWYC" => "Lucent1",
-		"Lobby"     => "Lucent4",
-		"Cong"      => "Cong.",
-		"myopia"    => "Myopia",
+		"HardCOWYC"        => "Lucent",
+		"Lobby"            => "Lucent",
+		"Cong"             => "Cong.",
+		"myopia"           => "Myopia",
+		"lostgridsLogic"   => "LostGrids",
+		"lostgridsPattern" => "LostGrids",
+		"lostgridsMusic"   => "LostGrids",
 	];
 	return $clusterNameMap;
 }

@@ -7707,7 +7707,7 @@
 		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"PuzzleBounds", "Value":762 },
 		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"Box", "Value":175 },
 		{ "$type":"UAssetAPI.PropertyTypes.Objects.EnumPropertyData, UAssetAPI", "EnumType":"EDungeonType", "InnerType":null, "Name":"Type", "Value":"EDungeonType::SideQuest" },
-		{ "$type":"UAssetAPI.PropertyTypes.Objects.IntPropertyData, UAssetAPI", "Name":"DisplayOrder", "Value":6 },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.IntPropertyData, UAssetAPI", "Name":"DisplayOrder", "Value":7 },
 		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"Root", "Value":919 },
 		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"Billboard", "Value":123 },
 		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"ResetButton", "Value":1276 },
@@ -8063,6 +8063,7 @@
 		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"PuzzleBounds", "Value":767 },
 		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"Box", "Value":180 },
 		{ "$type":"UAssetAPI.PropertyTypes.Objects.EnumPropertyData, UAssetAPI", "EnumType":"EDungeonType", "InnerType":null, "Name":"Type", "Value":"EDungeonType::SideQuest" },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.IntPropertyData, UAssetAPI", "Name":"DisplayOrder", "Value":6 },
 		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"Root", "Value":924 },
 		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"Billboard", "Value":128 },
 		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"ResetButton", "Value":1281 },
@@ -16084,6 +16085,7 @@
 	"SuperIndex": 0,
 	"TemplateIndex": -82,
 	"Data": [
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.EnumPropertyData, UAssetAPI", "EnumType":"EMainMapZoneName", "InnerType":null, "Name":"ZoneName", "Value":"EMainMapZoneName::Geyser" },
 		{
 			"$type": "UAssetAPI.PropertyTypes.Objects.TextPropertyData, UAssetAPI",
 			"Flags": 0,

@@ -239,15 +239,17 @@ function DrawSmartText($gd, string $text = "sample", array $options = []){
 	return $gd;
 }
 
-function DrawTextFast($gd, $text, $x, $y, $colorCode, $fontSize, $fontName, int $align = 0, bool $useStroke = true){
+function DrawTextFast($gd, $text, $x, $y, $colorCode, $fontSize, $fontName, int $alignX = 0, int $alignY = 0, bool $useStroke = true){
 	// Simplified, optimized way to draw centered text at x,y coordinates.
 	// Used mostly by the map rendering since this is being called thousands of times.
 	// Warning: useStroke can double the runtime but produces far better results.
 	$myColorIndex = ColorCodeToIndexFullAlpha($gd, $colorCode);
 	static $strokeColorIndex = 0;
 	$dimensions = GetTextDimensions($text, $fontSize, $fontName);
-	$tpx = ($align == 0 ? ceil($x - $dimensions->width  / 2.0 - 1e-4) : ($align == -1 ? round($x) : round($x - $dimensions->width)));
-	$tpy = ceil($y - $dimensions->height / 2.0 + $fontSize - 1e-4);
+	$tpx = ($alignX == 0 ? ceil($x - $dimensions->width  / 2.0 - 1e-4) : ($alignX == -1 ? round($x) : round($x - $dimensions->width)));
+	$tpy = ($alignY == 0 ? ceil($y - $dimensions->height / 2.0 - 1e-4) : ($alignY == -1 ? round($y) : round($y - $dimensions->height)));
+	//$tpy = ceil($y - $dimensions->height / 2.0 + $fontSize - 1e-4);
+	$tpy += intval(round($fontSize));
 	if($useStroke){
 		imagefttext($gd, $fontSize, 0, $tpx + $dimensions->offsetX - 1, $tpy + $dimensions->offsetY    , $strokeColorIndex, $fontName, $text);
 		imagefttext($gd, $fontSize, 0, $tpx + $dimensions->offsetX    , $tpy + $dimensions->offsetY - 1, $strokeColorIndex, $fontName, $text);

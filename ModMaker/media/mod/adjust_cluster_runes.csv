@@ -1,32 +1,32 @@
-localID,pid,fields,dx,dy,dz,dpitch,dyaw,droll,comment
-logicGrid--jbard--CRHJXUWHBQEDLUXZFERBYSXFEFRR--1711508299--BP_RuneAnimated_C /Game/ASophia/Maps/TestingSubmaps/Riverlands_Placement.Riverlands_Placement:PersistentLevel.BP_RuneAnimated1021,-1,ActorTransform,0,20,-20,0,0,0,cluster rune slightly adjusted
-logicGrid--jbard--SQQCJAGLGUSITMEZLTVGOYTFGGSP--1711514617--BP_RuneAnimated_C /Game/ASophia/Maps/MainMapSubmaps/Mountain/MountainZone/Mountain_CampaignObjects.Mountain_CampaignObjects:PersistentLevel.BP_RuneAnimated475,-1,ActorTransform,0,40,0,0,0,0,cluster rune slightly adjusted
-logicGrid--jbard--XFWTUGRRGBPKAQPROMSZZEZZGWCC--1702946912--BP_RuneAnimated_C /Game/ASophia/Maps/MainMapSubmaps/Central/CentralZone/Central_CampaignObjects.Central_CampaignObjects:PersistentLevel.BP_RuneAnimated459,-1,ActorTransform,0,280,20,0,0,0,cluster rune slightly adjusted
-logicGrid--jbard--BEPHHRKBDLUBJEBPTVYUPECCSREK--1702946884--BP_RuneAnimated_C /Game/ASophia/Maps/MainMapSubmaps/Central/CentralZone/Central_CampaignObjects.Central_CampaignObjects:PersistentLevel.BP_RuneAnimated_C_1,-1,ActorTransform,15,-280,20,0,0,0,cluster rune slightly adjusted
-logicGrid--jbard--MJZGEBDEIATTHNDHOZHKCQQUQQLZ--1711502375--BP_RuneAnimated_C /Game/ASophia/Maps/TestingSubmaps/Central_Placement.Central_Placement:PersistentLevel.BP_RuneAnimated462,-1,ActorTransform,140,160,-40,0,0,0,cluster rune slightly adjusted
-Cong1,-1,ActorTransform,-276,-1313,194,0,0,0,new cluster rune
-Cong2,-1,ActorTransform,-74,-1228,202,0,0,0,new cluster rune
-Cong3,-1,ActorTransform,154,-1086,222,0,0,0,new cluster rune
-Cong4,-1,ActorTransform,-97,-925,6,0,0,0,new cluster rune
-Cong5,-1,ActorTransform,-276,-801,-43,0,0,0,new cluster rune
-Cong6,-1,ActorTransform,11,-548,10,0,0,0,new cluster rune
-Cong7,-1,ActorTransform,-38,-254,-6,0,0,0,new cluster rune
-myopia1,-1,ActorTransform,851,-990,-49,0,0,0,new cluster rune
-myopia2,-1,ActorTransform,368,-1408,-13,0,0,0,new cluster rune
-myopia3,-1,ActorTransform,-31,-1431,5,0,0,0,new cluster rune
-myopia4,-1,ActorTransform,-7,-1115,-1,0,0,0,new cluster rune
-myopia5,-1,ActorTransform,846,-443,-50,0,0,0,new cluster rune
-Lobby1,-1,ActorTransform,-251,-60,-1,0,0,0,new cluster rune
-Lobby2,-1,ActorTransform,259,-15,-1,0,0,0,new cluster rune
-Lobby3,-1,ActorTransform,936,-298,-238,0,0,0,new cluster rune
-Lobby4,-1,ActorTransform,1383,213,-246,0,0,0,new cluster rune
-Lobby5,-1,ActorTransform,746,2287,-78,0,0,0,new cluster rune
-Lobby6,-1,ActorTransform,-173,2752,91,0,0,0,new cluster rune
-Lobby7,-1,ActorTransform,-693,2802,91,0,0,0,new cluster rune
-Lobby8,-1,ActorTransform,2977,3151,-100,0,0,0,new cluster rune
-Lobby9,-1,ActorTransform,3496,2967,-108,0,0,0,new cluster rune
-Lobby10,-1,ActorTransform,3705,2404,-111,0,0,0,new cluster rune
-HardCOWYC1,-1,ActorTransform,-200,21,-64,0,0,0,new cluster rune
-HardCOWYC2,-1,ActorTransform,110,-175,-65,0,0,0,new cluster rune
-HardCOWYC3,-1,ActorTransform,78,-1250,-91,0,0,0,new cluster rune
-HardCOWYC4,-1,ActorTransform,-530,-1236,-108,0,0,0,new cluster rune
+localID,pid,fields,dx,dy,dz,dpitch,dyaw,droll,msx,msy,msz,datetime,comment
+Cong1,-1,ActorTransform,-276,-1313,194,0,0,0,1,1,1,,new cluster rune
+Cong2,-1,ActorTransform,-74,-1228,202,0,0,0,1,1,1,,new cluster rune
+Cong3,-1,ActorTransform,154,-1086,222,0,0,0,1,1,1,,new cluster rune
+Cong4,-1,ActorTransform,-97,-925,6,0,0,0,1,1,1,,new cluster rune
+Cong5,-1,ActorTransform,-276,-801,-43,0,0,0,1,1,1,,new cluster rune
+Cong6,-1,ActorTransform,11,-548,10,0,0,0,1,1,1,,new cluster rune
+Cong7,-1,ActorTransform,-38,-254,-6,0,0,0,1,1,1,,new cluster rune
+HardCOWYC1,-1,ActorTransform,-200,21,-64,0,0,0,1,1,1,,new cluster rune
+HardCOWYC2,-1,ActorTransform,110,-175,-65,0,0,0,1,1,1,,new cluster rune
+HardCOWYC3,-1,ActorTransform,78,-1250,-91,0,0,0,1,1,1,,new cluster rune
+HardCOWYC4,-1,ActorTransform,-530,-1236,-108,0,0,0,1,1,1,,new cluster rune
+Lobby1,-1,ActorTransform,-251,-60,-1,0,0,0,1,1,1,,new cluster rune
+Lobby2,-1,ActorTransform,259,-15,-1,0,0,0,1,1,1,,new cluster rune
+Lobby3,-1,ActorTransform,936,-298,-238,0,0,0,1,1,1,,new cluster rune
+Lobby4,-1,ActorTransform,1383,213,-246,0,0,0,1,1,1,,new cluster rune
+Lobby5,-1,ActorTransform,746,2287,-78,0,0,0,1,1,1,,new cluster rune
+Lobby6,-1,ActorTransform,-173,2752,91,0,0,0,1,1,1,,new cluster rune
+Lobby7,-1,ActorTransform,-693,2802,91,0,0,0,1,1,1,,new cluster rune
+Lobby8,-1,ActorTransform,2977,3151,-100,0,0,0,1,1,1,,new cluster rune
+Lobby9,-1,ActorTransform,3496,2967,-108,0,0,0,1,1,1,,new cluster rune
+Lobby10,-1,ActorTransform,3705,2404,-111,0,0,0,1,1,1,,new cluster rune
+logicGrid--jbard--BEPHHRKBDLUBJEBPTVYUPECCSREK--1702946884--BP_RuneAnimated_C /Game/ASophia/Maps/MainMapSubmaps/Central/CentralZone/Central_CampaignObjects.Central_CampaignObjects:PersistentLevel.BP_RuneAnimated_C_1,-1,ActorTransform,15,-280,20,0,0,0,1,1,1,,cluster rune slightly adjusted
+logicGrid--jbard--CRHJXUWHBQEDLUXZFERBYSXFEFRR--1711508299--BP_RuneAnimated_C /Game/ASophia/Maps/TestingSubmaps/Riverlands_Placement.Riverlands_Placement:PersistentLevel.BP_RuneAnimated1021,-1,ActorTransform,0,20,-20,0,0,0,1,1,1,,cluster rune slightly adjusted
+logicGrid--jbard--MJZGEBDEIATTHNDHOZHKCQQUQQLZ--1711502375--BP_RuneAnimated_C /Game/ASophia/Maps/TestingSubmaps/Central_Placement.Central_Placement:PersistentLevel.BP_RuneAnimated462,-1,ActorTransform,140,160,-40,0,0,0,1,1,1,,cluster rune slightly adjusted
+logicGrid--jbard--SQQCJAGLGUSITMEZLTVGOYTFGGSP--1711514617--BP_RuneAnimated_C /Game/ASophia/Maps/MainMapSubmaps/Mountain/MountainZone/Mountain_CampaignObjects.Mountain_CampaignObjects:PersistentLevel.BP_RuneAnimated475,-1,ActorTransform,0,40,0,0,0,0,1,1,1,,cluster rune slightly adjusted
+logicGrid--jbard--XFWTUGRRGBPKAQPROMSZZEZZGWCC--1702946912--BP_RuneAnimated_C /Game/ASophia/Maps/MainMapSubmaps/Central/CentralZone/Central_CampaignObjects.Central_CampaignObjects:PersistentLevel.BP_RuneAnimated459,-1,ActorTransform,0,280,20,0,0,0,1,1,1,,cluster rune slightly adjusted
+myopia1,-1,ActorTransform,851,-990,-49,0,0,0,1,1,1,,new cluster rune
+myopia2,-1,ActorTransform,368,-1408,-13,0,0,0,1,1,1,,new cluster rune
+myopia3,-1,ActorTransform,-31,-1431,5,0,0,0,1,1,1,,new cluster rune
+myopia4,-1,ActorTransform,-7,-1115,-1,0,0,0,1,1,1,,new cluster rune
+myopia5,-1,ActorTransform,846,-443,-50,0,0,0,1,1,1,,new cluster rune

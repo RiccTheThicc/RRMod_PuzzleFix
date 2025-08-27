@@ -40,9 +40,9 @@ function GetMegaTable(){
 			exit(1);
 		}
 		foreach($csv as $entry){
-			$pid = (int)$entry["pid"];
+			$pid = intval($entry["pid"]);
 			if($pid <= 0){
-				//continue;
+				continue;
 			}
 			$megaTable[$pid] = $entry;
 		}
@@ -50,6 +50,24 @@ function GetMegaTable(){
 		//printf("Loaded file %s\n", $megaTablePath);
 	}
 	return $megaTable;
+}
+
+function GetAllKnownPids(){
+	static $allKnownPids = null;
+	if($allKnownPids === null){
+		$megaTable = GetMegaTable();
+		$allKnownPids = array_unique(array_filter(array_column($megaTable, "pid"), function($pid) { return ($pid > 0 && $pid < 26000); }));
+		sort($allKnownPids);
+	}
+	return $allKnownPids;
+}
+
+function IsKnownPid($pid){
+	return (in_array($pid, GetAllKnownPids()));
+}
+
+function IsDeprecated($pid){
+	return !IsKnownPid($pid);
 }
 
 $g_unlockTitleToPid = [];
@@ -62,6 +80,33 @@ function UnlockTitleToPid(string $title){
 	}
 	return $g_unlockTitleToPid[$title];
 }
+
+function LoadMegaTableNew(string $path){
+	static $megaTable = null;
+	if($megaTable === null){
+		printf("%s\n", ColorStr("Loading " . $path, 160, 160, 160));
+		$megaTable = LoadCsvMap($path, "pid");
+		foreach($megaTable as &$entry){
+			$entry = (object)$entry;
+			$entry->coords    = json_decode(str_replace(";", ",", $entry->coords));
+			$entry->extraData = json_decode(str_replace(";", ",", $entry->extraData));
+		}unset($entry);
+	}
+	return $megaTable;
+};
+
+function SaveMegaTableNew(array $megaTable, string $path){
+	$clone = unserialize(serialize($megaTable));
+	foreach($clone as &$entry){
+		foreach($entry as $key => &$value){
+			if(is_array($value) || is_object($value)){
+				$value = str_replace(",", ";", json_encode($value, JSON_UNESCAPED_SLASHES));
+			}
+		}unset($value);
+		$entry = (array)$entry;
+	}
+	WriteFileSafe($path, FormCsv($clone), true);
+};
 
 function GetPuzzleMap(bool $includeDungeons = false){
 	global $config;
@@ -255,23 +300,22 @@ function GetPuzzleMap(bool $includeDungeons = false){
 					unset($data->BinaryData);
 				}
 
+				$data->actualPtype = "logicGrid";
 				$pdataEncoded = $data->pdata;
 				$pdataRaw = base64_decode($pdataEncoded);
-				$thirdByte = $pdataRaw[2];
-				$thirdHex = bin2hex($thirdByte);
-				if($thirdHex == "02"){
-					$data->actualPtype = "completeThePattern";
-				}elseif($thirdHex == "0c"){
-					$data->actualPtype = "memoryGrid";
-				}elseif($thirdHex == "00"){
-					$data->actualPtype = "logicGrid";
-				}elseif($thirdHex == "04"){
-					$data->actualPtype = "musicGrid";
-				}else{
-					//$data->actualPtype = "UNKNOWN_" . $thirdHex;
-					// Default to logicGrid... thirdHex for some lucent rotating cluster is 0x08.
-					$data->actualPtype = "logicGrid";
-					//printf("Third byte of %5d is %s, defaulting to logicGrid\n", $pid, $thirdHex);
+				$modifierCount = ord($pdataRaw[1]);
+				for($ptr = 2; $ptr < 2 + $modifierCount; ++$ptr){
+					$modifier = ord($pdataRaw[$ptr]);
+					static $gridModifierIntentifiers = [
+						2 => "completeThePattern",
+						4 => "musicGrid",
+						12 => "memoryGrid",
+						11 => "logicGrid", // npl compatibility override
+					];
+					if(isset($gridModifierIntentifiers[$modifier])){
+						$data->actualPtype = $gridModifierIntentifiers[$modifier];
+						break;
+					}
 				}
 			}
 			if(isset($pidToZoneIndex[$pid]) && ($data->actualZoneIndex < 2 || $data->actualZoneIndex > 6)){

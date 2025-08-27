@@ -1,0 +1,43 @@
+pid	difficulty	solvePath	pdata	status	zone
+					
+					
+1619	2	2:3, 2:4, 2:0, 2:1, 3:2, 4:2, 5:2, 0:2, 1:2, 1:3, 3:4, 4:3, 3:1, 1:4, 5:3, 4:1, 4:0, 5:0, 0:1, 1:0, 0:4, 5:1, 1:1, 5:4		tutorialB	
+772	2	0:0, 6:0, 6:6, 0:6, 0:1, 1:0, 5:0, 6:1, 6:5, 5:6, 1:6, 0:5, 0:2, 2:0, 4:0, 6:2, 6:4, 4:6, 2:6, 0:4, 0:3, 3:0, 6:3, 3:6, 3:5, 1:3, 3:1, 5:3, 3:3, 2:4, 4:2, 3:2, 3:4	AAADBwcBAQwICQsMDxMdISQlJygEAAIXGQECECACCCoEAAQGBDAELQIVAgMCGwJHAgGqIsqpoiqA	tutorialB	
+762	2	0:1, 1:0, 3:3, 4:2, 4:1, 2:3, 1:3, 1:2, 2:1, 2:0, 3:1, 2:2, 3:2, 3:0, 0:2	AAADBAUABQADBA8TAQIABgcBEw8CAQYCQAECAgABk2TA	tutorialB	
+810	3	1:2, 3:0, 5:2, 3:4, 0:3, 2:1, 4:3, 2:5, 0:2, 5:3, 2:0, 3:5, 0:0, 2:2, 4:0, 0:4, 1:5, 3:3, 5:5, 5:1, 1:3, 4:2, 2:4, 3:1, 1:1, 4:1, 1:4, 4:4, 5:0, 0:5, 0:1, 1:0, 4:5, 5:4	AAADBgYAAgECDxRAAgEDAAEDZAElKQlKQA==	tutorialB	
+					
+					
+873	4	1:1, 0:1, 1:0, 1:3, 3:1, 2:2, 3:2, 2:3, 0:0, 2:0, 3:0, 0:2, 0:3	AAADBAQABgABDwECBgkFAR4CAQ8JBgIwAiAAQgFPRA==	dungeon	
+269	4	4:0, 1:5, 0:0, 1:1, 5:1, 4:1, 3:1, 4:2, 3:2, 2:1, 2:2, 1:2, 1:4, 2:3, 3:3, 4:3, 5:3, 4:4, 0:4, 0:2, 5:5, 3:4, 2:4, 1:3		dungeon	
+879	4	4:2, 5:1, 6:2, 5:3, 6:0, 0:1, 4:1, 5:0, 6:6, 0:0, 1:1, 0:2, 6:3, 2:1, 0:6, 1:0, 1:2, 2:2, 2:0, 2:3, 3:2, 3:0, 0:3, 0:4, 2:5, 3:6, 4:6, 6:5, 1:5, 1:6, 1:4, 1:3, 4:0, 5:6, 5:5, 3:3, 3:4, 3:5, 6:4, 4:5, 5:4, 3:1, 4:4, 4:3, 2:4	AAADBwcABQADEyMsAQENBQI6MAIFEwEHBSMCKAkYBEMBE0xrLKZyAA==	dungeon	
+941	5	0:1, 1:0, 3:0, 4:0, 3:1, 4:1, 2:0, 2:1, 0:4, 2:4, 2:3, 3:4, 4:2, 0:2, 0:3, 4:4, 3:2, 2:2, 3:3, 4:3, 1:4, 1:2, 1:3, 1:1	AAEAAwUFAQAEEx0fKQYBAQAEAwYDAwwDARYAAwMDEgEVAxAFBQEeBgFOAAcBAAUB5RC0AAA=	dungeon	
+943	5	1:2, 2:3, 3:2, 2:1, 1:3, 3:3, 3:1, 4:2, 4:1, 5:2, 4:3, 4:0, 0:2, 2:4, 5:3, 0:1, 1:0, 2:0, 5:1, 0:0, 5:0, 0:5, 5:4, 1:5, 5:5, 3:0, 3:5, 2:5, 3:4, 4:5, 4:4, 1:4, 0:4	AAADBgYAAgADBw4SAggOARUDDwINBAkHFAYTCAQFAaqNiTSwAA==	dungeon	
+1180	4	0:2, 2:2, 4:2, 2:1, 4:1, 1:1, 5:1, 3:4, 5:4, 4:3, 0:3, 1:0, 3:0, 5:0, 2:4, 4:4, 0:4, 2:0, 4:0, 0:0, 1:3, 3:3, 5:3	AAADBQYABQAFBg0PERkBAgkUBgNIAkwCRAJBQgH9UCqoAA==	dungeon	
+					
+					
+942	7	4:0, 3:0, 2:0, 1:0, 0:0, 0:4, 3:1, 4:4, 3:4, 2:4, 1:4, 0:1, 4:1, 4:3, 4:2, 3:2, 2:3, 1:3, 0:3, 0:2, 1:2, 2:1	AAADBQUABQACBhIBAQwIAgYAEgACAQwSBAYUAQMYAQAEBAIAAQEQAgMIAwIB8b/PAA==	dungeon	
+1135	6	2:5, 3:4, 2:6, 1:6, 4:4, 2:7, 3:6, 0:7, 7:6, 0:5, 0:4, 4:5, 4:6, 2:2, 1:2, 2:1, 1:0, 3:0, 4:0, 7:0, 0:1, 0:3, 7:2, 7:4, 5:6, 6:6, 4:7, 6:5, 6:3, 6:2, 6:7, 5:2, 6:1, 4:2, 4:1, 5:0	AAADCAgBARAJCw0PGRsdHykrLS85Oz0/BQAFExocISUBBwACBhAiJjAFAYFAQkACAgNWYAIDEiABu6juAruo7gI=	dungeon	
+1164	6	6:2, 5:2, 7:2, 8:2, 9:2, 5:5, 5:4, 6:7, 7:7, 8:7, 7:10, 7:9, 8:10, 8:11, 8:12, 8:9, 4:9, 4:8, 6:8, 4:7, 8:8, 4:6, 4:5, 6:5, 6:4, 4:4, 9:6, 9:4, 8:4, 10:4, 9:7, 10:7, 11:6, 11:4, 11:3, 11:7, 12:7, 0:6, 0:7, 2:7, 2:6, 2:5, 2:8, 2:9, 7:5, 7:4, 8:0, 9:0, 9:10, 10:8, 9:12, 10:11, 11:12, 10:0, 10:10, 9:9, 9:8, 10:9, 11:8, 12:9, 11:11, 11:9, 12:8, 0:9, 0:12, 1:12, 0:8, 12:11, 12:12, 12:0, 11:0, 12:1, 11:1, 0:2, 2:1, 11:2, 1:3, 0:3, 12:2, 12:3, 0:4, 2:0, 3:1, 3:0, 4:0	AAADDQ0BATEFBgcREhMUFRYXHB0eJCkqKywtLi8wMTU2N0BBQkRNT1FcXmlrdniBA4EEgQWBEYESgROBHoEfgSCBIQUAEA5KS1NUWG16e4ENgRWBFoEYgSKBI4EmARMAAQ0bSUxVVlpgb4ECgQaBB4EIgQ6BD4EQgRQECkMEA1AFA10EA3cEA2oFAx8FASADASEEASIGASMDAUgFRwUB4DQAUAGAGNsGSCZgzAM8SiOziWAJAA==	dungeon	
+1255	8	0:0, 1:0, 0:5, 5:0, 0:1, 5:5, 0:2, 2:0, 0:4, 4:0, 0:3, 3:0, 4:5, 5:4, 3:5, 5:3, 4:4, 3:4, 4:3, 2:4, 3:3, 4:2, 5:2, 2:5, 1:5, 5:1, 1:1, 1:2, 2:1, 1:3, 3:1, 4:1, 3:2, 2:2, 2:3, 1:4	AAADBgYABAcCAA8jBQMDFQMHBRwDQAICA4gAAgOIQEEB7jvM57A=	dungeon	
+1302	9	0:0, 2:2, 4:4, 6:6, 1:1, 3:3, 5:5, 3:0, 3:2, 6:2, 0:2, 6:0, 1:2, 5:2, 4:2, 3:1, 4:1, 4:3, 5:3, 2:1, 1:0, 2:0, 4:6, 5:6, 0:4, 1:4, 2:4, 6:4, 4:5, 6:5, 5:4, 0:5, 0:6, 3:4, 2:3, 2:5, 3:5, 6:3, 0:3, 1:3, 1:5, 1:6, 2:6, 3:6, 4:0, 5:0, 6:1, 0:1	AAADBwcAAwEBDAQHAAEDCAIDEAEDGAIDIAEDKAIDMAEDQAIBAgACAoIB+r/d7ve7gA==	dungeon	
+					
+					
+					
+1192	4	2:1, 0:1, 1:2, 1:0, 5:2, 4:2, 4:1, 3:3, 5:0, 0:3, 4:4, 3:4, 2:3, 2:0, 3:0, 0:4	AAADBQYABQAHAAcLDBMXGgEHBAkODxYZHUFCQAICAgACAlUBXEfKxA==	dungeon	
+					
+					
+					
+	8	3:2, 0:2, 1:2, 2:2, 4:2, 5:2, 3:1, 4:1, 5:1, 1:1, 0:1, 3:0, 1:3, 4:0, 2:0, 3:3, 2:3, 1:0, 4:3, 0:0, 5:0, 0:3	AAADBAYABAACCBcCAhcEAwYEAhMEAwwBAwUBOgFLftI=		
+	3	3:4, 4:4, 0:4, 3:3, 4:3, 0:3, 3:0, 4:0	AAADBQUBAQ0AAQIFBgcKCwwNDhEWAwAECAkQFQQEEAIDFQEDCAIBCQIBBQFgARgAOAA=		
+					
+					
+1049	2				
+			AAADBwcBAQ0DChEVFhcYGRobHyYtBQADHCApAQUFCB4iIwIFIgQeBAUECAQjBERGAaybCAJ1qIA=		
+			AAAABgYABQADAAMIAQUCBQkTHAIFAgQJBAUEEwQcBERGASRAEAgA		
+	1	2:1, 1:2, 2:3, 3:3, 4:2, 4:3, 3:4, 2:4, 1:4, 0:3, 0:2, 0:1, 1:0, 2:0, 3:0, 4:0	AAADBQUAAwAIAAYIDA0QFBgBAQlAAQICAQF0YxcAAAA=		
+773	2	1:0, 3:2, 5:0, 3:5, 2:2, 4:4, 6:2, 4:0, 0:4, 2:6, 1:6, 3:1, 5:6, 3:4, 3:3, 1:3, 5:3, 1:2, 1:4, 5:4, 5:2, 6:0, 6:5, 0:6, 0:1, 1:5, 5:1, 5:5, 0:5, 0:3, 2:3, 2:1, 4:1, 4:6, 6:6, 6:4, 1:1, 6:1, 6:3, 4:3, 4:5, 2:5, 2:0, 0:0, 0:2	AAADBwcAAgEEAxIeLUACAQMAAQNkATLLJJJppgA=		
+839	2	1:0, 3:0, 0:1, 0:3, 1:1, 2:0, 3:1, 0:2, 1:3, 4:1, 4:3, 1:4, 3:4, 1:2, 2:1, 2:2, 2:4, 4:2, 2:3, 3:2, 3:3, 4:4	AAADBQUAAgEDAAQUQAIBAgABA1QBquzdAA==		
+	3	4:0, 2:0, 3:2, 3:3, 4:2, 2:1, 1:3, 1:2, 2:3, 0:0, 4:4, 2:4, 0:2, 3:1, 1:0, 4:3, 0:1, 3:4, 3:0, 4:1, 2:2, 0:3, 1:4	AAADBQUAAgACBhRAAgMDioKAAwOapkABPPPHAA==		
+1181	7	2:3, 4:2, 3:3, 4:3, 0:2, 0:1, 1:1, 1:0, 2:0, 3:0, 1:4, 0:4, 0:3, 4:4, 2:4, 3:4, 4:0	AAADBQUABQAFAAgLDBABAwcJDUFCQAICAgACAlUBaWdiAAA=		
+	5	0:0, 1:0, 2:0, 1:1, 2:1, 3:1, 2:2, 3:2, 4:2, 3:3, 4:3, 5:3, 4:4, 5:4, 6:4, 5:5, 6:5, 7:5, 6:0, 7:0, 8:0, 7:1, 8:1, 0:5, 1:5, 0:1, 0:2, 0:3, 1:2, 1:3, 1:4, 2:3, 2:4, 2:5, 3:4, 3:5, 8:3, 8:4, 8:5, 7:2, 7:3, 7:4, 6:1, 6:2, 6:3, 5:0, 5:1, 5:2, 4:0, 4:1, 3:0, 0:4, 8:2, 4:5	AAADBgkBACAVFyEjLzE9P0lNV1llZ3N1f4EBgQ2BD4EbgR2BJ4EpgTWBN4FDgUWBT4FTgV2BXwJAAgIDAiACAlVBAQh94JfSD3wAAA==		
+	2	2:2, 1:1, 0:1, 2:1, 1:0, 1:3, 2:3, 0:3, 0:0, 2:0, 3:0, 3:1, 3:2, 3:3	AAADBAQAAwECCAkFCAw0QBwwRCAQBwEFDgG66g==		

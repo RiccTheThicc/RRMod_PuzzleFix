@@ -1,0 +1,1478 @@
+{
+"$type": "UAssetAPI.UAsset, UAssetAPI",
+"Info": "Serialized with UAssetAPI 1.0.2.0 (46c4fbf)",
+"NameMap": ["/Game/AncientTreasures/Meshes/SM_Chest_02a","/Game/AncientTreasures/Meshes/SM_Chest_02b","/Game/ASophia/GameObjects/BP_ItemPickupChest","/Game/ASophia/GameObjects/JumpPads/Effects/ES_Galaxy","/Script/CoreUObject","/Script/Engine","/Script/IslandsofInsight","/Script/NavigationSystem","/Script/Niagara","Actor","ActorTickFunction","AllNodes","AreaClass","ArrayProperty","Asset","Base","Base_GEN_VARIABLE","bIsExternalCurve","bIsOpen","bIsParentComponentNative","BlueprintGeneratedClass","BoolProperty","BoundsScale","bOpenChest","Box","Box_GEN_VARIABLE","BoxComponent","boxMesh","BP_ItemPickupChest_C","BP_OnClick","bStartWithTickEnabled","bUseAsOccluder","ByteProperty","CallFunc_K2_SetRelativeRotation_SweepHitResult","CallFunc_Multiply_RotatorFloat_ReturnValue","Chest","ChestOpening","ChestOpening__Direction_969DC31E44D0EE60ED5299A5507DE06E","ChestOpening__FinishedFunc","ChestOpening__UpdateFunc","ChestOpening_LidPosition_969DC31E44D0EE60ED5299A5507DE06E","ChestOpening_Template","Class","ClickableBase","CloseChest","ComponentClass","ComponentTemplate","CurveFloat","Deactivate","Default__BlueprintGeneratedClass","Default__BoxComponent","Default__BP_ItemPickupChest_C","Default__Chest","Default__CurveFloat","Default__Function","Default__NiagaraComponent","Default__SceneComponent","Default__SCS_Node","Default__SimpleConstructionScript","Default__StaticMeshComponent","Default__TimelineTemplate","DefaultSceneRoot","DefaultSceneRoot_GEN_VARIABLE","DefaultSceneRootNode","DirectionPropertyName","EComponentMobility","EComponentMobility::Static","ENetRole","Engine","EntryPoint","Enum","ES_Galaxy","ETimelineDirection","ExecuteUbergraph_BP_ItemPickupChest","FinishedFunctionName","FloatCurve","FloatProperty","FloatTracks","FlushNetDormancy","Function","Guid","HitResult","InternalVariableName","IntProperty","K2_SetRelativeRotation","K2Node_Event_OutHit","K2Node_Event_Player","Keys","KismetMathLibrary","Lid","Lid_GEN_VARIABLE","LidPosition","MarkPropertyDirtyFromRepIndex","Mobility","Multiply_RotatorFloat","NameProperty","NavArea_Obstacle","NetPushModelHelpers","Niagara","Niagara_GEN_VARIABLE","NiagaraComponent","NiagaraSystem","NiagaraUserRedirectionParameterStore","None","NumReplicatedProperties","Object","ObjectProperty","OnRep_bOpenChest","OpenChest","OutHit","OverrideParameters","Package","ParentComponentOrVariableName","Play","Player","PointerToUberGraphFrame","PrimaryActorTick","PropertyName","RelativeLocation","RelativeScale3D","RemoteRole","Reverse","RichCurve","RichCurveKey","ROLE_None","RootComponent","RootNodes","Rotator","SceneComponent","ScriptStruct","SCS_Node","SimpleConstructionScript","SM_Chest_02a","SM_Chest_02b","SophiaCharacter","StaticMesh","StaticMeshComponent","StructProperty","TimelineComponent","TimelineGuid","TimelineLength","Timelines","TimelineTemplate","TrackName","TTFloatTrack","UberGraphFrame","UberGraphFunction","UpdateFunctionName","VariableGuid","VariableName","Vector","BodyInstance","Channel","CollisionEnabled","CollisionProfileName","CollisionResponse","CollisionResponses","ECR_Ignore","ECollisionEnabled","ECollisionEnabled::NoCollision","ECollisionResponse","NoCollision","ResponseArray","ResponseChannel","Camera","Destructible","Pawn","PhysicsBody","Power","PuzzleBounds","Vehicle","Visibility","WorldDynamic","WorldStatic","Response"],
+"OtherAssetsFailedToAccess": [],
+"LegacyFileVersion": -7,
+"DataResourceVersion": "Invalid",
+"DataResources": [],
+"UsesEventDrivenLoader": true,
+"WillSerializeNameHashes": true,
+"Imports": [
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-1,"OuterIndex":-39,"ObjectName":"Default__BlueprintGeneratedClass","ClassPackage":"/Script/Engine","ClassName":"BlueprintGeneratedClass","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-2,"OuterIndex":-39,"ObjectName":"Default__BoxComponent","ClassPackage":"/Script/Engine","ClassName":"BoxComponent","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-3,"OuterIndex":-40,"ObjectName":"Default__Chest","ClassPackage":"/Script/IslandsofInsight","ClassName":"Chest","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-4,"OuterIndex":-38,"ObjectName":"Function","ClassPackage":"/Script/CoreUObject","ClassName":"Class","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-5,"OuterIndex":-38,"ObjectName":"Object","ClassPackage":"/Script/CoreUObject","ClassName":"Class","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-6,"OuterIndex":-39,"ObjectName":"Actor","ClassPackage":"/Script/CoreUObject","ClassName":"Class","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-7,"OuterIndex":-39,"ObjectName":"BlueprintGeneratedClass","ClassPackage":"/Script/CoreUObject","ClassName":"Class","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-8,"OuterIndex":-39,"ObjectName":"BoxComponent","ClassPackage":"/Script/CoreUObject","ClassName":"Class","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-9,"OuterIndex":-39,"ObjectName":"CurveFloat","ClassPackage":"/Script/CoreUObject","ClassName":"Class","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-10,"OuterIndex":-39,"ObjectName":"KismetMathLibrary","ClassPackage":"/Script/CoreUObject","ClassName":"Class","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-11,"OuterIndex":-39,"ObjectName":"NetPushModelHelpers","ClassPackage":"/Script/CoreUObject","ClassName":"Class","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-12,"OuterIndex":-39,"ObjectName":"SceneComponent","ClassPackage":"/Script/CoreUObject","ClassName":"Class","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-13,"OuterIndex":-39,"ObjectName":"SCS_Node","ClassPackage":"/Script/CoreUObject","ClassName":"Class","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-14,"OuterIndex":-39,"ObjectName":"SimpleConstructionScript","ClassPackage":"/Script/CoreUObject","ClassName":"Class","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-15,"OuterIndex":-39,"ObjectName":"StaticMeshComponent","ClassPackage":"/Script/CoreUObject","ClassName":"Class","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-16,"OuterIndex":-39,"ObjectName":"TimelineComponent","ClassPackage":"/Script/CoreUObject","ClassName":"Class","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-17,"OuterIndex":-39,"ObjectName":"TimelineTemplate","ClassPackage":"/Script/CoreUObject","ClassName":"Class","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-18,"OuterIndex":-40,"ObjectName":"Chest","ClassPackage":"/Script/CoreUObject","ClassName":"Class","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-19,"OuterIndex":-40,"ObjectName":"ClickableBase","ClassPackage":"/Script/CoreUObject","ClassName":"Class","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-20,"OuterIndex":-40,"ObjectName":"SophiaCharacter","ClassPackage":"/Script/CoreUObject","ClassName":"Class","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-21,"OuterIndex":-41,"ObjectName":"NavArea_Obstacle","ClassPackage":"/Script/CoreUObject","ClassName":"Class","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-22,"OuterIndex":-42,"ObjectName":"NiagaraComponent","ClassPackage":"/Script/CoreUObject","ClassName":"Class","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-23,"OuterIndex":-39,"ObjectName":"Default__CurveFloat","ClassPackage":"/Script/Engine","ClassName":"CurveFloat","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-24,"OuterIndex":-39,"ObjectName":"ETimelineDirection","ClassPackage":"/Script/CoreUObject","ClassName":"Enum","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-25,"OuterIndex":-38,"ObjectName":"Default__Function","ClassPackage":"/Script/CoreUObject","ClassName":"Function","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-26,"OuterIndex":-6,"ObjectName":"FlushNetDormancy","ClassPackage":"/Script/CoreUObject","ClassName":"Function","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-27,"OuterIndex":-10,"ObjectName":"Multiply_RotatorFloat","ClassPackage":"/Script/CoreUObject","ClassName":"Function","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-28,"OuterIndex":-11,"ObjectName":"MarkPropertyDirtyFromRepIndex","ClassPackage":"/Script/CoreUObject","ClassName":"Function","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-29,"OuterIndex":-12,"ObjectName":"K2_SetRelativeRotation","ClassPackage":"/Script/CoreUObject","ClassName":"Function","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-30,"OuterIndex":-16,"ObjectName":"Play","ClassPackage":"/Script/CoreUObject","ClassName":"Function","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-31,"OuterIndex":-16,"ObjectName":"Reverse","ClassPackage":"/Script/CoreUObject","ClassName":"Function","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-32,"OuterIndex":-19,"ObjectName":"BP_OnClick","ClassPackage":"/Script/CoreUObject","ClassName":"Function","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-33,"OuterIndex":-42,"ObjectName":"Default__NiagaraComponent","ClassPackage":"/Script/Niagara","ClassName":"NiagaraComponent","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-34,"OuterIndex":-37,"ObjectName":"ES_Galaxy","ClassPackage":"/Script/Niagara","ClassName":"NiagaraSystem","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-35,"OuterIndex":0,"ObjectName":"/Game/AncientTreasures/Meshes/SM_Chest_02a","ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-36,"OuterIndex":0,"ObjectName":"/Game/AncientTreasures/Meshes/SM_Chest_02b","ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-37,"OuterIndex":0,"ObjectName":"/Game/ASophia/GameObjects/JumpPads/Effects/ES_Galaxy","ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-38,"OuterIndex":0,"ObjectName":"/Script/CoreUObject","ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-39,"OuterIndex":0,"ObjectName":"/Script/Engine","ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-40,"OuterIndex":0,"ObjectName":"/Script/IslandsofInsight","ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-41,"OuterIndex":0,"ObjectName":"/Script/NavigationSystem","ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-42,"OuterIndex":0,"ObjectName":"/Script/Niagara","ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-43,"OuterIndex":-39,"ObjectName":"Default__SceneComponent","ClassPackage":"/Script/Engine","ClassName":"SceneComponent","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-44,"OuterIndex":-38,"ObjectName":"Rotator","ClassPackage":"/Script/CoreUObject","ClassName":"ScriptStruct","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-45,"OuterIndex":-39,"ObjectName":"HitResult","ClassPackage":"/Script/CoreUObject","ClassName":"ScriptStruct","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-46,"OuterIndex":-39,"ObjectName":"PointerToUberGraphFrame","ClassPackage":"/Script/CoreUObject","ClassName":"ScriptStruct","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-47,"OuterIndex":-39,"ObjectName":"Default__SCS_Node","ClassPackage":"/Script/Engine","ClassName":"SCS_Node","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-48,"OuterIndex":-39,"ObjectName":"Default__SimpleConstructionScript","ClassPackage":"/Script/Engine","ClassName":"SimpleConstructionScript","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-49,"OuterIndex":-35,"ObjectName":"SM_Chest_02a","ClassPackage":"/Script/Engine","ClassName":"StaticMesh","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-50,"OuterIndex":-36,"ObjectName":"SM_Chest_02b","ClassPackage":"/Script/Engine","ClassName":"StaticMesh","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-51,"OuterIndex":-39,"ObjectName":"Default__StaticMeshComponent","ClassPackage":"/Script/Engine","ClassName":"StaticMeshComponent","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-52,"OuterIndex":-3,"ObjectName":"boxMesh","ClassPackage":"/Script/Engine","ClassName":"StaticMeshComponent","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-53,"OuterIndex":-39,"ObjectName":"Default__TimelineTemplate","ClassPackage":"/Script/Engine","ClassName":"TimelineTemplate","PackageName":null,"bImportOptional":false}
+],
+"DependsMap": [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],
+"SoftPackageReferenceList": [],
+"AssetRegistryData": {"$type":"System.Byte[], System.Private.CoreLib","$value":"AAAAAA=="},
+"BulkData": {"$type":"System.Byte[], System.Private.CoreLib","$value":"wYMqng=="},
+"ValorantGarbageData": null,
+"SeaOfThievesGarbageData": null,
+"Generations": [{"$type":"UAssetAPI.FGenerationInfo, UAssetAPI","ExportCount":23,"NameCount":150}],
+"PackageGuid": "{FC5F1748-4506-9068-02FA-11A8246DB4F2}",
+"PersistentGuid": "{00000000-0000-0000-0000-000000000000}",
+"RecordedEngineVersion": {"$type":"UAssetAPI.FEngineVersion, UAssetAPI","Major":0,"Minor":0,"Patch":0,"Changelist":0,"Branch":null},
+"RecordedCompatibleWithEngineVersion": {"$type":"UAssetAPI.FEngineVersion, UAssetAPI","Major":0,"Minor":0,"Patch":0,"Changelist":0,"Branch":null},
+"ChunkIDs": [],
+"PackageSource": 4277554118,
+"FolderName": "None",
+"LocalizationId": null,
+"SoftObjectPathsCount": 0,
+"SoftObjectPathsOffset": 0,
+"SearchableNamesOffset": 0,
+"ThumbnailTableOffset": 0,
+"CompressionFlags": 0,
+"AdditionalPackagesToCook": [],
+"NamesReferencedFromExportDataCount": 150,
+"PayloadTocOffset": -1,
+"DataResourceOffset": -1,
+"doWeHaveDependsMap": true,
+"doWeHaveSoftPackageReferences": false,
+"doWeHaveAssetRegistryData": true,
+"doWeHaveWorldTileInfo": false,
+"doWeHaveDataResources": false,
+"CustomSerializationFlags": "None",
+"UseSeparateBulkDataFiles": true,
+"IsUnversioned": true,
+"FileVersionLicenseeUE": 0,
+"ObjectVersion": "VER_UE4_CORRECT_LICENSEE_FLAG",
+"ObjectVersionUE5": "UNKNOWN",
+"CustomVersionContainer": [{"$type":"UAssetAPI.CustomVersion, UAssetAPI","Name":null,"Key":"{375EC13C-06E4-48FB-B500-84F0262A717E}","FriendlyName":"FCoreObjectVersion","Version":4,"IsSerialized":false},{"$type":"UAssetAPI.CustomVersion, UAssetAPI","Name":null,"Key":"{E4B068ED-F494-42E9-A231-DA0B2E46BB41}","FriendlyName":"FEditorObjectVersion","Version":40,"IsSerialized":false},{"$type":"UAssetAPI.CustomVersion, UAssetAPI","Name":null,"Key":"{CFFC743F-43B0-4480-9391-14DF171D2073}","FriendlyName":"FFrameworkObjectVersion","Version":37,"IsSerialized":false},{"$type":"UAssetAPI.CustomVersion, UAssetAPI","Name":null,"Key":"{7B5AE74C-D270-4C10-A958-57980B212A5A}","FriendlyName":"FSequencerObjectVersion","Version":13,"IsSerialized":false},{"$type":"UAssetAPI.CustomVersion, UAssetAPI","Name":null,"Key":"{29E575DD-E0A3-4627-9D10-D276232CDCEA}","FriendlyName":"FAnimPhysObjectVersion","Version":17,"IsSerialized":false},{"$type":"UAssetAPI.CustomVersion, UAssetAPI","Name":null,"Key":"{601D1886-AC64-4F84-AA16-D3DE0DEAC7D6}","FriendlyName":"FFortniteMainBranchObjectVersion","Version":47,"IsSerialized":false},{"$type":"UAssetAPI.CustomVersion, UAssetAPI","Name":null,"Key":"{F2AED0AC-9AFE-416F-8664-AA7FFA26D6FC}","FriendlyName":"FNiagaraObjectVersion","Version":1,"IsSerialized":false},{"$type":"UAssetAPI.CustomVersion, UAssetAPI","Name":null,"Key":"{717F9EE7-E9B0-493A-88B3-91321B388107}","FriendlyName":"FAssetRegistryVersion","Version":17,"IsSerialized":false},{"$type":"UAssetAPI.CustomVersion, UAssetAPI","Name":null,"Key":"{9C54D522-A826-4FBE-9421-074661B482D0}","FriendlyName":"FReleaseObjectVersion","Version":43,"IsSerialized":false},{"$type":"UAssetAPI.CustomVersion, UAssetAPI","Name":null,"Key":"{E7086368-6B23-4C58-8439-1B7016265E91}","FriendlyName":"FFortniteReleaseBranchCustomObjectVersion","Version":1,"IsSerialized":false},{"$type":"UAssetAPI.CustomVersion, UAssetAPI","Name":null,"Key":"{D89B5E42-24BD-4D46-8412-ACA8DF641779}","FriendlyName":"FUE5ReleaseStreamObjectVersion","Version":0,"IsSerialized":false},{"$type":"UAssetAPI.CustomVersion, UAssetAPI","Name":null,"Key":"{FCF57AFA-5076-4283-B9A9-E658FFA02D32}","FriendlyName":"FNiagaraCustomVersion","Version":68,"IsSerialized":false}],
+"GatherableTextData": null,
+"SearchableNames": null,
+"Thumbnails": null,
+"WorldTileInfo": null,
+"PackageFlags": "PKG_FilterEditorOnly",
+"HasUnversionedProperties": false,
+"IsFilterEditorOnly": true,
+"Exports": [
+{
+	"$type": "UAssetAPI.ExportTypes.FunctionExport, UAssetAPI",
+	"$index": 1,
+	"FunctionFlags": "FUNC_Final, FUNC_UbergraphFunction, FUNC_HasDefaults",
+	"SuperStruct": 0,
+	"Children": [],
+	"LoadedProperties": [{"$type":"UAssetAPI.FieldTypes.FGenericProperty, UAssetAPI","ArrayDim":"TArray","ElementSize":4,"PropertyFlags":"CPF_BlueprintVisible, CPF_BlueprintReadOnly, CPF_Parm","RepIndex":0,"RepNotifyFunc":"None","BlueprintReplicationCondition":"COND_None","RawValue":null,"UsmapPropertyTypeOverrides":{"$type":"System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[UAssetAPI.Unversioned.EPropertyType, UAssetAPI]], System.Private.CoreLib","MulticastInlineDelegateProperty":"MulticastDelegateProperty","ClassProperty":"ObjectProperty","SoftClassProperty":"SoftObjectProperty"},"SerializedType":"IntProperty","Name":"EntryPoint","Flags":"RF_Public","MetaDataMap":null},{"$type":"UAssetAPI.FieldTypes.FStructProperty, UAssetAPI","Struct":-44,"ArrayDim":"TArray","ElementSize":12,"PropertyFlags":"CPF_None","RepIndex":0,"RepNotifyFunc":"None","BlueprintReplicationCondition":"COND_None","RawValue":null,"UsmapPropertyTypeOverrides":{"$type":"System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[UAssetAPI.Unversioned.EPropertyType, UAssetAPI]], System.Private.CoreLib","MulticastInlineDelegateProperty":"MulticastDelegateProperty","ClassProperty":"ObjectProperty","SoftClassProperty":"SoftObjectProperty"},"SerializedType":"StructProperty","Name":"CallFunc_Multiply_RotatorFloat_ReturnValue","Flags":"RF_Public","MetaDataMap":null},{"$type":"UAssetAPI.FieldTypes.FStructProperty, UAssetAPI","Struct":-45,"ArrayDim":"TArray","ElementSize":144,"PropertyFlags":"CPF_ContainsInstancedReference","RepIndex":0,"RepNotifyFunc":"None","BlueprintReplicationCondition":"COND_None","RawValue":null,"UsmapPropertyTypeOverrides":{"$type":"System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[UAssetAPI.Unversioned.EPropertyType, UAssetAPI]], System.Private.CoreLib","MulticastInlineDelegateProperty":"MulticastDelegateProperty","ClassProperty":"ObjectProperty","SoftClassProperty":"SoftObjectProperty"},"SerializedType":"StructProperty","Name":"CallFunc_K2_SetRelativeRotation_SweepHitResult","Flags":"RF_Public","MetaDataMap":null},{"$type":"UAssetAPI.FieldTypes.FObjectProperty, UAssetAPI","PropertyClass":-20,"ArrayDim":"TArray","ElementSize":8,"PropertyFlags":"CPF_None","RepIndex":0,"RepNotifyFunc":"None","BlueprintReplicationCondition":"COND_None","RawValue":null,"UsmapPropertyTypeOverrides":{"$type":"System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[UAssetAPI.Unversioned.EPropertyType, UAssetAPI]], System.Private.CoreLib","MulticastInlineDelegateProperty":"MulticastDelegateProperty","ClassProperty":"ObjectProperty","SoftClassProperty":"SoftObjectProperty"},"SerializedType":"ObjectProperty","Name":"K2Node_Event_Player","Flags":"RF_Public","MetaDataMap":null},{"$type":"UAssetAPI.FieldTypes.FStructProperty, UAssetAPI","Struct":-45,"ArrayDim":"TArray","ElementSize":144,"PropertyFlags":"CPF_ConstParm, CPF_ContainsInstancedReference","RepIndex":0,"RepNotifyFunc":"None","BlueprintReplicationCondition":"COND_None","RawValue":null,"UsmapPropertyTypeOverrides":{"$type":"System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[UAssetAPI.Unversioned.EPropertyType, UAssetAPI]], System.Private.CoreLib","MulticastInlineDelegateProperty":"MulticastDelegateProperty","ClassProperty":"ObjectProperty","SoftClassProperty":"SoftObjectProperty"},"SerializedType":"StructProperty","Name":"K2Node_Event_OutHit","Flags":"RF_Public","MetaDataMap":null}],
+	"ScriptBytecode": [{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_ComputedJump, UAssetAPI","CodeOffsetExpression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_LocalVariable, UAssetAPI","Variable":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["EntryPoint"],"ResolvedOwner":1}}}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_JumpIfNot, UAssetAPI","CodeOffset":29,"BooleanExpression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_InstanceVariable, UAssetAPI","Variable":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["bOpenChest"],"ResolvedOwner":8}}}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Jump, UAssetAPI","CodeOffset":299},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_FinalFunction, UAssetAPI","StackNode":-26,"Parameters":[]},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_LetBool, UAssetAPI","VariableExpression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_InstanceVariable, UAssetAPI","Variable":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["bOpenChest"],"ResolvedOwner":8}}},"AssignmentExpression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_True, UAssetAPI"}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_CallMath, UAssetAPI","StackNode":-28,"Parameters":[{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Self, UAssetAPI"},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_IntConst, UAssetAPI","Value":10},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_NameConst, UAssetAPI","Value":"bOpenChest"}]},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_LocalVirtualFunction, UAssetAPI","VirtualFunctionName":"OnRep_bOpenChest","Parameters":[]},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Jump, UAssetAPI","CodeOffset":299},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Jump, UAssetAPI","CodeOffset":299},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Let, UAssetAPI","Value":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["CallFunc_Multiply_RotatorFloat_ReturnValue"],"ResolvedOwner":1}},"Variable":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_LocalVariable, UAssetAPI","Variable":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["CallFunc_Multiply_RotatorFloat_ReturnValue"],"ResolvedOwner":1}}},"Expression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_CallMath, UAssetAPI","StackNode":-27,"Parameters":[{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_RotationConst, UAssetAPI","Value":{"$type":"UAssetAPI.UnrealTypes.FRotator, UAssetAPI","Pitch":120,"Yaw":"+0","Roll":"+0"}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_InstanceVariable, UAssetAPI","Variable":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["ChestOpening_LidPosition_969DC31E44D0EE60ED5299A5507DE06E"],"ResolvedOwner":8}}}]}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Context, UAssetAPI","ObjectExpression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_InstanceVariable, UAssetAPI","Variable":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["Lid"],"ResolvedOwner":8}}},"Offset":30,"PropertyType":0,"RValuePointer":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":[],"ResolvedOwner":0}},"ContextExpression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_FinalFunction, UAssetAPI","StackNode":-29,"Parameters":[{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_LocalVariable, UAssetAPI","Variable":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["CallFunc_Multiply_RotatorFloat_ReturnValue"],"ResolvedOwner":1}}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_False, UAssetAPI"},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_LocalVariable, UAssetAPI","Variable":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["CallFunc_K2_SetRelativeRotation_SweepHitResult"],"ResolvedOwner":1}}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_False, UAssetAPI"}]}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Jump, UAssetAPI","CodeOffset":299},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Context, UAssetAPI","ObjectExpression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_InstanceVariable, UAssetAPI","Variable":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["ChestOpening"],"ResolvedOwner":8}}},"Offset":10,"PropertyType":0,"RValuePointer":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":[],"ResolvedOwner":0}},"ContextExpression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_FinalFunction, UAssetAPI","StackNode":-31,"Parameters":[]}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Jump, UAssetAPI","CodeOffset":299},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Context, UAssetAPI","ObjectExpression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_InstanceVariable, UAssetAPI","Variable":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["ChestOpening"],"ResolvedOwner":8}}},"Offset":10,"PropertyType":0,"RValuePointer":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":[],"ResolvedOwner":0}},"ContextExpression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_FinalFunction, UAssetAPI","StackNode":-30,"Parameters":[]}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Jump, UAssetAPI","CodeOffset":299},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Jump, UAssetAPI","CodeOffset":247},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Jump, UAssetAPI","CodeOffset":210},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Jump, UAssetAPI","CodeOffset":10},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Return, UAssetAPI","ReturnExpression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Nothing, UAssetAPI"}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_EndOfScript, UAssetAPI"}],
+	"ScriptBytecodeSize": 302,
+	"ScriptBytecodeRaw": null,
+	"Field": {"$type":"UAssetAPI.FieldTypes.UField, UAssetAPI","Next":null},
+	"ObjectName": "ExecuteUbergraph_BP_ItemPickupChest",
+	"ObjectFlags": "RF_Public",
+	"SerialSize": 653,
+	"SerialOffset": 8525,
+	"ScriptSerializationStartOffset": 0,
+	"ScriptSerializationEndOffset": 0,
+	"bForcedExport": false,
+	"bNotForClient": false,
+	"bNotForServer": false,
+	"PackageGuid": "{00000000-0000-0000-0000-000000000000}",
+	"IsInheritedInstance": false,
+	"PackageFlags": "PKG_None",
+	"bNotAlwaysLoadedForEditorGame": false,
+	"bIsAsset": false,
+	"GeneratePublicHash": false,
+	"SerializationBeforeSerializationDependencies": [-45],
+	"CreateBeforeSerializationDependencies": [1,-20,-26,-6,-28,-11,-27,-10,-29,-12,-31,-16,-30],
+	"SerializationBeforeCreateDependencies": [],
+	"CreateBeforeCreateDependencies": [8],
+	"PublicExportHash": 0,
+	"Padding": null,
+	"Extras": {"$type":"System.Byte[], System.Private.CoreLib","$value":"AAAAAAAAAAA="},
+	"OuterIndex": 8,
+	"ClassIndex": -4,
+	"SuperIndex": 0,
+	"TemplateIndex": -25,
+	"Data": []
+},
+{
+	"$type": "UAssetAPI.ExportTypes.FunctionExport, UAssetAPI",
+	"$index": 2,
+	"FunctionFlags": "FUNC_Event, FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintEvent",
+	"SuperStruct": -32,
+	"Children": [],
+	"LoadedProperties": [{"$type":"UAssetAPI.FieldTypes.FObjectProperty, UAssetAPI","PropertyClass":-20,"ArrayDim":"TArray","ElementSize":8,"PropertyFlags":"CPF_BlueprintVisible, CPF_BlueprintReadOnly, CPF_Parm","RepIndex":0,"RepNotifyFunc":"None","BlueprintReplicationCondition":"COND_None","RawValue":null,"UsmapPropertyTypeOverrides":{"$type":"System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[UAssetAPI.Unversioned.EPropertyType, UAssetAPI]], System.Private.CoreLib","MulticastInlineDelegateProperty":"MulticastDelegateProperty","ClassProperty":"ObjectProperty","SoftClassProperty":"SoftObjectProperty"},"SerializedType":"ObjectProperty","Name":"Player","Flags":"RF_Public","MetaDataMap":null},{"$type":"UAssetAPI.FieldTypes.FStructProperty, UAssetAPI","Struct":-45,"ArrayDim":"TArray","ElementSize":144,"PropertyFlags":"CPF_ConstParm, CPF_BlueprintVisible, CPF_BlueprintReadOnly, CPF_Parm, CPF_OutParm, CPF_ReferenceParm, CPF_ContainsInstancedReference","RepIndex":0,"RepNotifyFunc":"None","BlueprintReplicationCondition":"COND_None","RawValue":null,"UsmapPropertyTypeOverrides":{"$type":"System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[UAssetAPI.Unversioned.EPropertyType, UAssetAPI]], System.Private.CoreLib","MulticastInlineDelegateProperty":"MulticastDelegateProperty","ClassProperty":"ObjectProperty","SoftClassProperty":"SoftObjectProperty"},"SerializedType":"StructProperty","Name":"OutHit","Flags":"RF_Public","MetaDataMap":null}],
+	"ScriptBytecode": [{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_LetValueOnPersistentFrame, UAssetAPI","DestinationProperty":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["K2Node_Event_Player"],"ResolvedOwner":1}},"AssignmentExpression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_LocalVariable, UAssetAPI","Variable":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["Player"],"ResolvedOwner":2}}}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_LetValueOnPersistentFrame, UAssetAPI","DestinationProperty":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["K2Node_Event_OutHit"],"ResolvedOwner":1}},"AssignmentExpression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_LocalOutVariable, UAssetAPI","Variable":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["OutHit"],"ResolvedOwner":2}}}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_LocalFinalFunction, UAssetAPI","StackNode":1,"Parameters":[{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_IntConst, UAssetAPI","Value":294}]},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Return, UAssetAPI","ReturnExpression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Nothing, UAssetAPI"}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_EndOfScript, UAssetAPI"}],
+	"ScriptBytecodeSize": 54,
+	"ScriptBytecodeRaw": null,
+	"Field": {"$type":"UAssetAPI.FieldTypes.UField, UAssetAPI","Next":null},
+	"ObjectName": "BP_OnClick",
+	"ObjectFlags": "RF_Public",
+	"SerialSize": 228,
+	"SerialOffset": 9178,
+	"ScriptSerializationStartOffset": 0,
+	"ScriptSerializationEndOffset": 0,
+	"bForcedExport": false,
+	"bNotForClient": false,
+	"bNotForServer": false,
+	"PackageGuid": "{00000000-0000-0000-0000-000000000000}",
+	"IsInheritedInstance": false,
+	"PackageFlags": "PKG_None",
+	"bNotAlwaysLoadedForEditorGame": false,
+	"bIsAsset": false,
+	"GeneratePublicHash": false,
+	"SerializationBeforeSerializationDependencies": [-32,-45],
+	"CreateBeforeSerializationDependencies": [1,2,-19,-20],
+	"SerializationBeforeCreateDependencies": [],
+	"CreateBeforeCreateDependencies": [8,-32],
+	"PublicExportHash": 0,
+	"Padding": null,
+	"Extras": {"$type":"System.Byte[], System.Private.CoreLib","$value":"AAAAAAAAAAA="},
+	"OuterIndex": 8,
+	"ClassIndex": -4,
+	"SuperIndex": -32,
+	"TemplateIndex": -25,
+	"Data": []
+},
+{
+	"$type": "UAssetAPI.ExportTypes.FunctionExport, UAssetAPI",
+	"$index": 3,
+	"FunctionFlags": "FUNC_BlueprintCallable, FUNC_BlueprintEvent",
+	"SuperStruct": 0,
+	"Children": [],
+	"LoadedProperties": [],
+	"ScriptBytecode": [{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_LocalFinalFunction, UAssetAPI","StackNode":1,"Parameters":[{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_IntConst, UAssetAPI","Value":289}]},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Return, UAssetAPI","ReturnExpression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Nothing, UAssetAPI"}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_EndOfScript, UAssetAPI"}],
+	"ScriptBytecodeSize": 18,
+	"ScriptBytecodeRaw": null,
+	"Field": {"$type":"UAssetAPI.FieldTypes.UField, UAssetAPI","Next":null},
+	"ObjectName": "CloseChest",
+	"ObjectFlags": "RF_Public",
+	"SerialSize": 58,
+	"SerialOffset": 9406,
+	"ScriptSerializationStartOffset": 0,
+	"ScriptSerializationEndOffset": 0,
+	"bForcedExport": false,
+	"bNotForClient": false,
+	"bNotForServer": false,
+	"PackageGuid": "{00000000-0000-0000-0000-000000000000}",
+	"IsInheritedInstance": false,
+	"PackageFlags": "PKG_None",
+	"bNotAlwaysLoadedForEditorGame": false,
+	"bIsAsset": false,
+	"GeneratePublicHash": false,
+	"SerializationBeforeSerializationDependencies": [],
+	"CreateBeforeSerializationDependencies": [1],
+	"SerializationBeforeCreateDependencies": [],
+	"CreateBeforeCreateDependencies": [8],
+	"PublicExportHash": 0,
+	"Padding": null,
+	"Extras": {"$type":"System.Byte[], System.Private.CoreLib","$value":"AAAAAAAAAAA="},
+	"OuterIndex": 8,
+	"ClassIndex": -4,
+	"SuperIndex": 0,
+	"TemplateIndex": -25,
+	"Data": []
+},
+{
+	"$type": "UAssetAPI.ExportTypes.FunctionExport, UAssetAPI",
+	"$index": 4,
+	"FunctionFlags": "FUNC_BlueprintCallable, FUNC_BlueprintEvent",
+	"SuperStruct": 0,
+	"Children": [],
+	"LoadedProperties": [],
+	"ScriptBytecode": [{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_LocalFinalFunction, UAssetAPI","StackNode":1,"Parameters":[{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_IntConst, UAssetAPI","Value":284}]},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Return, UAssetAPI","ReturnExpression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Nothing, UAssetAPI"}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_EndOfScript, UAssetAPI"}],
+	"ScriptBytecodeSize": 18,
+	"ScriptBytecodeRaw": null,
+	"Field": {"$type":"UAssetAPI.FieldTypes.UField, UAssetAPI","Next":null},
+	"ObjectName": "OpenChest",
+	"ObjectFlags": "RF_Public",
+	"SerialSize": 58,
+	"SerialOffset": 9464,
+	"ScriptSerializationStartOffset": 0,
+	"ScriptSerializationEndOffset": 0,
+	"bForcedExport": false,
+	"bNotForClient": false,
+	"bNotForServer": false,
+	"PackageGuid": "{00000000-0000-0000-0000-000000000000}",
+	"IsInheritedInstance": false,
+	"PackageFlags": "PKG_None",
+	"bNotAlwaysLoadedForEditorGame": false,
+	"bIsAsset": false,
+	"GeneratePublicHash": false,
+	"SerializationBeforeSerializationDependencies": [],
+	"CreateBeforeSerializationDependencies": [1],
+	"SerializationBeforeCreateDependencies": [],
+	"CreateBeforeCreateDependencies": [8],
+	"PublicExportHash": 0,
+	"Padding": null,
+	"Extras": {"$type":"System.Byte[], System.Private.CoreLib","$value":"AAAAAAAAAAA="},
+	"OuterIndex": 8,
+	"ClassIndex": -4,
+	"SuperIndex": 0,
+	"TemplateIndex": -25,
+	"Data": []
+},
+{
+	"$type": "UAssetAPI.ExportTypes.FunctionExport, UAssetAPI",
+	"$index": 5,
+	"FunctionFlags": "FUNC_BlueprintEvent",
+	"SuperStruct": 0,
+	"Children": [],
+	"LoadedProperties": [],
+	"ScriptBytecode": [{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_LocalFinalFunction, UAssetAPI","StackNode":1,"Parameters":[{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_IntConst, UAssetAPI","Value":103}]},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Return, UAssetAPI","ReturnExpression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Nothing, UAssetAPI"}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_EndOfScript, UAssetAPI"}],
+	"ScriptBytecodeSize": 18,
+	"ScriptBytecodeRaw": null,
+	"Field": {"$type":"UAssetAPI.FieldTypes.UField, UAssetAPI","Next":null},
+	"ObjectName": "ChestOpening__UpdateFunc",
+	"ObjectFlags": "RF_Public",
+	"SerialSize": 58,
+	"SerialOffset": 9522,
+	"ScriptSerializationStartOffset": 0,
+	"ScriptSerializationEndOffset": 0,
+	"bForcedExport": false,
+	"bNotForClient": false,
+	"bNotForServer": false,
+	"PackageGuid": "{00000000-0000-0000-0000-000000000000}",
+	"IsInheritedInstance": false,
+	"PackageFlags": "PKG_None",
+	"bNotAlwaysLoadedForEditorGame": false,
+	"bIsAsset": false,
+	"GeneratePublicHash": false,
+	"SerializationBeforeSerializationDependencies": [],
+	"CreateBeforeSerializationDependencies": [1],
+	"SerializationBeforeCreateDependencies": [],
+	"CreateBeforeCreateDependencies": [8],
+	"PublicExportHash": 0,
+	"Padding": null,
+	"Extras": {"$type":"System.Byte[], System.Private.CoreLib","$value":"AAAAAAAAAAA="},
+	"OuterIndex": 8,
+	"ClassIndex": -4,
+	"SuperIndex": 0,
+	"TemplateIndex": -25,
+	"Data": []
+},
+{
+	"$type": "UAssetAPI.ExportTypes.FunctionExport, UAssetAPI",
+	"$index": 6,
+	"FunctionFlags": "FUNC_BlueprintEvent",
+	"SuperStruct": 0,
+	"Children": [],
+	"LoadedProperties": [],
+	"ScriptBytecode": [{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_LocalFinalFunction, UAssetAPI","StackNode":1,"Parameters":[{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_IntConst, UAssetAPI","Value":98}]},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Return, UAssetAPI","ReturnExpression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Nothing, UAssetAPI"}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_EndOfScript, UAssetAPI"}],
+	"ScriptBytecodeSize": 18,
+	"ScriptBytecodeRaw": null,
+	"Field": {"$type":"UAssetAPI.FieldTypes.UField, UAssetAPI","Next":null},
+	"ObjectName": "ChestOpening__FinishedFunc",
+	"ObjectFlags": "RF_Public",
+	"SerialSize": 58,
+	"SerialOffset": 9580,
+	"ScriptSerializationStartOffset": 0,
+	"ScriptSerializationEndOffset": 0,
+	"bForcedExport": false,
+	"bNotForClient": false,
+	"bNotForServer": false,
+	"PackageGuid": "{00000000-0000-0000-0000-000000000000}",
+	"IsInheritedInstance": false,
+	"PackageFlags": "PKG_None",
+	"bNotAlwaysLoadedForEditorGame": false,
+	"bIsAsset": false,
+	"GeneratePublicHash": false,
+	"SerializationBeforeSerializationDependencies": [],
+	"CreateBeforeSerializationDependencies": [1],
+	"SerializationBeforeCreateDependencies": [],
+	"CreateBeforeCreateDependencies": [8],
+	"PublicExportHash": 0,
+	"Padding": null,
+	"Extras": {"$type":"System.Byte[], System.Private.CoreLib","$value":"AAAAAAAAAAA="},
+	"OuterIndex": 8,
+	"ClassIndex": -4,
+	"SuperIndex": 0,
+	"TemplateIndex": -25,
+	"Data": []
+},
+{
+	"$type": "UAssetAPI.ExportTypes.FunctionExport, UAssetAPI",
+	"$index": 7,
+	"FunctionFlags": "FUNC_BlueprintCallable, FUNC_BlueprintEvent",
+	"SuperStruct": 0,
+	"Children": [],
+	"LoadedProperties": [],
+	"ScriptBytecode": [{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_JumpIfNot, UAssetAPI","CodeOffset":75,"BooleanExpression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_InstanceVariable, UAssetAPI","Variable":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["bOpenChest"],"ResolvedOwner":8}}}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_LetBool, UAssetAPI","VariableExpression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_InstanceVariable, UAssetAPI","Variable":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["bIsOpen"],"ResolvedOwner":-18}}},"AssignmentExpression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_True, UAssetAPI"}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_LocalVirtualFunction, UAssetAPI","VirtualFunctionName":"OpenChest","Parameters":[]},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Context, UAssetAPI","ObjectExpression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_InstanceVariable, UAssetAPI","Variable":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["Niagara"],"ResolvedOwner":8}}},"Offset":14,"PropertyType":0,"RValuePointer":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":[],"ResolvedOwner":0}},"ContextExpression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_VirtualFunction, UAssetAPI","VirtualFunctionName":"Deactivate","Parameters":[]}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Return, UAssetAPI","ReturnExpression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Nothing, UAssetAPI"}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_EndOfScript, UAssetAPI"}],
+	"ScriptBytecodeSize": 78,
+	"ScriptBytecodeRaw": null,
+	"Field": {"$type":"UAssetAPI.FieldTypes.UField, UAssetAPI","Next":null},
+	"ObjectName": "OnRep_bOpenChest",
+	"ObjectFlags": "RF_Public",
+	"SerialSize": 138,
+	"SerialOffset": 9638,
+	"ScriptSerializationStartOffset": 0,
+	"ScriptSerializationEndOffset": 0,
+	"bForcedExport": false,
+	"bNotForClient": false,
+	"bNotForServer": false,
+	"PackageGuid": "{00000000-0000-0000-0000-000000000000}",
+	"IsInheritedInstance": false,
+	"PackageFlags": "PKG_None",
+	"bNotAlwaysLoadedForEditorGame": false,
+	"bIsAsset": false,
+	"GeneratePublicHash": false,
+	"SerializationBeforeSerializationDependencies": [],
+	"CreateBeforeSerializationDependencies": [-18],
+	"SerializationBeforeCreateDependencies": [],
+	"CreateBeforeCreateDependencies": [8],
+	"PublicExportHash": 0,
+	"Padding": null,
+	"Extras": {"$type":"System.Byte[], System.Private.CoreLib","$value":"AAAAAAAAAAA="},
+	"OuterIndex": 8,
+	"ClassIndex": -4,
+	"SuperIndex": 0,
+	"TemplateIndex": -25,
+	"Data": []
+},
+{
+	"$type": "UAssetAPI.ExportTypes.ClassExport, UAssetAPI",
+	"$index": 8,
+	"FuncMap": [["ExecuteUbergraph_BP_ItemPickupChest",1],["BP_OnClick",2],["CloseChest",3],["OpenChest",4],["ChestOpening__UpdateFunc",5],["ChestOpening__FinishedFunc",6],["OnRep_bOpenChest",7]],
+	"ClassFlags": "CLASS_Config, CLASS_Parsed, CLASS_ReplicationDataIsSetUp, CLASS_CompiledFromBlueprint, CLASS_HasInstancedReference",
+	"ClassWithin": -5,
+	"ClassConfigName": "Engine",
+	"Interfaces": [],
+	"ClassGeneratedBy": 0,
+	"bDeprecatedForceScriptOrder": false,
+	"bCooked": true,
+	"ClassDefaultObject": 9,
+	"SuperStruct": -18,
+	"Children": [7,6,5,4,3,2,1],
+	"LoadedProperties": [{"$type":"UAssetAPI.FieldTypes.FStructProperty, UAssetAPI","Struct":-46,"ArrayDim":"TArray","ElementSize":16,"PropertyFlags":"CPF_Transient, CPF_DuplicateTransient","RepIndex":0,"RepNotifyFunc":"None","BlueprintReplicationCondition":"COND_None","RawValue":null,"UsmapPropertyTypeOverrides":{"$type":"System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[UAssetAPI.Unversioned.EPropertyType, UAssetAPI]], System.Private.CoreLib","MulticastInlineDelegateProperty":"MulticastDelegateProperty","ClassProperty":"ObjectProperty","SoftClassProperty":"SoftObjectProperty"},"SerializedType":"StructProperty","Name":"UberGraphFrame","Flags":"RF_Public, RF_LoadCompleted","MetaDataMap":null},{"$type":"UAssetAPI.FieldTypes.FObjectProperty, UAssetAPI","PropertyClass":-22,"ArrayDim":"TArray","ElementSize":8,"PropertyFlags":"CPF_BlueprintVisible, CPF_InstancedReference, CPF_NonTransactional","RepIndex":0,"RepNotifyFunc":"None","BlueprintReplicationCondition":"COND_None","RawValue":null,"UsmapPropertyTypeOverrides":{"$type":"System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[UAssetAPI.Unversioned.EPropertyType, UAssetAPI]], System.Private.CoreLib","MulticastInlineDelegateProperty":"MulticastDelegateProperty","ClassProperty":"ObjectProperty","SoftClassProperty":"SoftObjectProperty"},"SerializedType":"ObjectProperty","Name":"Niagara","Flags":"RF_Public, RF_LoadCompleted","MetaDataMap":null},{"$type":"UAssetAPI.FieldTypes.FObjectProperty, UAssetAPI","PropertyClass":-8,"ArrayDim":"TArray","ElementSize":8,"PropertyFlags":"CPF_BlueprintVisible, CPF_InstancedReference, CPF_NonTransactional","RepIndex":0,"RepNotifyFunc":"None","BlueprintReplicationCondition":"COND_None","RawValue":null,"UsmapPropertyTypeOverrides":{"$type":"System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[UAssetAPI.Unversioned.EPropertyType, UAssetAPI]], System.Private.CoreLib","MulticastInlineDelegateProperty":"MulticastDelegateProperty","ClassProperty":"ObjectProperty","SoftClassProperty":"SoftObjectProperty"},"SerializedType":"ObjectProperty","Name":"Box","Flags":"RF_Public, RF_LoadCompleted","MetaDataMap":null},{"$type":"UAssetAPI.FieldTypes.FObjectProperty, UAssetAPI","PropertyClass":-15,"ArrayDim":"TArray","ElementSize":8,"PropertyFlags":"CPF_BlueprintVisible, CPF_InstancedReference, CPF_NonTransactional","RepIndex":0,"RepNotifyFunc":"None","BlueprintReplicationCondition":"COND_None","RawValue":null,"UsmapPropertyTypeOverrides":{"$type":"System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[UAssetAPI.Unversioned.EPropertyType, UAssetAPI]], System.Private.CoreLib","MulticastInlineDelegateProperty":"MulticastDelegateProperty","ClassProperty":"ObjectProperty","SoftClassProperty":"SoftObjectProperty"},"SerializedType":"ObjectProperty","Name":"Lid","Flags":"RF_Public, RF_LoadCompleted","MetaDataMap":null},{"$type":"UAssetAPI.FieldTypes.FObjectProperty, UAssetAPI","PropertyClass":-15,"ArrayDim":"TArray","ElementSize":8,"PropertyFlags":"CPF_BlueprintVisible, CPF_InstancedReference, CPF_NonTransactional","RepIndex":0,"RepNotifyFunc":"None","BlueprintReplicationCondition":"COND_None","RawValue":null,"UsmapPropertyTypeOverrides":{"$type":"System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[UAssetAPI.Unversioned.EPropertyType, UAssetAPI]], System.Private.CoreLib","MulticastInlineDelegateProperty":"MulticastDelegateProperty","ClassProperty":"ObjectProperty","SoftClassProperty":"SoftObjectProperty"},"SerializedType":"ObjectProperty","Name":"Base","Flags":"RF_Public, RF_LoadCompleted","MetaDataMap":null},{"$type":"UAssetAPI.FieldTypes.FGenericProperty, UAssetAPI","ArrayDim":"TArray","ElementSize":4,"PropertyFlags":"CPF_None","RepIndex":0,"RepNotifyFunc":"None","BlueprintReplicationCondition":"COND_None","RawValue":null,"UsmapPropertyTypeOverrides":{"$type":"System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[UAssetAPI.Unversioned.EPropertyType, UAssetAPI]], System.Private.CoreLib","MulticastInlineDelegateProperty":"MulticastDelegateProperty","ClassProperty":"ObjectProperty","SoftClassProperty":"SoftObjectProperty"},"SerializedType":"FloatProperty","Name":"ChestOpening_LidPosition_969DC31E44D0EE60ED5299A5507DE06E","Flags":"RF_Public, RF_LoadCompleted","MetaDataMap":null},{"$type":"UAssetAPI.FieldTypes.FByteProperty, UAssetAPI","Enum":-24,"ArrayDim":"TArray","ElementSize":1,"PropertyFlags":"CPF_None","RepIndex":0,"RepNotifyFunc":"None","BlueprintReplicationCondition":"COND_None","RawValue":null,"UsmapPropertyTypeOverrides":{"$type":"System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[UAssetAPI.Unversioned.EPropertyType, UAssetAPI]], System.Private.CoreLib","MulticastInlineDelegateProperty":"MulticastDelegateProperty","ClassProperty":"ObjectProperty","SoftClassProperty":"SoftObjectProperty"},"SerializedType":"ByteProperty","Name":"ChestOpening__Direction_969DC31E44D0EE60ED5299A5507DE06E","Flags":"RF_Public, RF_LoadCompleted","MetaDataMap":null},{"$type":"UAssetAPI.FieldTypes.FObjectProperty, UAssetAPI","PropertyClass":-16,"ArrayDim":"TArray","ElementSize":8,"PropertyFlags":"CPF_BlueprintVisible, CPF_InstancedReference","RepIndex":0,"RepNotifyFunc":"None","BlueprintReplicationCondition":"COND_None","RawValue":null,"UsmapPropertyTypeOverrides":{"$type":"System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[UAssetAPI.Unversioned.EPropertyType, UAssetAPI]], System.Private.CoreLib","MulticastInlineDelegateProperty":"MulticastDelegateProperty","ClassProperty":"ObjectProperty","SoftClassProperty":"SoftObjectProperty"},"SerializedType":"ObjectProperty","Name":"ChestOpening","Flags":"RF_Public, RF_LoadCompleted","MetaDataMap":null},{"$type":"UAssetAPI.FieldTypes.FBoolProperty, UAssetAPI","FieldSize":1,"ByteOffset":0,"ByteMask":1,"FieldMask":255,"NativeBool":true,"Value":1,"ArrayDim":"TArray","ElementSize":1,"PropertyFlags":"CPF_Edit, CPF_BlueprintVisible, CPF_Net, CPF_DisableEditOnInstance, CPF_RepNotify","RepIndex":10,"RepNotifyFunc":"OnRep_bOpenChest","BlueprintReplicationCondition":"COND_None","RawValue":null,"UsmapPropertyTypeOverrides":{"$type":"System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[UAssetAPI.Unversioned.EPropertyType, UAssetAPI]], System.Private.CoreLib","MulticastInlineDelegateProperty":"MulticastDelegateProperty","ClassProperty":"ObjectProperty","SoftClassProperty":"SoftObjectProperty"},"SerializedType":"BoolProperty","Name":"bOpenChest","Flags":"RF_Public, RF_LoadCompleted","MetaDataMap":null}],
+	"ScriptBytecode": [],
+	"ScriptBytecodeSize": 0,
+	"ScriptBytecodeRaw": null,
+	"Field": {"$type":"UAssetAPI.FieldTypes.UField, UAssetAPI","Next":null},
+	"ObjectName": "BP_ItemPickupChest_C",
+	"ObjectFlags": "RF_Public, RF_Transactional",
+	"SerialSize": 777,
+	"SerialOffset": 9776,
+	"ScriptSerializationStartOffset": 0,
+	"ScriptSerializationEndOffset": 0,
+	"bForcedExport": false,
+	"bNotForClient": false,
+	"bNotForServer": false,
+	"PackageGuid": "{00000000-0000-0000-0000-000000000000}",
+	"IsInheritedInstance": false,
+	"PackageFlags": "PKG_None",
+	"bNotAlwaysLoadedForEditorGame": false,
+	"bIsAsset": true,
+	"GeneratePublicHash": false,
+	"SerializationBeforeSerializationDependencies": [-18,-46,-24,-3,1,-15,-52,19],
+	"CreateBeforeSerializationDependencies": [23,7,6,5,4,3,2,-22,-8,-16],
+	"SerializationBeforeCreateDependencies": [-7,-1],
+	"CreateBeforeCreateDependencies": [-18],
+	"PublicExportHash": 0,
+	"Padding": null,
+	"Extras": {"$type":"System.Byte[], System.Private.CoreLib","$value":""},
+	"OuterIndex": 0,
+	"ClassIndex": -7,
+	"SuperIndex": -18,
+	"TemplateIndex": -1,
+	"Data": [
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.IntPropertyData, UAssetAPI", "Name":"NumReplicatedProperties", "Value":1 },
+		{
+			"$type": "UAssetAPI.PropertyTypes.Objects.ArrayPropertyData, UAssetAPI",
+			"ArrayType": "ObjectProperty",
+			"Name": "Timelines",
+			"Value": [
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"0", "Value":23 }
+			]
+		},
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"SimpleConstructionScript", "Value":19 },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"UberGraphFunction", "Value":1 }
+	]
+},
+{
+	"$type": "UAssetAPI.ExportTypes.NormalExport, UAssetAPI",
+	"$index": 9,
+	"ObjectName": "Default__BP_ItemPickupChest_C",
+	"ObjectFlags": "RF_Public, RF_ClassDefaultObject, RF_ArchetypeObject",
+	"SerialSize": 247,
+	"SerialOffset": 10553,
+	"ScriptSerializationStartOffset": 0,
+	"ScriptSerializationEndOffset": 0,
+	"bForcedExport": false,
+	"bNotForClient": false,
+	"bNotForServer": false,
+	"PackageGuid": "{00000000-0000-0000-0000-000000000000}",
+	"IsInheritedInstance": false,
+	"PackageFlags": "PKG_None",
+	"bNotAlwaysLoadedForEditorGame": false,
+	"bIsAsset": false,
+	"GeneratePublicHash": false,
+	"SerializationBeforeSerializationDependencies": [15,20,16,21,17,10,18,12],
+	"CreateBeforeSerializationDependencies": [22],
+	"SerializationBeforeCreateDependencies": [8,-3,-52],
+	"CreateBeforeCreateDependencies": [],
+	"PublicExportHash": 0,
+	"Padding": null,
+	"Extras": {"$type":"System.Byte[], System.Private.CoreLib","$value":""},
+	"OuterIndex": 0,
+	"ClassIndex": 8,
+	"SuperIndex": 0,
+	"TemplateIndex": -3,
+	"Data": [
+		{ "$type":"UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI", "StructType":"PointerToUberGraphFrame", "SerializeNone":true,"Name":"UberGraphFrame", "Value":[] },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"boxMesh", "Value":22 },
+		{
+			"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+			"StructType": "ActorTickFunction",
+			"SerializeNone": true,
+			"Name": "PrimaryActorTick",
+			"Value": [
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"bStartWithTickEnabled", "Value":0 }
+			]
+		},
+		{
+			"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+			"ByteType": "FName",
+			"EnumType": "ENetRole",
+			"EnumValue": "ROLE_None",
+			"Name": "RemoteRole"
+		},
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"RootComponent", "Value":22 }
+	]
+},
+{
+	"$type": "UAssetAPI.ExportTypes.NormalExport, UAssetAPI",
+	"$index": 10,
+	"ObjectName": "Box_GEN_VARIABLE",
+	"ObjectFlags": "RF_Public, RF_Transactional, RF_ArchetypeObject",
+	"SerialSize": 163,
+	"SerialOffset": 10800,
+	"ScriptSerializationStartOffset": 0,
+	"ScriptSerializationEndOffset": 0,
+	"bForcedExport": false,
+	"bNotForClient": false,
+	"bNotForServer": false,
+	"PackageGuid": "{00000000-0000-0000-0000-000000000000}",
+	"IsInheritedInstance": false,
+	"PackageFlags": "PKG_None",
+	"bNotAlwaysLoadedForEditorGame": false,
+	"bIsAsset": false,
+	"GeneratePublicHash": false,
+	"SerializationBeforeSerializationDependencies": [8],
+	"CreateBeforeSerializationDependencies": [-21],
+	"SerializationBeforeCreateDependencies": [-8,-2],
+	"CreateBeforeCreateDependencies": [8],
+	"PublicExportHash": 0,
+	"Padding": null,
+	"Extras": {"$type":"System.Byte[], System.Private.CoreLib","$value":"AAAAAA=="},
+	"OuterIndex": 8,
+	"ClassIndex": -8,
+	"SuperIndex": 0,
+	"TemplateIndex": -2,
+	"Data": [
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"AreaClass", "Value":-21 },
+		{
+			"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+			"StructType": "Vector",
+			"SerializeNone": true,
+			"Name": "RelativeLocation",
+			"Value": [
+				{
+					"$type": "UAssetAPI.PropertyTypes.Structs.VectorPropertyData, UAssetAPI",
+					"Name": "RelativeLocation",
+					"Value": {
+						"$type": "UAssetAPI.UnrealTypes.FVector, UAssetAPI",
+						"X": "+0",
+						"Y": "+0",
+						"Z": 18.019474029541016
+					}
+				}
+			]
+		},
+		{
+			"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+			"StructType": "Vector",
+			"SerializeNone": true,
+			"Name": "RelativeScale3D",
+			"Value": [
+				{
+					"$type": "UAssetAPI.PropertyTypes.Structs.VectorPropertyData, UAssetAPI",
+					"Name": "RelativeScale3D",
+					"Value": {
+						"$type": "UAssetAPI.UnrealTypes.FVector, UAssetAPI",
+						"X": 1.8737339973449707,
+						"Y": 3.041416645050049,
+						"Z": 2
+					}
+				}
+			]
+		}
+	]
+},
+{
+	"$type": "UAssetAPI.ExportTypes.NormalExport, UAssetAPI",
+	"$index": 11,
+	"ObjectName": "CurveFloat_0",
+	"ObjectFlags": "RF_Public, RF_Transactional",
+	"SerialSize": 209,
+	"SerialOffset": 10963,
+	"ScriptSerializationStartOffset": 0,
+	"ScriptSerializationEndOffset": 0,
+	"bForcedExport": false,
+	"bNotForClient": false,
+	"bNotForServer": false,
+	"PackageGuid": "{00000000-0000-0000-0000-000000000000}",
+	"IsInheritedInstance": false,
+	"PackageFlags": "PKG_None",
+	"bNotAlwaysLoadedForEditorGame": false,
+	"bIsAsset": false,
+	"GeneratePublicHash": false,
+	"SerializationBeforeSerializationDependencies": [],
+	"CreateBeforeSerializationDependencies": [],
+	"SerializationBeforeCreateDependencies": [-9,-23],
+	"CreateBeforeCreateDependencies": [8],
+	"PublicExportHash": 0,
+	"Padding": null,
+	"Extras": {"$type":"System.Byte[], System.Private.CoreLib","$value":"AAAAAA=="},
+	"OuterIndex": 8,
+	"ClassIndex": -9,
+	"SuperIndex": 0,
+	"TemplateIndex": -23,
+	"Data": [
+		{
+			"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+			"StructType": "RichCurve",
+			"SerializeNone": true,
+			"Name": "FloatCurve",
+			"Value": [
+				{
+					"$type": "UAssetAPI.PropertyTypes.Objects.ArrayPropertyData, UAssetAPI",
+					"ArrayType": "StructProperty",
+					"Name": "Keys",
+					"Value": [
+						{
+							"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+							"StructType": "RichCurveKey",
+							"SerializeNone": true,
+							"Name": "Keys",
+							"Value": [
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.RichCurveKeyPropertyData, UAssetAPI",
+									"Name": "Keys",
+									"Value": {
+										"$type": "UAssetAPI.UnrealTypes.FRichCurveKey, UAssetAPI",
+										"InterpMode": "RCIM_Cubic",
+										"TangentMode": "RCTM_User",
+										"TangentWeightMode": "RCTWM_WeightedNone",
+										"Time": -0.0015345364809036255,
+										"Value": "+0",
+										"ArriveTangent": -0.029393969103693962,
+										"ArriveTangentWeight": "+0",
+										"LeaveTangent": -0.02939397096633911,
+										"LeaveTangentWeight": "+0"
+									}
+								}
+							]
+						},
+						{
+							"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+							"StructType": "RichCurveKey",
+							"SerializeNone": true,
+							"Name": "Keys",
+							"Value": [
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.RichCurveKeyPropertyData, UAssetAPI",
+									"Name": "Keys",
+									"Value": {
+										"$type": "UAssetAPI.UnrealTypes.FRichCurveKey, UAssetAPI",
+										"InterpMode": "RCIM_Cubic",
+										"TangentMode": "RCTM_Auto",
+										"TangentWeightMode": "RCTWM_WeightedNone",
+										"Time": 1,
+										"Value": 1,
+										"ArriveTangent": "+0",
+										"ArriveTangentWeight": "+0",
+										"LeaveTangent": "+0",
+										"LeaveTangentWeight": "+0"
+									}
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+},
+{
+	"$type": "UAssetAPI.ExportTypes.NormalExport, UAssetAPI",
+	"$index": 12,
+	"ObjectName": "Niagara_GEN_VARIABLE",
+	"ObjectFlags": "RF_Public, RF_Transactional, RF_ArchetypeObject",
+	"SerialSize": 220,
+	"SerialOffset": 11172,
+	"ScriptSerializationStartOffset": 0,
+	"ScriptSerializationEndOffset": 0,
+	"bForcedExport": false,
+	"bNotForClient": false,
+	"bNotForServer": false,
+	"PackageGuid": "{00000000-0000-0000-0000-000000000000}",
+	"IsInheritedInstance": false,
+	"PackageFlags": "PKG_None",
+	"bNotAlwaysLoadedForEditorGame": false,
+	"bIsAsset": false,
+	"GeneratePublicHash": false,
+	"SerializationBeforeSerializationDependencies": [8],
+	"CreateBeforeSerializationDependencies": [-34],
+	"SerializationBeforeCreateDependencies": [-22,-33],
+	"CreateBeforeCreateDependencies": [8],
+	"PublicExportHash": 0,
+	"Padding": null,
+	"Extras": {"$type":"System.Byte[], System.Private.CoreLib","$value":"AAAAAA=="},
+	"OuterIndex": 8,
+	"ClassIndex": -22,
+	"SuperIndex": 0,
+	"TemplateIndex": -33,
+	"Data": [
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"Asset", "Value":-34 },
+		{ "$type":"UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI", "StructType":"NiagaraUserRedirectionParameterStore", "SerializeNone":true,"Name":"OverrideParameters", "Value":[] },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"BoundsScale", "Value":30 },
+		{
+			"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+			"StructType": "Vector",
+			"SerializeNone": true,
+			"Name": "RelativeLocation",
+			"Value": [
+				{
+					"$type": "UAssetAPI.PropertyTypes.Structs.VectorPropertyData, UAssetAPI",
+					"Name": "RelativeLocation",
+					"Value": {
+						"$type": "UAssetAPI.UnrealTypes.FVector, UAssetAPI",
+						"X": "+0",
+						"Y": "+0",
+						"Z": -33.243080139160156
+					}
+				}
+			]
+		},
+		{
+			"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+			"StructType": "Vector",
+			"SerializeNone": true,
+			"Name": "RelativeScale3D",
+			"Value": [
+				{
+					"$type": "UAssetAPI.PropertyTypes.Structs.VectorPropertyData, UAssetAPI",
+					"Name": "RelativeScale3D",
+					"Value": {
+						"$type": "UAssetAPI.UnrealTypes.FVector, UAssetAPI",
+						"X": 1,
+						"Y": 0.25,
+						"Z": 1.5
+					}
+				}
+			]
+		}
+	]
+},
+{
+	"$type": "UAssetAPI.ExportTypes.NormalExport, UAssetAPI",
+	"$index": 13,
+	"ObjectName": "DefaultSceneRoot_GEN_VARIABLE",
+	"ObjectFlags": "RF_Public, RF_Transactional, RF_ArchetypeObject",
+	"SerialSize": 53,
+	"SerialOffset": 11392,
+	"ScriptSerializationStartOffset": 0,
+	"ScriptSerializationEndOffset": 0,
+	"bForcedExport": false,
+	"bNotForClient": false,
+	"bNotForServer": false,
+	"PackageGuid": "{00000000-0000-0000-0000-000000000000}",
+	"IsInheritedInstance": false,
+	"PackageFlags": "PKG_None",
+	"bNotAlwaysLoadedForEditorGame": false,
+	"bIsAsset": false,
+	"GeneratePublicHash": false,
+	"SerializationBeforeSerializationDependencies": [8],
+	"CreateBeforeSerializationDependencies": [],
+	"SerializationBeforeCreateDependencies": [-12,-43],
+	"CreateBeforeCreateDependencies": [8],
+	"PublicExportHash": 0,
+	"Padding": null,
+	"Extras": {"$type":"System.Byte[], System.Private.CoreLib","$value":"AAAAAA=="},
+	"OuterIndex": 8,
+	"ClassIndex": -12,
+	"SuperIndex": 0,
+	"TemplateIndex": -43,
+	"Data": [
+		{
+			"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+			"ByteType": "FName",
+			"EnumType": "EComponentMobility",
+			"EnumValue": "EComponentMobility::Static",
+			"Name": "Mobility"
+		}
+	]
+},
+{
+	"$type": "UAssetAPI.ExportTypes.NormalExport, UAssetAPI",
+	"$index": 14,
+	"ObjectName": "SCS_Node_0",
+	"ObjectFlags": "RF_Transactional",
+	"SerialSize": 168,
+	"SerialOffset": 11445,
+	"ScriptSerializationStartOffset": 0,
+	"ScriptSerializationEndOffset": 0,
+	"bForcedExport": false,
+	"bNotForClient": false,
+	"bNotForServer": false,
+	"PackageGuid": "{00000000-0000-0000-0000-000000000000}",
+	"IsInheritedInstance": false,
+	"PackageFlags": "PKG_None",
+	"bNotAlwaysLoadedForEditorGame": false,
+	"bIsAsset": false,
+	"GeneratePublicHash": false,
+	"SerializationBeforeSerializationDependencies": [],
+	"CreateBeforeSerializationDependencies": [13,-12],
+	"SerializationBeforeCreateDependencies": [-13,-47],
+	"CreateBeforeCreateDependencies": [19],
+	"PublicExportHash": 0,
+	"Padding": null,
+	"Extras": {"$type":"System.Byte[], System.Private.CoreLib","$value":"AAAAAA=="},
+	"OuterIndex": 19,
+	"ClassIndex": -13,
+	"SuperIndex": 0,
+	"TemplateIndex": -47,
+	"Data": [
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"ComponentClass", "Value":-12 },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"ComponentTemplate", "Value":13 },
+		{
+			"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+			"StructType": "Guid",
+			"SerializeNone": true,
+			"Name": "VariableGuid",
+			"Value": [
+				{ "$type":"UAssetAPI.PropertyTypes.Structs.GuidPropertyData, UAssetAPI", "Name":"VariableGuid", "Value":"{28FBB066-4D35-5FE1-75D7-CEB193D1E014}" }
+			]
+		},
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"InternalVariableName", "Value":"DefaultSceneRoot" }
+	]
+},
+{
+	"$type": "UAssetAPI.ExportTypes.NormalExport, UAssetAPI",
+	"$index": 15,
+	"ObjectName": "SCS_Node_1",
+	"ObjectFlags": "RF_Transactional",
+	"SerialSize": 227,
+	"SerialOffset": 11613,
+	"ScriptSerializationStartOffset": 0,
+	"ScriptSerializationEndOffset": 0,
+	"bForcedExport": false,
+	"bNotForClient": false,
+	"bNotForServer": false,
+	"PackageGuid": "{00000000-0000-0000-0000-000000000000}",
+	"IsInheritedInstance": false,
+	"PackageFlags": "PKG_None",
+	"bNotAlwaysLoadedForEditorGame": false,
+	"bIsAsset": false,
+	"GeneratePublicHash": false,
+	"SerializationBeforeSerializationDependencies": [],
+	"CreateBeforeSerializationDependencies": [20,-15],
+	"SerializationBeforeCreateDependencies": [-13,-47],
+	"CreateBeforeCreateDependencies": [19],
+	"PublicExportHash": 0,
+	"Padding": null,
+	"Extras": {"$type":"System.Byte[], System.Private.CoreLib","$value":"AAAAAA=="},
+	"OuterIndex": 19,
+	"ClassIndex": -13,
+	"SuperIndex": 0,
+	"TemplateIndex": -47,
+	"Data": [
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"ComponentClass", "Value":-15 },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"ComponentTemplate", "Value":20 },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"ParentComponentOrVariableName", "Value":"boxMesh" },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"bIsParentComponentNative", "Value":1 },
+		{
+			"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+			"StructType": "Guid",
+			"SerializeNone": true,
+			"Name": "VariableGuid",
+			"Value": [
+				{ "$type":"UAssetAPI.PropertyTypes.Structs.GuidPropertyData, UAssetAPI", "Name":"VariableGuid", "Value":"{042D269C-4DCD-6966-1A45-3880B161F210}" }
+			]
+		},
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"InternalVariableName", "Value":"Base" }
+	]
+},
+{
+	"$type": "UAssetAPI.ExportTypes.NormalExport, UAssetAPI",
+	"$index": 16,
+	"ObjectName": "SCS_Node_2",
+	"ObjectFlags": "RF_Transactional",
+	"SerialSize": 227,
+	"SerialOffset": 11840,
+	"ScriptSerializationStartOffset": 0,
+	"ScriptSerializationEndOffset": 0,
+	"bForcedExport": false,
+	"bNotForClient": false,
+	"bNotForServer": false,
+	"PackageGuid": "{00000000-0000-0000-0000-000000000000}",
+	"IsInheritedInstance": false,
+	"PackageFlags": "PKG_None",
+	"bNotAlwaysLoadedForEditorGame": false,
+	"bIsAsset": false,
+	"GeneratePublicHash": false,
+	"SerializationBeforeSerializationDependencies": [],
+	"CreateBeforeSerializationDependencies": [21,-15],
+	"SerializationBeforeCreateDependencies": [-13,-47],
+	"CreateBeforeCreateDependencies": [19],
+	"PublicExportHash": 0,
+	"Padding": null,
+	"Extras": {"$type":"System.Byte[], System.Private.CoreLib","$value":"AAAAAA=="},
+	"OuterIndex": 19,
+	"ClassIndex": -13,
+	"SuperIndex": 0,
+	"TemplateIndex": -47,
+	"Data": [
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"ComponentClass", "Value":-15 },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"ComponentTemplate", "Value":21 },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"ParentComponentOrVariableName", "Value":"boxMesh" },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"bIsParentComponentNative", "Value":1 },
+		{
+			"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+			"StructType": "Guid",
+			"SerializeNone": true,
+			"Name": "VariableGuid",
+			"Value": [
+				{ "$type":"UAssetAPI.PropertyTypes.Structs.GuidPropertyData, UAssetAPI", "Name":"VariableGuid", "Value":"{575FA750-446C-049C-1445-619E84CAD352}" }
+			]
+		},
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"InternalVariableName", "Value":"Lid" }
+	]
+},
+{
+	"$type": "UAssetAPI.ExportTypes.NormalExport, UAssetAPI",
+	"$index": 17,
+	"ObjectName": "SCS_Node_3",
+	"ObjectFlags": "RF_Transactional",
+	"SerialSize": 227,
+	"SerialOffset": 12067,
+	"ScriptSerializationStartOffset": 0,
+	"ScriptSerializationEndOffset": 0,
+	"bForcedExport": false,
+	"bNotForClient": false,
+	"bNotForServer": false,
+	"PackageGuid": "{00000000-0000-0000-0000-000000000000}",
+	"IsInheritedInstance": false,
+	"PackageFlags": "PKG_None",
+	"bNotAlwaysLoadedForEditorGame": false,
+	"bIsAsset": false,
+	"GeneratePublicHash": false,
+	"SerializationBeforeSerializationDependencies": [],
+	"CreateBeforeSerializationDependencies": [10,-8],
+	"SerializationBeforeCreateDependencies": [-13,-47],
+	"CreateBeforeCreateDependencies": [19],
+	"PublicExportHash": 0,
+	"Padding": null,
+	"Extras": {"$type":"System.Byte[], System.Private.CoreLib","$value":"AAAAAA=="},
+	"OuterIndex": 19,
+	"ClassIndex": -13,
+	"SuperIndex": 0,
+	"TemplateIndex": -47,
+	"Data": [
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"ComponentClass", "Value":-8 },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"ComponentTemplate", "Value":10 },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"ParentComponentOrVariableName", "Value":"boxMesh" },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"bIsParentComponentNative", "Value":1 },
+		{
+			"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+			"StructType": "Guid",
+			"SerializeNone": true,
+			"Name": "VariableGuid",
+			"Value": [
+				{ "$type":"UAssetAPI.PropertyTypes.Structs.GuidPropertyData, UAssetAPI", "Name":"VariableGuid", "Value":"{8E668CBF-4F7F-6AE8-BC1F-2E8EFC432CCD}" }
+			]
+		},
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"InternalVariableName", "Value":"Box" }
+	]
+},
+{
+	"$type": "UAssetAPI.ExportTypes.NormalExport, UAssetAPI",
+	"$index": 18,
+	"ObjectName": "SCS_Node_4",
+	"ObjectFlags": "RF_Transactional",
+	"SerialSize": 227,
+	"SerialOffset": 12294,
+	"ScriptSerializationStartOffset": 0,
+	"ScriptSerializationEndOffset": 0,
+	"bForcedExport": false,
+	"bNotForClient": false,
+	"bNotForServer": false,
+	"PackageGuid": "{00000000-0000-0000-0000-000000000000}",
+	"IsInheritedInstance": false,
+	"PackageFlags": "PKG_None",
+	"bNotAlwaysLoadedForEditorGame": false,
+	"bIsAsset": false,
+	"GeneratePublicHash": false,
+	"SerializationBeforeSerializationDependencies": [],
+	"CreateBeforeSerializationDependencies": [12,-22],
+	"SerializationBeforeCreateDependencies": [-13,-47],
+	"CreateBeforeCreateDependencies": [19],
+	"PublicExportHash": 0,
+	"Padding": null,
+	"Extras": {"$type":"System.Byte[], System.Private.CoreLib","$value":"AAAAAA=="},
+	"OuterIndex": 19,
+	"ClassIndex": -13,
+	"SuperIndex": 0,
+	"TemplateIndex": -47,
+	"Data": [
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"ComponentClass", "Value":-22 },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"ComponentTemplate", "Value":12 },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"ParentComponentOrVariableName", "Value":"boxMesh" },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"bIsParentComponentNative", "Value":1 },
+		{
+			"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+			"StructType": "Guid",
+			"SerializeNone": true,
+			"Name": "VariableGuid",
+			"Value": [
+				{ "$type":"UAssetAPI.PropertyTypes.Structs.GuidPropertyData, UAssetAPI", "Name":"VariableGuid", "Value":"{3C74A8C4-4CC1-0F58-2398-219155F5F6CE}" }
+			]
+		},
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"InternalVariableName", "Value":"Niagara" }
+	]
+},
+{
+	"$type": "UAssetAPI.ExportTypes.NormalExport, UAssetAPI",
+	"$index": 19,
+	"ObjectName": "SimpleConstructionScript_0",
+	"ObjectFlags": "RF_Transactional",
+	"SerialSize": 147,
+	"SerialOffset": 12521,
+	"ScriptSerializationStartOffset": 0,
+	"ScriptSerializationEndOffset": 0,
+	"bForcedExport": false,
+	"bNotForClient": false,
+	"bNotForServer": false,
+	"PackageGuid": "{00000000-0000-0000-0000-000000000000}",
+	"IsInheritedInstance": false,
+	"PackageFlags": "PKG_None",
+	"bNotAlwaysLoadedForEditorGame": false,
+	"bIsAsset": false,
+	"GeneratePublicHash": false,
+	"SerializationBeforeSerializationDependencies": [],
+	"CreateBeforeSerializationDependencies": [15,16,17,18,14],
+	"SerializationBeforeCreateDependencies": [-14,-48],
+	"CreateBeforeCreateDependencies": [8],
+	"PublicExportHash": 0,
+	"Padding": null,
+	"Extras": {"$type":"System.Byte[], System.Private.CoreLib","$value":"AAAAAA=="},
+	"OuterIndex": 8,
+	"ClassIndex": -14,
+	"SuperIndex": 0,
+	"TemplateIndex": -48,
+	"Data": [
+		{
+			"$type": "UAssetAPI.PropertyTypes.Objects.ArrayPropertyData, UAssetAPI",
+			"ArrayType": "ObjectProperty",
+			"Name": "RootNodes",
+			"Value": [
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"0", "Value":15 },
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"1", "Value":16 },
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"2", "Value":17 },
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"3", "Value":18 }
+			]
+		},
+		{
+			"$type": "UAssetAPI.PropertyTypes.Objects.ArrayPropertyData, UAssetAPI",
+			"ArrayType": "ObjectProperty",
+			"Name": "AllNodes",
+			"Value": [
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"0", "Value":15 },
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"1", "Value":16 },
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"2", "Value":17 },
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"3", "Value":18 }
+			]
+		},
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"DefaultSceneRootNode", "Value":14 }
+	]
+},
+{
+	"$type": "UAssetAPI.ExportTypes.NormalExport, UAssetAPI",
+	"$index": 20,
+	"ObjectName": "Base_GEN_VARIABLE",
+	"ObjectFlags": "RF_Public, RF_Transactional, RF_ArchetypeObject",
+	"SerialSize": 132,
+	"SerialOffset": 12668,
+	"ScriptSerializationStartOffset": 0,
+	"ScriptSerializationEndOffset": 0,
+	"bForcedExport": false,
+	"bNotForClient": false,
+	"bNotForServer": false,
+	"PackageGuid": "{00000000-0000-0000-0000-000000000000}",
+	"IsInheritedInstance": false,
+	"PackageFlags": "PKG_None",
+	"bNotAlwaysLoadedForEditorGame": false,
+	"bIsAsset": false,
+	"GeneratePublicHash": false,
+	"SerializationBeforeSerializationDependencies": [8],
+	"CreateBeforeSerializationDependencies": [-50],
+	"SerializationBeforeCreateDependencies": [-15,-51],
+	"CreateBeforeCreateDependencies": [8],
+	"PublicExportHash": 0,
+	"Padding": null,
+	"Extras": {"$type":"System.Byte[], System.Private.CoreLib","$value":"AAAAAAAAAAA="},
+	"OuterIndex": 8,
+	"ClassIndex": -15,
+	"SuperIndex": 0,
+	"TemplateIndex": -51,
+	"Data": [
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"StaticMesh", "Value":-50 },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"bUseAsOccluder", "Value":0 },
+		{
+			"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+			"StructType": "Vector",
+			"SerializeNone": true,
+			"Name": "RelativeLocation",
+			"Value": [
+				{
+					"$type": "UAssetAPI.PropertyTypes.Structs.VectorPropertyData, UAssetAPI",
+					"Name": "RelativeLocation",
+					"Value": {
+						"$type": "UAssetAPI.UnrealTypes.FVector, UAssetAPI",
+						"X": -48.28620147705078,
+						"Y": -84.99999237060547,
+						"Z": -33.243431091308594
+					}
+				}
+			]
+		},
+		{
+			"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+			"StructType": "Vector",
+			"SerializeNone": true,
+			"Name": "RelativeScale3D",
+			"Value": [
+				{
+					"$type": "UAssetAPI.PropertyTypes.Structs.VectorPropertyData, UAssetAPI",
+					"Name": "RelativeScale3D",
+					"Value": {
+						"$type": "UAssetAPI.UnrealTypes.FVector, UAssetAPI",
+						"X": 2,
+						"Y": 2,
+						"Z": 2
+					}
+				}
+			]
+		}
+	]
+},
+{
+	"$type": "UAssetAPI.ExportTypes.NormalExport, UAssetAPI",
+	"$index": 21,
+	"ObjectName": "Lid_GEN_VARIABLE",
+	"ObjectFlags": "RF_Public, RF_Transactional, RF_ArchetypeObject",
+	"SerialSize": 193,
+	"SerialOffset": 12800,
+	"ScriptSerializationStartOffset": 0,
+	"ScriptSerializationEndOffset": 0,
+	"bForcedExport": false,
+	"bNotForClient": false,
+	"bNotForServer": false,
+	"PackageGuid": "{00000000-0000-0000-0000-000000000000}",
+	"IsInheritedInstance": false,
+	"PackageFlags": "PKG_None",
+	"bNotAlwaysLoadedForEditorGame": false,
+	"bIsAsset": false,
+	"GeneratePublicHash": false,
+	"SerializationBeforeSerializationDependencies": [8],
+	"CreateBeforeSerializationDependencies": [-49],
+	"SerializationBeforeCreateDependencies": [-15,-51],
+	"CreateBeforeCreateDependencies": [8],
+	"PublicExportHash": 0,
+	"Padding": null,
+	"Extras": {"$type":"System.Byte[], System.Private.CoreLib","$value":"AAAAAAAAAAA="},
+	"OuterIndex": 8,
+	"ClassIndex": -15,
+	"SuperIndex": 0,
+	"TemplateIndex": -51,
+	"Data": [
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"StaticMesh", "Value":-49 },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"bUseAsOccluder", "Value":0 },
+		{
+			"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+			"StructType": "Vector",
+			"SerializeNone": true,
+			"Name": "RelativeLocation",
+			"Value": [
+				{
+					"$type": "UAssetAPI.PropertyTypes.Structs.VectorPropertyData, UAssetAPI",
+					"Name": "RelativeLocation",
+					"Value": {
+						"$type": "UAssetAPI.UnrealTypes.FVector, UAssetAPI",
+						"X": -50.13942337036133,
+						"Y": -84.99994659423828,
+						"Z": 31.69072723388672
+					}
+				}
+			]
+		},
+		{
+			"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+			"StructType": "Vector",
+			"SerializeNone": true,
+			"Name": "RelativeScale3D",
+			"Value": [
+				{
+					"$type": "UAssetAPI.PropertyTypes.Structs.VectorPropertyData, UAssetAPI",
+					"Name": "RelativeScale3D",
+					"Value": {
+						"$type": "UAssetAPI.UnrealTypes.FVector, UAssetAPI",
+						"X": 2,
+						"Y": 2,
+						"Z": 2
+					}
+				}
+			]
+		},
+		{
+			"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+			"StructType": "BodyInstance",
+			"SerializeNone": true,
+			"Name": "BodyInstance",
+			"Value": [
+				{
+					"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+					"ByteType": "FName",
+					"EnumType": "ECollisionEnabled",
+					"EnumValue": "ECollisionEnabled::NoCollision",
+					"Name": "CollisionEnabled"
+				},
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"CollisionProfileName", "Value":"NoCollision" },
+				{
+					"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+					"StructType": "CollisionResponse",
+					"SerializeNone": true,
+					"Name": "CollisionResponses",
+					"Value": [
+						{
+							"$type": "UAssetAPI.PropertyTypes.Objects.ArrayPropertyData, UAssetAPI",
+							"ArrayType": "StructProperty",
+							"Name": "ResponseArray",
+							"Value": [
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"WorldStatic" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"WorldDynamic" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"Pawn" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"Visibility" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"Camera" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"PhysicsBody" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"Vehicle" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"Destructible" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"Power" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"PuzzleBounds" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+},
+{
+	"$type": "UAssetAPI.ExportTypes.NormalExport, UAssetAPI",
+	"$index": 22,
+	"ObjectName": "boxMesh",
+	"ObjectFlags": "RF_Public, RF_Transactional, RF_ArchetypeObject, RF_DefaultSubObject",
+	"SerialSize": 16,
+	"SerialOffset": 12993,
+	"ScriptSerializationStartOffset": 0,
+	"ScriptSerializationEndOffset": 0,
+	"bForcedExport": false,
+	"bNotForClient": false,
+	"bNotForServer": false,
+	"PackageGuid": "{00000000-0000-0000-0000-000000000000}",
+	"IsInheritedInstance": false,
+	"PackageFlags": "PKG_None",
+	"bNotAlwaysLoadedForEditorGame": true,
+	"bIsAsset": false,
+	"GeneratePublicHash": false,
+	"SerializationBeforeSerializationDependencies": [9],
+	"CreateBeforeSerializationDependencies": [-3],
+	"SerializationBeforeCreateDependencies": [-15,-52],
+	"CreateBeforeCreateDependencies": [9],
+	"PublicExportHash": 0,
+	"Padding": null,
+	"Extras": {"$type":"System.Byte[], System.Private.CoreLib","$value":"AAAAAAAAAAA="},
+	"OuterIndex": 9,
+	"ClassIndex": -15,
+	"SuperIndex": 0,
+	"TemplateIndex": -52,
+	"Data": []
+},
+{
+	"$type": "UAssetAPI.ExportTypes.NormalExport, UAssetAPI",
+	"$index": 23,
+	"ObjectName": "ChestOpening_Template",
+	"ObjectFlags": "RF_Transactional",
+	"SerialSize": 453,
+	"SerialOffset": 13009,
+	"ScriptSerializationStartOffset": 0,
+	"ScriptSerializationEndOffset": 0,
+	"bForcedExport": false,
+	"bNotForClient": false,
+	"bNotForServer": false,
+	"PackageGuid": "{00000000-0000-0000-0000-000000000000}",
+	"IsInheritedInstance": false,
+	"PackageFlags": "PKG_None",
+	"bNotAlwaysLoadedForEditorGame": false,
+	"bIsAsset": false,
+	"GeneratePublicHash": false,
+	"SerializationBeforeSerializationDependencies": [],
+	"CreateBeforeSerializationDependencies": [11],
+	"SerializationBeforeCreateDependencies": [-17,-53],
+	"CreateBeforeCreateDependencies": [8],
+	"PublicExportHash": 0,
+	"Padding": null,
+	"Extras": {"$type":"System.Byte[], System.Private.CoreLib","$value":"AAAAAA=="},
+	"OuterIndex": 8,
+	"ClassIndex": -17,
+	"SuperIndex": 0,
+	"TemplateIndex": -53,
+	"Data": [
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"TimelineLength", "Value":1 },
+		{
+			"$type": "UAssetAPI.PropertyTypes.Objects.ArrayPropertyData, UAssetAPI",
+			"ArrayType": "StructProperty",
+			"Name": "FloatTracks",
+			"Value": [
+				{
+					"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+					"StructType": "TTFloatTrack",
+					"SerializeNone": true,
+					"Name": "FloatTracks",
+					"Value": [
+						{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"CurveFloat", "Value":11 },
+						{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"PropertyName", "Value":"ChestOpening_LidPosition_969DC31E44D0EE60ED5299A5507DE06E" },
+						{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"TrackName", "Value":"LidPosition" },
+						{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"bIsExternalCurve", "Value":0 }
+					]
+				}
+			]
+		},
+		{
+			"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+			"StructType": "Guid",
+			"SerializeNone": true,
+			"Name": "TimelineGuid",
+			"Value": [
+				{ "$type":"UAssetAPI.PropertyTypes.Structs.GuidPropertyData, UAssetAPI", "Name":"TimelineGuid", "Value":"{969DC31E-44D0-EE60-ED52-99A5507DE06E}" }
+			]
+		},
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"VariableName", "Value":"ChestOpening" },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"DirectionPropertyName", "Value":"ChestOpening__Direction_969DC31E44D0EE60ED5299A5507DE06E" },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"UpdateFunctionName", "Value":"ChestOpening__UpdateFunc" },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"FinishedFunctionName", "Value":"ChestOpening__FinishedFunc" }
+	]
+}
+]
+}

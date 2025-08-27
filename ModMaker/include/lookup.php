@@ -69,6 +69,7 @@ function PuzzlePrettyName(string $ptype){
 		case "viewfinder"				: return "SightSeer";
 		case "loreFragment"				: return "LoreFragment"; // not a real puzzle
 		case "monolithFragment"         : return "MonolithFragment"; // not a real puzzle
+		case "chest"					: return "Chest"; // not a real puzzle
 		default							: return FALSE;
 	}
 }
@@ -160,6 +161,7 @@ function PuzzleInternalName(string $name){
 		case "viewfinder"             : return "viewfinder";
 		case "lorefragment"           : return "loreFragment";
 		case "monolithfragment"       : return "monolithFragment";
+		case "chest"                  : return "chest";
 		default                       : return FALSE;
 	}
 }
@@ -471,7 +473,7 @@ function IsFastTravelCoord($obj){
 
 function MedalTierToName($tier){
 	static $tierNames = [
-		-1 => "None",
+		-1 => "Unsolved",
 		0  => "Bronze",
 		1  => "Silver",
 		2  => "Gold",

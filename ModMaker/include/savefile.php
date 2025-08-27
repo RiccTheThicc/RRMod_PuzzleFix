@@ -85,14 +85,89 @@ function EncodeSaveFile($inputPath, $outputPath){
 	return true;
 }
 
-function ParseAllPuzzles($mainNode, &$miscMap_ref){
+function &RetrievePrimaryNode(&$rawJson, string $nodeName){
+	if(empty($rawJson)){
+		printf("[ERROR] Raw json file is emopty!\n");
+		return;
+	}
+	if(!isset($rawJson->root)){
+		$rawJson->root = json_decode('{ "save_game_type": "/Script/IslandsofInsight.SophiaSaveGame", "properties": { } }');
+		printf("[WARNING] Creating a root subnode!\n");
+	}
+	if(!isset($rawJson->root->properties)){
+		$rawJson->root->properties = (object)[];
+	}
+	
+	static $defaultNode = null;
+	if($defaultNode === null){
+		$defaultNode = json_decode('{"Array": {"array_type": "StructProperty", "value": {"Struct": {"_type": "Unknown", "name": "StructProperty", "struct_type": {"Struct": "unknown"}, "id": "00000000-0000-0000-0000-000000000000", "value": []}}}}');
+	}
+	
+	static $nodeStructInfoMap = [
+		"Wallet"              => "KrakenWalletAccount",
+		"Inventory"           => "KrakenInventory",
+		"Settings"            => "KrakenCustomizationSetting",
+		"Achievements"        => "KrakenAchievementsState",
+		"Upgrades"            => "KrakenUpgradeStatus",
+		"Statuses"            => "KrakenServerVerifiedStatus",
+		"Quests"              => "KrakenQuestStatus",
+		"PuzzleStatuses"      => "KrakenPlayerPuzzleStatusData",
+		"RewardProgress"      => "KrakenRewardedProgressLevel",
+		"RewardProgressArray" => "KrakenRewardedProgressLevelArray",
+		"Unlockables"         => "KrakenUnlocksInCategory",
+	];
+	
+	$nodeName = str_replace("_0", "", $nodeName);
+	$parentNodeName = $nodeName . "_0";
+	
+	$mainNode_ref = &$rawJson->root->properties;
+	if(!isset($mainNode_ref->$parentNodeName)){
+		$mainNode_ref->$parentNodeName = unserialize(serialize($defaultNode));
+		$mainNode_ref->$parentNodeName->{"Array"}->value->Struct->{"_type"} = $nodeName;
+		$mainNode_ref->$parentNodeName->{"Array"}->value->Struct->struct_type->Struct = $nodeStructInfoMap[$nodeName];
+	}
+	
+	$a = &$mainNode_ref->$parentNodeName->{"Array"}->value->Struct->value;
+	return $a;
+}
+
+function RetrieveStructIndexByNameValue(&$primaryNode_ref, string $fieldName, $fieldValue){
+	if(empty($primaryNode_ref)){
+		printf("[ERROR] Given primary node is empty! Was looking for: %s = %s\n", $fieldName, $fieldValue);
+		return -1;
+	}
+	foreach($primaryNode_ref as $index => &$struct_ref){
+		if(!isset($struct_ref->Struct) || !isset($struct_ref->Struct->$fieldName)){
+			continue;
+		}
+		$checkValue = array_values((array)($struct_ref->Struct->$fieldName))[0]->value;
+		if($checkValue == $fieldValue){
+			return $index;
+		}
+	}unset($struct_ref);
+	return -1;
+}
+
+function &RetrieveStructByNameValue(&$primaryNode_ref, string $fieldName, $fieldValue){
+	static $error = null;
+	$index = RetrieveStructIndexByNameValue($primaryNode_ref, $fieldName, $fieldValue);
+	//printf("Searching for %s = %s, found index: %d\n", $fieldName, $fieldValue, $index);
+	if($index < 0){
+		return $error;
+	}
+	$a = &$primaryNode_ref[$index];
+	return $a;
+}
+
+function ParseAllPuzzles($rawJson, &$miscMap_ref){
 	$puzzleMap = GetPuzzleMap(true);
 	$puzzleCsvData = [];
-	if(!isset($mainNode->PuzzleStatuses_0)){
-		return $puzzleCsvData;
-	}
-	//$badSentinels = GetBadSentinels();
-	$allPuzzlesNode = $mainNode->PuzzleStatuses_0->{"Array"}->value->Struct->value; // yes this really sucks
+	//if(!isset($mainNode->PuzzleStatuses_0)){
+	//	return $puzzleCsvData;
+	//}
+	////$badSentinels = GetBadSentinels();
+	//$allPuzzlesNode = $mainNode->PuzzleStatuses_0->{"Array"}->value->Struct->value; // yes this really sucks
+	$allPuzzlesNode = RetrievePrimaryNode($rawJson, "PuzzleStatuses");
 	foreach($allPuzzlesNode as $puzzleNode){
 		// "BestScore_0": {                    // always 0
 		// "LastSolveTimestamp_0": {           // seems to be always 0 in offline mode
@@ -115,34 +190,37 @@ function ParseAllPuzzles($mainNode, &$miscMap_ref){
 		$pb       = (float)  $puzzleNode->Struct->LeaderboardTime_0->{"Float"}->value;
 		$misc     = (string) $puzzleNode->Struct->MiscStatus_0->{"Str"}->value;
 		
-		if(!isset($puzzleMap[$pid])){
+		if(isset($puzzleMap[$pid])){
+			$ptype = $puzzleMap[$pid]->ptype;
+			$zoneIndex = $puzzleMap[$pid]->zoneIndex;
+		}else{
+			$ptype = "extraPuzzle";
+			$zoneIndex = -1;
 			//printf("Skipping unknown solved puzzle %d\n", $pid);
-			continue;
+			//continue;
 		}
-		$actualPtype = $puzzleMap[$pid]->actualPtype;
-		$zoneIndex = $puzzleMap[$pid]->actualZoneIndex;
 		
-		if(!empty($misc) && !in_array($actualPtype, [ "gyroRing" ])){
+		if(!empty($misc) && !in_array($ptype, [ "gyroRing" ])){
 			//$misc = str_replace(["\r", "\n", "\t"], "", $misc);
 			//$misc = str_replace(".000000", "", $misc);
 			$misc = json_encode(json_decode($misc)); // un-shit the internal format
-			//printf("%s\n", ColorStr(sprintf("Puzzle %5d %-20s has misc: %s", $pid, $actualPtype, $misc), 255, 255, 0));
+			//printf("%s\n", ColorStr(sprintf("Puzzle %5d %-20s has misc: %s", $pid, $ptype, $misc), 255, 255, 0));
 			$miscMap_ref[$pid] = $misc;
 		}
 		
 		if(!$isSolved){
-			//printf("%s\n", ColorStr(sprintf("Puzzle %5d %-20s unsolved", $pid, $puzzleMap[$pid]->actualPtype), 255, 255, 0));
+			//printf("%s\n", ColorStr(sprintf("Puzzle %5d %-20s unsolved", $pid, $puzzleMap[$pid]->ptype), 255, 255, 0));
 			// Note: *some* records are indeed unsolved. This seems to correlate with monoliths and quests resetting randomly online.
 			// Note: scratch that. This is related to basically all dungeons being initially reset - records exist, but they're not solved.
 			continue;
 		}
 		if($score != 0){
 			// This also should't be the case. We don't store this field.
-			//printf("%s\n", ColorStr(sprintf("Puzzle %5d %-20s has score %d", $pid, $puzzleMap[$pid]->actualPtype, $score), 255, 255, 0));
+			//printf("%s\n", ColorStr(sprintf("Puzzle %5d %-20s has score %d", $pid, $puzzleMap[$pid]->ptype, $score), 255, 255, 0));
 		}
 		$csvEntry = [
 			"pid"   => $pid,
-			"ptype" => PuzzlePrettyName($actualPtype),
+			"ptype" => PuzzlePrettyName($ptype),
 			"zone"  => ZoneToPrettyNoColor($zoneIndex),
 			"tss"   => TimestampToTss($ts),
 			"pb"    => $pb,
@@ -159,17 +237,35 @@ function ParseAllPuzzles($mainNode, &$miscMap_ref){
 	return $puzzleCsvData;
 }
 
+function GetAllSolvedPids($rawJson){
+	$miscMap = [];
+	$puzzleCsvData = ParseAllPuzzles($rawJson, $miscMap);
+	$solvedPidList = array_values(array_column($puzzleCsvData, "pid"));
+	
+	//$test = array_map(function($x){ return json_decode($x); }, $miscMap);
+	//ksort($test);
+	//foreach($test as $pid => &$data){
+	//	//unset($data->ObjData);
+	//	if(isset($data->DungeonName)){
+	//		unset($test[$pid]);
+	//	}
+	//}unset($data);
+	//printf("%s\n", json_encode($test, 0xc0)); exit(1);
+	
+	return $solvedPidList;
+}
+
 function ParseDecodedSaveFile($decodedJsonPath){
 	
-	$rawSaveDataJson = file_get_contents($decodedJsonPath);
-	if(empty($rawSaveDataJson)){
+	$rawJsonString = file_get_contents($decodedJsonPath);
+	if(empty($rawJsonString)){
 		printf("%s\n", ColorStr("uesave.exe tool decoded OfflineSavegame.sav", 255, 128, 128));
 		printf("%s\n", ColorStr("However, file " . $decodedJsonPath . " is missing or unreadable", 255, 128, 128));
 		printf("%s\n", ColorStr("Please report this on the Discord server", 255, 128, 128));
 		exit(1);
 	}
-	$saveDataJson = json_decode($rawSaveDataJson);
-	if(empty($saveDataJson)){
+	$rawJson = json_decode($rawJsonString);
+	if(empty($rawJson)){
 		printf("%s\n", ColorStr("Failed to parse file " . $decodedJsonPath, 255, 128, 128));
 		printf("%s\n", ColorStr("Please report this on the Discord server", 255, 128, 128));
 		exit(1);
@@ -177,20 +273,25 @@ function ParseDecodedSaveFile($decodedJsonPath){
 	
 	printf("%s\n", ColorStr("Attempting to parse the decoded save data...", 160, 160, 160));
 	
-	$mainNode = $saveDataJson->root->properties;
-	
 	$miscMap = [];
-	$puzzleCsvData = ParseAllPuzzles($mainNode, $miscMap);
+	$puzzleCsvData = ParseAllPuzzles($rawJson, $miscMap);
 	printf("%s\n", ColorStr("Solved puzzles data obtained OK", 160, 160, 160));
 	
 	$normalSolvedPids = array_column($puzzleCsvData, "pid");
+	sort($normalSolvedPids);
+	//printf("%s\n", implode(",", $normalSolvedPids)); exit(1);
 	
-	$florbPbs = GetFlorbPbs($puzzleCsvData);
-	$florbMedalMap = GetFlorbMedalMap($florbPbs);
-	$florbMedalCounts = GetFlorbMedalCounts($florbMedalMap);
+	//$mainNode = $rawJson->root->properties;
 	
-	$glidePbs = GetGlidePbs($puzzleCsvData);
-	$glideMedalMap = GetGlideMedalMap($glidePbs);
+	$florbPbs         = GetFlorbPbs($puzzleCsvData);
+	$florbMedalMap    = GetFlorbMedalMap($florbPbs);
+	$florbMedalCounts = GetMedalCounts($florbMedalMap);
+	$florbTotalScore  = GetFlorbTotalScore($florbPbs);
+	
+	$glidePbs         = GetGlidePbs($puzzleCsvData);
+	$glideMedalMap    = GetGlideMedalMap($glidePbs);
+	$glideMedalCounts = GetMedalCounts($glideMedalMap);
+	$glideTotalScore  = GetGlideTotalScore($glidePbs);
 	
 	$skydropChallengePb = GetSkydropChallengeTime($puzzleCsvData);
 	//$skydropChallengeMedalTier = GetSkydropChallengeMedalTier($skydropChallengePb);
@@ -200,17 +301,17 @@ function ParseDecodedSaveFile($decodedJsonPath){
 	$playingSince = GetPlayingSince($puzzleCsvData);
 	$playTimeMinutes = GetIslandsPlaytime();
 	
-	$unlockPids = GetUnlocks($mainNode);
+	$unlockPids = GetUnlocks($rawJson);
 	$monolithFragmentPids = GetMonolithFragments($miscMap);
 	$allSolvedPids = array_merge($normalSolvedPids, $unlockPids, $monolithFragmentPids);
 	
-	$quests = GetQuests($mainNode); // boring
+	$quests = GetSaveCampaignQuests($rawJson); // boring
 	
-	$masteryTable = GetMasteryTable($mainNode);
+	$masteryTable = GetMasteryTable($rawJson);
 	$playerLevel = GetPlayerLevel($masteryTable);
 	
-	$sparks = GetSparks($mainNode);
-	$buggedMirabilis = GetBuggedMirabilis($mainNode);
+	$sparks = GetSparks($rawJson);
+	$buggedMirabilis = GetBuggedMirabilis($rawJson);
 	
 	$allRemainingArmillaries    = GetAllRemainingArmillaries($allSolvedPids);
 	$allSolvedArmillaries       = GetAllSolvedArmillaries($allSolvedPids);
@@ -233,15 +334,15 @@ function ParseDecodedSaveFile($decodedJsonPath){
 	$remainingMysteries         = GetRemainingMysteries($allSolvedPids);
 	$solvedMysteries            = GetSolvedMysteries($allSolvedPids);
 	
-	$cosmetics                  = GetCosmetics($mainNode);
+	$cosmetics                  = GetCosmetics($rawJson);
 	$hubRewards                 = GetHubRewards($hubSolvedProfile);
-	$settings                   = GetSaveFileSettings($mainNode);
+	$settings                   = GetSaveFileSettings($rawJson);
 	$hasDeluxe                  = HasDeluxe($settings);
 	
 	// RewardProgressArray_0 contains what you've collected from leveling up on the Mastery tab - boring.
 	// RewardProgress_0 contains what you've claimed from the hub track rewards. Not bad, but won't mention un-claimed ones.
 	// Additionally we are interested in how many puzzles you have left till the remaining rewards so this becomes useless anyway.
-	//$rewardTiers                = GetHubRewardTiers($mainNode);
+	//$rewardTiers                = GetHubRewardTiers($rawJson);
 	
 	$saveJson = [
 		"puzzleCsvData"              => $puzzleCsvData,              // 
@@ -250,8 +351,12 @@ function ParseDecodedSaveFile($decodedJsonPath){
 		"florbPbs"                   => $florbPbs,                   // 
 		"florbMedalMap"              => $florbMedalMap,              // 
 		"florbMedalCounts"           => $florbMedalCounts,           // 
+		"florbTotalScore"            => $florbTotalScore,            // 
 		
-		"glideMedalMap"              => $glideMedalMap,              //
+		"glidePbs"                   => $glidePbs,                   // 
+		"glideMedalMap"              => $glideMedalMap,              // 
+		"glideMedalCounts"           => $glideMedalCounts,           // 
+		"glideTotalScore"            => $glideTotalScore,            // 
 		
 		"skydropChallengePb"         => $skydropChallengePb,         // 
 		"skydropChallengeMedal"      => $skydropChallengeMedal,      // 
@@ -342,6 +447,19 @@ function GetFlorbMedalMap($florbPbs){
 	return $florbMedalMap;
 }
 
+function GetFlorbTotalScore(array $florbPbs){
+	$tierMap = GetFlorbTiers();
+	$sum = 0;
+	foreach($tierMap as $pid => $tiers){
+		// If solved, use actual time; otherwise use bronze tier (can't go slower than bronze anyway).
+		$sum += ($florbPbs[$pid] ?? $tiers[0]);
+	}
+	$minutes = intval(floor($sum / 60 + 1e-4));
+	$seconds = $sum - $minutes * 60;
+	$formatted = sprintf("%d:%05.2f", $minutes, $seconds);
+	return $formatted;
+}
+
 function GetGlidePbs($puzzleCsvData){
 	$glidePbs = [];
 	foreach($puzzleCsvData as $entry){
@@ -383,13 +501,20 @@ function GetGlideMedalMap($glidePbs){
 	return $glideMedalMap;
 }
 
-function GetFlorbMedalCounts($florbMedalMap){
-	$florbMedalCounts = array_map("count", $florbMedalMap);
+function GetGlideTotalScore(array $glidePbs){
+	$sum = 0;
+	foreach($glidePbs as $pid => $pb){
+		$sum += $pb;
+	}
+	return $sum;
+}
+
+function GetMedalCounts($medalMap){
+	$medalCounts = array_map("count", $medalMap);
 	$result = [];
-	foreach($florbMedalCounts as $tier => $count){
+	foreach($medalCounts as $tier => $count){
 		$result[MedalTierToName($tier)] = $count;
 	}
-	//return $florbMedalCounts;
 	return $result;
 }
 
@@ -453,8 +578,9 @@ function WriteFlorbPbs($saveJson, $outputPath){
 			$csv[] = [
 				"pid" => $pid,
 				"medal" => $tier,
-				"type" => (int)$data->isDungeonPuzzle,
-				"zone" => $data->actualZoneIndex,
+				//"type" => (int)$data->isDungeonPuzzle,
+				"type" => $data->family,
+				"zone" => $data->zoneIndex,
 				"pb" => number_format($florbPbs[$pid], 2, ".", ""),
 				//"cetus" => "https://cetus.torstenindustries.com/Puzzle/" . $pid,
 			];
@@ -470,7 +596,7 @@ function WriteFlorbPbs($saveJson, $outputPath){
 	// Finalize csv for user readability.
 	foreach($csv as &$entry_ref){
 		$zoneIndex = $entry_ref["zone"];
-		$entry_ref["type"] = ($entry_ref["type"] ? "Enclave" : "Hub");
+		//$entry_ref["type"] = ($entry_ref["type"] ? "Enclave" : "Hub");
 		$entry_ref["zone"] = ($zoneIndex >= 2 && $zoneIndex <= 7 ? ZoneToPrettyNoColor($entry_ref["zone"]) : "Enclave");
 		$entry_ref["medal"] = MedalTierToName($entry_ref["medal"]);
 		
@@ -494,12 +620,9 @@ function WriteFullSaveData($saveJson, $outputPath){
 	file_put_contents($outputPath, json_encode($saveJson, JSON_PRETTY_PRINT));
 }
 
-function GetUnlocks($mainNode){
+function GetUnlocks($rawJson){
 	$fakePids = [];
-	if(!isset($mainNode->Unlockables_0)){
-		return $fakePids;
-	}
-	$unlocksNode = $mainNode->Unlockables_0->{"Array"}->value->Struct->value;
+	$unlocksNode = RetrievePrimaryNode($rawJson, "Unlockables");
 	foreach($unlocksNode as $node){
 		$subNode = $node->Struct->Unlocks_0->{"Array"}->value->Base->Str;
 		foreach($subNode as $title){
@@ -514,15 +637,12 @@ function GetUnlocks($mainNode){
 	return $fakePids;
 }
 
-function GetQuests($mainNode){
+function GetSaveCampaignQuests($rawJson){
 	// This one is completely uninteresting.
 	// It just contains the data for daily quests for sparks (including Wanderer ones).
 	// And the progression data for the main campaign. You know, solve tutorial island, go to verdant, earn your wings...
 	$quests = [];
-	if(!isset($mainNode->Quests_0)){
-		return $quests;
-	}
-	$questsNode = $mainNode->Quests_0->{"Array"}->value->Struct->value;
+	$questsNode = RetrievePrimaryNode($rawJson, "Quests");
 	foreach($questsNode as $node){
 		$questName = $node->Struct->QuestID_0->Str->value;
 		if(str_starts_with($questName, "Daily") || str_starts_with($questName, "Auto")){
@@ -560,11 +680,11 @@ function GetMonolithFragments($miscMap){
 			continue;
 		}
 		$data = $puzzleMap[$obeliskPid];
-		$actualPtype = $data->actualPtype;
-		if($actualPtype != "obelisk"){
+		$ptype = $data->ptype;
+		if($ptype != "obelisk"){
 			continue;
 		}
-		$actualZoneIndex = $data->actualZoneIndex;
+		$actualZoneIndex = $data->zoneIndex;
 		//printf("%5d (%d): %s\n", $obeliskPid, $actualZoneIndex, $miscString);
 		foreach($boolArray as $fragmentIndex => $status){
 			if($status == false){
@@ -590,7 +710,7 @@ function GetPlayingSince($puzzleCsvData){
 	return $playingSince;
 }
 
-function GetMasteryTable($mainNode){
+function GetMasteryTable($rawJson){
 	$masteryTable = [];
 	$knownPtypes = GetKnownPtypes();
 	if(count($knownPtypes) != 24){
@@ -608,35 +728,34 @@ function GetMasteryTable($mainNode){
 			"skin"   => 0,
 		];
 	}
-	if(isset($mainNode->Achievements_0)){
-		$masteryNode = $mainNode->Achievements_0->{"Array"}->value->Struct->value;
-		foreach($masteryNode as $node){
-			$masteryInternalName = $node->Struct->AchievementId_0->Str->value;
-			$xp    = $node->Struct->Value_0->Struct->value->Struct->Progress_0->{"Int"}->value;
-			//$level = ((int)$node->Struct->Value_0->Struct->value->Struct->LastCompletedTier_0->{"Int"}->value) + 1; // don't trust the given value
-			$ptype = PuzzleInternalName(str_replace(["Mastery", "-"], "", $masteryInternalName));
-			// Note: last completed tier starts with 0. So completing tier 0 advances you from level 0 to 1.
-			// The final completed tier is 98 which advances you from 98 to 99.
-			// Also: in offline mode completed tier is always zero for all masteries.
-			//printf("%-30s %7d %2d\n", $masteryInternalName, $xp, $level);
-			//printf("|%s| -> |%s|\n", $masteryInternalName, $ptype);
-			if(empty($ptype)){
-				// This will ignore total xp across all masteries which is a useless stat.
-				continue;
-			}
-			$level = XpToLevel($xp);
-			$pct = 100.0 * $xp / GetTotalXpTo99();
-			$extraInfo = GetXpLevelInfo($level);
-			$masteryTable[$ptype] = [
-				"ptype"  => $ptype,
-				"level"  => $level,
-				"xp"     => $xp, //number_format($xp, 0, ".", " "), // don't number format this aight?
-				"pct"    => number_format($pct, 2, ".", "") . "%",
-				"title"  => $extraInfo["title"],
-				"border" => $extraInfo["border"],
-				"skin"   => $extraInfo["skin"],
-			];
+	
+	$masteryNode = RetrievePrimaryNode($rawJson, "Achievements");
+	foreach($masteryNode as $node){
+		$masteryInternalName = $node->Struct->AchievementId_0->Str->value;
+		$xp    = $node->Struct->Value_0->Struct->value->Struct->Progress_0->{"Int"}->value;
+		//$level = ((int)$node->Struct->Value_0->Struct->value->Struct->LastCompletedTier_0->{"Int"}->value) + 1; // don't trust the given value
+		$ptype = PuzzleInternalName(str_replace(["Mastery", "-"], "", $masteryInternalName));
+		// Note: last completed tier starts with 0. So completing tier 0 advances you from level 0 to 1.
+		// The final completed tier is 98 which advances you from 98 to 99.
+		// Also: in offline mode completed tier is always zero for all masteries.
+		//printf("%-30s %7d %2d\n", $masteryInternalName, $xp, $level);
+		//printf("|%s| -> |%s|\n", $masteryInternalName, $ptype);
+		if(empty($ptype)){
+			// This will ignore total xp across all masteries which is a useless stat.
+			continue;
 		}
+		$level = XpToLevel($xp);
+		$pct = 100.0 * $xp / GetTotalXpTo99();
+		$extraInfo = GetXpLevelInfo($level);
+		$masteryTable[$ptype] = [
+			"ptype"  => $ptype,
+			"level"  => $level,
+			"xp"     => $xp, //number_format($xp, 0, ".", " "), // don't number format this aight?
+			"pct"    => number_format($pct, 2, ".", "") . "%",
+			"title"  => $extraInfo["title"],
+			"border" => $extraInfo["border"],
+			"skin"   => $extraInfo["skin"],
+		];
 	}
 	$masteryTable = array_values($masteryTable);
 	array_multisort(array_column($masteryTable, "xp"), SORT_DESC, SORT_NUMERIC, $masteryTable);
@@ -660,27 +779,60 @@ function WriteMasteries($saveJson, $outputPath){
 	}
 }
 
-function GetCurrency($mainNode, $currencyName){
-	if(!isset($mainNode->Wallet_0)){
-		return 0;
+function &RetrieveCurrency(&$rawJson, $currencyName){
+	$walletNode_ref = &RetrievePrimaryNode($rawJson, "Wallet");
+	$node_ref = &RetrieveStructByNameValue($walletNode_ref, "Currency_0", $currencyName);
+	if($node_ref == null){
+		$newNode = json_decode('{"Struct": {"Balance_0": {"Int": {"value": 0}}, "Currency_0": {"Str": {"value": "unknown"}}, "CurrencyGroup_0": {"Str": {"value": ""}}, "bDisabled_0": {"Bool": {"value": false}}, "LastRefillTimestamp_0": {"Int64": {"value": 0}}, "Origin_0": {"Str": {"value": ""}}, "ProviderBalances_0": {"Struct": {"value": {"Struct": {"JsonString_0": {"Str": {"value": ""}}}}, "struct_type": {"Struct": "JsonObjectWrapper"}, "struct_id": "00000000-0000-0000-0000-000000000000"}}, "Reason_0": {"Str": {"value": ""}}, "RefillAmount_0": {"Float": {"value": 0}}, "RequestID_0": {"Str": {"value": ""}}, "Tier_0": {"Int": {"value": 0}}, "UserId_0": {"Str": {"value": ""}}, "bOverride_CurrencyGroup_0": {"Bool": {"value": false}}, "bOverride_Disabled_0": {"Bool": {"value": false}}, "bOverride_LastRefillTimestamp_0": {"Bool": {"value": false}}, "bOverride_Origin_0": {"Bool": {"value": false}}, "bOverride_ProviderBalances_0": {"Bool": {"value": false}}, "bOverride_Reason_0": {"Bool": {"value": false}}, "bOverride_RefillAmount_0": {"Bool": {"value": false}}, "bOverride_RequestId_0": {"Bool": {"value": false}}, "bOverride_Tier_0": {"Bool": {"value": false}}, "bOverride_UserId_0": {"Bool": {"value": false}}}}');
+		$newNode->Struct->Currency_0->Str->value = $currencyName;
+		$node_ref = &$newNode;
+		$walletNode_ref[] = &$newNode;
 	}
-	$walletNode = $mainNode->Wallet_0->{"Array"}->value->Struct->value;
-	foreach($walletNode as $node){
-		$currency = $node->Struct->Currency_0->Str->value;
-		if($currency == $currencyName){
-			$amount = $node->Struct->Balance_0->{"Int"}->value;
-			return $amount;
-		}
-	}
-	return 0;
+	$actualValue_ref = &$node_ref->Struct->Balance_0->{"Int"}->value;
+	return $actualValue_ref;
 }
 
-function GetSparks($mainNode){
-	return (GetCurrency($mainNode, "coins"));
+function GetCurrency($rawJson, $currencyName){
+	return RetrieveCurrency($rawJson, $currencyName);
 }
 
-function GetBuggedMirabilis($mainNode){
-	return (GetCurrency($mainNode, "blue-orbs"));
+function GetSparks($rawJson){
+	return RetrieveCurrency($rawJson, "coins");
+}
+
+function GetBuggedMirabilis($rawJson){
+	return RetrieveCurrency($rawJson, "blue-orbs");
+}
+
+function SetCurrency(&$rawJson, $currencyName, $currencyValue){
+	$value_ref = &RetrieveCurrency($rawJson, $currencyName);
+	$value_ref = $currencyValue;
+	printf("[DEBUG] Currency '%s' is set to %d\n", $currencyName, $currencyValue);
+}
+
+function &RetrieveUnlockableCategory(&$rawJson, string $categoryName){
+	$unlocksNode_ref = &RetrievePrimaryNode($rawJson, "Unlockables");
+	$node_ref = &RetrieveStructByNameValue($unlocksNode_ref, "UnlockableCategory_0", $categoryName);
+	if($node_ref == null){
+		$newNode = json_decode('{"Struct": {"UnlockableCategory_0": {"Str": {"value": "unknown"}}, "Unlocks_0": {"Array": {"array_type": "StrProperty", "value": {"Base": {"Str": []}}}}, "bOverride_Unlocks_0": {"Bool": {"value": false}}}}');
+		$newNode->Struct->UnlockableCategory_0->Str->value = $categoryName;
+		$node_ref = &$newNode;
+		$unlocksNode_ref[] = &$newNode;
+	}
+	$actualValue_ref = &$node_ref->Struct->Unlocks_0->{"Array"}->value->Base->Str;
+	return $actualValue_ref;
+}
+
+function &RetrieveClickedMasteryRewards(&$rawJson){
+	$unlocksNode_ref = &RetrievePrimaryNode($rawJson, "RewardProgressArray");
+	$node_ref = &RetrieveStructByNameValue($unlocksNode_ref, "ProgressId_0", "GlobalMasteryRewards");
+	if($node_ref == null){
+		$newNode = json_decode('{"Struct": {"ProgressId_0": {"Str": {"value": "GlobalMasteryRewards"}}, "RewardedLevels_0": {"Array": {"array_type": "IntProperty", "value": {"Base": {"Int": []}}}}}}');
+		$node_ref = &$newNode;
+		$unlocksNode_ref[] = &$newNode;
+	}
+	$actualValue_ref = &$node_ref->Struct->RewardedLevels_0->{"Array"}->value->Base->{"Int"};
+	return $actualValue_ref;
 }
 
 function GetAllRemainingArmillaries($allSolvedPids){
@@ -747,6 +899,7 @@ function GetClusterSolvedMap($allSolvedPids){
 	foreach($clusterMap as $pool => $pidList){
 		$solvedClusterMap[$pool] = array_values(array_intersect($pidList, $allSolvedPids));
 		//printf("solved %d of %d in cluster %s\n", count($solvedClusterMap[$pool]), count($pidList), $pool);
+		//printf("%s\n\n", implode(", ", $pidList));
 	}
 	return $solvedClusterMap;
 }
@@ -772,27 +925,25 @@ function GetSolvedMysteries($allSolvedPids){
 	}
 	return $solvedMysteries;
 }
-	
-function GetCosmetics($mainNode){
+
+function GetCosmetics($rawJson){
 	$cosmetics = [];
-	if(isset($mainNode->Inventory_0)){
-		$inventoryNode = $mainNode->Inventory_0->{"Array"}->value->Struct->value;
-		foreach($inventoryNode as $node){
-			$item = $node->Struct->ObjectId_0->Str->value;
-			$qty = $node->Struct->quantity_0->{"Int64"}->value;
-			//$cosmetics[] = $item . " (" . $qty . ")";
-			if($qty != 1){
-				printf("%s\n", ColorStr("Cosmetic item \"" . $item . "\" has quantity " . $qty, 255, 128, 128));
-				printf("%s\n", ColorStr("Please report this on the Discord server", 255, 128, 128));
-				exit(1);
-			}
-			// Exclude deluxe edition unlocks from this list
-			// Some people without the deluxe edition still have them in their Inventory_0, at random
-			if(str_ends_with($item, "DX")){
-				continue;
-			}
-			$cosmetics[] = $item;
+	$inventoryNode = RetrievePrimaryNode($rawJson, "Inventory");
+	foreach($inventoryNode as $node){
+		$item = $node->Struct->ObjectId_0->Str->value;
+		$qty = $node->Struct->quantity_0->{"Int64"}->value;
+		//$cosmetics[] = $item . " (" . $qty . ")";
+		if($qty != 1){
+			printf("%s\n", ColorStr("Cosmetic item \"" . $item . "\" has quantity " . $qty, 255, 128, 128));
+			printf("%s\n", ColorStr("Please report this on the Discord server", 255, 128, 128));
+			exit(1);
 		}
+		// Exclude deluxe edition unlocks from this list
+		// Some people without the deluxe edition still have them in their Inventory_0, at random
+		if(str_ends_with($item, "DX")){
+			continue;
+		}
+		$cosmetics[] = $item;
 	}
 		
 	// Throw in default and deluxe cosmetics just so that the numbers add up.
@@ -811,7 +962,7 @@ function GetCosmetics($mainNode){
 	return $cosmetics;
 }
 
-function GetHubRewardTiers($mainNode){
+function GetHubRewardTiers($rawJson){
 	$rewardTiers = [];
 	$zoneCategories = GetZoneCategories();
 	foreach($zoneCategories as $zoneIndex => $pcatList){
@@ -820,11 +971,8 @@ function GetHubRewardTiers($mainNode){
 			$rewardTiers[$zoneIndex][$pcat] = 0;
 		}
 	}
-	
-	if(!isset($mainNode->RewardProgress_0)){
-		return $rewardTiers;
-	}
-	$rewardsNode = $mainNode->RewardProgress_0->{"Array"}->value->Struct->value;
+
+	$rewardsNode = RetrievePrimaryNode($rawJson, "RewardProgress");
 	$regex = "/^([A-Z][a-z]*)([A-Z][a-zA-Z]*)SandboxProgression$/";
 	foreach($rewardsNode as $node){
 		$trackName = $node->Struct->ProgressId_0->Str->value;
@@ -868,12 +1016,9 @@ function GetHubRewards($hubSolvedProfile){
 	return $myRewards;
 }
 
-function GetSaveFileSettings($mainNode){
+function GetSaveFileSettings($rawJson){
 	$settings = [];
-	if(!isset($mainNode->Settings_0)){
-		return $settings;
-	}
-	$settingsNode = $mainNode->Settings_0->{"Array"}->value->Struct->value;
+	$settingsNode = RetrievePrimaryNode($rawJson, "Settings");
 	foreach($settingsNode as $node){
 		$option = $node->Struct->OptionId_0->Str->value;
 		$value  = $node->Struct->Value_0->Str->value;
@@ -893,87 +1038,63 @@ function HasDeluxe(array $settings){
 	return (isset($settings[$str]) && $settings[$str] == 1);
 }
 
-function ResetAllSaveProgress(&$saveJson){
+function ResetAllSaveProgress(&$rawJson){	
+	ResetSaveMirabilis($rawJson);
+	//ResetSaveCosmeticsOfType($rawJson, "paidSpark");
+	//ResetSaveCosmeticsOfType($rawJson, "deluxe");
+	ResetSaveCosmeticsOfType($rawJson, "hubReward");
+	ResetSaveCosmeticsOfType($rawJson, "masteryReward");
+	ResetSaveCosmeticsOfType($rawJson, "campaignReward");
 
-	if(empty($saveJson) || !isset($saveJson->root) || !isset($saveJson->root->properties)){
-		return;
-	}
-	$mainNode_ref = &$saveJson->root->properties;
+	ResetNonCriticalSaveSettings($rawJson);
+	ResetSaveUnlockedZones($rawJson);
 	
-	ResetSaveMirabilis($saveJson);
-	//ResetSaveCosmeticsOfType($saveJson, "paidSpark");
-	//ResetSaveCosmeticsOfType($saveJson, "deluxe");
-	ResetSaveCosmeticsOfType($saveJson, "hubReward");
-	ResetSaveCosmeticsOfType($saveJson, "masteryReward");
-	ResetSaveCosmeticsOfType($saveJson, "campaignReward");
-
-	ResetNonCriticalSaveSettings($saveJson);
-	ResetSaveUnlockedZones($saveJson);
-	
-	unset($mainNode_ref->Achievements_0);
-	unset($mainNode_ref->Upgrades_0);
-	unset($mainNode_ref->Statuses_0);
-	unset($mainNode_ref->Quests_0);
-	unset($mainNode_ref->PuzzleStatuses_0);
-	unset($mainNode_ref->RewardProgress_0);
-	unset($mainNode_ref->RewardProgressArray_0);
-	unset($mainNode_ref->Unlockables_0);
-
-	unset($mainNode_ref);
+	unset($rawJson->root->properties->Achievements_0);
+	unset($rawJson->root->properties->Upgrades_0);
+	unset($rawJson->root->properties->Statuses_0);
+	unset($rawJson->root->properties->Quests_0);
+	unset($rawJson->root->properties->PuzzleStatuses_0);
+	unset($rawJson->root->properties->RewardProgress_0);
+	unset($rawJson->root->properties->RewardProgressArray_0);
+	unset($rawJson->root->properties->Unlockables_0);
+	unset($rawJson->root->properties);
 }
 
-function ResetGenericSaveInventory(&$saveJson, string $currencyToReset){
-	
-	if(empty($saveJson) || !isset($saveJson->root) || !isset($saveJson->root->properties)){
-		return;
-	}
-	$mainNode_ref = &$saveJson->root->properties;
-	
-	if(!isset($mainNode_ref->Wallet_0) ||
-	   !isset($mainNode_ref->Wallet_0->{"Array"}) || 
-	   !isset($mainNode_ref->Wallet_0->{"Array"}->value) || 
-	   !isset($mainNode_ref->Wallet_0->{"Array"}->value->Struct) || 
-	   !isset($mainNode_ref->Wallet_0->{"Array"}->value->Struct->value)){
-		   return;
-	}
-	$walletNode_ref = &$mainNode_ref->Wallet_0->{"Array"}->value->Struct->value;
-	
-	foreach($walletNode_ref as $index => &$node_ref){
-		$currency = $node_ref->Struct->Currency_0->Str->value;
-		if(empty($currency) || $currency == $currencyToReset){
-			unset($walletNode_ref[$index]);
-		}
-		$walletNode_ref = array_values($walletNode_ref);
-	}unset($node_ref);
-	$walletNode_ref = array_values($walletNode_ref);
-	
-	unset($walletNode_ref);
-	unset($mainNode_ref);
+//function ResetGenericSaveWallet(&$rawJson, string $currencyToReset){
+//	$walletNode_ref = &RetrievePrimaryNode($rawJson, "Wallet");
+//	foreach($walletNode_ref as $index => &$node_ref){
+//		$currency = $node_ref->Struct->Currency_0->Str->value;
+//		if(empty($currency) || $currency == $currencyToReset){
+//			unset($walletNode_ref[$index]);
+//		}
+//		$walletNode_ref = array_values($walletNode_ref);
+//	}unset($node_ref);
+//	$walletNode_ref = array_values($walletNode_ref);
+//	unset($walletNode_ref);
+//}
+
+function ResetSaveMirabilis(&$rawJson){
+	//ResetGenericSaveWallet($rawJson, "blue-orbs");
+	SetCurrency($rawJson, "blue-orbs", 0);
 }
 
-function ResetSaveMirabilis(&$saveJson){
-	ResetGenericSaveInventory($saveJson, "blue-orbs");
+function ResetSaveSparks(&$rawJson){
+	//ResetGenericSaveWallet($rawJson, "coins");
+	SetCurrency($rawJson, "coins", 0);
 }
 
-function ResetSaveSparks(&$saveJson){
-	ResetGenericSaveInventory($saveJson, "coins");
+function FixNegativeSparks(&$rawJson){
+	$sparks = GetCurrency($rawJson, "coins");
+	if($sparks < 0){
+		printf("  %s\n", ColorStr("Detected negative sparks (" . $sparks . "), resetting to 0", 200, 200, 40));
+		SetCurrency($rawJson, "coins", 0);
+		return true;
+	}
+	return false;
 }
 
-function ResetSaveUnlockedZones(&$saveJson){
-	if(empty($saveJson) || !isset($saveJson->root) || !isset($saveJson->root->properties)){
-		return;
-	}
-	$mainNode_ref = &$saveJson->root->properties;
-
-	if(!isset($mainNode_ref->Settings_0) ||
-	   !isset($mainNode_ref->Settings_0->{"Array"}) || 
-	   !isset($mainNode_ref->Settings_0->{"Array"}->value) || 
-	   !isset($mainNode_ref->Settings_0->{"Array"}->value->Struct) || 
-	   !isset($mainNode_ref->Settings_0->{"Array"}->value->Struct->value)){
-		   return;
-	}
-	$settingsNode_ref = &$mainNode_ref->Settings_0->{"Array"}->value->Struct->value;
-	
+function ResetSaveUnlockedZones(&$rawJson){
+	$settingsNode_ref = &RetrievePrimaryNode($rawJson, "Settings");
 	foreach($settingsNode_ref as $index => &$node_ref){
 		$settingName = $node_ref->Struct->OptionId_0->Str->value;
 		if($settingName == "unlocked_zones"){
@@ -981,27 +1102,11 @@ function ResetSaveUnlockedZones(&$saveJson){
 		}
 	}unset($node_ref);
 	$settingsNode_ref = array_values($settingsNode_ref);
-	
 	unset($settingsNode_ref);
-	unset($mainNode_ref);
 }
 
-function ResetNonCriticalSaveSettings(&$saveJson){
-	
-	if(empty($saveJson) || !isset($saveJson->root) || !isset($saveJson->root->properties)){
-		return;
-	}
-	$mainNode_ref = &$saveJson->root->properties;
-
-	if(!isset($mainNode_ref->Settings_0) ||
-	   !isset($mainNode_ref->Settings_0->{"Array"}) || 
-	   !isset($mainNode_ref->Settings_0->{"Array"}->value) || 
-	   !isset($mainNode_ref->Settings_0->{"Array"}->value->Struct) || 
-	   !isset($mainNode_ref->Settings_0->{"Array"}->value->Struct->value)){
-		   return;
-	}
-	$settingsNode_ref = &$mainNode_ref->Settings_0->{"Array"}->value->Struct->value;
-	
+function ResetNonCriticalSaveSettings(&$rawJson){
+	$settingsNode_ref = &RetrievePrimaryNode($rawJson, "Settings");
 	static $settingsToKeep = [
 		"Accepted Compendium",
 		"Accepted EULA",
@@ -1021,28 +1126,30 @@ function ResetNonCriticalSaveSettings(&$saveJson){
 		}
 	}unset($node_ref);
 	$settingsNode_ref = array_values($settingsNode_ref);
-	
 	unset($settingsNode_ref);
-	unset($mainNode_ref);
 }
 
-function ResetSaveCosmeticsOfType(&$saveJson, string $cosmeticTypeToReset){
-	
-	if(empty($saveJson) || !isset($saveJson->root) || !isset($saveJson->root->properties)){
-		return;
-	}
-	$mainNode_ref = &$saveJson->root->properties;
+function ResetSpecificSaveSettings(&$rawJson, array $namesToRemove){
+	$settingsNode_ref = &RetrievePrimaryNode($rawJson, "Settings");
+	foreach($settingsNode_ref as $index => &$node_ref){
+		$settingName = $node_ref->Struct->OptionId_0->Str->value;
+		if(in_array($settingName, $namesToRemove)){
+			printf("> Removing setting |%s|\n", $settingName);
+			unset($settingsNode_ref[$index]);
+		}
+	}unset($node_ref);
+	$settingsNode_ref = array_values($settingsNode_ref);
+	unset($settingsNode_ref);
+}
 
-	if(!isset($mainNode_ref->Inventory_0) ||
-	   !isset($mainNode_ref->Inventory_0->{"Array"}) || 
-	   !isset($mainNode_ref->Inventory_0->{"Array"}->value) || 
-	   !isset($mainNode_ref->Inventory_0->{"Array"}->value->Struct) || 
-	   !isset($mainNode_ref->Inventory_0->{"Array"}->value->Struct->value)){
-		   return;
-	}
-	$cosmeticsNode_ref = &$mainNode_ref->Inventory_0->{"Array"}->value->Struct->value;
-	
+function ResetSaveCosmeticsOfType(&$rawJson, string $cosmeticTypeToReset){
+	//ResetSaveCosmeticsOfType($rawJson, "paidSpark");
+	//ResetSaveCosmeticsOfType($rawJson, "deluxe");
+	//ResetSaveCosmeticsOfType($rawJson, "hubReward");
+	//ResetSaveCosmeticsOfType($rawJson, "masteryReward");
+	//ResetSaveCosmeticsOfType($rawJson, "campaignReward");
 	$cosmeticsMap = GetCosmeticsMap();
+	$cosmeticsNode_ref = &RetrievePrimaryNode($rawJson, "Inventory");
 	foreach($cosmeticsNode_ref as $index => &$node_ref){
 		$cosmeticName = $node_ref->Struct->ObjectId_0->Str->value;
 		if(!isset($cosmeticsMap[$cosmeticName])){
@@ -1057,28 +1164,12 @@ function ResetSaveCosmeticsOfType(&$saveJson, string $cosmeticTypeToReset){
 		//	unset($cosmeticsNode_ref[$index]);
 		//}
 	}unset($node_ref);
-	
 	$cosmeticsNode_ref = array_values($cosmeticsNode_ref);
-	
 	unset($cosmeticsNode_ref);
-	unset($mainNode_ref);
 }
 
-function ResetSaveOnlineFlorbs(&$saveJson){
-	
-	if(empty($saveJson) || !isset($saveJson->root) || !isset($saveJson->root->properties)){
-		return;
-	}
-	$mainNode_ref = &$saveJson->root->properties;
-	
-	if(!isset($mainNode_ref->PuzzleStatuses_0) ||
-	   !isset($mainNode_ref->PuzzleStatuses_0->{"Array"}) || 
-	   !isset($mainNode_ref->PuzzleStatuses_0->{"Array"}->value) || 
-	   !isset($mainNode_ref->PuzzleStatuses_0->{"Array"}->value->Struct) || 
-	   !isset($mainNode_ref->PuzzleStatuses_0->{"Array"}->value->Struct->value)){
-		   return;
-	}
-	$allPuzzlesNode_ref = &$mainNode_ref->PuzzleStatuses_0->{"Array"}->value->Struct->value;
+function ResetSaveOnlineFlorbs(&$rawJson){
+	$allPuzzlesNode_ref = &RetrievePrimaryNode($rawJson, "PuzzleStatuses");
 	
 	$puzzleMap = GetPuzzleMap(true);
 	$florbTiers = GetFlorbTiers();
@@ -1094,9 +1185,10 @@ function ResetSaveOnlineFlorbs(&$saveJson){
 		if(!isset($puzzleMap[$pid])){
 			continue;
 		}
-		$ptype = $puzzleMap[$pid]->actualPtype;
+		$ptype = $puzzleMap[$pid]->ptype;
 		
 		if($ptype == "racingBallCourse" && $ts > 0){
+			//printf("%s %d %d %.2f\n", $ptype, $pid, $ts, $puzzleNode_ref->Struct->LeaderboardTime_0->{"Float"}->value);
 			$platTier = $florbTiers[$pid][3];
 			if($pb < $platTier){
 				$puzzleNode_ref->Struct->LeaderboardTime_0->{"Float"}->value = $platTier - 0.0001;
@@ -1104,98 +1196,136 @@ function ResetSaveOnlineFlorbs(&$saveJson){
 			}
 		}
 	}unset($puzzleNode_ref);
-	
 	$allPuzzlesNode_ref = array_values($allPuzzlesNode_ref);
-	
 	unset($allPuzzlesNode_ref);
-	unset($mainNode_ref);
 }
 
-function ResetSpecificSaveUpgrade(&$saveJson, string $upgradeNameToReset){
-	
-	if(empty($saveJson) || !isset($saveJson->root) || !isset($saveJson->root->properties)){
-		return;
-	}
-	$mainNode_ref = &$saveJson->root->properties;
-
-	if(!isset($mainNode_ref->Upgrades_0) ||
-	   !isset($mainNode_ref->Upgrades_0->{"Array"}) || 
-	   !isset($mainNode_ref->Upgrades_0->{"Array"}->value) || 
-	   !isset($mainNode_ref->Upgrades_0->{"Array"}->value->Struct) || 
-	   !isset($mainNode_ref->Upgrades_0->{"Array"}->value->Struct->value)){
-		   return;
-	}
-	$upgradesNode_ref = &$mainNode_ref->Upgrades_0->{"Array"}->value->Struct->value;
-	
-	$cosmeticsMap = GetCosmeticsMap();
+function ResetSpecificSaveUpgrade(&$rawJson, string $upgradeNameToReset){
+	$upgradesNode_ref = &RetrievePrimaryNode($rawJson, "Upgrades");
+	$isReset = false;
 	foreach($upgradesNode_ref as $index => &$node_ref){
 		$upgradeName = $node_ref->Struct->UpgradeId_0->Str->value;
+		$upgradeTier = $node_ref->Struct->UpgradeLevel_0->{"Int"}->value;
+		$upgradeKey  = $upgradeName . "/" . $upgradeTier;
 		if($upgradeName == $upgradeNameToReset){
-			//printf("> Resetting upgrade |%s|\n", $upgradeName);
+			printf("  %s\n", ColorStr("Resetting upgrade " . $upgradeKey, 200, 200, 40));
 			unset($upgradesNode_ref[$index]);
+			$isReset = true;
+			break;
 		}
 	}unset($node_ref);
-	
 	$upgradesNode_ref = array_values($upgradesNode_ref);
-	
 	unset($upgradesNode_ref);
-	unset($mainNode_ref);
+	return $isReset;
 }
 
-function ResetSpecificSavePids(&$saveJson, array $pidsToReset){
+function RefundSpecificSaveUpgrade(&$rawJson, string $upgradeNameToReset){
+	$skillTree = LoadCsvMap("media/data/skillTree.csv", "key");
+	$upgradesNode_ref = &RetrievePrimaryNode($rawJson, "Upgrades");
+	$refundedCost = 0;
+	$sparksBefore = GetCurrency($rawJson, "coins");
+	foreach($upgradesNode_ref as $index => &$node_ref){
+		$upgradeName = $node_ref->Struct->UpgradeId_0->Str->value;
+		$upgradeTier = $node_ref->Struct->UpgradeLevel_0->{"Int"}->value;
+		$upgradeKey  = $upgradeName . "/" . $upgradeTier;
+		if($upgradeName == $upgradeNameToReset){
+			$refundedCost += $skillTree[$upgradeKey]["totalCost"];
+			$sparksAfter  = $sparksBefore + $totalCost;
+			SetCurrency($rawJson, "coins", $sparksAfter);
+			//printf("  %s\n", ColorStr("Refunding upgrade " . $upgradeKey . " for " . $totalCost . " sparks", 200, 200, 40));
+			printf("  %s\n", ColorStr(sprintf("Refunding upgrade %s for %d sparks (%d -> %d)", $upgradeKey, $totalCost, $sparksBefore, $sparksAfter), 200, 200, 40));
+			unset($upgradesNode_ref[$index]);
+			$refundedCost += $totalCost;
+			break;
+		}
+	}unset($node_ref);
+	$upgradesNode_ref = array_values($upgradesNode_ref);
+	unset($upgradesNode_ref);
+	return $refundedCost;
+}
 
-	if(empty($saveJson) || !isset($saveJson->root) || !isset($saveJson->root->properties)){
-		return;
-	}
-	$mainNode_ref = &$saveJson->root->properties;
-	
-	if(!isset($mainNode_ref->PuzzleStatuses_0) ||
-	   !isset($mainNode_ref->PuzzleStatuses_0->{"Array"}) || 
-	   !isset($mainNode_ref->PuzzleStatuses_0->{"Array"}->value) || 
-	   !isset($mainNode_ref->PuzzleStatuses_0->{"Array"}->value->Struct) || 
-	   !isset($mainNode_ref->PuzzleStatuses_0->{"Array"}->value->Struct->value)){
-		   return;
-	}
-	$allPuzzlesNode_ref = &$mainNode_ref->PuzzleStatuses_0->{"Array"}->value->Struct->value;
-	
+function RefundAllSaveUpgrades(&$rawJson){
+	$skillTree = LoadCsvMap("media/data/skillTree.csv", "key");
+	$upgradesNode_ref = &RetrievePrimaryNode($rawJson, "Upgrades");
+	$refundedCost = 0;
+	$sparksBefore = GetCurrency($rawJson, "coins");
+	foreach($upgradesNode_ref as $index => &$node_ref){
+		$upgradeName = $node_ref->Struct->UpgradeId_0->Str->value;
+		$upgradeTier = $node_ref->Struct->UpgradeLevel_0->{"Int"}->value;
+		$upgradeKey  = $upgradeName . "/" . $upgradeTier;
+		if($upgradeName == "SKILL_GLIDING"){
+			// Gliding is a hidden upgrade that cannot be re-acquired via upgrade UI.
+			// It is awarded for completing Empyrian Journey.
+			// Use RefundSpecificSaveUpgrade function if you need to reset this also.
+			continue;
+		}
+		$refundedCost += $skillTree[$upgradeKey]["totalCost"];
+		unset($upgradesNode_ref[$index]);
+	}unset($node_ref);
+	$sparksAfter = $sparksBefore + $refundedCost;
+	$upgradesNode_ref = array_values($upgradesNode_ref);
+	unset($upgradesNode_ref);
+	SetCurrency($rawJson, "coins", $sparksAfter);
+	printf("  %s\n", ColorStr(sprintf("Refunded all upgrades for %d sparks (%d -> %d)", $refundedCost, $sparksBefore, $sparksAfter), 200, 200, 40));
+	return $refundedCost;
+}
+
+function ResetSpecificSavePids(&$rawJson, array $pidsToReset){
+	$puzzleMap = GetPuzzleMap(true);
+	$allPuzzlesNode_ref = &RetrievePrimaryNode($rawJson, "PuzzleStatuses");
 	$resetCount = 0;
 	foreach($allPuzzlesNode_ref as $index => &$puzzleNode_ref){
 		$pid = (int)$puzzleNode_ref->Struct->PuzzleId_0->{"Int"}->value;
 		if(in_array($pid, $pidsToReset)){
-			++$resetCount;
-			unset($allPuzzlesNode_ref[$index]);
+			if(isset($puzzleMap[$pid])){
+				$data = $puzzleMap[$pid];
+				//$doHardReset = !(in_array($data->ptype, [ "racingBallCourse", "racingRingCourse" ]) || $pid == GetSkydropChallengePid());
+				$doHardReset = (in_array($data->ptype, [ "dungeon", "obelisk" ]));
+				if($doHardReset){
+					// Hard reset: wipe out all associated puzzle data. This is important for dungeons and monoliths especially.
+					unset($allPuzzlesNode_ref[$index]);
+					++$resetCount;
+				}else{
+					$value_ref = &$allPuzzlesNode_ref[$index]->Struct->{"bSolved_0"}->{"Bool"}->value;
+					if($value_ref == true){
+						// Soft reset: set the puzzle solve status to false. Leave misc data and leaderboard times intact.
+						$value_ref = false;
+						++$resetCount;
+					}
+					unset($value_ref);
+				}
+			}else{
+				printf("  %s\n", ColorStr("[WARNING] Unknown pid " . $pid, 255, 128, 128));
+				unset($allPuzzlesNode_ref[$index]);
+				++$resetCount;
+			}
 		}
+		//if(!isset($puzzleMap[$pid])){
+		//	printf("Unknown pid %d\n", $pid);
+		//	//printf("%s\n", json_encode($puzzleNode_ref, 0xc0));
+		//}
+		//$data = $puzzleMap[$pid];
+		//if(in_array($data->ptype, [ "dungeon", "monolithFragment" ])){
+		//	printf("%5d %s\n", $pid, $data->ptype);
+		//}
 	}unset($puzzleNode_ref);
-
 	$allPuzzlesNode_ref = array_values($allPuzzlesNode_ref);
-	
-	//ResetSaveCosmeticsOfType($saveJson, "paidSpark");
-	//ResetSaveCosmeticsOfType($saveJson, "deluxe");
-	ResetSaveCosmeticsOfType($saveJson, "hubReward");
-	//ResetSaveCosmeticsOfType($saveJson, "masteryReward");
-	//ResetSaveCosmeticsOfType($saveJson, "campaignReward");
-
-	unset($mainNode_ref->RewardProgress_0);
-	
-	unset($mainNode_ref);
+	//unset($mainNode_ref->RewardProgress_0);
+	unset($allPuzzlesNode_ref);
 	return $resetCount;
 }
 
-function ResetSaveHubProgress(&$saveJson){
+function ResetSaveHubProgress(&$rawJson){
 	// INTERNAL USE ONLY, not recommended to try!
-	$resetCount = ResetSpecificSavePids($saveJson, GetAllHubPids());
-	ResetSaveCosmeticsOfType($saveJson, "hubReward");
+	$resetCount = ResetSpecificSavePids($rawJson, GetAllHubPids());
+	ResetSaveCosmeticsOfType($rawJson, "hubReward");
+	unset($rawJson->root->properties->RewardProgress_0);
 	// todo: reset echoes of time.
 	// also mirabilis won't decrease etc.
 	return $resetCount;
 }
 
-function FixMissingSilentWonders(&$saveJson){
-	if(empty($saveJson) || !isset($saveJson->root) || !isset($saveJson->root->properties)){
-		return;
-	}
-	$mainNode_ref = &$saveJson->root->properties;
-	
+function FixMissingSilentWonders(&$rawJson){
 	static $silentWonderMap = [
 		 72 => "Silent Wonder 1",
 		144 => "Silent Wonder 2",
@@ -1210,159 +1340,31 @@ function FixMissingSilentWonders(&$saveJson){
 	];
 	
 	// Find out which silent wonders were clicked on.
+	$clickedMasteryRewards = &RetrieveClickedMasteryRewards($rawJson);
 	$clickedSilentWonders = [];
-	if(!isset($mainNode_ref->RewardProgressArray_0) ||
-	   !isset($mainNode_ref->RewardProgressArray_0->{"Array"}) || 
-	   !isset($mainNode_ref->RewardProgressArray_0->{"Array"}->value) || 
-	   !isset($mainNode_ref->RewardProgressArray_0->{"Array"}->value->Struct) || 
-	   !isset($mainNode_ref->RewardProgressArray_0->{"Array"}->value->Struct->value)){
-		   return;
+	foreach($clickedMasteryRewards as $intValue){
+		if(isset($silentWonderMap[$intValue])){
+			$clickedSilentWonders[] = $silentWonderMap[$intValue];
+		}
 	}
-	$allRewardsNode_ref = &$mainNode_ref->RewardProgressArray_0->{"Array"}->value->Struct->value;
-	$actualArray_ref = null;
-	foreach($allRewardsNode_ref as &$rewardSubNode){
-		if(!isset($rewardSubNode->Struct) ||
-		   !isset($rewardSubNode->Struct->ProgressId_0) || 
-		   !isset($rewardSubNode->Struct->ProgressId_0->Str) || 
-		   !isset($rewardSubNode->Struct->ProgressId_0->Str->value)){
-			   continue;
-		}
-		$rewardTypeName = $rewardSubNode->Struct->ProgressId_0->Str->value;
-		if($rewardTypeName != "GlobalMasteryRewards"){
-			continue;
-		}
-		if(!isset($rewardSubNode->Struct) ||
-		   !isset($rewardSubNode->Struct->RewardedLevels_0) || 
-		   !isset($rewardSubNode->Struct->RewardedLevels_0->{"Array"}) || 
-		   !isset($rewardSubNode->Struct->RewardedLevels_0->{"Array"}->value) ||
-		   !isset($rewardSubNode->Struct->RewardedLevels_0->{"Array"}->value->Base) ||
-		   !isset($rewardSubNode->Struct->RewardedLevels_0->{"Array"}->value->Base->{"Int"})){
-			   continue;
-		}
-		$actualArray_ref = &$rewardSubNode->Struct->RewardedLevels_0->{"Array"}->value->Base->{"Int"};
-		foreach($actualArray_ref as $v){
-			if(isset($silentWonderMap[$v])){
-				$clickedSilentWonders[] = $silentWonderMap[$v];
-			}
-		}
-	}unset($rewardSubNode);
-	unset($allRewardsNode_ref);
 	sort($clickedSilentWonders);
 	
-	if($actualArray_ref === null){
-		return;
-	}
-	
 	// Find out which silent wonders are actually unlocked.
-	$actuallyUnlockedSilentWonders = [];
-	if(!isset($mainNode_ref->Unlockables_0) ||
-	   !isset($mainNode_ref->Unlockables_0->{"Array"}) || 
-	   !isset($mainNode_ref->Unlockables_0->{"Array"}->value) || 
-	   !isset($mainNode_ref->Unlockables_0->{"Array"}->value->Struct) || 
-	   !isset($mainNode_ref->Unlockables_0->{"Array"}->value->Struct->value)){
-		   return;
+	$encyclopedia_ref = &RetrieveUnlockableCategory($rawJson, "encyclopedia");
+	$unlockedSilentWonders = array_filter($encyclopedia_ref, function($x){ return preg_match("/^Silent Wonder (\d+)$/", $x); });
+	sort($unlockedSilentWonders);
+
+	// Fix the difference, if any.
+	$discrepancyArray = array_diff($clickedSilentWonders, $unlockedSilentWonders);	
+	foreach($discrepancyArray as $missingSilentWonderName){
+		printf("  %s\n", ColorStr("Adding missing lore fragment: " . $missingSilentWonderName, 200, 200, 40));
+		$encyclopedia_ref[] = $missingSilentWonderName;
 	}
-	$allUnlockablesNode_ref = &$mainNode_ref->Unlockables_0->{"Array"}->value->Struct->value;
-	foreach($allUnlockablesNode_ref as $categoryNode){
-		if(!isset($categoryNode->Struct) ||
-		   !isset($categoryNode->Struct->UnlockableCategory_0) || 
-		   !isset($categoryNode->Struct->UnlockableCategory_0->Str) || 
-		   !isset($categoryNode->Struct->UnlockableCategory_0->Str->value)){
-			   continue;
-		}
-		$categoryName = $categoryNode->Struct->UnlockableCategory_0->Str->value;
-		if($categoryName != "encyclopedia"){
-			continue;
-		}
-		if(!isset($categoryNode->Struct) ||
-		   !isset($categoryNode->Struct->Unlocks_0) || 
-		   !isset($categoryNode->Struct->Unlocks_0->{"Array"}) || 
-		   !isset($categoryNode->Struct->Unlocks_0->{"Array"}->value) ||
-		   !isset($categoryNode->Struct->Unlocks_0->{"Array"}->value->Base) ||
-		   !isset($categoryNode->Struct->Unlocks_0->{"Array"}->value->Base->Str)){
-			   continue;
-		}
-		$unlocksList = $categoryNode->Struct->Unlocks_0->{"Array"}->value->Base->Str;
-		foreach($unlocksList as $encyID){
-			if(!preg_match("/^Silent Wonder (\d+)$/", $encyID, $matches)){
-				continue;
-			}
-			//$silentWonderIndex = (int)$matches[1];
-			//printf("%s -> |%s|\n", $encyID, $matches[1]);
-			//printf("Found silent wonder |%s| (%d) being actually unlocked.\n", $encyID, $silentWonderIndex);
-			//$actuallyUnlockedSilentWonders[] = $silentWonderIndex;
-			$actuallyUnlockedSilentWonders[] = $encyID;
-		}
-	}
-	unset($allUnlockablesNode_ref);
-	sort($actuallyUnlockedSilentWonders);
-	
-	//print_r($clickedSilentWonders);
-	//print_r($actuallyUnlockedSilentWonders);
-	
-	//print_r($actualArray_ref);
-	$discrepancyArray = array_diff($clickedSilentWonders, $actuallyUnlockedSilentWonders);
-	if(empty($discrepancyArray)){
-		return;
-	}
-	
-	$flippa = array_flip($silentWonderMap);
-	foreach($discrepancyArray as $str){
-		$toReset = $flippa[$str];
-		$level = $toReset / 12;
-		printf("  %s\n", ColorStr("Detected broken " . $str . ", making reward for level " . $level . " clickable again.", 200, 200, 40));
-		//unset($actualArray_ref[array_search($toReset, $actualArray_ref)]);
-		$actualArray_ref = array_values(array_diff($actualArray_ref, [ $toReset ]));
-	}
+	return $discrepancyArray;
 }
 
-function FixMissingEchoesOfTime(&$saveJson){
-	if(empty($saveJson) || !isset($saveJson->root) || !isset($saveJson->root->properties)){
-		return;
-	}
-	$mainNode_ref = &$saveJson->root->properties;
-	
-	$claimedTiersMap = GetHubRewardTiers($mainNode_ref);
-	$hubRewardsMap = LoadHubTrackRewards();
-	
-	// Get the reference to all encyclopedia unlocks.
-	// Todo: this really, really needs to be its own function by now.
-	$encyUnlocks_ref = null;
-	if(!isset($mainNode_ref->Unlockables_0) ||
-	   !isset($mainNode_ref->Unlockables_0->{"Array"}) || 
-	   !isset($mainNode_ref->Unlockables_0->{"Array"}->value) || 
-	   !isset($mainNode_ref->Unlockables_0->{"Array"}->value->Struct) || 
-	   !isset($mainNode_ref->Unlockables_0->{"Array"}->value->Struct->value)){
-		   return;
-	}
-	$allUnlockablesNode_ref = &$mainNode_ref->Unlockables_0->{"Array"}->value->Struct->value;
-	foreach($allUnlockablesNode_ref as &$categoryNode_ref){
-		if(!isset($categoryNode_ref->Struct) ||
-		   !isset($categoryNode_ref->Struct->UnlockableCategory_0) || 
-		   !isset($categoryNode_ref->Struct->UnlockableCategory_0->Str) || 
-		   !isset($categoryNode_ref->Struct->UnlockableCategory_0->Str->value)){
-			   continue;
-		}
-		$categoryName = $categoryNode_ref->Struct->UnlockableCategory_0->Str->value;
-		if($categoryName != "encyclopedia"){
-			continue;
-		}
-		if(!isset($categoryNode_ref->Struct) ||
-		   !isset($categoryNode_ref->Struct->Unlocks_0) || 
-		   !isset($categoryNode_ref->Struct->Unlocks_0->{"Array"}) || 
-		   !isset($categoryNode_ref->Struct->Unlocks_0->{"Array"}->value) ||
-		   !isset($categoryNode_ref->Struct->Unlocks_0->{"Array"}->value->Base) ||
-		   !isset($categoryNode_ref->Struct->Unlocks_0->{"Array"}->value->Base->Str)){
-			   continue;
-		}
-		$encyUnlocks_ref = &$categoryNode_ref->Struct->Unlocks_0->{"Array"}->value->Base->Str;
-	}unset($categoryNode_ref);
-	unset($allUnlockablesNode_ref);
-	
-	if($encyUnlocks_ref === null){
-		return;
-	}
-	
+function FixMissingEchoesOfTime(&$rawJson){
+	// Load the lore map - it's a bit finicky.
 	$loreDetails = LoadCsvMap("media/data/lore_hubs.csv", "encyID");
 	$loreMap = [];
 	foreach($loreDetails as $entry){
@@ -1372,9 +1374,11 @@ function FixMissingEchoesOfTime(&$saveJson){
 		$key = $zoneIndex . "_" . $category;
 		$loreMap[$key] = $encyID;
 	}
-	//var_dump($loreMap); exit(1);
 	
-	//var_dump($hubRewardsMap);
+	// Find out which echoes of time were clicked on based on hub rewards.
+	$clickedEchoesOfTime = [];
+	$claimedTiersMap = GetHubRewardTiers($rawJson);
+	$hubRewardsMap = LoadHubTrackRewards();
 	foreach($claimedTiersMap as $zoneIndex => $infoArr){
 		foreach($infoArr as $puzzleCategory => $lastClaimedTier){
 			$hasClaimedLore = false;
@@ -1387,63 +1391,416 @@ function FixMissingEchoesOfTime(&$saveJson){
 			}
 			//printf("%-20s %-15s %d %s\n", ZoneToPrettyNoColor($zoneIndex), $puzzleCategory, $lastClaimedTier, ($hasClaimedLore ? "ECHO" : "no echo"));
 			if(!$hasClaimedLore){
-				// Echo of time fragment unclaimed - skip further checks.
+				// Echo of time available but unclaimed - skip further checks.
 				continue;
 			}
 			$key = $zoneIndex . "_" . $puzzleCategory;
 			$encyID = $loreMap[$key];
-			$displayName = $loreDetails[$encyID]["fullName"];
-			//printf("%-20s %-15s %d %s: %s\n", ZoneToPrettyNoColor($zoneIndex), $puzzleCategory, $lastClaimedTier, ($hasClaimedLore ? "ECHO" : "no echo"), $encyID);
-			if(!in_array($encyID, $encyUnlocks_ref)){
-				printf("  %s\n", ColorStr("Detected broken " . $displayName . " (" . $encyID . "), adding it to the encyclopedia.", 200, 200, 40));
-				$encyUnlocks_ref[] = $encyID;
+			$clickedEchoesOfTime[] = $encyID;
+		}
+	}
+	sort($clickedEchoesOfTime);
+	
+	// Find out which echoes of time are actually unlocked.
+	$encyclopedia_ref = &RetrieveUnlockableCategory($rawJson, "encyclopedia");
+	$unlockedEchoesOfTime = array_filter($encyclopedia_ref, function($x){ return preg_match("/^lore\d_\d$/", $x); });
+	sort($unlockedEchoesOfTime);
+
+	// Fix the difference, if any.
+	$discrepancyArray = array_diff($clickedEchoesOfTime, $unlockedEchoesOfTime);	
+	foreach($discrepancyArray as $missingEchoOfTime){
+		$displayName = $loreDetails[$missingEchoOfTime]["fullName"];
+		printf("  %s\n", ColorStr("Adding missing Echo of Time: " . $displayName, 200, 200, 40));
+		$encyclopedia_ref[] = $missingEchoOfTime;
+	}
+	return $discrepancyArray;
+}
+
+function FixMissingInsights(&$rawJson){
+	// Which insights should the player have by now?
+	$solvedPidList = GetAllSolvedPids($rawJson);
+	$pidToEncycId = LoadCsvMap("media/data/krakenIdToEncycId.csv", "pid");
+	$eligibleInsights = [];
+	foreach($pidToEncycId as $pid => $data){
+		if(in_array($pid, $solvedPidList)){
+			$eligibleInsights[] = $data["encycId"];
+		}
+	}
+	$eligibleInsights = array_values(array_unique($eligibleInsights));
+	$eligibleInsights = array_diff($eligibleInsights, [
+		"Phantoms", // deprecated insight, most likely a forgotten duplicate of Area Reach
+		"SnakeBottleneck", // unknown insight but you can assume a lot from its name
+	]);
+	sort($eligibleInsights);
+	//printf("%s\n", json_encode($eligibleInsights, 0xc0));
+	
+	// Are any of them missing from the list of insights?
+	$encyclopedia_ref = &RetrieveUnlockableCategory($rawJson, "encyclopedia");
+	$discrepancyArray = array_diff($eligibleInsights, $encyclopedia_ref);
+	foreach($discrepancyArray as $insightName){
+		printf("  %s\n", ColorStr("Adding missing insight: " . $insightName, 200, 200, 40));
+		$encyclopedia_ref[] = $insightName;
+	}
+	return $discrepancyArray;
+}
+
+function FixMissingGridRules(&$rawJson){
+	// Which grid rules have been used in grids that the player has already solved?
+	// First, collect all rules by scanning all puzzles and accumulating a rule bitmask.
+	$gridRuleBitmasks = LoadCsvMap("media/data/gridRuleBitmasks.csv", "pid");
+	$solvedPidList = GetAllSolvedPids($rawJson);
+	$accumulatedBitmask = 0;
+	foreach($solvedPidList as $pid){
+		if(!isset($gridRuleBitmasks[$pid])){
+			continue;
+		}
+		$accumulatedBitmask |= $gridRuleBitmasks[$pid]["bitmask"];
+	}
+	
+	// Decipher the rule bitmask.
+	static $encycRuleReverseList = [
+		0  => "Rule_Alephs",
+		1  => "Rule_AllLightIslandsAreCongruent",
+		2  => "Rule_AllLightIslandsHaveOneSize",
+		3  => "Rule_AvoidThisPattern",
+		4  => "Rule_CaveNumbers",
+		5  => "Rule_CompleteOnlyWhatYouCan",
+		6  => "Rule_ConnectAllLightCells",
+		7  => "Rule_DominionSymbols",
+		8  => "Rule_IslandNumbers",
+		9  => "Rule_KnappDanaben",
+		10 => "Rule_MirrorSymmetry",
+		11 => "Rule_Myopia",
+		12 => "Rule_NoTwoLightIslandsAreCongruent",
+		13 => "Rule_OneSymbolPerLightIsland",
+		14 => "Rule_SearchTheEnvironment",
+		15 => "Rule_Yajilin",
+	];
+	$eligibleRules = [];
+	for($i = 0; $i < count($encycRuleReverseList); ++$i){
+		$bit = ($accumulatedBitmask >> $i) & 0x1;
+		if($bit){
+			$eligibleRules[] = $encycRuleReverseList[$i];
+		}
+	}
+	
+	// Do we have any missing rules in the encyclopedia?
+	$encyclopedia_ref = &RetrieveUnlockableCategory($rawJson, "encyclopedia");
+	$discrepancyArray = array_diff($eligibleRules, $encyclopedia_ref);
+	foreach($discrepancyArray as $ruleName){
+		printf("  %s\n", ColorStr("Adding missing grid rule: " . $ruleName, 200, 200, 40));
+		$encyclopedia_ref[] = $ruleName;
+	}
+	return $discrepancyArray;
+}
+
+function FixMissingEncycPuzzleTypes(&$rawJson){
+	// Find out which puzzle types have been solved at least once.
+	$solvedPidList = GetAllSolvedPids($rawJson);
+	$puzzleMap = GetPuzzleMap(true);
+	$solvedPtypes = array_map(function($x) use($puzzleMap){ return (isset($puzzleMap[$x]) ? $puzzleMap[$x]->ptype : "unknown"); }, $solvedPidList);
+	// Skydrops are special.
+	$nonPuzzleSolves_ref = &RetrieveUnlockableCategory($rawJson, "fileBasedPuzzleSolutionHack");
+	$rosaries = array_filter($nonPuzzleSolves_ref, function($x){ return preg_match("/BP_(Manual|Golden)?Rosary_C /", $x); });
+	if(count($rosaries) > 0){
+		$solvedPtypes[] = "rosary";
+	}
+	$solvedPtypes = array_values(array_unique($solvedPtypes));
+	static $ptypeToEncycPuzzleName = [
+		"lockpick"           => "Puzzle-Clockpick",
+		"ghostObject"        => "Puzzle-EtherealObject",
+		"fractalMatch"       => "Puzzle-FractalMatch",
+		"gyroRing"           => "Puzzle-GyroPuzzle",
+		"hiddenArchway"      => "Puzzle-HiddenArch",
+		"hiddenCube"         => "Puzzle-HiddenCube",
+		"hiddenRing"         => "Puzzle-HiddenRing",
+		"klotski"            => "Puzzle-Klotski",
+		"logicGrid"          => "Puzzle-LogicGrid",
+		"match3"             => "Puzzle-Match3",
+		"matchbox"           => "Puzzle-Matchbox",
+		"memoryGrid"         => "Puzzle-MemoryGrid",
+		"mirrorMaze"         => "Puzzle-MirrorMaze",
+		"musicGrid"          => "Puzzle-MusicGrid",
+		"completeThePattern" => "Puzzle-PatternFind",
+		"lightPattern"       => "Puzzle-ProjectionCone",
+		"racingBallCourse"   => "Puzzle-RacingBalls",
+		"racingRingCourse"   => "Puzzle-RacingRings",
+		"rollingCube"        => "Puzzle-RollingCube",
+		"rosary"             => "Puzzle-Rosary",
+		"ryoanji"            => "Puzzle-Ryoanji",
+		"seek5"              => "Puzzle-Seek5",
+		"viewfinder"         => "Puzzle-Viewfinder",
+		"followTheShiny"     => "Puzzle-WanderingSpirit",
+	];
+	$eligibleEncycPtypes = [];
+	foreach($solvedPtypes as $ptype){
+		if(isset($ptypeToEncycPuzzleName[$ptype])){
+			$eligibleEncycPtypes[] = $ptypeToEncycPuzzleName[$ptype];
+		}
+	}
+	sort($eligibleEncycPtypes);
+	
+	// Do we have any missing puzzle types in the encyclopedia?
+	$encyclopedia_ref = &RetrieveUnlockableCategory($rawJson, "encyclopedia");
+	$discrepancyArray = array_diff($eligibleEncycPtypes, $encyclopedia_ref);
+	foreach($discrepancyArray as $ruleName){
+		printf("  %s\n", ColorStr("Adding missing puzzle type: " . $ruleName, 200, 200, 40));
+		$encyclopedia_ref[] = $ruleName;
+	}
+	return $discrepancyArray;
+}
+
+function FixMissingMysteryPickups(&$rawJson){
+	$pidList = array_values(array_merge(GetAllSolvedPids($rawJson), GetUnlocks($rawJson)));
+	$solvedMysteries = array_values(GetSolvedMysteries($pidList));
+	//printf("%s\n", implode(",", $solvedMysteries));
+	// Do we actually need to restore these?
+}
+
+function FixExcessMirabilis(&$rawJson){
+	$maxMirabilis = GetMaxMirabilisCount();
+	$mirabilisCount = GetCurrency($rawJson, "blue-orbs");
+	if($mirabilisCount > $maxMirabilis){
+		printf("  %s\n", ColorStr("Detected " . $mirabilisCount . " mirabilis, truncating to " . $maxMirabilis . ".", 200, 200, 40));
+		SetCurrency($rawJson, "blue-orbs", $maxMirabilis);
+		return $maxMirabilis;
+	}
+	return -1;
+}
+
+function ResetSaveCampaignProgress(&$rawJson){
+	$settingsToRemove = [
+		"unlocked_zones", // most importantly
+		"TipTypeSeen-0",
+		"TipTypeSeen-1",
+		"TipTypeSeen-3",
+		"TipTypeSeen-4",
+		"TipTypeSeen-5",
+		"TipTypeSeen-6",
+		"TipTypeSeen-8",
+		"TipTypeSeen-9",
+		"TipTypeSeen-10",
+		"TipTypeSeen-11",
+		"TipTypeSeen-12",
+		"TipTypeSeen-13",
+		"TipTypeSeen-15",
+		"TipTypeSeen-16",
+		"TipTypeSeen-17",
+		"TipTypeSeen-18",
+		"TipTypeSeen-19",
+		"TipTypeSeen-20",
+		"TipTypeSeen-21",
+	];
+	ResetSpecificSaveSettings($rawJson, $settingsToRemove);
+	
+	//ResetSaveCosmeticsOfType($rawJson, "campaignReward");
+	
+	// We can't just reset static puzzles - SaveStats omits tracking cutscenes, tips, other internal stuff as static puzzles.
+	// Instead we reset everything EXCEPT hub and cluster puzzles.
+	$dontResetThese = array_values(array_merge(GetAllHubPids(), GetAllClusterPids(), GetTempleArmillaries()));
+	$solvedPidList = GetAllSolvedPids($rawJson);
+	$resetThese = array_diff($solvedPidList, $dontResetThese);
+	ResetSpecificSavePids($rawJson, $resetThese);
+	
+	// This deletes player position and rotation, prompting to default-respawn at the intro island.
+	$playerPos_ref = &RetrievePrimaryNode($rawJson, "Statuses");
+	$playerPos_ref = [];
+	
+	// This deletes daily, wanderer's, and most importantly campaign progress trackings.
+	$quests_ref = &RetrievePrimaryNode($rawJson, "Quests");
+	$quests_ref = [];
+	
+	// Remove ALL insights, lore fragments, discovered puzzle types etc - except for Silent Wonders (tied to mastery) and Echoes of Time (tied to hub progress).
+	$encyclopedia_ref = &RetrieveUnlockableCategory($rawJson, "encyclopedia");
+	$encyclopedia_ref = array_values(array_filter($encyclopedia_ref,	function($x) { return (preg_match("/lore\d_\d(?:_seen)?/i", $x) || preg_match("/Silent Wonder \d+(?:_seen)?/i", $x)); }));
+	
+	// Remove all "non-puzzle puzzles" solves. This mainly includes static skydrops and 4 mysteries (non-grid ones).
+	$nonPuzzleSolves_ref = &RetrieveUnlockableCategory($rawJson, "fileBasedPuzzleSolutionHack");
+	$nonPuzzleSolves_ref = [];
+
+	// Figure out how many mirabilis were obtained (and claimed!) from the hub progress specifically.
+	$claimedMirabilisCount = 0;
+	$hubRewardsMap = LoadHubTrackRewards();
+	$claimedTiersMap = GetHubRewardTiers($rawJson);
+	foreach($claimedTiersMap as $zoneIndex => $infoArr){
+		foreach($infoArr as $puzzleCategory => $lastClaimedTier){
+			$justTheRewards = array_values($hubRewardsMap[$zoneIndex][$puzzleCategory]);
+			for($i = 0; $i < $lastClaimedTier; ++$i){
+				if($justTheRewards[$i] == "Mirabilis"){
+					++$claimedMirabilisCount;
+				}
 			}
 		}
 	}
 	
-	unset($encyUnlocks_ref);
+	printf("You claimed %d mirabilis from hubs.\n", $claimedMirabilisCount);
+	SetCurrency($rawJson, "blue-orbs", $claimedMirabilisCount);
 }
 
-function FixExcessMirabilis(&$saveJson){
-	if(empty($saveJson) || !isset($saveJson->root) || !isset($saveJson->root->properties)){
-		return;
-	}
-	$mainNode_ref = &$saveJson->root->properties;
-
-	$maxMirabilis = GetMaxMirabilisCount();
-	
-	if(!isset($mainNode_ref->Wallet_0) ||
-	   !isset($mainNode_ref->Wallet_0->{"Array"}) || 
-	   !isset($mainNode_ref->Wallet_0->{"Array"}->value) || 
-	   !isset($mainNode_ref->Wallet_0->{"Array"}->value->Struct) || 
-	   !isset($mainNode_ref->Wallet_0->{"Array"}->value->Struct->value)){
-		   return;
-	}
-	$allWallet_ref = &$mainNode_ref->Wallet_0->{"Array"}->value->Struct->value;
-	foreach($allWallet_ref as &$walletNode_ref){
-		if(!isset($walletNode_ref->Struct) ||
-		   !isset($walletNode_ref->Struct->Currency_0) || 
-		   !isset($walletNode_ref->Struct->Currency_0->Str) || 
-		   !isset($walletNode_ref->Struct->Currency_0->Str->value)){
-			   continue;
-		}
-		$currency = $walletNode_ref->Struct->Currency_0->Str->value;
-		if($currency != "blue-orbs"){
+function ResetSaveDailyQuests($rawJson){
+	$questsNode_ref = &RetrievePrimaryNode($rawJson, "Quests");
+	$resetCount = 0;
+	foreach($questsNode_ref as $index => &$node_ref){
+		$questName = $node_ref->Struct->QuestID_0->Str->value;
+		if(!str_starts_with($questName, "Daily") && !str_starts_with($questName, "Auto")){
 			continue;
 		}
-		if(!isset($walletNode_ref->Struct) ||
-		   !isset($walletNode_ref->Struct->Balance_0) || 
-		   !isset($walletNode_ref->Struct->Balance_0->{"Int"}) || 
-		   !isset($walletNode_ref->Struct->Balance_0->{"Int"}->value)){
-			   continue;
-		}
-		$value_ref = &$walletNode_ref->Struct->Balance_0->{"Int"}->value;
-		//printf("You have %d mirabilis\n", $value_ref);
-		if($value_ref > $maxMirabilis){
-			printf("  %s\n", ColorStr("Detected " . $value_ref . " mirabilis, truncating to " . $maxMirabilis . ".", 200, 200, 40));
-			$value_ref = $maxMirabilis;
-		}
-		unset($value_ref);
-	}unset($walletNode_ref);
-	unset($allWallet_ref);
+		$questStatusString = $node_ref->Struct->QuestStatus_0->Str->value;
+		unset($questsNode_ref[$index]);
+		++$resetCount;
+	}unset($node_ref);
+	$questsNode_ref = array_values($questsNode_ref);
+	unset($questsNode_ref);
+	
+	printf("  %s\n", ColorStr("Reset all " . $resetCount . " daily and/or wanderer's quests", 200, 200, 40));
+	return $resetCount;
 }
+
+function ResetSaveTempleArmillaries($rawJson){
+	$templeArmillaryPids = GetTempleArmillaries();
+	$resetCount = ResetSpecificSavePids($rawJson, $templeArmillaryPids);
+	printf("  %s\n", ColorStr("Reset " . $resetCount . " temple armillaries", 200, 200, 40));
+	return $resetCount;
+}
+
+function ResetSaveVanillaClusters($rawJson){
+	$clusterMap = GetConsolidatedClusterMap();
+	$pidsToRest = array_values(array_merge($clusterMap["Lucent"], $clusterMap["Cong."], $clusterMap["Myopia"]));
+	$resetCount = ResetSpecificSavePids($rawJson, $pidsToRest);
+	printf("  %s\n", ColorStr("Reset " . $resetCount . " vanilla cluster pids", 200, 200, 40));
+	return $resetCount;
+}
+
+function ResetSaveLostgridsCluster($rawJson){
+	$clusterMap = GetConsolidatedClusterMap();
+	$pidsToRest = $clusterMap["LostGrids"];
+	$resetCount = ResetSpecificSavePids($rawJson, $pidsToRest);
+	printf("  %s\n", ColorStr("Reset " . $resetCount . " LostGrtids cluster pids", 200, 200, 40));
+	return $resetCount;
+}
+
+function FixUnsolvedMonoliths(&$rawJson){
+	// First, retrieve which quests are solved. Monolith quests, specifically.
+	$quests_ref = &RetrievePrimaryNode($rawJson, "Quests");
+	$solvedMonolithQuests = [];
+	foreach($quests_ref as &$node_ref){
+		$questName = $node_ref->Struct->QuestID_0->Str->value;
+		if(!preg_match("/(.*) Orb Fragments$/", $questName, $matches)){
+			continue;
+		}
+		$zoneIndex = ZoneNameToInt($matches[1]);
+		$status_ref = &$node_ref->Struct->QuestStatus_0->Str->value;
+		$solvedMonolithQuests[$zoneIndex] = &$status_ref;
+		unset($status_ref);
+		//printf(json_encode($node_ref)); exit(1);
+	}unset($node_ref);
+	ksort($solvedMonolithQuests);
+	//var_dump($solvedMonolithQuests);
+	
+	// Retrieve misc data about all solved puzzles.
+	$miscMap = [];
+	$puzzleList = ParseAllPuzzles($rawJson, $miscMap);
+	
+	// Iterate over monoliths, see what's up.
+	$fixCount = 0;
+	$monolithMap = GetMonolithMap();
+	foreach($monolithMap as $zoneIndex => $pid){
+		if(!isset($miscMap[$pid])){
+			// No data associated with this monolith - likely no fragments found yet.
+			continue;
+		}
+		printf("%-14s monolith (pid %5d) state: %s\n", ZoneToPrettyNoColor($zoneIndex), $pid, json_encode($miscMap[$pid]));
+		$miniJson = json_decode($miscMap[$pid]);
+		$areAllFound = true;
+		foreach($miniJson->Found as $bobo){
+			$areAllFound &= $bobo;
+		}
+		if(!$areAllFound){
+			// Some, but not all, fragments have been found. Skip this.
+			continue;
+		}
+		// We can confirm that this monolith is fully solved.
+		//printf("%-14s monolith (pid %5d) is fully solved.\n", ZoneToPrettyNoColor($zoneIndex), $pid);
+		
+		static $properSolvedQuest = "{\r\n\t\"ObjData\": [\r\n\t\t{\r\n\t\t\t\"QuestObjectiveState\": true\r\n\t\t}\r\n\t],\r\n\t\"QuestState\": 4\r\n}";
+		if(isset($solvedMonolithQuests[$zoneIndex])){
+			if($solvedMonolithQuests[$zoneIndex] != $properSolvedQuest){
+				printf("  %s\n", ColorStr("Repairing " . ZoneToPrettyNoColor($zoneIndex) . " monolith data", 200, 200, 40));
+				++$fixCount;
+				$solvedMonolithQuests[$zoneIndex] = $properSolvedQuest;
+			}
+		}else{
+			printf("  %s\n", ColorStr("Adding missing " . ZoneToPrettyNoColor($zoneIndex) . " monolith data", 200, 200, 40));
+			static $zoneIndexToQuestName = [
+				2 => "Rainforest Orb Fragments",
+				3 => "Central Orb Fragments",
+				4 => "Riverland Orb Fragments",
+				5 => "Redwood Orb Fragments",
+				6 => "Mountain Orb Fragments",
+			];
+			$str = 
+				'{"Struct":{"QuestID_0":{"Str":{"value":"' .
+				$zoneIndexToQuestName[$zoneIndex] .
+				'"}},"QuestStatus_0":{"Str":{"value":"' .
+				//$properSolvedQuest .
+				"none" .
+				'"}},"bOverride_QuestStatus_0":{"Bool":{"value":false}}}}' ;
+			$fullQuestNode = json_decode($str);
+			$fullQuestNode->Struct->QuestStatus_0->Str->value = $properSolvedQuest;
+			$quests_ref[] = $fullQuestNode;
+			++$fixCount;
+			//var_dump($str);
+			//var_dump($fullQuestNode);
+		}
+		
+		// But does the related quest entry agree?
+		//var_dump($miniJson->Found);
+		//$t = array_count_values($miniJson->Found);
+		//var_dump($t);
+		//$tester = array_values(array_unique($miniJson->Found));
+		//var_dump($tester, $areAllFound);
+	}
+	
+	unset($quests_ref);
+	return $fixCount;
+}
+
+function ResetNonPlatGeneric(&$rawJson, array $medalMap){
+	if(count($medalMap) != 4){
+		printf("[ERROR] Medal map is malformed!\n");
+		return false;
+	}
+	$pidsToReset = array_merge(
+		$medalMap[0],
+		$medalMap[1],
+		$medalMap[2],
+	);
+	//printf("%s\n", json_encode($medalMap, 0xc0));
+	return ResetSpecificSavePids($rawJson, $pidsToReset);
+}
+
+function ResetNonPlatFlorbs(&$rawJson){
+	$miscMap = [];
+	$puzzleCsvData = ParseAllPuzzles($rawJson, $miscMap);
+	$florbPbs = GetFlorbPbs($puzzleCsvData);
+	$florbMedalMap = GetFlorbMedalMap($florbPbs);
+	$resetCount = ResetNonPlatGeneric($rawJson, $florbMedalMap);
+	if($resetCount > 0){
+		printf("  %s\n", ColorStr("Reset " . $resetCount . " non-platinum florbs", 200, 200, 40));
+	}
+	return $resetCount;
+}
+
+function ResetNonPlatGlides(&$rawJson){
+	$miscMap = [];
+	$puzzleCsvData = ParseAllPuzzles($rawJson, $miscMap);
+	$glidePbs = GetGlidePbs($puzzleCsvData);
+	$glideMedalMap = GetGlideMedalMap($glidePbs);
+	$resetCount = ResetNonPlatGeneric($rawJson, $glideMedalMap);
+	if($resetCount > 0){
+		printf("  %s\n", ColorStr("Reset " . $resetCount . " non-platinum glides", 200, 200, 40));
+	}
+	return $resetCount;
+}
+
+
