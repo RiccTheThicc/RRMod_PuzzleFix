@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>530</width>
+    <height>590</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>530</width>
+    <height>590</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>IOI Save Editor - Beta</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,1,100,1">
+    <item>
+     <layout class="QHBoxLayout" name="horLayoutSavePath">
+      <item>
+       <widget class="QLabel" name="labelSaveFile">
+        <property name="text">
+         <string>Save file:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineSavePath"/>
+      </item>
+      <item>
+       <widget class="QPushButton" name="buttonSelectSavePath">
+        <property name="text">
+         <string>Select</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QGroupBox" name="groupBox">
+        <property name="title">
+         <string>Resets</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0,0,0,0,0,0,0">
+         <item>
+          <widget class="QCheckBox" name="checkResetCampaign">
+           <property name="statusTip">
+            <string>|=== Reset campaign (NG+ mode) === | |You KEEP:  |* All hub (daily) puzzles and progress |* All cluster puzzle solves |* All cosmetics and sparks |* XP, Mastery, purchased upgrades |* Temple armillary rings | |This RESETS: |* All enclaves, quests, static puzzles, mysteries |* Overall campaign progress |* Most of Encyclopedia | |Essentially this is NewGame+ mode. You will start at the introduction island |and play through the campaign again, unlocking insights, puzzle types etc. | |This will recalculate your mirabilis (keeping those from hub progress). |Note that you will not lose your best times/scores for flow orbs, glide rings, |and skydrop challenge - solving them again will reload your bests.</string>
+           </property>
+           <property name="text">
+            <string>Reset campaign (NG+ mode)</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkResetTempleArmillaries">
+           <property name="statusTip">
+            <string>|=== Reset temple armillaries === | |This will reset up to 341 armillary rings that can be found in the Temple of Infinite Rings. |The same armillary rings spawn randomly around all hub zones. |This is recommended together with the NG+ mode, but it's optional.</string>
+           </property>
+           <property name="text">
+            <string>Reset temple armillaries</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkResetVanillaClusters">
+           <property name="statusTip">
+            <string>|=== Reset vanilla clusters === | |This will reset the logic grids from all four vanilla clusters: |Ascension, Underclued, Congruence, and Myopia. | |For more information on what &quot;clusters&quot; are, run SaveStats and check out |OUTPUT/spawns/clusters.jpg | |Basically, the game selects several random grids from a large pool |and spawns them in the predefined spawn points. Unsolved spawn first. | |They only change by restarting the game.</string>
+           </property>
+           <property name="text">
+            <string>Reset vanilla clusters</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkResetLostgridsCluster">
+           <property name="statusTip">
+            <string>|=== Reset Lost Grids cluster === | |This will reset all logic/pattern/music grids from the Lost Grids cluster. | |Lost Grids is a new massive cluster introduced in the Offline Restored Mod 1.5 | |For more information on what &quot;clusters&quot; are, run SaveStats and check out |OUTPUT/spawns/clusters.jpg</string>
+           </property>
+           <property name="text">
+            <string>Reset Lost Grids cluster</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkResetHubProgress">
+           <property name="statusTip">
+            <string>|=== Reset hub progress === | |This resets all hub puzzle solves as well as earned hub-track rewards. |Some cosmetics, mirabilis, echoes of time may be removed accordingly. |Sparks will not be deducted. | |Note that you will not lose your best times/scores for flow orbs, glide rings, |and skydrop challenge - solving them again will reload your bests. | |If you equipped cosmetics awarded from the hub-track rewards, |they will remain equipped, but cannot be re-equipped if you change them |(until you re-unlock them again).</string>
+           </property>
+           <property name="text">
+            <string>Reset hub progress</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkResetOnlineFlorbs">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="statusTip">
+            <string>|=== Reset online flow orb records === | |This is for speedrunners only. | |For each flow orb that you've completed in online mode at least once and got platinum medal, |this will truncate your best time down to the platinum milestone. | |This makes you eligible for offline-only flow orb leaderboards. |You will not lose any solves or medals, but you may lose some of your records. | |Note that if the flow orb was completed in online mode at all, it will be truncated, |even if you set a better time in it later in offline mode. | |If you don't care for speedrunning and/or only ever playd in offline mode, ignore this.</string>
+           </property>
+           <property name="text">
+            <string>Reset online flow orb records</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkResetNonPlatFlorbs">
+           <property name="statusTip">
+            <string>|=== Reset non-platinum florbs === | |For completionists only. |This will un-solve all Flow Orbs with bronze, silver, or gold medals. | |This makes them generally easier to locate to run again, as they |will show up incomplete in daily counts and easier to spot at a distance. | |Note that your historical best times will not be lost. |Upon re-solving a Flow Orbs course again, if your new run is slower than |your historical best, then it will regain its historical best instead.</string>
+           </property>
+           <property name="text">
+            <string>Reset non-platinum florbs</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkResetNonPlatGlides">
+           <property name="statusTip">
+            <string>|=== Reset non-platinum glides === | |For completionists only. |This will un-solve all Glide Rings with bronze, silver, or gold medals. | |This makes them generally easier to locate to run again, as they |will show up incomplete in daily counts and easier to spot at a distance. | |Note that your historical best scores will not be lost. |Upon re-solving a Glide Rings course again, if your new run is worse than |your historical best, then it will regain its historical best instead.</string>
+           </property>
+           <property name="text">
+            <string>Reset non-platinum glides</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="groupBox_2">
+        <property name="title">
+         <string>Fixes</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <widget class="QCheckBox" name="checkFixEncyclopedia">
+           <property name="statusTip">
+            <string>|=== Fix missing Encyclopedia entries === | |This will automatically detect and fix all missing: |* Insights |* Grid rules |* Discovered puzzle types |* Silent Wonders (lore fragments as Mastery rewards) |* Echoes of Time (lore fragments as Hub progress rewards) | |This will ONLY restore entries you SHOULD have, not all of them. | |On rare occasions your save file might get partially corrupted. |Use this option if this happens. You will still have to: |* Re-solve static skydrops in enclaves |* Collect all lore fragment pickups |* Pickup all mystery hints (north of Lucent fast travel) |* Possibly redo a few mysteries | |Run SaveStats and see Static_remain.jpg for help with this.</string>
+           </property>
+           <property name="text">
+            <string>Fix missing Encyclopedia entries</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkFixExcessMirabilis">
+           <property name="statusTip">
+            <string>|=== Fix excess Mirabilis === | |If you happen to have more than 271 Mirabilis, this sets them to 271. | |The proper maximum in vanilla game is 263.  |Offline Restored Mod 1.5 adds 8 more for a total of 271. | |You may have obtained 272 (or even more) due to old bugs.</string>
+           </property>
+           <property name="text">
+            <string>Fix excess Mirabilis</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkHidePing">
+           <property name="statusTip">
+            <string>|=== Hide &quot;Ping: 0&quot; === | |If you enabled displaying ping in online mode (next to FPS) |you may be stuck with &quot;Ping: 0&quot; permanently displayed in the corner. | |This will hide it. It cannot be disabled in the options normally.</string>
+           </property>
+           <property name="text">
+            <string>Hide &quot;Ping: 0&quot;</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkRefundFiveMarkers">
+           <property name="statusTip">
+            <string>|=== Refund 5-markers upgrade === | |Some players prefer to keep 1 marker rather than 5. |This will refund the 5-markers upgrade. | |You will keep faster rolling blocks and double Luminous quests if you have them.</string>
+           </property>
+           <property name="text">
+            <string>Refund 5-markers upgrade</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkResetDailyQuests">
+           <property name="statusTip">
+            <string>|=== Reset daily quests === | |In certain cases you might end up with daily Luminous quests |having a refresh timer of like 300 hours or more. | |Use this option to reset the daily quest data and let the game generate new ones again. | |Note that this will discard your current Luminous and Wanderer's quest progress.</string>
+           </property>
+           <property name="text">
+            <string>Reset daily quests</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkFixUnsolvedMonoliths">
+           <property name="statusTip">
+            <string>|=== Fix un-solved Monoliths === | |Sometimes, after all monolith fragments have been found and the monolith activated, |the monolith may become un-solved later for unknown reasons. | |This will detect fully activated monoliths and restore their status properly.</string>
+           </property>
+           <property name="text">
+            <string>Fix un-solved Monoliths</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkFixNegativeSparks">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="statusTip">
+            <string>|=== Fix negative sparks === | |This will set your sparks to 0 if they're negative. | |Offline Restored Mod prevents this bug from happening, but if you already |have negative sparks before installing the mod then you may need this.</string>
+           </property>
+           <property name="text">
+            <string>Fix negative sparks</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>147</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QPlainTextEdit" name="textStatus">
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="Base">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>243</red>
+            <green>243</green>
+            <blue>243</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+        <inactive>
+         <colorrole role="Base">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>243</red>
+            <green>243</green>
+            <blue>243</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </inactive>
+        <disabled>
+         <colorrole role="Base">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>240</red>
+            <green>240</green>
+            <blue>240</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </disabled>
+       </palette>
+      </property>
+      <property name="undoRedoEnabled">
+       <bool>false</bool>
+      </property>
+      <property name="readOnly">
+       <bool>false</bool>
+      </property>
+      <property name="plainText">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horLayoutButtons">
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="buttonApply">
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="statusTip">
+         <string>|=== Backup and apply === | |This safely creates a backup of your save file (same directory with SaveEditor.exe) |and then applies all selected changes. | |Please temporarily disable Steam Cloud to make sure this works.</string>
+        </property>
+        <property name="text">
+         <string>Backup and Apply</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="buttonClose">
+        <property name="text">
+         <string>Close</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
