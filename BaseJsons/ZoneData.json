@@ -8,7 +8,26 @@
 "DataResources": [],
 "UsesEventDrivenLoader": true,
 "WillSerializeNameHashes": true,
-"Imports": [{"$type":"UAssetAPI.Import, UAssetAPI","ObjectName":"ZoneData","OuterIndex":-9,"ClassPackage":"/Script/CoreUObject","ClassName":"Class","PackageName":null,"bImportOptional":false},{"$type":"UAssetAPI.Import, UAssetAPI","ObjectName":"ZoneDataEntry","OuterIndex":-9,"ClassPackage":"/Script/CoreUObject","ClassName":"Class","PackageName":null,"bImportOptional":false},{"$type":"UAssetAPI.Import, UAssetAPI","ObjectName":"/Game/ASophia/UI/HUD/UI_Overhaul/MirabilisAndSandboxProgression/ZoneIcons/AutumnFallsIcon","OuterIndex":0,"ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},{"$type":"UAssetAPI.Import, UAssetAPI","ObjectName":"/Game/ASophia/UI/HUD/UI_Overhaul/MirabilisAndSandboxProgression/ZoneIcons/FTUEIcon","OuterIndex":0,"ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},{"$type":"UAssetAPI.Import, UAssetAPI","ObjectName":"/Game/ASophia/UI/HUD/UI_Overhaul/MirabilisAndSandboxProgression/ZoneIcons/LucentWatersIcon","OuterIndex":0,"ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},{"$type":"UAssetAPI.Import, UAssetAPI","ObjectName":"/Game/ASophia/UI/HUD/UI_Overhaul/MirabilisAndSandboxProgression/ZoneIcons/ShadesOfGiantIcon","OuterIndex":0,"ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},{"$type":"UAssetAPI.Import, UAssetAPI","ObjectName":"/Game/ASophia/UI/HUD/UI_Overhaul/MirabilisAndSandboxProgression/ZoneIcons/TheDelugeIcon","OuterIndex":0,"ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},{"$type":"UAssetAPI.Import, UAssetAPI","ObjectName":"/Game/ASophia/UI/HUD/UI_Overhaul/MirabilisAndSandboxProgression/ZoneIcons/VerdantGlenIcon","OuterIndex":0,"ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},{"$type":"UAssetAPI.Import, UAssetAPI","ObjectName":"/Script/IslandsofInsight","OuterIndex":0,"ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},{"$type":"UAssetAPI.Import, UAssetAPI","ObjectName":"AutumnFallsIcon","OuterIndex":-3,"ClassPackage":"/Script/Engine","ClassName":"Texture2D","PackageName":null,"bImportOptional":false},{"$type":"UAssetAPI.Import, UAssetAPI","ObjectName":"FTUEIcon","OuterIndex":-4,"ClassPackage":"/Script/Engine","ClassName":"Texture2D","PackageName":null,"bImportOptional":false},{"$type":"UAssetAPI.Import, UAssetAPI","ObjectName":"LucentWatersIcon","OuterIndex":-5,"ClassPackage":"/Script/Engine","ClassName":"Texture2D","PackageName":null,"bImportOptional":false},{"$type":"UAssetAPI.Import, UAssetAPI","ObjectName":"ShadesOfGiantIcon","OuterIndex":-6,"ClassPackage":"/Script/Engine","ClassName":"Texture2D","PackageName":null,"bImportOptional":false},{"$type":"UAssetAPI.Import, UAssetAPI","ObjectName":"TheDelugeIcon","OuterIndex":-7,"ClassPackage":"/Script/Engine","ClassName":"Texture2D","PackageName":null,"bImportOptional":false},{"$type":"UAssetAPI.Import, UAssetAPI","ObjectName":"VerdantGlenIcon","OuterIndex":-8,"ClassPackage":"/Script/Engine","ClassName":"Texture2D","PackageName":null,"bImportOptional":false},{"$type":"UAssetAPI.Import, UAssetAPI","ObjectName":"Default__ZoneData","OuterIndex":-9,"ClassPackage":"/Script/IslandsofInsight","ClassName":"ZoneData","PackageName":null,"bImportOptional":false},{"$type":"UAssetAPI.Import, UAssetAPI","ObjectName":"invalidZoneEntry","OuterIndex":-16,"ClassPackage":"/Script/IslandsofInsight","ClassName":"ZoneDataEntry","PackageName":null,"bImportOptional":false},{"$type":"UAssetAPI.Import, UAssetAPI","ObjectName":"Default__ZoneDataEntry","OuterIndex":-9,"ClassPackage":"/Script/IslandsofInsight","ClassName":"ZoneDataEntry","PackageName":null,"bImportOptional":false}],
+"Imports": [
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-1,"OuterIndex":-9,"ObjectName":"ZoneData","ClassPackage":"/Script/CoreUObject","ClassName":"Class","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-2,"OuterIndex":-9,"ObjectName":"ZoneDataEntry","ClassPackage":"/Script/CoreUObject","ClassName":"Class","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-3,"OuterIndex":0,"ObjectName":"/Game/ASophia/UI/HUD/UI_Overhaul/MirabilisAndSandboxProgression/ZoneIcons/AutumnFallsIcon","ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-4,"OuterIndex":0,"ObjectName":"/Game/ASophia/UI/HUD/UI_Overhaul/MirabilisAndSandboxProgression/ZoneIcons/FTUEIcon","ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-5,"OuterIndex":0,"ObjectName":"/Game/ASophia/UI/HUD/UI_Overhaul/MirabilisAndSandboxProgression/ZoneIcons/LucentWatersIcon","ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-6,"OuterIndex":0,"ObjectName":"/Game/ASophia/UI/HUD/UI_Overhaul/MirabilisAndSandboxProgression/ZoneIcons/ShadesOfGiantIcon","ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-7,"OuterIndex":0,"ObjectName":"/Game/ASophia/UI/HUD/UI_Overhaul/MirabilisAndSandboxProgression/ZoneIcons/TheDelugeIcon","ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-8,"OuterIndex":0,"ObjectName":"/Game/ASophia/UI/HUD/UI_Overhaul/MirabilisAndSandboxProgression/ZoneIcons/VerdantGlenIcon","ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-9,"OuterIndex":0,"ObjectName":"/Script/IslandsofInsight","ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-10,"OuterIndex":-3,"ObjectName":"AutumnFallsIcon","ClassPackage":"/Script/Engine","ClassName":"Texture2D","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-11,"OuterIndex":-4,"ObjectName":"FTUEIcon","ClassPackage":"/Script/Engine","ClassName":"Texture2D","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-12,"OuterIndex":-5,"ObjectName":"LucentWatersIcon","ClassPackage":"/Script/Engine","ClassName":"Texture2D","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-13,"OuterIndex":-6,"ObjectName":"ShadesOfGiantIcon","ClassPackage":"/Script/Engine","ClassName":"Texture2D","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-14,"OuterIndex":-7,"ObjectName":"TheDelugeIcon","ClassPackage":"/Script/Engine","ClassName":"Texture2D","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-15,"OuterIndex":-8,"ObjectName":"VerdantGlenIcon","ClassPackage":"/Script/Engine","ClassName":"Texture2D","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-16,"OuterIndex":-9,"ObjectName":"Default__ZoneData","ClassPackage":"/Script/IslandsofInsight","ClassName":"ZoneData","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-17,"OuterIndex":-16,"ObjectName":"invalidZoneEntry","ClassPackage":"/Script/IslandsofInsight","ClassName":"ZoneDataEntry","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-18,"OuterIndex":-9,"ObjectName":"Default__ZoneDataEntry","ClassPackage":"/Script/IslandsofInsight","ClassName":"ZoneDataEntry","PackageName":null,"bImportOptional":false}
+],
 "DependsMap": [[],[],[],[],[],[],[],[],[]],
 "SoftPackageReferenceList": [],
 "AssetRegistryData": {"$type":"System.Byte[], System.Private.CoreLib","$value":"AAAAAA=="},
@@ -55,6 +74,7 @@
 "Exports": [
 {
 	"$type": "UAssetAPI.ExportTypes.NormalExport, UAssetAPI",
+	"$index": 1,
 	"ObjectName": "ZoneData",
 	"ObjectFlags": "RF_Public, RF_Standalone, RF_Transactional",
 	"SerialSize": 106,
@@ -101,6 +121,7 @@
 },
 {
 	"$type": "UAssetAPI.ExportTypes.NormalExport, UAssetAPI",
+	"$index": 2,
 	"ObjectName": "invalidZoneEntry",
 	"ObjectFlags": "RF_Public, RF_Transactional, RF_DefaultSubObject",
 	"SerialSize": 12,
@@ -131,6 +152,7 @@
 },
 {
 	"$type": "UAssetAPI.ExportTypes.NormalExport, UAssetAPI",
+	"$index": 3,
 	"ObjectName": "ZoneDataEntry_0",
 	"ObjectFlags": "RF_Public, RF_Transactional",
 	"SerialSize": 253,
@@ -183,6 +205,7 @@
 },
 {
 	"$type": "UAssetAPI.ExportTypes.NormalExport, UAssetAPI",
+	"$index": 4,
 	"ObjectName": "ZoneDataEntry_1",
 	"ObjectFlags": "RF_Public, RF_Transactional",
 	"SerialSize": 254,
@@ -235,6 +258,7 @@
 },
 {
 	"$type": "UAssetAPI.ExportTypes.NormalExport, UAssetAPI",
+	"$index": 5,
 	"ObjectName": "ZoneDataEntry_2",
 	"ObjectFlags": "RF_Public, RF_Transactional",
 	"SerialSize": 253,
@@ -287,6 +311,7 @@
 },
 {
 	"$type": "UAssetAPI.ExportTypes.NormalExport, UAssetAPI",
+	"$index": 6,
 	"ObjectName": "ZoneDataEntry_3",
 	"ObjectFlags": "RF_Public, RF_Transactional",
 	"SerialSize": 255,
@@ -339,6 +364,7 @@
 },
 {
 	"$type": "UAssetAPI.ExportTypes.NormalExport, UAssetAPI",
+	"$index": 7,
 	"ObjectName": "ZoneDataEntry_4",
 	"ObjectFlags": "RF_Public, RF_Transactional",
 	"SerialSize": 251,
@@ -391,6 +417,7 @@
 },
 {
 	"$type": "UAssetAPI.ExportTypes.NormalExport, UAssetAPI",
+	"$index": 8,
 	"ObjectName": "ZoneDataEntry_5",
 	"ObjectFlags": "RF_Public, RF_Transactional",
 	"SerialSize": 159,
@@ -440,6 +467,7 @@
 },
 {
 	"$type": "UAssetAPI.ExportTypes.NormalExport, UAssetAPI",
+	"$index": 9,
 	"ObjectName": "ZoneDataEntry_6",
 	"ObjectFlags": "RF_Public, RF_Transactional",
 	"SerialSize": 224,

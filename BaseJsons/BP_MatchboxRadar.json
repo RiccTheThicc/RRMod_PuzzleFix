@@ -8,7 +8,18 @@
 "DataResources": [],
 "UsesEventDrivenLoader": true,
 "WillSerializeNameHashes": true,
-"Imports": [{"$type":"UAssetAPI.Import, UAssetAPI","ObjectName":"Default__BlueprintGeneratedClass","OuterIndex":-8,"ClassPackage":"/Script/Engine","ClassName":"BlueprintGeneratedClass","PackageName":null,"bImportOptional":false},{"$type":"UAssetAPI.Import, UAssetAPI","ObjectName":"Object","OuterIndex":-7,"ClassPackage":"/Script/CoreUObject","ClassName":"Class","PackageName":null,"bImportOptional":false},{"$type":"UAssetAPI.Import, UAssetAPI","ObjectName":"BlueprintGeneratedClass","OuterIndex":-8,"ClassPackage":"/Script/CoreUObject","ClassName":"Class","PackageName":null,"bImportOptional":false},{"$type":"UAssetAPI.Import, UAssetAPI","ObjectName":"Item","OuterIndex":-9,"ClassPackage":"/Script/CoreUObject","ClassName":"Class","PackageName":null,"bImportOptional":false},{"$type":"UAssetAPI.Import, UAssetAPI","ObjectName":"Default__Item","OuterIndex":-9,"ClassPackage":"/Script/IslandsofInsight","ClassName":"Item","PackageName":null,"bImportOptional":false},{"$type":"UAssetAPI.Import, UAssetAPI","ObjectName":"/Game/ASophia/Data/Items/Textures/PuzzleRadar","OuterIndex":0,"ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},{"$type":"UAssetAPI.Import, UAssetAPI","ObjectName":"/Script/CoreUObject","OuterIndex":0,"ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},{"$type":"UAssetAPI.Import, UAssetAPI","ObjectName":"/Script/Engine","OuterIndex":0,"ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},{"$type":"UAssetAPI.Import, UAssetAPI","ObjectName":"/Script/IslandsofInsight","OuterIndex":0,"ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},{"$type":"UAssetAPI.Import, UAssetAPI","ObjectName":"PuzzleRadar","OuterIndex":-6,"ClassPackage":"/Script/Engine","ClassName":"Texture2D","PackageName":null,"bImportOptional":false}],
+"Imports": [
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-1,"OuterIndex":-8,"ObjectName":"Default__BlueprintGeneratedClass","ClassPackage":"/Script/Engine","ClassName":"BlueprintGeneratedClass","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-2,"OuterIndex":-7,"ObjectName":"Object","ClassPackage":"/Script/CoreUObject","ClassName":"Class","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-3,"OuterIndex":-8,"ObjectName":"BlueprintGeneratedClass","ClassPackage":"/Script/CoreUObject","ClassName":"Class","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-4,"OuterIndex":-9,"ObjectName":"Item","ClassPackage":"/Script/CoreUObject","ClassName":"Class","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-5,"OuterIndex":-9,"ObjectName":"Default__Item","ClassPackage":"/Script/IslandsofInsight","ClassName":"Item","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-6,"OuterIndex":0,"ObjectName":"/Game/ASophia/Data/Items/Textures/PuzzleRadar","ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-7,"OuterIndex":0,"ObjectName":"/Script/CoreUObject","ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-8,"OuterIndex":0,"ObjectName":"/Script/Engine","ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-9,"OuterIndex":0,"ObjectName":"/Script/IslandsofInsight","ClassPackage":"/Script/CoreUObject","ClassName":"Package","PackageName":null,"bImportOptional":false},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-10,"OuterIndex":-6,"ObjectName":"PuzzleRadar","ClassPackage":"/Script/Engine","ClassName":"Texture2D","PackageName":null,"bImportOptional":false}
+],
 "DependsMap": [[],[]],
 "SoftPackageReferenceList": [],
 "AssetRegistryData": {"$type":"System.Byte[], System.Private.CoreLib","$value":"AAAAAA=="},
@@ -55,6 +66,7 @@
 "Exports": [
 {
 	"$type": "UAssetAPI.ExportTypes.ClassExport, UAssetAPI",
+	"$index": 1,
 	"FuncMap": [],
 	"ClassFlags": "CLASS_Parsed, CLASS_ReplicationDataIsSetUp, CLASS_CompiledFromBlueprint",
 	"ClassWithin": -2,
@@ -71,7 +83,6 @@
 	"ScriptBytecodeSize": 0,
 	"ScriptBytecodeRaw": null,
 	"Field": {"$type":"UAssetAPI.FieldTypes.UField, UAssetAPI","Next":null},
-	"Data": [],
 	"ObjectName": "BP_MatchboxRadar_C",
 	"ObjectFlags": "RF_Public, RF_Transactional",
 	"SerialSize": 80,
@@ -97,10 +108,12 @@
 	"OuterIndex": 0,
 	"ClassIndex": -3,
 	"SuperIndex": -4,
-	"TemplateIndex": -1
+	"TemplateIndex": -1,
+	"Data": []
 },
 {
 	"$type": "UAssetAPI.ExportTypes.NormalExport, UAssetAPI",
+	"$index": 2,
 	"ObjectName": "Default__BP_MatchboxRadar_C",
 	"ObjectFlags": "RF_Public, RF_Transactional, RF_ClassDefaultObject, RF_ArchetypeObject",
 	"SerialSize": 305,
