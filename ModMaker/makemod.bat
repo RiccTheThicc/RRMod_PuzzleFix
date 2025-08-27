@@ -22,7 +22,6 @@ cd /d %~dp0
 "php\php.exe"	finalize_uasset.php	"..\BaseJsons\Central_CampaignObjects.json"					"..\OutputJsons\Central_CampaignObjects.json"				|| goto :error
 "php\php.exe"	finalize_uasset.php	"..\BaseJsons\Deluxe_Part1_Puzzles.json"					"..\OutputJsons\Deluxe_Part1_Puzzles.json"					|| goto :error
 "php\php.exe"	finalize_uasset.php	"..\BaseJsons\Introduction_SecretIsland_Puzzles.json"		"..\OutputJsons\Introduction_SecretIsland_Puzzles.json"		|| goto :error
-"php\php.exe"	finalize_uasset.php	"..\BaseJsons\MM_Master_Material_01a.json"					"..\OutputJsons\MM_Master_Material_01a.json"				|| goto :error
 "php\php.exe"	finalize_uasset.php	"..\BaseJsons\MainMap_BetaCampaign_Batched.json"			"..\OutputJsons\MainMap_BetaCampaign_Batched.json"			|| goto :error
 "php\php.exe"	finalize_uasset.php	"..\BaseJsons\Mountain_CampaignObjects.json"				"..\OutputJsons\Mountain_CampaignObjects.json"				|| goto :error
 "php\php.exe"	finalize_uasset.php	"..\BaseJsons\Riverlands_EyeNeedle_Puzzles.json"			"..\OutputJsons\Riverlands_EyeNeedle_Puzzles.json"			|| goto :error
@@ -39,6 +38,13 @@ cd /d %~dp0
 cd "..\UnrealPakMini"
 
 if not exist	"IslandsofInsight\Content\"																		mkdir "IslandsofInsight\Content\"
+if not exist	"IslandsofInsight\Content\AncientTreasures"														mkdir "IslandsofInsight\Content\AncientTreasures"
+if not exist	"IslandsofInsight\Content\AncientTreasures\Materials"											mkdir "IslandsofInsight\Content\AncientTreasures\Materials"
+if not exist	"IslandsofInsight\Content\AncientTreasures\Materials\Masters"									mkdir "IslandsofInsight\Content\AncientTreasures\Materials\Masters"
+if not exist	"IslandsofInsight\Content\AncientTreasures\Materials\Instances"									mkdir "IslandsofInsight\Content\AncientTreasures\Materials\Instances"
+if not exist	"IslandsofInsight\Content\AncientTreasures\Meshes"												mkdir "IslandsofInsight\Content\AncientTreasures\Meshes"
+if not exist	"IslandsofInsight\Content\AncientTreasures\Textures"											mkdir "IslandsofInsight\Content\AncientTreasures\Textures"
+if not exist	"IslandsofInsight\Content\AncientTreasures\Textures\Utility"									mkdir "IslandsofInsight\Content\AncientTreasures\Textures\Utility"
 if not exist	"IslandsofInsight\Content\ASophia\Data\"														mkdir "IslandsofInsight\Content\ASophia\Data\"
 if not exist	"IslandsofInsight\Content\ASophia\Data\Items\"													mkdir "IslandsofInsight\Content\ASophia\Data\Items\"
 if not exist	"IslandsofInsight\Content\ASophia\GameObjects\"													mkdir "IslandsofInsight\Content\ASophia\GameObjects\"
@@ -63,7 +69,6 @@ if not exist	"IslandsofInsight\Content\ASophia\Puzzle\Rosary\"												mkdir 
 if not exist	"IslandsofInsight\Content\ASophia\Puzzle\Rune\"													mkdir "IslandsofInsight\Content\ASophia\Puzzle\Rune\"
 if not exist	"IslandsofInsight\Content\ASophia\UI\HUD\Map\"													mkdir "IslandsofInsight\Content\ASophia\UI\HUD\Map\"
 if not exist	"IslandsofInsight\Content\ASophia\UI\NotificationsAndPopups\Tutorials\"							mkdir "IslandsofInsight\Content\ASophia\UI\NotificationsAndPopups\Tutorials\"
-if not exist	"IslandsofInsight\Content\AncientTreasures\Materials\Masters\"									mkdir "IslandsofInsight\Content\AncientTreasures\Materials\Masters\"
 if not exist	"IslandsofInsight\Content\Localization\Game\de-DE\"												mkdir "IslandsofInsight\Content\Localization\Game\de-DE\"
 if not exist	"IslandsofInsight\Content\Localization\Game\en-CA\"												mkdir "IslandsofInsight\Content\Localization\Game\en-CA\"
 if not exist	"IslandsofInsight\Content\Localization\Game\en-US\"												mkdir "IslandsofInsight\Content\Localization\Game\en-US\"
@@ -100,32 +105,38 @@ uassetgui.exe	fromjson "..\OutputJsons\BP_RacingBalls.json"						"IslandsofInsig
 uassetgui.exe	fromjson "..\OutputJsons\BP_RacingRings.json"						"IslandsofInsight\Content\ASophia\Puzzle\RacingRings\Blueprints\BP_RacingRings.uasset"									VER_UE4_27 || goto :error
 uassetgui.exe	fromjson "..\OutputJsons\BP_Rune.json"								"IslandsofInsight\Content\ASophia\Puzzle\Rosary\BP_Rune.uasset"															VER_UE4_27 || goto :error
 uassetgui.exe	fromjson "..\OutputJsons\BP_Rosary.json"							"IslandsofInsight\Content\ASophia\Puzzle\Rune\BP_Rosary.uasset"															VER_UE4_27 || goto :error
-uassetgui.exe	fromjson "..\OutputJsons\MM_Master_Material_01a.json"				"IslandsofInsight\Content\AncientTreasures\Materials\Masters\MM_Master_Material_01a.uasset"								VER_UE4_27 || goto :error
 
 :: Copy asset files.
-copy	"..\Assets\Camphor\CamphorCorridorTemple_1_HLOD.*"	"IslandsofInsight\Content\ASophia\Maps\MainMapSubmaps\CamphorPlaytest\HLOD\CamphorCorridorTemple_1_HLOD.*"	/B/Y >nul || goto :error
-copy	"..\Assets\ES_Galaxy_chestmaker.*"					"IslandsofInsight\Content\ASophia\GameObjects\JumpPads\Effects\ES_Galaxy.*"									/B/Y >nul || goto :error
-copy	"..\Assets\MI_DesertSand.*"							"IslandsofInsight\Content\ASophia\Maps\MainMapSubmaps\CamphorPlaytest\Materials\MI_DesertSand.*"			/B/Y >nul || goto :error
-copy	"..\Assets\MapUI\T_Clouds_Central.*"				"IslandsofInsight\Content\ASophia\UI\HUD\Map\T_Clouds_Central.*"											/B/Y >nul || goto :error
-copy	"..\Assets\MapUI\T_Dew_Point.*"						"IslandsofInsight\Content\ASophia\UI\HUD\Map\T_Dew_Point.*"													/B/Y >nul || goto :error
-copy	"..\Assets\MapUI\T_Island_DropShadow.*"				"IslandsofInsight\Content\ASophia\UI\HUD\Map\T_Island_DropShadow.*"											/B/Y >nul || goto :error
-copy	"..\Assets\MapUI\T_Map_Color.*"						"IslandsofInsight\Content\ASophia\UI\HUD\Map\T_Map_Color.*"													/B/Y >nul || goto :error
-copy	"..\Assets\MapUI\T_Map_OuterGlow.*"					"IslandsofInsight\Content\ASophia\UI\HUD\Map\T_Map_OuterGlow.*"												/B/Y >nul || goto :error
-copy	"..\Assets\MapUI\T_Map_Zones_DF.*"					"IslandsofInsight\Content\ASophia\UI\HUD\Map\T_Map_Zones_DF.*"												/B/Y >nul || goto :error
-copy	"..\Assets\MapUI\T_Map_Zones_Hover.*"				"IslandsofInsight\Content\ASophia\UI\HUD\Map\T_Map_Zones_Hover.*"											/B/Y >nul || goto :error
-copy	"..\Assets\WBP_ResetTutorial.*"						"IslandsofInsight\Content\ASophia\UI\NotificationsAndPopups\Tutorials\WBP_ResetTutorial.*"					/B/Y >nul || goto :error
-copy	"..\Assets\Localization\Game\de-DE\Game.locres"		"IslandsofInsight\Content\Localization\Game\de-DE\Game.locres"												/B/Y >nul || goto :error
-copy	"..\Assets\Localization\Game\en-CA\Game.locres"		"IslandsofInsight\Content\Localization\Game\en-CA\Game.locres"												/B/Y >nul || goto :error
-copy	"..\Assets\Localization\Game\en-US\Game.locres"		"IslandsofInsight\Content\Localization\Game\en-US\Game.locres"												/B/Y >nul || goto :error
-copy	"..\Assets\Localization\Game\es-ES\Game.locres"		"IslandsofInsight\Content\Localization\Game\es-ES\Game.locres"												/B/Y >nul || goto :error
-copy	"..\Assets\Localization\Game\es-MX\Game.locres"		"IslandsofInsight\Content\Localization\Game\es-MX\Game.locres"												/B/Y >nul || goto :error
-copy	"..\Assets\Localization\Game\fr-FR\Game.locres"		"IslandsofInsight\Content\Localization\Game\fr-FR\Game.locres"												/B/Y >nul || goto :error
-copy	"..\Assets\Localization\Game\it-IT\Game.locres"		"IslandsofInsight\Content\Localization\Game\it-IT\Game.locres"												/B/Y >nul || goto :error
-copy	"..\Assets\Localization\Game\ja-JP\Game.locres"		"IslandsofInsight\Content\Localization\Game\ja-JP\Game.locres"												/B/Y >nul || goto :error
-copy	"..\Assets\Localization\Game\ko-KR\Game.locres"		"IslandsofInsight\Content\Localization\Game\ko-KR\Game.locres"												/B/Y >nul || goto :error
-copy	"..\Assets\Localization\Game\pt-BR\Game.locres"		"IslandsofInsight\Content\Localization\Game\pt-BR\Game.locres"												/B/Y >nul || goto :error
-copy	"..\Assets\Localization\Game\zh-CN\Game.locres"		"IslandsofInsight\Content\Localization\Game\zh-CN\Game.locres"												/B/Y >nul || goto :error
-copy	"..\Assets\Localization\Game\zh-TW\Game.locres"		"IslandsofInsight\Content\Localization\Game\zh-TW\Game.locres"												/B/Y >nul || goto :error
+copy	"..\Assets\AncientTreasures\Materials\Masters\MM_Master_Material_01a.*"		"IslandsofInsight\Content\AncientTreasures\Materials\Masters\MM_Master_Material_01a.*"						/B/Y >nul || goto :error
+copy	"..\Assets\AncientTreasures\Materials\Instances\MI_Chest_02a.*"				"IslandsofInsight\Content\AncientTreasures\Materials\Instances\MI_Chest_02a.*"								/B/Y >nul || goto :error
+copy	"..\Assets\AncientTreasures\Meshes\SM_Chest_02b.*"							"IslandsofInsight\Content\AncientTreasures\Meshes\SM_Chest_02b.*"											/B/Y >nul || goto :error
+copy	"..\Assets\AncientTreasures\Textures\Utility\TX_Fill_01a_ALB.*"				"IslandsofInsight\Content\AncientTreasures\Textures\Utility\TX_Fill_01a_ALB.*"								/B/Y >nul || goto :error
+copy	"..\Assets\AncientTreasures\Textures\Utility\TX_Fill_01a_H.*"				"IslandsofInsight\Content\AncientTreasures\Textures\Utility\TX_Fill_01a_H.*"								/B/Y >nul || goto :error
+copy	"..\Assets\AncientTreasures\Textures\Utility\TX_Fill_01a_NRM.*"				"IslandsofInsight\Content\AncientTreasures\Textures\Utility\TX_Fill_01a_NRM.*"								/B/Y >nul || goto :error
+copy	"..\Assets\AncientTreasures\Textures\Utility\TX_Fill_01a_RMA.*"				"IslandsofInsight\Content\AncientTreasures\Textures\Utility\TX_Fill_01a_RMA.*"								/B/Y >nul || goto :error
+copy	"..\Assets\Camphor\CamphorCorridorTemple_1_HLOD.*"							"IslandsofInsight\Content\ASophia\Maps\MainMapSubmaps\CamphorPlaytest\HLOD\CamphorCorridorTemple_1_HLOD.*"	/B/Y >nul || goto :error
+copy	"..\Assets\ES_Galaxy_chestmaker.*"											"IslandsofInsight\Content\ASophia\GameObjects\JumpPads\Effects\ES_Galaxy.*"									/B/Y >nul || goto :error
+copy	"..\Assets\MI_DesertSand.*"													"IslandsofInsight\Content\ASophia\Maps\MainMapSubmaps\CamphorPlaytest\Materials\MI_DesertSand.*"			/B/Y >nul || goto :error
+copy	"..\Assets\MapUI\T_Clouds_Central.*"										"IslandsofInsight\Content\ASophia\UI\HUD\Map\T_Clouds_Central.*"											/B/Y >nul || goto :error
+copy	"..\Assets\MapUI\T_Dew_Point.*"												"IslandsofInsight\Content\ASophia\UI\HUD\Map\T_Dew_Point.*"													/B/Y >nul || goto :error
+copy	"..\Assets\MapUI\T_Island_DropShadow.*"										"IslandsofInsight\Content\ASophia\UI\HUD\Map\T_Island_DropShadow.*"											/B/Y >nul || goto :error
+copy	"..\Assets\MapUI\T_Map_Color.*"												"IslandsofInsight\Content\ASophia\UI\HUD\Map\T_Map_Color.*"													/B/Y >nul || goto :error
+copy	"..\Assets\MapUI\T_Map_OuterGlow.*"											"IslandsofInsight\Content\ASophia\UI\HUD\Map\T_Map_OuterGlow.*"												/B/Y >nul || goto :error
+copy	"..\Assets\MapUI\T_Map_Zones_DF.*"											"IslandsofInsight\Content\ASophia\UI\HUD\Map\T_Map_Zones_DF.*"												/B/Y >nul || goto :error
+copy	"..\Assets\MapUI\T_Map_Zones_Hover.*"										"IslandsofInsight\Content\ASophia\UI\HUD\Map\T_Map_Zones_Hover.*"											/B/Y >nul || goto :error
+copy	"..\Assets\WBP_ResetTutorial.*"												"IslandsofInsight\Content\ASophia\UI\NotificationsAndPopups\Tutorials\WBP_ResetTutorial.*"					/B/Y >nul || goto :error
+copy	"..\Assets\Localization\Game\de-DE\Game.locres"								"IslandsofInsight\Content\Localization\Game\de-DE\Game.locres"												/B/Y >nul || goto :error
+copy	"..\Assets\Localization\Game\en-CA\Game.locres"								"IslandsofInsight\Content\Localization\Game\en-CA\Game.locres"												/B/Y >nul || goto :error
+copy	"..\Assets\Localization\Game\en-US\Game.locres"								"IslandsofInsight\Content\Localization\Game\en-US\Game.locres"												/B/Y >nul || goto :error
+copy	"..\Assets\Localization\Game\es-ES\Game.locres"								"IslandsofInsight\Content\Localization\Game\es-ES\Game.locres"												/B/Y >nul || goto :error
+copy	"..\Assets\Localization\Game\es-MX\Game.locres"								"IslandsofInsight\Content\Localization\Game\es-MX\Game.locres"												/B/Y >nul || goto :error
+copy	"..\Assets\Localization\Game\fr-FR\Game.locres"								"IslandsofInsight\Content\Localization\Game\fr-FR\Game.locres"												/B/Y >nul || goto :error
+copy	"..\Assets\Localization\Game\it-IT\Game.locres"								"IslandsofInsight\Content\Localization\Game\it-IT\Game.locres"												/B/Y >nul || goto :error
+copy	"..\Assets\Localization\Game\ja-JP\Game.locres"								"IslandsofInsight\Content\Localization\Game\ja-JP\Game.locres"												/B/Y >nul || goto :error
+copy	"..\Assets\Localization\Game\ko-KR\Game.locres"								"IslandsofInsight\Content\Localization\Game\ko-KR\Game.locres"												/B/Y >nul || goto :error
+copy	"..\Assets\Localization\Game\pt-BR\Game.locres"								"IslandsofInsight\Content\Localization\Game\pt-BR\Game.locres"												/B/Y >nul || goto :error
+copy	"..\Assets\Localization\Game\zh-CN\Game.locres"								"IslandsofInsight\Content\Localization\Game\zh-CN\Game.locres"												/B/Y >nul || goto :error
+copy	"..\Assets\Localization\Game\zh-TW\Game.locres"								"IslandsofInsight\Content\Localization\Game\zh-TW\Game.locres"												/B/Y >nul || goto :error
 
 :: Build a pak out of uassets.
 cd "Engine\Binaries\Win64"
