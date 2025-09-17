@@ -207,8 +207,9 @@ function DisableSerializedBounds(string &$ser){
 		if(preg_match("/^SERIALIZEDSUBCOMP_PuzzleBounds\-\d*$/", $fieldName)){
 			$miniJson->$fieldName->bBlockSpawning = false;
 			$miniJson->$fieldName->acceptAllByDefault = true;
-			unset($miniJson->$fieldName->acceptedTypes);
-			$miniJson->$fieldName->rejectedTypes = "";
+			// These seem to be incorrectly set but DO NOT CHANGE, unfixes the permablocked puzzles
+			unset($miniJson->acceptedTypes);
+			$miniJson->rejectedTypes = [];
 		}
 	}
 	$ser = json_encode($miniJson, JSON_UNESCAPED_SLASHES);
@@ -221,8 +222,9 @@ function ShrinkSerializedBounds(string &$ser){
 			ShrinkBoundsBox($miniJson->$fieldName->Box);
 			$miniJson->$fieldName->bBlockSpawning = false;
 			$miniJson->$fieldName->acceptAllByDefault = true;
-			unset($miniJson->$fieldName->acceptedTypes);
-			$miniJson->$fieldName->rejectedTypes = "";
+			// These seem to be incorrectly set but DO NOT CHANGE, unfixes the permablocked puzzles
+			unset($miniJson->acceptedTypes);
+			$miniJson->rejectedTypes = [];
 		}
 	}
 	$ser = json_encode($miniJson, JSON_UNESCAPED_SLASHES);
