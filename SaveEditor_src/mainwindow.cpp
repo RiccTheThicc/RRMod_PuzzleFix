@@ -130,7 +130,7 @@ void MainWindow::on_buttonApply_clicked()
     if(ui->checkResetNonPlatGlides->isChecked())    { args.append("resetNonPlatGlides");     }
 
     if(ui->checkFixEncyclopedia->isChecked())       { args.append("fixMissingEncyclopedia"); }
-    if(ui->checkFixExcessMirabilis->isChecked())    { args.append("fixExcessMirabilis");     }
+    if(ui->checkRecalculateMirabilis->isChecked())  { args.append("recalculateMirabilis");    }
     if(ui->checkHidePing->isChecked())              { args.append("hidePing");               }
     if(ui->checkRefundFiveMarkers->isChecked())     { args.append("refundFiveMarkers");      }
     if(ui->checkResetDailyQuests->isChecked())      { args.append("resetDailyQuests");       }
@@ -164,6 +164,12 @@ void MainWindow::on_buttonApply_clicked()
     QProcess decodeProcess;
     QString finalCmd = QString() + "\"php/php.exe\" saveeditor.php \"" + m_savePath + "\" \"" + m_tempPath + "\" \"" + m_savePath + "\" " + args.join(" ");
     qDebug() << finalCmd;
+
+    //QMessageBox msgTest;
+    //msgTest.setIcon(QMessageBox::Information);
+    //msgTest.setText(finalCmd);
+    //msgTest.exec();
+    //return;
 
     decodeProcess.start(finalCmd);
     decodeProcess.waitForFinished(-1);

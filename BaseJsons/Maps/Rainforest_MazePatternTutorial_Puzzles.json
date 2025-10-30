@@ -39268,9 +39268,9 @@
 					"Name": "RelativeLocation",
 					"Value": {
 						"$type": "UAssetAPI.UnrealTypes.FVector, UAssetAPI",
-						"X": 56045.11328125,
-						"Y": 79107.7578125,
-						"Z": 16151.5380859375
+						"X": 56039.11328125,
+						"Y": 79093.7578125,
+						"Z": 16091.5380859375
 					}
 				}
 			]
@@ -39304,9 +39304,9 @@
 					"Name": "RelativeScale3D",
 					"Value": {
 						"$type": "UAssetAPI.UnrealTypes.FVector, UAssetAPI",
-						"X": 2,
-						"Y": 2,
-						"Z": 0.5
+						"X": 2.4,
+						"Y": 2.4,
+						"Z": 0.6
 					}
 				}
 			]

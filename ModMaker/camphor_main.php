@@ -21,9 +21,9 @@ include_once("include\\uassetParse.php");
 include_once("include\\uassetHelper.php");
 include_once("include\\chests.php");
 
-$pathCamphorBase = "..\\BaseJsons\\CamphorCorridorTemple.json";
-$pathCamphorOut  = "..\\OutputJsons\\CamphorCorridorTemple.json";
-$pathCamphorTemp = "..\\OutputJsons\\CamphorCorridorTemple_edittemp.json";
+$pathCamphorBase = "..\\BaseJsons\\Maps\\CamphorCorridorTemple.json";
+$pathCamphorOut  = "..\\OutputJsons\\Maps\\CamphorCorridorTemple.json";
+$pathCamphorTemp = "..\\OutputJsons\\Maps\\CamphorCorridorTemple_edittemp.json";
 
 // AutoExposureMaxBrightness: A good value should be positive (2 is a good value).
 //   This is the maximum brightness the auto exposure can adapt to.
@@ -463,7 +463,7 @@ foreach($exports as $ii => &$export_ref){
 
 // Export the "real" json.
 SaveCompressedDecodedUasset($pathCamphorOut, $mainJson, [
-	"skipArrayIndices" => false,
+	"skipArrayIndices" => true,
 	"bakeAutoObjectNames" => true,
 	"bakeAllIndices" => true,
 	"simplifyImports" => false,

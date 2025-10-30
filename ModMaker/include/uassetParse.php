@@ -52,6 +52,10 @@ function &ParseUassetValueNode(string $type, &$node_ref){
 		case "UAssetAPI.PropertyTypes.Structs.GuidPropertyData, UAssetAPI":
 		case "UAssetAPI.PropertyTypes.Structs.ColorPropertyData, UAssetAPI":
 		case "UAssetAPI.PropertyTypes.Structs.SoftObjectPathPropertyData, UAssetAPI":
+		case "UAssetAPI.PropertyTypes.Structs.MovieSceneFrameRangePropertyData, UAssetAPI":
+		case "UAssetAPI.PropertyTypes.Structs.MovieSceneEvaluationFieldEntityTreePropertyData, UAssetAPI":
+		case "UAssetAPI.PropertyTypes.Structs.FrameNumberPropertyData, UAssetAPI":
+		case "UAssetAPI.PropertyTypes.Structs.MovieSceneFloatChannelPropertyData, UAssetAPI":
 			return $node_ref;
 			
 		case "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI":
@@ -270,12 +274,14 @@ function &ParseUassetExports(&$json_ref){
 	return $result;
 }
 
-function LoadDecodedUasset(string $path){
+function LoadDecodedUasset(string $path, bool $verbose = true){
 	if(!is_file($path)){
 		printf(ColorStr(sprintf("[ERROR] File not found: %s\n", $path), 255, 128, 128));
 		exit(1);
 	}
-	printf("Loading %s...\n", $path);
+	if($verbose){
+		printf("Loading %s...\n", $path);
+	}
 	$raw = file_get_contents($path);
 	if(empty($raw)){
 		printf(ColorStr(sprintf("[ERROR] Failed to load %s\n", $path), 255, 128, 128));
@@ -351,6 +357,20 @@ function &FetchObjectField(&$obj, string $fieldName){
 		return $error;
 	}
 	return $a->Value;
+}
+
+function &FetchObjectString(&$obj, string $stringName){
+	static $error = null;
+	$a = &FetchObjectFieldNode($obj, $stringName);
+	if($a == null){
+		return $error;
+	}
+	return (object)[
+		"Namespace" => &$a->Namespace,
+		"CultureInvariantString" => &$a->CultureInvariantString,
+		"Name" => &$a->Name,
+		"Value" => &$a->Value,
+	];
 }
 
 $g_uassetExportIndex = 0;
@@ -532,6 +552,10 @@ function CompressUassetValueNode(&$node_ref){
 		case "UAssetAPI.PropertyTypes.Objects.UnknownPropertyData, UAssetAPI":
 		case "UAssetAPI.PropertyTypes.Objects.MulticastInlineDelegatePropertyData, UAssetAPI":
 		case "UAssetAPI.PropertyTypes.Structs.NiagaraDataInterfaceGPUParamInfoPropertyData, UAssetAPI":
+		case "UAssetAPI.PropertyTypes.Structs.MovieSceneFrameRangePropertyData, UAssetAPI":
+		case "UAssetAPI.PropertyTypes.Structs.MovieSceneEvaluationFieldEntityTreePropertyData, UAssetAPI":
+		case "UAssetAPI.PropertyTypes.Structs.FrameNumberPropertyData, UAssetAPI":
+		case "UAssetAPI.PropertyTypes.Structs.MovieSceneFloatChannelPropertyData, UAssetAPI":
 		//case "UAssetAPI.ExportTypes.RawExport, UAssetAPI":
 			return;
 			
@@ -582,7 +606,6 @@ function SaveCompressedDecodedUasset(string $path, &$json, array $options = []){
 		exit(1);
 	}
 	
-	printf("Compressing json for %s...\n", $path);
 	$tabOffsetCount = -2;
 	if(count($json->Exports) == 1){
 		$tabOffsetCount = -4; // don't ask
@@ -612,10 +635,15 @@ function SaveCompressedDecodedUasset(string $path, &$json, array $options = []){
 		"useTabs" => true,
 		"escapeSlashes" => true,
 		"prettyPrint" => true,
+		
+		// Debugging.
+		"verbose" => true,
 	];
 	
 	$g_uassetExportIndex = 0;
 	$g_uassetCompressionSettings = array_merge($defaultOptions, $options);
+	
+	if($g_uassetCompressionSettings["verbose"]){ printf("Compressing json for %s...\n", $path); }
 	
 	$copy = unserialize(serialize($json));
 	//printf("Default:\n%s\n\n", json_encode($defaultOptions, JSON_PRETTY_PRINT));
@@ -720,7 +748,7 @@ function SaveCompressedDecodedUasset(string $path, &$json, array $options = []){
 				}
 			}unset($node_ref);
 		}
-		if(!empty($newlyAddedNames)){
+		if(!empty($newlyAddedNames) && $g_uassetCompressionSettings["verbose"]){
 			printf("Added to NameMap: [%s]\n", implode(",", array_map(function($x){ return ('"' . $x . '"'); }, $newlyAddedNames)));
 		}
 	}
@@ -740,7 +768,7 @@ function SaveCompressedDecodedUasset(string $path, &$json, array $options = []){
 		]);
 	
 	if($g_uassetCompressionSettings["buildDefaultIndices"]){
-		printf("Building default indices...\n");
+		if($g_uassetCompressionSettings["verbose"]){ printf("Building default indices...\n"); }
 		$lines = explode("\n", $text);
 		$foundExports = false;
 		foreach($lines as $lineIndex => &$line_ref){
@@ -933,6 +961,6 @@ function SaveCompressedDecodedUasset(string $path, &$json, array $options = []){
 		exit(1);
 	}
 	
-	WriteFileSafe($path, $text, true);
+	WriteFileSafe($path, $text, $g_uassetCompressionSettings["verbose"]);
 }
 

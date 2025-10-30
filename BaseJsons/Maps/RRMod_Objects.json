@@ -5,7 +5,9 @@
 
 "LiarExtraRock","Aset_S_phycL_LOD0_ConeShape2","/Game/Megascans/3D_Assets/Rock_phycL/Aset_S_phycL_LOD0_ConeShape2","MI_CoastalCliff_02_LOD","/Game/ASophia/Env/7K/Meshes/Cliffs/Meshes/CoastalCliff/Materials/MI_CoastalCliff_02_LOD",
 
-"BP_Dungeon_ClusterLucent","DungeonQuest_ClusterLucent","BP_Dungeon_ClusterCong","DungeonQuest_ClusterCong","BP_Dungeon_ClusterMyopia","DungeonQuest_ClusterMyopia","BP_Dungeon_ClusterLostgrids","DungeonQuest_ClusterLostgrids","awardsBlueOrbs","bHidePuzzleCount","dungeonLore"
+"BP_Dungeon_ClusterLucent","DungeonQuest_ClusterLucent","BP_Dungeon_ClusterCong","DungeonQuest_ClusterCong","BP_Dungeon_ClusterMyopia","DungeonQuest_ClusterMyopia","BP_Dungeon_ClusterLostgrids","DungeonQuest_ClusterLostgrids","awardsBlueOrbs","bHidePuzzleCount","dungeonLore",
+
+"Texture2D","ClusterEx","/Game/ASophia/UI/HUD/Markers/Textures/ClusterEx","worldTex","mapTex","HideCompletionIcon","HideGenericMarkerBackground","IsMainQuest","ShowInfoPanel","NameZoomThreshold","SizeMultiplier"
 
 ],
 "OtherAssetsFailedToAccess": [],
@@ -110,7 +112,9 @@
 {"$type":"UAssetAPI.Import, UAssetAPI","$index":-91,"OuterIndex":-92,"ObjectName":"Aset_S_phycL_LOD0_ConeShape2","ClassPackage":"/Script/Engine","ClassName":"StaticMesh"},
 {"$type":"UAssetAPI.Import, UAssetAPI","$index":-92,"OuterIndex":0,"ObjectName":"/Game/Megascans/3D_Assets/Rock_phycL/Aset_S_phycL_LOD0_ConeShape2","ClassPackage":"/Script/CoreUObject","ClassName":"Package"},
 {"$type":"UAssetAPI.Import, UAssetAPI","$index":-93,"OuterIndex":-94,"ObjectName":"MI_CoastalCliff_02_LOD","ClassPackage":"/Script/Engine","ClassName":"MaterialInstanceConstant"},
-{"$type":"UAssetAPI.Import, UAssetAPI","$index":-94,"OuterIndex":0,"ObjectName":"/Game/ASophia/Env/7K/Meshes/Cliffs/Meshes/CoastalCliff/Materials/MI_CoastalCliff_02_LOD","ClassPackage":"/Script/CoreUObject","ClassName":"Package"}
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-94,"OuterIndex":0,"ObjectName":"/Game/ASophia/Env/7K/Meshes/Cliffs/Meshes/CoastalCliff/Materials/MI_CoastalCliff_02_LOD","ClassPackage":"/Script/CoreUObject","ClassName":"Package"},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-95,"OuterIndex":-96,"ObjectName":"ClusterEx","ClassPackage":"/Script/Engine","ClassName":"Texture2D"},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-96,"OuterIndex":0,"ObjectName":"/Game/ASophia/UI/HUD/Markers/Textures/ClusterEx","ClassPackage":"/Script/CoreUObject","ClassName":"Package"}
 
 ],
 "DependsMap": [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],
@@ -7096,8 +7100,12 @@
 			"SerializeNone": true,
 			"Name": "Marker",
 			"Value": [
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"worldTex", "Value":-95 },
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"mapTex", "Value":-95 },
 				{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"VisibleOnMap", "Value":1 },
 				{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"DrawNameOnMap", "Value":1 },
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"HideCompletionIcon", "Value":0 },
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"SizeMultiplier", "Value":1.12 },
 				{
 					"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
 					"StructType": "Vector",
@@ -7555,8 +7563,12 @@
 			"SerializeNone": true,
 			"Name": "Marker",
 			"Value": [
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"worldTex", "Value":-95 },
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"mapTex", "Value":-95 },
 				{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"VisibleOnMap", "Value":1 },
 				{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"DrawNameOnMap", "Value":1 },
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"HideCompletionIcon", "Value":0 },
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"SizeMultiplier", "Value":1.12 },
 				{
 					"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
 					"StructType": "Vector",
@@ -8014,8 +8026,12 @@
 			"SerializeNone": true,
 			"Name": "Marker",
 			"Value": [
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"worldTex", "Value":-95 },
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"mapTex", "Value":-95 },
 				{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"VisibleOnMap", "Value":1 },
 				{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"DrawNameOnMap", "Value":1 },
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"HideCompletionIcon", "Value":0 },
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"SizeMultiplier", "Value":1.12 },
 				{
 					"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
 					"StructType": "Vector",
@@ -8473,8 +8489,12 @@
 			"SerializeNone": true,
 			"Name": "Marker",
 			"Value": [
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"worldTex", "Value":-95 },
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"mapTex", "Value":-95 },
 				{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"VisibleOnMap", "Value":1 },
 				{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"DrawNameOnMap", "Value":1 },
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"HideCompletionIcon", "Value":0 },
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"SizeMultiplier", "Value":1.12 },
 				{
 					"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
 					"StructType": "Vector",
@@ -8932,8 +8952,12 @@
 			"SerializeNone": true,
 			"Name": "Marker",
 			"Value": [
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"worldTex", "Value":-95 },
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"mapTex", "Value":-95 },
 				{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"VisibleOnMap", "Value":1 },
 				{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"DrawNameOnMap", "Value":1 },
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"HideCompletionIcon", "Value":0 },
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"SizeMultiplier", "Value":1.12 },
 				{
 					"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
 					"StructType": "Vector",

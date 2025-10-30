@@ -20,7 +20,7 @@ See [here](https://github.com/RiccTheThicc/RRMod_Puzzlefix/releases) to download
 - Clusters spawn more grids and prioritize offering unsolved ones first.
 - Flow Orbs, Glide Rings, Skydrop Challenge best times/scores now stick and will not be lost.
 - Procedural Skydrops can sometimes spawn in different, interesting shapes.
-- Dozens of other bugfixes and QoL improvements to revive this abandoned game.
+- DOZENS of other bugfixes and QoL improvements for your best experience
 
 Note: some of these and many other options can be toggled/adjusted in dxgi.ini.
 

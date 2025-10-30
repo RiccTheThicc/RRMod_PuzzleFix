@@ -7165,9 +7165,9 @@
 					"Name": "RelativeLocation",
 					"Value": {
 						"$type": "UAssetAPI.UnrealTypes.FVector, UAssetAPI",
-						"X": -6799.12890625,
+						"X": -5299.12890625,
 						"Y": 21884.1875,
-						"Z": 8099.998046875
+						"Z": 8399.998046875
 					}
 				}
 			]

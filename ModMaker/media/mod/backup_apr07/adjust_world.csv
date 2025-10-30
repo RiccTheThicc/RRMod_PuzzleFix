@@ -1,0 +1,5 @@
+localID,pid,fields,dx,dy,dz,dpitch,dyaw,droll,comment
+logicGrid--jonat--HOSJAKVWAGRULNPCRPTXPDRKAONY--1684186217--BP_RuneAnimated_C /Game/ASophia/Maps/TestingSubmaps/MountainPlacement/Mountain_Jonathan.Mountain_Jonathan:PersistentLevel.BP_RuneAnimated393,-1,ActorTransform,160,-1930,120,0,0,0,room for liars quest
+logicGrid--jonat--SOWBTFBOQGDWIXKMYIEUZTCNYZLG--1683160381--BP_RuneAnimated_C /Game/ASophia/Maps/TestingSubmaps/MountainPlacement/Mountain_Jonathan.Mountain_Jonathan:PersistentLevel.BP_RuneAnimated394,-1,ActorTransform,-1450,-1105,20,0,0,0,room for liars quest
+matchbox--jonat--DNXAMLKCGLAGKLSYXBJFRSKVJDUK--1685723719--BP_Matchbox_C /Game/ASophia/Maps/TestingSubmaps/MountainPlacement/Mountain_Jonathan.Mountain_Jonathan:PersistentLevel.BP_Matchbox_C_54,17142,Mesh2Transform,-29,-68,7,0,22,-5,room for butterflies quest
+BP_ArchwayFind_C--jbard--HBKULZNYWXNJGNYZWKNKJLLDRQZL--1662491690--BP_ArchwayFind_C /Game/ASophia/Maps/MainMapSubmaps/Central/CentralPuzzles/CentralArchwaysFind.CentralArchwaysFind:PersistentLevel.BP_ArchwayFind_0,9351,ActorTransform,333,201,2,0,0,0,room for camphor entrance

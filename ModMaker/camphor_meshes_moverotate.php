@@ -21,8 +21,8 @@ include_once("include\\uassetParse.php");
 include_once("include\\uassetHelper.php");
 include_once("include\\chests.php");
 
-$pathCamphorIn  = "..\\OutputJsons\\CamphorCorridorTemple.json";
-$pathCamphorOut = "..\\OutputJsons\\CamphorCorridorTemple.json";
+$pathCamphorIn  = "..\\OutputJsons\\Maps\\CamphorCorridorTemple.json";
+$pathCamphorOut = "..\\OutputJsons\\Maps\\CamphorCorridorTemple.json";
 
 $ROTATOR = UeDefaultTransform();
 $ROTATOR->Translation->X = 18223.021484375;

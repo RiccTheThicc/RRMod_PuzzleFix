@@ -1,0 +1,22 @@
+mysteryID,clueID,mysteryName,unlockedBy,unlockPid,solvePid,x,y,z
+1,DoppelMoments,A New Moment,The Flame of Enlightenment,19864,21715,10409,-12576,24504
+2,DoppelEYW,Son of the Sun,Dare of the Triunes,13673,14885,10872,-11772,24504
+3,DoppelUpper,Knowledge is Power,Shifting in Phase,14016,20055,10409,-10969,24504
+4,DoppelDyads,Twos Company,The Flame of Enlightenment,19864,19972,9481,-10969,24504
+5,DoppelMirror,A New Look,Shady Wildwoods Monolith,10645,20056,9017,-11772,24504
+6,DoppelCave,Another Viewpoint,The Highest Viewpoint,14013,1401,9480,-12576,24504
+7,DoppelDual,Smallest of the Three,The Flame of Enlightenment,19864,20067,11015,-12842,24500
+8,DoppelSnake,Under the Surface,A Solitary Island,19098,1404,8876,-10702,24500
+9,DoppelCorner,Two for Two,Mysterious Areas,10690,3626,8876,-12841,24500
+10,DoppelLobby,Face of Stone,Lucent Waters Monolith,10762,20059,11014,-10703,24500
+11,DoppelSize,Water Earth and Air,Cascading Rays,17255,14962,11406,-11381,24500
+12,DoppelYaji,Dont Look Down,Eye of the Needle,10684,20073,9553,-10310,24500
+13,DoppelKD,Off the Edge,The Flame of Enlightenment,19864,16687,8484,-12163,24500
+14,DoppelRotate,A Twist of Fate,The Excursion,10660,20069,10337,-13232,24500
+15,DoppelMountainTemple,Go with the Flow,Shattered Library,18609,20058,10336,-10310,24500
+16,DoppelUnderwater,Meniscus,Serene Deluge Monolith,10668,20071,11406,-12164,24500
+17,CloudRosary,Overcast,The Flame of Enlightenment,19864,40100,8484,-11380,24500
+18,NurimazeSTE,A Memory,The Trick of the Wanderer,13997,21664,9554,-13233,24500
+19,RiverlandRosary,Out of Season,Autumn Falls Monolith,10681,40101,10277,-11581,24504
+20,PyramidMatchbox,A Unique Match,Verdant Glen Monolith,10770,40102,9944,-12156,24504
+21,ObeliskMatch,Seeing All the All-Seeing,The Flame of Enlightenment,19864,40103,9613,-11581,24504

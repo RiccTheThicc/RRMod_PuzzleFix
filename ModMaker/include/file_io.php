@@ -121,6 +121,11 @@ function GetFileNameWithoutExtension($path) {
 	return (pathinfo($path, PATHINFO_FILENAME));
 }
 
+function GetFileName($path) {
+	//return GetFileNameWithoutExtension($path) . "." . GetFileExtension($path);
+	return (pathinfo($path, PATHINFO_BASENAME));
+}
+
 function GetSubFolders(string $path){
 	$path = asDir($path);
 	if(!is_dir($path)){
@@ -151,4 +156,31 @@ function WriteFileSafe(string $path, mixed $data, bool $doAnnounce = false){
 		printf("Writing %s...\n", $path);
 	}
 	file_put_contents($path, $data);
+}
+
+function GetAllFiles($dir, int $depth = 0) {
+	$dir = asDir($dir);
+	$array = array_diff(scandir($dir), ['.', '..']);
+	foreach($array as &$item) {
+		$item = $dir . $item;
+	}unset($item);
+	
+	foreach($array as $item) {
+		if(is_dir($item)) {
+			$array = array_merge($array, GetAllFiles($item . DIRECTORY_SEPARATOR, $depth + 1));
+		}
+	}
+	if($depth == 0){
+		$result = [];
+		$trimLen = strlen($dir);
+		foreach($array as $item){
+			//$item = substr($item, $trimLen);
+			if(!is_dir($item)){
+				$result[] = substr($item, $trimLen);
+			}
+		}
+		sort($result, SORT_NATURAL);
+		$array = $result;
+	}
+	return $array;
 }

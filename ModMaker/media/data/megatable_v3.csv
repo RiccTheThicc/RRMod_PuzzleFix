@@ -21063,7 +21063,7 @@ pid,parent,zoneIndex,ptype,category,path,comment,extraData,family,solveValue,coo
 3254,-1,2,logicGrid,LogicGrid,World / Verdant Glen / Cluster / Lost Grids / ClusterPuzzle / PatternGrid_3254,,{"cluster":"lostgridsPattern";"difficulty":4},cluster,0,[]
 3264,-1,2,logicGrid,LogicGrid,World / Verdant Glen / Cluster / Lost Grids / ClusterPuzzle / PatternGrid_3264,,{"cluster":"lostgridsPattern";"difficulty":3},cluster,0,[]
 3265,-1,2,logicGrid,LogicGrid,World / Verdant Glen / Cluster / Lost Grids / ClusterPuzzle / PatternGrid_3265,,{"cluster":"lostgridsPattern";"difficulty":6},cluster,0,[]
-3646,-1,2,logicGrid,LogicGrid,World / Verdant Glen / Cluster / Lost Grids / ClusterPuzzle / PatternGrid_3646,,{"cluster":"lostgridsPattern";"difficulty":2},cluster,0,[]
+3646,-1,2,logicGrid,LogicGrid,World / Verdant Glen / Cluster / Lost Grids / ClusterPuzzle / PatternGrid_3646,,{"cluster":"lostgridsPattern";"difficulty":4},cluster,0,[]
 3652,-1,2,logicGrid,LogicGrid,World / Verdant Glen / Cluster / Lost Grids / ClusterPuzzle / PatternGrid_3652,,{"cluster":"lostgridsPattern";"difficulty":1},cluster,0,[]
 3676,-1,2,logicGrid,LogicGrid,World / Verdant Glen / Cluster / Lost Grids / ClusterPuzzle / PatternGrid_3676,,{"cluster":"lostgridsPattern";"difficulty":4},cluster,0,[]
 3679,-1,2,logicGrid,LogicGrid,World / Verdant Glen / Cluster / Lost Grids / ClusterPuzzle / PatternGrid_3679,,{"cluster":"lostgridsPattern";"difficulty":2},cluster,0,[]

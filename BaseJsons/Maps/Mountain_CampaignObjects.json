@@ -28608,7 +28608,9 @@
 							}
 						}
 					]
-				}
+				},
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"worldTex", "Value":-222 },
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"mapTex", "Value":-222 }
 			]
 		}
 	]
@@ -28755,7 +28757,9 @@
 							}
 						}
 					]
-				}
+				},
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"worldTex", "Value":-222 },
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"mapTex", "Value":-222 }
 			]
 		}
 	]

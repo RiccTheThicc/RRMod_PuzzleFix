@@ -52,6 +52,27 @@ function GetMegaTable(){
 	return $megaTable;
 }
 
+function GetMegaTable3(){
+	global $config;
+	static $megaTable = null;
+	
+	if($megaTable === null){
+		$megaTablePath = $config["base_dir"] . "media\\data\\megatable_v3.csv";
+		$megaTable = LoadCsvMap($megaTablePath, "pid");
+		foreach($megaTable as &$entry){
+			$entry = (object)$entry;
+			$entry->coords    = json_decode(str_replace(";", ",", $entry->coords));
+			$entry->extraData = json_decode(str_replace(";", ",", $entry->extraData));
+			foreach($entry->extraData as $subKey => $subValue){
+				$entry->$subKey = $subValue;
+			}
+			unset($entry->extraData);
+		}unset($entry);
+	}
+	return $megaTable;
+};
+
+
 function GetAllKnownPids(){
 	static $allKnownPids = null;
 	if($allKnownPids === null){

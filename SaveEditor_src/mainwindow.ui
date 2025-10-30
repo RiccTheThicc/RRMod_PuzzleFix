@@ -175,12 +175,12 @@
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="checkFixExcessMirabilis">
+          <widget class="QCheckBox" name="checkRecalculateMirabilis">
            <property name="statusTip">
-            <string>|=== Fix excess Mirabilis === | |If you happen to have more than 271 Mirabilis, this sets them to 271. | |The proper maximum in vanilla game is 263.  |Offline Restored Mod 1.5 adds 8 more for a total of 271. | |You may have obtained 272 (or even more) due to old bugs.</string>
+            <string>|=== Recalculate Mirabilis === | |This will fix your total Mirabilis count. | |You can check it by summing the total Mirabilis of each zone in-game |(don't forget the 4 from First Echoes tutorial zone). | |The expected maximum in 271 in Offline Restored Mod 1.5 or higher.</string>
            </property>
            <property name="text">
-            <string>Fix excess Mirabilis</string>
+            <string>Recalculate Mirabilis</string>
            </property>
           </widget>
          </item>

@@ -239,7 +239,7 @@
 	"TemplateIndex": -1,
 	"Data": [
 		{ "$type":"UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI", "StructType":"PointerToUberGraphFrame", "SerializeNone":true,"Name":"UberGraphFrame", "Value":[] },
-		{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"BeamLength", "Value":5000 },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"BeamLength", "Value":10000 },
 		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"BeamLengthAnimCurve", "Value":-10 },
 		{
 			"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",

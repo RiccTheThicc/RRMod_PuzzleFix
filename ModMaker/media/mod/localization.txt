@@ -1,0 +1,82 @@
+lang		en-CA	fr-FR	de-DE	es-ES	es-MX	it-IT	ja-JP	ko-KR	pt-BR	zh-CN	zh-TW
+		English	French	German	Spanish - Spain	Spanish - Mexico	Italian	Japanese	Korean	Portuguese - Brazil	Chinese - China	Chinese - Taiwan
+												
+		"Some of the new logic grids use ""wrapping"" rule, where left and right edges are connected. Here area number 3 wraps around through the left side and connects to the right.
+
+This is the hint displayed to explain the mechanic."										
+												
+key	WRAP_LR	Left and right edges are connected.	Les bords gauche et droit sont connectés.	Linke und rechte Kanten sind verbunden.	Los bordes izquierdos y derechos están conectados.	Los bordes izquierdos y derechos están conectados.		左端と右端は隣接する	왼쪽과 오른쪽 가장자리가 연결되어 있습니다			
+												
+		"Similar to the above, other grids have left and right AND top and bottom edges connected.
+
+Example hint (old screenshot):"										
+												
+key	WRAP_ALL	All opposing edges are connected.	Les bords opposés sont connectés.	Alle gegenüberliegenden Kanten sind verbunden.	Todos los bordes opuestos están conectados.	Todos los bordes opuestos están conectados.		左端と右端も上端と下端は隣接する	마주보는 가장자리끼리 서로 연결되어 있습니다			
+												
+		"New enclave that has such grids, as well as difficult matchboxes and also teleporting archways (returning mechanic from The Trick of the Wanderer).
+
+This is: enclave title, enclave tagline, and enclave ""lore"".
+
+""A Warped Perspective"" and ""Unforeseen Connections"" refer to warping through archways and grid tiles going around the puzzle.
+
+""new dimension"" is like going from 2D to 3D."										
+												
+												
+key	WrapsTitle	A Warped Perspective	Une Perspective Distordue	Eine verzerrte Sichtweise	Una Perspectiva Deformada	Una Perspectiva Deformada			뒤틀린 시야			
+key	WrapsTag	Unforeseen Connections	Des Connexions Insoupconnées	Unvorhersehbare Verbindungen	Conexiones Imprevistas	Conexiones Imprevistas			예측하지 못한 연결			
+key	WrapsLore	Break away from what you've learned, and unveil an entirely new dimension	Détache-toi de ce que tu as appris et découvre une toute nouvelle dimension.	Löse dich von dem was du gelernt hast, und enthülle eine völlig neue Dimension	Rompe con todo lo que has aprendido, y revela una dimensión completamente nueva	Rompe con todo lo que has aprendido, y revela una dimensión completamente nueva			배운 것을 잊어버리고, 완전히 새로운 차원의 논리를 펼치세요			
+												
+		"Some grids use this new mechanic where one or more symbols are actually lying and displaying a wrong hint.
+
+Here, area number 2 is telling the truth, while area 1 is a lie.
+
+This is the hint displayed to explain the mechanic."										
+												
+key	LIARS1	1 symbol is lying.	1 symbole ment.	1 Symbol lügt.	1 símbolo está mintiendo.	1 símbolo está mintiendo.		１つのシンボルは偽っています	기호 1개가 거짓입니다			
+key	LIARS2	2 symbols are lying.	2 symboles mentent.	2 Symbole lügen.	2 símbolos están mintiendo.	2 símbolos están mintiendo.		２つのシンボルは偽っています	기호 2개가 거짓입니다			
+key	LIARS3	3 symbols are lying.	3 symboles mentent.	3 Symbole lügen.	3 símbolos están mintiendo.	3 símbolos están mintiendo.		３つのシンボルは偽っています	기호 3개가 거짓입니다			
+key	LIARS4	4 symbols are lying.	4 symboles mentent.	4 Symbole lügen.	4 símbolos están mintiendo.	4 símbolos están mintiendo.		４つのシンボルは偽っています	기호 4개가 거짓입니다			
+key	LIARS5	5 symbols are lying.	5 symboles mentent.	5 Symbole lügen.	5 símbolos están mintiendo.	5 símbolos están mintiendo.		５つのシンボルは偽っています	기호 5개가 거짓입니다			
+key	LIARS6	6 symbols are lying.	6 symboles mentent.	6 Symbole lügen.	6 símbolos están mintiendo.	6 símbolos están mintiendo.		６つのシンボルは偽っています	기호 6개가 거짓입니다			
+key	LIARS7	7 symbols are lying.	7 symboles mentent.	7 Symbole lügen.	7 símbolos están mintiendo.	7 símbolos están mintiendo.		７つのシンボルは偽っています	기호 7개가 거짓입니다			
+key	LIARS8	8 symbols are lying.	8 symboles mentent.	8 Symbole lügen.	8 símbolos están mintiendo.	8 símbolos están mintiendo.		８つのシンボルは偽っています	기호 8개가 거짓입니다			
+key	LIARS9	9 symbols are lying.	9 symboles mentent.	9 Symbole lügen.	9 símbolos están mintiendo.	9 símbolos están mintiendo.		９つのシンボルは偽っています	기호 9개가 거짓입니다			
+key	LIARS10	10 symbols are lying.	10 symboles mentent.	10 Symbole lügen.	10 símbolos están mintiendo.	10 símbolos están mintiendo.		10つのシンボルは偽っています	기호 10개가 거짓입니다			
+key	LIARS11	11 symbols are lying.	11 symboles mentent.	11 Symbole lügen.	11 símbolos están mintiendo.	11 símbolos están mintiendo.		11つのシンボルは偽っています	기호 11개가 거짓입니다			
+key	LIARS12	12 symbols are lying.	12 symboles mentent.	12 Symbole lügen.	12 símbolos están mintiendo.	12 símbolos están mintiendo.		12つのシンボルは偽っています	기호 12개가 거짓입니다			
+key	LIARS13	13 symbols are lying.	13 symboles mentent.	13 Symbole lügen.	13 símbolos están mintiendo.	13 símbolos están mintiendo.		13つのシンボルは偽っています	기호 13개가 거짓입니다			
+key	LIARS14	14 symbols are lying.	14 symboles mentent.	14 Symbole lügen.	14 símbolos están mintiendo.	14 símbolos están mintiendo.		14つのシンボルは偽っています	기호 14개가 거짓입니다			
+key	LIARS15	15 symbols are lying.	15 symboles mentent.	15 Symbole lügen.	15 símbolos están mintiendo.	15 símbolos están mintiendo.		15つのシンボルは偽っています	기호 15개가 거짓입니다			
+key	LIARS16	16 symbols are lying.	16 symboles mentent.	16 Symbole lügen.	16 símbolos están mintiendo.	16 símbolos están mintiendo.		16つのシンボルは偽っています	기호 16개가 거짓입니다			
+key	LIARS17	17 symbols are lying.	17 symboles mentent.	17 Symbole lügen.	17 símbolos están mintiendo.	17 símbolos están mintiendo.		17つのシンボルは偽っています	기호 17개가 거짓입니다			
+key	LIARS18	18 symbols are lying.	18 symboles mentent.	18 Symbole lügen.	18 símbolos están mintiendo.	18 símbolos están mintiendo.		18つのシンボルは偽っています	기호 18개가 거짓입니다			
+key	LIARS19	19 symbols are lying.	19 symboles mentent.	19 Symbole lügen.	19 símbolos están mintiendo.	19 símbolos están mintiendo.		19つのシンボルは偽っています	기호 19개가 거짓입니다			
+key	LIARS20	20 symbols are lying.	20 symboles mentent.	20 Symbole lügen.	20 símbolos están mintiendo.	20 símbolos están mintiendo.		20つのシンボルは偽っています	기호 20개가 거짓입니다			
+												
+		"This is the quest that uses such mechanic of lying symbols.
+
+As this is a quest and not an enclave, only title and tagline are needed - no lore message is displayed.
+
+""Deceptive Whispers"" refers to symbols whispering wrong hints at you, and ""Seeking the Truth"" refers to figuring out which symbols are a lie and which are true."										
+												
+key	LiarTitle	Deceptive Whispers	Paroles Délusoires / Un Semblant de Vérité	Irreführendes Geflüster	Susurros Engañosos	Susurros Engañosos			속임수의 속삭임			
+key	LiarTag	Seeking the Truth	À la Recherche de la Vérité / Sur un Lit de Mensonges	Suche nach der Wahrheit	Buscando la Verdad	Buscando la Verdad			진실을 찾는 여정			
+												
+		"This is a different quest that has easy butterfly-shaped grids, and the grids themselves are laid out in a butterfly shape.
+
+""Tango"" refers to a two-person dance, as most grids come in two pairs of identical layouts but different puzzles inside. Note that Verdant already has ""Dance of the Fireflies"" so the word ""Dance"" shouldn't be used. A different dance or even ""Song"" works.
+
+""Fluttering Down"" means descending slowly and gracefully like a leaf or a snowflake. The translation should have a cozy, soft feeling of easy puzzles."										
+												
+key	ButterflyTitle	Tango of the Butterflies	Le Tango des Papillons / Minute Papillon !	Tango der Schmetterlinge	Tango de las Mariposas	Tango de las Mariposas			나비의 탱고			
+key	ButterflyTag	Fluttering Down	Atterissage en Douceur / Il faudrait apprendre à voler de ses propres ailes.	Herunterflattern	Descendiendo Suavemente	Descendiendo Suavemente			사뿐히 날아라			
+												
+		"Secret new feature of the puzzle radar.
+
+It should follow the ""60 seconds of Chromatic Skydrops"" format - I provide original line used in every language.
+
+""Radar"" as in it magically shows you the locations of puzzles around you, sort of like a wallhack in counter-strike. The ""radar"" is not a technological device, just the description of the effect, if that matters.
+
+Please note that this feature might not make it in 1.5 update"										
+	Chromatic Skydrops	You now have 60 seconds of Chromatic Skydrops!	Vous avez désormais 60 s de larmes célestes chromatiques !	Du hast jetzt für 60 Sekunden chromatische Himmelstropfen!	¡Ahora tienes 60 segundos de gemas celestes cromáticas!	¡Ahora tienes 60 segundos de gemas celestes cromáticas!	Ora hai 60 secondi di Gocce celesti cromatiche!	クロマティックスカイドロップの秒数は60秒になりました！	60초간 유채색 하늘 방울이 생깁니다!	Agora você tem 60 segundos de Gotas Celestes Cromáticas!	你现在有60秒的彩色浮空晶球！	你現在有60秒的多彩天空之珠了！
+key	PuzzleRadarPickup	You now have 60 seconds of Puzzle Radar!	Vous avez obtenu 60 secondes de Radar à Puzzles !	Du hast jetzt für 60 Sekunden das Rätsel Radar!	¡Ahora tienes 60 segundos del Radar de Puzles!	¡Ahora tienes 60 segundos del Radar de Puzles!			60초간 퍼즐 레이더가 활성화됩니다!			

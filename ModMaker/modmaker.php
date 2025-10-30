@@ -43,6 +43,10 @@ $forceDebugGrids = [
 $forceSpawnPids = [
 ];
 
+// Force all florbs + grings
+//$hubPuzzlesPerType = ReduceProfileToPtypes(GetHubProfile());
+//$forceSpawnPids = array_values(array_merge($hubPuzzlesPerType["racingRingCourse"], $hubPuzzlesPerType["racingBallCourse"]));
+
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -1044,6 +1048,18 @@ foreach($sandboxZones->Containers as $localID => &$container_ref){
 	printf("Added text |%s| to rune |%s| with grid %d.\n", $text, $localID, $pid);
 	
 }unset($container_ref);
+
+// Fix sightseer spawn radiuses.
+$sightseerRadiusCsv = LoadCsvMap("media\\mod\\sightseerRadiusFix.csv", "pid");
+foreach($sightseerRadiusCsv as $pid => $entry){
+	$miniJson = @json_decode($puzzleDatabase->krakenIDToWorldPuzzleData[$pid]);
+	if(empty($miniJson) || $miniJson->PuzzleClass != "BP_ViewfinderCamera_C" || $miniJson->Zone != $entry["zoneIndex"]){
+		printf("[SightseerRadiusFix] Bad entry: %s\n", json_encode($entry));
+		exit(1);
+	}
+	$miniJson->SpawnRadius = $entry["SpawnRadius"];
+	$puzzleDatabase->krakenIDToWorldPuzzleData[$pid] = json_encode($miniJson, JSON_UNESCAPED_SLASHES);
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////

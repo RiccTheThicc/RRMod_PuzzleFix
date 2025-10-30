@@ -1,7 +1,7 @@
 {
 "$type": "UAssetAPI.UAsset, UAssetAPI",
 "Info": "Serialized with UAssetAPI 1.0.2.0 (46c4fbf)",
-"NameMap": ["/Game/AncientTreasures/Meshes/SM_Chest_02a","/Game/AncientTreasures/Meshes/SM_Chest_02b","/Game/ASophia/GameObjects/BP_ItemPickupChest","/Game/ASophia/GameObjects/JumpPads/Effects/ES_Galaxy","/Script/CoreUObject","/Script/Engine","/Script/IslandsofInsight","/Script/NavigationSystem","/Script/Niagara","Actor","ActorTickFunction","AllNodes","AreaClass","ArrayProperty","Asset","Base","Base_GEN_VARIABLE","bIsExternalCurve","bIsOpen","bIsParentComponentNative","BlueprintGeneratedClass","BoolProperty","BoundsScale","bOpenChest","Box","Box_GEN_VARIABLE","BoxComponent","boxMesh","BP_ItemPickupChest_C","BP_OnClick","bStartWithTickEnabled","bUseAsOccluder","ByteProperty","CallFunc_K2_SetRelativeRotation_SweepHitResult","CallFunc_Multiply_RotatorFloat_ReturnValue","Chest","ChestOpening","ChestOpening__Direction_969DC31E44D0EE60ED5299A5507DE06E","ChestOpening__FinishedFunc","ChestOpening__UpdateFunc","ChestOpening_LidPosition_969DC31E44D0EE60ED5299A5507DE06E","ChestOpening_Template","Class","ClickableBase","CloseChest","ComponentClass","ComponentTemplate","CurveFloat","Deactivate","Default__BlueprintGeneratedClass","Default__BoxComponent","Default__BP_ItemPickupChest_C","Default__Chest","Default__CurveFloat","Default__Function","Default__NiagaraComponent","Default__SceneComponent","Default__SCS_Node","Default__SimpleConstructionScript","Default__StaticMeshComponent","Default__TimelineTemplate","DefaultSceneRoot","DefaultSceneRoot_GEN_VARIABLE","DefaultSceneRootNode","DirectionPropertyName","EComponentMobility","EComponentMobility::Static","ENetRole","Engine","EntryPoint","Enum","ES_Galaxy","ETimelineDirection","ExecuteUbergraph_BP_ItemPickupChest","FinishedFunctionName","FloatCurve","FloatProperty","FloatTracks","FlushNetDormancy","Function","Guid","HitResult","InternalVariableName","IntProperty","K2_SetRelativeRotation","K2Node_Event_OutHit","K2Node_Event_Player","Keys","KismetMathLibrary","Lid","Lid_GEN_VARIABLE","LidPosition","MarkPropertyDirtyFromRepIndex","Mobility","Multiply_RotatorFloat","NameProperty","NavArea_Obstacle","NetPushModelHelpers","Niagara","Niagara_GEN_VARIABLE","NiagaraComponent","NiagaraSystem","NiagaraUserRedirectionParameterStore","None","NumReplicatedProperties","Object","ObjectProperty","OnRep_bOpenChest","OpenChest","OutHit","OverrideParameters","Package","ParentComponentOrVariableName","Play","Player","PointerToUberGraphFrame","PrimaryActorTick","PropertyName","RelativeLocation","RelativeScale3D","RemoteRole","Reverse","RichCurve","RichCurveKey","ROLE_None","RootComponent","RootNodes","Rotator","SceneComponent","ScriptStruct","SCS_Node","SimpleConstructionScript","SM_Chest_02a","SM_Chest_02b","SophiaCharacter","StaticMesh","StaticMeshComponent","StructProperty","TimelineComponent","TimelineGuid","TimelineLength","Timelines","TimelineTemplate","TrackName","TTFloatTrack","UberGraphFrame","UberGraphFunction","UpdateFunctionName","VariableGuid","VariableName","Vector","BodyInstance","Channel","CollisionEnabled","CollisionProfileName","CollisionResponse","CollisionResponses","ECR_Ignore","ECollisionEnabled","ECollisionEnabled::NoCollision","ECollisionResponse","NoCollision","ResponseArray","ResponseChannel","Camera","Destructible","Pawn","PhysicsBody","Power","PuzzleBounds","Vehicle","Visibility","WorldDynamic","WorldStatic","Response"],
+"NameMap": ["/Game/AncientTreasures/Meshes/SM_Chest_02a","/Game/AncientTreasures/Meshes/SM_Chest_02b","/Game/ASophia/GameObjects/BP_ItemPickupChest","/Game/ASophia/GameObjects/JumpPads/Effects/ES_Galaxy","/Script/CoreUObject","/Script/Engine","/Script/IslandsofInsight","/Script/NavigationSystem","/Script/Niagara","Actor","ActorTickFunction","AllNodes","AreaClass","ArrayProperty","Asset","Base","Base_GEN_VARIABLE","bIsExternalCurve","bIsOpen","bIsParentComponentNative","BlueprintGeneratedClass","BoolProperty","BoundsScale","bOpenChest","Box","Box_GEN_VARIABLE","BoxComponent","boxMesh","BP_ItemPickupChest_C","BP_OnClick","bStartWithTickEnabled","bUseAsOccluder","ByteProperty","CallFunc_K2_SetRelativeRotation_SweepHitResult","CallFunc_Multiply_RotatorFloat_ReturnValue","Chest","ChestOpening","ChestOpening__Direction_969DC31E44D0EE60ED5299A5507DE06E","ChestOpening__FinishedFunc","ChestOpening__UpdateFunc","ChestOpening_LidPosition_969DC31E44D0EE60ED5299A5507DE06E","ChestOpening_Template","Class","ClickableBase","CloseChest","ComponentClass","ComponentTemplate","CurveFloat","Deactivate","Default__BlueprintGeneratedClass","Default__BoxComponent","Default__BP_ItemPickupChest_C","Default__Chest","Default__CurveFloat","Default__Function","Default__NiagaraComponent","Default__SceneComponent","Default__SCS_Node","Default__SimpleConstructionScript","Default__StaticMeshComponent","Default__TimelineTemplate","DefaultSceneRoot","DefaultSceneRoot_GEN_VARIABLE","DefaultSceneRootNode","DirectionPropertyName","EComponentMobility","EComponentMobility::Static","ENetRole","Engine","EntryPoint","Enum","ES_Galaxy","ETimelineDirection","ExecuteUbergraph_BP_ItemPickupChest","FinishedFunctionName","FloatCurve","FloatProperty","FloatTracks","FlushNetDormancy","Function","Guid","HitResult","InternalVariableName","IntProperty","K2_SetRelativeRotation","K2Node_Event_OutHit","K2Node_Event_Player","Keys","KismetMathLibrary","Lid","Lid_GEN_VARIABLE","LidPosition","MarkPropertyDirtyFromRepIndex","Mobility","Multiply_RotatorFloat","NameProperty","NavArea_Obstacle","NetPushModelHelpers","Niagara","Niagara_GEN_VARIABLE","NiagaraComponent","NiagaraSystem","NiagaraUserRedirectionParameterStore","None","NumReplicatedProperties","Object","ObjectProperty","OnRep_bOpenChest","OpenChest","OutHit","OverrideParameters","Package","ParentComponentOrVariableName","Play","Player","PointerToUberGraphFrame","PrimaryActorTick","PropertyName","RelativeLocation","RelativeScale3D","RemoteRole","Reverse","RichCurve","RichCurveKey","ROLE_None","RootComponent","RootNodes","Rotator","SceneComponent","ScriptStruct","SCS_Node","SimpleConstructionScript","SM_Chest_02a","SM_Chest_02b","SophiaCharacter","StaticMesh","StaticMeshComponent","StructProperty","TimelineComponent","TimelineGuid","TimelineLength","Timelines","TimelineTemplate","TrackName","TTFloatTrack","UberGraphFrame","UberGraphFunction","UpdateFunctionName","VariableGuid","VariableName","Vector","BodyInstance","Channel","CollisionEnabled","CollisionProfileName","CollisionResponse","CollisionResponses","ECR_Ignore","ECollisionEnabled","ECollisionEnabled::NoCollision","ECollisionResponse","NoCollision","ResponseArray","ResponseChannel","Camera","Destructible","Pawn","PhysicsBody","Power","PuzzleBounds","Vehicle","Visibility","WorldDynamic","WorldStatic","Response","InteractOnly"],
 "OtherAssetsFailedToAccess": [],
 "LegacyFileVersion": -7,
 "DataResourceVersion": "Invalid",
@@ -722,6 +722,197 @@
 					}
 				}
 			]
+		},
+		{
+			"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+			"StructType": "BodyInstance",
+			"SerializeNone": true,
+			"Name": "BodyInstance",
+			"Value": [
+				{
+					"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+					"ByteType": "FName",
+					"EnumType": "ECollisionEnabled",
+					"EnumValue": "ECollisionEnabled::NoCollision",
+					"Name": "CollisionEnabled"
+				},
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"CollisionProfileName", "Value":"NoCollision" },
+				{
+					"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+					"StructType": "CollisionResponse",
+					"SerializeNone": true,
+					"Name": "CollisionResponses",
+					"Value": [
+						{
+							"$type": "UAssetAPI.PropertyTypes.Objects.ArrayPropertyData, UAssetAPI",
+							"ArrayType": "StructProperty",
+							"Name": "ResponseArray",
+							"Value": [
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"WorldStatic" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"WorldDynamic" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"Pawn" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"Visibility" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"Camera" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"PhysicsBody" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"Vehicle" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"Destructible" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"Power" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"PuzzleBounds" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
 		}
 	]
 },
@@ -1149,6 +1340,7 @@
 	"Data": [
 		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"StaticMesh", "Value":-49 },
 		{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"bUseAsOccluder", "Value":0 },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"AreaClass", "Value":-21 },
 		{
 			"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
 			"StructType": "Vector",
@@ -1191,14 +1383,7 @@
 			"SerializeNone": true,
 			"Name": "BodyInstance",
 			"Value": [
-				{
-					"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
-					"ByteType": "FName",
-					"EnumType": "ECollisionEnabled",
-					"EnumValue": "ECollisionEnabled::NoCollision",
-					"Name": "CollisionEnabled"
-				},
-				{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"CollisionProfileName", "Value":"NoCollision" },
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"CollisionProfileName", "Value":"InteractOnly" },
 				{
 					"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
 					"StructType": "CollisionResponse",
@@ -1249,22 +1434,6 @@
 									"Name": "ResponseArray",
 									"Value": [
 										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"Pawn" },
-										{
-											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
-											"ByteType": "FName",
-											"EnumType": "ECollisionResponse",
-											"EnumValue": "ECR_Ignore",
-											"Name": "Response"
-										}
-									]
-								},
-								{
-									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
-									"StructType": "ResponseChannel",
-									"SerializeNone": true,
-									"Name": "ResponseArray",
-									"Value": [
-										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"Visibility" },
 										{
 											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
 											"ByteType": "FName",
@@ -1345,22 +1514,6 @@
 									"Name": "ResponseArray",
 									"Value": [
 										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"Power" },
-										{
-											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
-											"ByteType": "FName",
-											"EnumType": "ECollisionResponse",
-											"EnumValue": "ECR_Ignore",
-											"Name": "Response"
-										}
-									]
-								},
-								{
-									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
-									"StructType": "ResponseChannel",
-									"SerializeNone": true,
-									"Name": "ResponseArray",
-									"Value": [
-										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"PuzzleBounds" },
 										{
 											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
 											"ByteType": "FName",

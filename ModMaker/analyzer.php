@@ -41,10 +41,10 @@ $CAMPHOR_ZONE = 2;
 // Add all puzzle totems and their grids directly from output jsons.
 $totemList = [
 	// path, objName, zoneIndex, parent
-	[ "..\\OutputJsons\\CamphorCorridorTemple.json", "BP_PuzzleTotem_WrapLR",   2, -1, "World / Lucent Waters / Enclave / A Warped Perspective" ],
-	[ "..\\OutputJsons\\CamphorCorridorTemple.json", "BP_PuzzleTotem_WrapFour", 2, -1, "World / Lucent Waters / Enclave / A Warped Perspective" ],
-	[ "..\\OutputJsons\\RRMod_Objects.json",         "BP_PuzzleTotem_LiarA",    4, -1, "World / Autumn Falls / Quest / Deceptive Whispers" ],
-	[ "..\\OutputJsons\\RRMod_Objects.json",         "BP_PuzzleTotem_LiarB",    4, -1, "World / Autumn Falls / Quest / Deceptive Whispers" ],
+	[ "..\\OutputJsons\\Maps\\CamphorCorridorTemple.json", "BP_PuzzleTotem_WrapLR",   2, -1, "World / Lucent Waters / Enclave / A Warped Perspective" ],
+	[ "..\\OutputJsons\\Maps\\CamphorCorridorTemple.json", "BP_PuzzleTotem_WrapFour", 2, -1, "World / Lucent Waters / Enclave / A Warped Perspective" ],
+	[ "..\\OutputJsons\\Maps\\RRMod_Objects.json",         "BP_PuzzleTotem_LiarA",    4, -1, "World / Autumn Falls / Quest / Deceptive Whispers" ],
+	[ "..\\OutputJsons\\Maps\\RRMod_Objects.json",         "BP_PuzzleTotem_LiarB",    4, -1, "World / Autumn Falls / Quest / Deceptive Whispers" ],
 ];
 foreach($totemList as $tuple){
 	list($path, $objName, $zoneIndex, $parent, $basePath) = $tuple;
@@ -104,7 +104,7 @@ foreach($totemList as $tuple){
 // Add the camphor entrance unlock.
 $entranceUnlockList = [
 	// path, objName, zoneIndex, parent
-	[ "..\\OutputJsons\\CamphorCorridorTemple.json", "BP_LevelRestrictionVolume5", 2, $CAMPHOR_DUNGEON_PID ],
+	[ "..\\OutputJsons\\Maps\\CamphorCorridorTemple.json", "BP_LevelRestrictionVolume5", 2, $CAMPHOR_DUNGEON_PID ],
 ];
 foreach($entranceUnlockList as $tuple){
 	list($path, $objName, $zoneIndex, $parent) = $tuple;

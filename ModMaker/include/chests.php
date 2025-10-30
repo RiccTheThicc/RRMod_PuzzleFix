@@ -52,11 +52,11 @@ function CreateChestBinary(string $inputPath, string $outputPath){
 	WriteBinaryInt32($output, 0);
 	
 	$zoneLines = [
-		2 => (object)[ "k" => 7.143, "b" => -0.429 ],
-		3 => (object)[ "k" => 5.455, "b" => -0.909 ],
-		4 => (object)[ "k" => 9.231, "b" => -1.308 ],
-		5 => (object)[ "k" => 7.692, "b" => -0.932 ],
-		6 => (object)[ "k" => 9.211, "b" => -0.382 ],
+		2 => (object)[ "k" =>  9.091, "b" => -1.773 ],
+		3 => (object)[ "k" =>  6.667, "b" => -1.700 ],
+		4 => (object)[ "k" => 10.909, "b" => -2.327 ],
+		5 => (object)[ "k" =>  9.091, "b" => -1.773 ],
+		6 => (object)[ "k" =>  9.859, "b" => -1.021 ],
 	];
 	
 	for($zoneIndex = 2; $zoneIndex <= 6; ++$zoneIndex){
