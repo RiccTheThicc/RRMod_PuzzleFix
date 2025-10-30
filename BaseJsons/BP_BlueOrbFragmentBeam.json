@@ -1,0 +1,563 @@
+{
+"$type": "UAssetAPI.UAsset, UAssetAPI",
+"Info": "Serialized with UAssetAPI 1.0.2.0 (46c4fbf)",
+"NameMap": ["/Game/ASophia/Puzzle/BlueOrbFragment/BP_BlueOrbFragmentBeam","/Game/ASophia/Puzzle/BlueOrbFragment/Curve_BlueOrbFragmentBeamLength","/Game/ASophia/Puzzle/BlueOrbFragment/Meshes/SM_BlueOrbFragment_Beam","/Game/ASophia/Puzzle/BlueOrbFragment/MI_BlueOrbFragmentBeam","/Game/ASophia/Puzzle/PuzzleArtCollection","/Script/CoreUObject","/Script/Engine","/Script/IslandsofInsight","ActorComponent","ActorComponentTickFunction","ArrayProperty","bAffectDistanceFieldLighting","bAllowTickOnDedicatedServer","BeamLength","BeamLengthAnimCurve","bGenerateOverlapEvents","BlueOrbFragmentBeam","BlueprintGeneratedClass","BodyInstance","BoolProperty","BP_BlueOrbFragmentBeam_C","bUseAsOccluder","ByteProperty","CallFunc_Conv_LinearColorToColor_ReturnValue","CallFunc_GetVectorParameterValue_ReturnValue","Camera","CanCharacterStepUpOn","Channel","Class","CollisionEnabled","CollisionProfileName","CollisionResponse","CollisionResponseContainer","CollisionResponses","Color","ColorBaseActive","ColorBaseSolved","Conv_LinearColorToColor","Curve_BlueOrbFragmentBeamLength","CurveFloat","Default__BlueOrbFragmentBeam","Default__BlueprintGeneratedClass","Default__BP_BlueOrbFragmentBeam_C","Default__Function","Destructible","ECanBeCharacterBase","ECB_No","ECollisionEnabled","ECollisionEnabled::NoCollision","ECollisionResponse","ECR_Ignore","Engine","EntryPoint","ExecuteUbergraph_BP_BlueOrbFragmentBeam","FloatProperty","FoundColor","Function","GameTraceChannel2","GameTraceChannel8","GetVectorParameterValue","IntProperty","KismetMaterialLibrary","KismetMathLibrary","LinearColor","MaterialInstanceConstant","MaterialParameterCollection","MI_BlueOrbFragmentBeam","NameProperty","NoCollision","None","NotFoundColor","Object","ObjectProperty","OverrideMaterials","Package","Pawn","PhysicsBody","PointerToUberGraphFrame","Power","PrimaryComponentTick","PuzzleArtCollection","PuzzleBounds","ReceiveBeginPlay","Response","ResponseArray","ResponseChannel","ResponseToChannels","ScriptStruct","SM_BlueOrbFragment_Beam","StaticMesh","StructProperty","TickInterval","UberGraphFrame","UberGraphFunction","Vehicle","Visibility","WorldDynamic","WorldStatic"],
+"OtherAssetsFailedToAccess": [],
+"LegacyFileVersion": -7,
+"DataResourceVersion": "Invalid",
+"DataResources": [],
+"UsesEventDrivenLoader": true,
+"WillSerializeNameHashes": true,
+"Imports": [
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-1,"OuterIndex":-23,"ObjectName":"Default__BlueOrbFragmentBeam","ClassPackage":"/Script/IslandsofInsight","ClassName":"BlueOrbFragmentBeam"},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-2,"OuterIndex":-22,"ObjectName":"Default__BlueprintGeneratedClass","ClassPackage":"/Script/Engine","ClassName":"BlueprintGeneratedClass"},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-3,"OuterIndex":-21,"ObjectName":"Function","ClassPackage":"/Script/CoreUObject","ClassName":"Class"},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-4,"OuterIndex":-21,"ObjectName":"Object","ClassPackage":"/Script/CoreUObject","ClassName":"Class"},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-5,"OuterIndex":-22,"ObjectName":"ActorComponent","ClassPackage":"/Script/CoreUObject","ClassName":"Class"},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-6,"OuterIndex":-22,"ObjectName":"BlueprintGeneratedClass","ClassPackage":"/Script/CoreUObject","ClassName":"Class"},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-7,"OuterIndex":-22,"ObjectName":"KismetMaterialLibrary","ClassPackage":"/Script/CoreUObject","ClassName":"Class"},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-8,"OuterIndex":-22,"ObjectName":"KismetMathLibrary","ClassPackage":"/Script/CoreUObject","ClassName":"Class"},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-9,"OuterIndex":-23,"ObjectName":"BlueOrbFragmentBeam","ClassPackage":"/Script/CoreUObject","ClassName":"Class"},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-10,"OuterIndex":-17,"ObjectName":"Curve_BlueOrbFragmentBeamLength","ClassPackage":"/Script/Engine","ClassName":"CurveFloat"},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-11,"OuterIndex":-21,"ObjectName":"Default__Function","ClassPackage":"/Script/CoreUObject","ClassName":"Function"},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-12,"OuterIndex":-5,"ObjectName":"ReceiveBeginPlay","ClassPackage":"/Script/CoreUObject","ClassName":"Function"},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-13,"OuterIndex":-7,"ObjectName":"GetVectorParameterValue","ClassPackage":"/Script/CoreUObject","ClassName":"Function"},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-14,"OuterIndex":-8,"ObjectName":"Conv_LinearColorToColor","ClassPackage":"/Script/CoreUObject","ClassName":"Function"},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-15,"OuterIndex":-19,"ObjectName":"MI_BlueOrbFragmentBeam","ClassPackage":"/Script/Engine","ClassName":"MaterialInstanceConstant"},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-16,"OuterIndex":-20,"ObjectName":"PuzzleArtCollection","ClassPackage":"/Script/Engine","ClassName":"MaterialParameterCollection"},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-17,"OuterIndex":0,"ObjectName":"/Game/ASophia/Puzzle/BlueOrbFragment/Curve_BlueOrbFragmentBeamLength","ClassPackage":"/Script/CoreUObject","ClassName":"Package"},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-18,"OuterIndex":0,"ObjectName":"/Game/ASophia/Puzzle/BlueOrbFragment/Meshes/SM_BlueOrbFragment_Beam","ClassPackage":"/Script/CoreUObject","ClassName":"Package"},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-19,"OuterIndex":0,"ObjectName":"/Game/ASophia/Puzzle/BlueOrbFragment/MI_BlueOrbFragmentBeam","ClassPackage":"/Script/CoreUObject","ClassName":"Package"},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-20,"OuterIndex":0,"ObjectName":"/Game/ASophia/Puzzle/PuzzleArtCollection","ClassPackage":"/Script/CoreUObject","ClassName":"Package"},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-21,"OuterIndex":0,"ObjectName":"/Script/CoreUObject","ClassPackage":"/Script/CoreUObject","ClassName":"Package"},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-22,"OuterIndex":0,"ObjectName":"/Script/Engine","ClassPackage":"/Script/CoreUObject","ClassName":"Package"},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-23,"OuterIndex":0,"ObjectName":"/Script/IslandsofInsight","ClassPackage":"/Script/CoreUObject","ClassName":"Package"},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-24,"OuterIndex":-21,"ObjectName":"Color","ClassPackage":"/Script/CoreUObject","ClassName":"ScriptStruct"},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-25,"OuterIndex":-21,"ObjectName":"LinearColor","ClassPackage":"/Script/CoreUObject","ClassName":"ScriptStruct"},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-26,"OuterIndex":-22,"ObjectName":"PointerToUberGraphFrame","ClassPackage":"/Script/CoreUObject","ClassName":"ScriptStruct"},
+{"$type":"UAssetAPI.Import, UAssetAPI","$index":-27,"OuterIndex":-18,"ObjectName":"SM_BlueOrbFragment_Beam","ClassPackage":"/Script/Engine","ClassName":"StaticMesh"}
+],
+"DependsMap": [[],[],[],[]],
+"SoftPackageReferenceList": [],
+"AssetRegistryData": {"$type":"System.Byte[], System.Private.CoreLib","$value":"AAAAAA=="},
+"BulkData": {"$type":"System.Byte[], System.Private.CoreLib","$value":"wYMqng=="},
+"ValorantGarbageData": null,
+"SeaOfThievesGarbageData": null,
+"Generations": [{"$type":"UAssetAPI.FGenerationInfo, UAssetAPI","ExportCount":4,"NameCount":98}],
+"PackageGuid": "{4A810879-41BB-5BF8-81CD-F385AA4DF7EB}",
+"PersistentGuid": "{00000000-0000-0000-0000-000000000000}",
+"RecordedEngineVersion": {"$type":"UAssetAPI.FEngineVersion, UAssetAPI","Major":0,"Minor":0,"Patch":0,"Changelist":0,"Branch":null},
+"RecordedCompatibleWithEngineVersion": {"$type":"UAssetAPI.FEngineVersion, UAssetAPI","Major":0,"Minor":0,"Patch":0,"Changelist":0,"Branch":null},
+"ChunkIDs": [],
+"PackageSource": 474967117,
+"FolderName": "None",
+"LocalizationId": null,
+"SoftObjectPathsCount": 0,
+"SoftObjectPathsOffset": 0,
+"SearchableNamesOffset": 0,
+"ThumbnailTableOffset": 0,
+"CompressionFlags": 0,
+"AdditionalPackagesToCook": [],
+"NamesReferencedFromExportDataCount": 98,
+"PayloadTocOffset": -1,
+"DataResourceOffset": -1,
+"doWeHaveDependsMap": true,
+"doWeHaveSoftPackageReferences": false,
+"doWeHaveAssetRegistryData": true,
+"doWeHaveWorldTileInfo": false,
+"doWeHaveDataResources": false,
+"CustomSerializationFlags": "None",
+"UseSeparateBulkDataFiles": true,
+"IsUnversioned": true,
+"FileVersionLicenseeUE": 0,
+"ObjectVersion": "VER_UE4_CORRECT_LICENSEE_FLAG",
+"ObjectVersionUE5": "UNKNOWN",
+"CustomVersionContainer": [{"$type":"UAssetAPI.CustomVersion, UAssetAPI","Name":null,"Key":"{375EC13C-06E4-48FB-B500-84F0262A717E}","FriendlyName":"FCoreObjectVersion","Version":4,"IsSerialized":false},{"$type":"UAssetAPI.CustomVersion, UAssetAPI","Name":null,"Key":"{E4B068ED-F494-42E9-A231-DA0B2E46BB41}","FriendlyName":"FEditorObjectVersion","Version":40,"IsSerialized":false},{"$type":"UAssetAPI.CustomVersion, UAssetAPI","Name":null,"Key":"{CFFC743F-43B0-4480-9391-14DF171D2073}","FriendlyName":"FFrameworkObjectVersion","Version":37,"IsSerialized":false},{"$type":"UAssetAPI.CustomVersion, UAssetAPI","Name":null,"Key":"{7B5AE74C-D270-4C10-A958-57980B212A5A}","FriendlyName":"FSequencerObjectVersion","Version":13,"IsSerialized":false},{"$type":"UAssetAPI.CustomVersion, UAssetAPI","Name":null,"Key":"{29E575DD-E0A3-4627-9D10-D276232CDCEA}","FriendlyName":"FAnimPhysObjectVersion","Version":17,"IsSerialized":false},{"$type":"UAssetAPI.CustomVersion, UAssetAPI","Name":null,"Key":"{601D1886-AC64-4F84-AA16-D3DE0DEAC7D6}","FriendlyName":"FFortniteMainBranchObjectVersion","Version":47,"IsSerialized":false},{"$type":"UAssetAPI.CustomVersion, UAssetAPI","Name":null,"Key":"{F2AED0AC-9AFE-416F-8664-AA7FFA26D6FC}","FriendlyName":"FNiagaraObjectVersion","Version":1,"IsSerialized":false},{"$type":"UAssetAPI.CustomVersion, UAssetAPI","Name":null,"Key":"{717F9EE7-E9B0-493A-88B3-91321B388107}","FriendlyName":"FAssetRegistryVersion","Version":17,"IsSerialized":false},{"$type":"UAssetAPI.CustomVersion, UAssetAPI","Name":null,"Key":"{9C54D522-A826-4FBE-9421-074661B482D0}","FriendlyName":"FReleaseObjectVersion","Version":43,"IsSerialized":false},{"$type":"UAssetAPI.CustomVersion, UAssetAPI","Name":null,"Key":"{E7086368-6B23-4C58-8439-1B7016265E91}","FriendlyName":"FFortniteReleaseBranchCustomObjectVersion","Version":1,"IsSerialized":false},{"$type":"UAssetAPI.CustomVersion, UAssetAPI","Name":null,"Key":"{D89B5E42-24BD-4D46-8412-ACA8DF641779}","FriendlyName":"FUE5ReleaseStreamObjectVersion","Version":0,"IsSerialized":false},{"$type":"UAssetAPI.CustomVersion, UAssetAPI","Name":null,"Key":"{FCF57AFA-5076-4283-B9A9-E658FFA02D32}","FriendlyName":"FNiagaraCustomVersion","Version":68,"IsSerialized":false}],
+"GatherableTextData": null,
+"SearchableNames": null,
+"Thumbnails": null,
+"WorldTileInfo": null,
+"PackageFlags": "PKG_FilterEditorOnly",
+"HasUnversionedProperties": false,
+"IsFilterEditorOnly": true,
+"Exports": [
+{
+	"$type": "UAssetAPI.ExportTypes.FunctionExport, UAssetAPI",
+	"$index": "%i_1_ExecuteUbergraph_BP_BlueOrbFragmentBeam",
+	"FunctionFlags": "FUNC_Final, FUNC_UbergraphFunction",
+	"SuperStruct": 0,
+	"Children": [],
+	"LoadedProperties": [{"$type":"UAssetAPI.FieldTypes.FGenericProperty, UAssetAPI","ArrayDim":"TArray","ElementSize":4,"PropertyFlags":"CPF_BlueprintVisible, CPF_BlueprintReadOnly, CPF_Parm","RepIndex":0,"RepNotifyFunc":"None","BlueprintReplicationCondition":"COND_None","RawValue":null,"UsmapPropertyTypeOverrides":{"$type":"System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[UAssetAPI.Unversioned.EPropertyType, UAssetAPI]], System.Private.CoreLib","MulticastInlineDelegateProperty":"MulticastDelegateProperty","ClassProperty":"ObjectProperty","SoftClassProperty":"SoftObjectProperty"},"SerializedType":"IntProperty","Name":"EntryPoint","Flags":"RF_Public","MetaDataMap":null},{"$type":"UAssetAPI.FieldTypes.FStructProperty, UAssetAPI","Struct":-25,"ArrayDim":"TArray","ElementSize":16,"PropertyFlags":"CPF_None","RepIndex":0,"RepNotifyFunc":"None","BlueprintReplicationCondition":"COND_None","RawValue":null,"UsmapPropertyTypeOverrides":{"$type":"System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[UAssetAPI.Unversioned.EPropertyType, UAssetAPI]], System.Private.CoreLib","MulticastInlineDelegateProperty":"MulticastDelegateProperty","ClassProperty":"ObjectProperty","SoftClassProperty":"SoftObjectProperty"},"SerializedType":"StructProperty","Name":"CallFunc_GetVectorParameterValue_ReturnValue","Flags":"RF_Public","MetaDataMap":null},{"$type":"UAssetAPI.FieldTypes.FStructProperty, UAssetAPI","Struct":-24,"ArrayDim":"TArray","ElementSize":4,"PropertyFlags":"CPF_None","RepIndex":0,"RepNotifyFunc":"None","BlueprintReplicationCondition":"COND_None","RawValue":null,"UsmapPropertyTypeOverrides":{"$type":"System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[UAssetAPI.Unversioned.EPropertyType, UAssetAPI]], System.Private.CoreLib","MulticastInlineDelegateProperty":"MulticastDelegateProperty","ClassProperty":"ObjectProperty","SoftClassProperty":"SoftObjectProperty"},"SerializedType":"StructProperty","Name":"CallFunc_Conv_LinearColorToColor_ReturnValue","Flags":"RF_Public","MetaDataMap":null},{"$type":"UAssetAPI.FieldTypes.FStructProperty, UAssetAPI","Struct":-25,"ArrayDim":"TArray","ElementSize":16,"PropertyFlags":"CPF_None","RepIndex":0,"RepNotifyFunc":"None","BlueprintReplicationCondition":"COND_None","RawValue":null,"UsmapPropertyTypeOverrides":{"$type":"System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[UAssetAPI.Unversioned.EPropertyType, UAssetAPI]], System.Private.CoreLib","MulticastInlineDelegateProperty":"MulticastDelegateProperty","ClassProperty":"ObjectProperty","SoftClassProperty":"SoftObjectProperty"},"SerializedType":"StructProperty","Name":"CallFunc_GetVectorParameterValue_ReturnValue_1","Flags":"RF_Public","MetaDataMap":null},{"$type":"UAssetAPI.FieldTypes.FStructProperty, UAssetAPI","Struct":-24,"ArrayDim":"TArray","ElementSize":4,"PropertyFlags":"CPF_None","RepIndex":0,"RepNotifyFunc":"None","BlueprintReplicationCondition":"COND_None","RawValue":null,"UsmapPropertyTypeOverrides":{"$type":"System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[UAssetAPI.Unversioned.EPropertyType, UAssetAPI]], System.Private.CoreLib","MulticastInlineDelegateProperty":"MulticastDelegateProperty","ClassProperty":"ObjectProperty","SoftClassProperty":"SoftObjectProperty"},"SerializedType":"StructProperty","Name":"CallFunc_Conv_LinearColorToColor_ReturnValue_1","Flags":"RF_Public","MetaDataMap":null}],
+	"ScriptBytecode": [{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_ComputedJump, UAssetAPI","CodeOffsetExpression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_LocalVariable, UAssetAPI","Variable":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["EntryPoint"],"ResolvedOwner":1}}}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Let, UAssetAPI","Value":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["CallFunc_GetVectorParameterValue_ReturnValue"],"ResolvedOwner":1}},"Variable":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_LocalVariable, UAssetAPI","Variable":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["CallFunc_GetVectorParameterValue_ReturnValue"],"ResolvedOwner":1}}},"Expression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_CallMath, UAssetAPI","StackNode":-13,"Parameters":[{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Self, UAssetAPI"},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_ObjectConst, UAssetAPI","Value":-16},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_NameConst, UAssetAPI","Value":"ColorBaseActive"}]}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Let, UAssetAPI","Value":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["CallFunc_Conv_LinearColorToColor_ReturnValue"],"ResolvedOwner":1}},"Variable":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_LocalVariable, UAssetAPI","Variable":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["CallFunc_Conv_LinearColorToColor_ReturnValue"],"ResolvedOwner":1}}},"Expression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_CallMath, UAssetAPI","StackNode":-14,"Parameters":[{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_LocalVariable, UAssetAPI","Variable":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["CallFunc_GetVectorParameterValue_ReturnValue"],"ResolvedOwner":1}}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_True, UAssetAPI"}]}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Let, UAssetAPI","Value":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["NotFoundColor"],"ResolvedOwner":-9}},"Variable":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_InstanceVariable, UAssetAPI","Variable":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["NotFoundColor"],"ResolvedOwner":-9}}},"Expression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_LocalVariable, UAssetAPI","Variable":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["CallFunc_Conv_LinearColorToColor_ReturnValue"],"ResolvedOwner":1}}}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Jump, UAssetAPI","CodeOffset":252},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Let, UAssetAPI","Value":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["CallFunc_GetVectorParameterValue_ReturnValue_1"],"ResolvedOwner":1}},"Variable":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_LocalVariable, UAssetAPI","Variable":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["CallFunc_GetVectorParameterValue_ReturnValue_1"],"ResolvedOwner":1}}},"Expression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_CallMath, UAssetAPI","StackNode":-13,"Parameters":[{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Self, UAssetAPI"},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_ObjectConst, UAssetAPI","Value":-16},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_NameConst, UAssetAPI","Value":"ColorBaseSolved"}]}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Let, UAssetAPI","Value":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["CallFunc_Conv_LinearColorToColor_ReturnValue_1"],"ResolvedOwner":1}},"Variable":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_LocalVariable, UAssetAPI","Variable":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["CallFunc_Conv_LinearColorToColor_ReturnValue_1"],"ResolvedOwner":1}}},"Expression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_CallMath, UAssetAPI","StackNode":-14,"Parameters":[{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_LocalVariable, UAssetAPI","Variable":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["CallFunc_GetVectorParameterValue_ReturnValue_1"],"ResolvedOwner":1}}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_True, UAssetAPI"}]}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Let, UAssetAPI","Value":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["FoundColor"],"ResolvedOwner":-9}},"Variable":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_InstanceVariable, UAssetAPI","Variable":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["FoundColor"],"ResolvedOwner":-9}}},"Expression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_LocalVariable, UAssetAPI","Variable":{"$type":"UAssetAPI.Kismet.Bytecode.KismetPropertyPointer, UAssetAPI","New":{"$type":"UAssetAPI.UnrealTypes.FFieldPath, UAssetAPI","Path":["CallFunc_Conv_LinearColorToColor_ReturnValue_1"],"ResolvedOwner":1}}}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Jump, UAssetAPI","CodeOffset":10},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Return, UAssetAPI","ReturnExpression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Nothing, UAssetAPI"}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_EndOfScript, UAssetAPI"}],
+	"ScriptBytecodeSize": 255,
+	"ScriptBytecodeRaw": null,
+	"Field": {"$type":"UAssetAPI.FieldTypes.UField, UAssetAPI","Next":null},
+	"ObjectName": "ExecuteUbergraph_BP_BlueOrbFragmentBeam",
+	"ObjectFlags": "RF_Public",
+	"SerialSize": 654,
+	"SerialOffset": 4206,
+	"ScriptSerializationStartOffset": 0,
+	"ScriptSerializationEndOffset": 0,
+	"bForcedExport": false,
+	"bNotForClient": false,
+	"bNotForServer": false,
+	"PackageGuid": "{00000000-0000-0000-0000-000000000000}",
+	"IsInheritedInstance": false,
+	"PackageFlags": "PKG_None",
+	"bNotAlwaysLoadedForEditorGame": false,
+	"bIsAsset": false,
+	"GeneratePublicHash": false,
+	"SerializationBeforeSerializationDependencies": [],
+	"CreateBeforeSerializationDependencies": ["%i_1_ExecuteUbergraph_BP_BlueOrbFragmentBeam",-16,-13,-7,-14,-8,-9],
+	"SerializationBeforeCreateDependencies": [],
+	"CreateBeforeCreateDependencies": ["%i_3_BP_BlueOrbFragmentBeam_C"],
+	"PublicExportHash": 0,
+	"Padding": null,
+	"Extras": {"$type":"System.Byte[], System.Private.CoreLib","$value":"AAAAAAAAAAA="},
+	"OuterIndex": "%i_3_BP_BlueOrbFragmentBeam_C",
+	"ClassIndex": -3,
+	"SuperIndex": 0,
+	"TemplateIndex": -11,
+	"Data": []
+},
+{
+	"$type": "UAssetAPI.ExportTypes.FunctionExport, UAssetAPI",
+	"$index": "%i_2_ReceiveBeginPlay",
+	"FunctionFlags": "FUNC_Event, FUNC_Public, FUNC_BlueprintEvent",
+	"SuperStruct": -12,
+	"Children": [],
+	"LoadedProperties": [],
+	"ScriptBytecode": [{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_LocalFinalFunction, UAssetAPI","StackNode":1,"Parameters":[{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_IntConst, UAssetAPI","Value":131}]},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Return, UAssetAPI","ReturnExpression":{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_Nothing, UAssetAPI"}},{"$type":"UAssetAPI.Kismet.Bytecode.Expressions.EX_EndOfScript, UAssetAPI"}],
+	"ScriptBytecodeSize": 18,
+	"ScriptBytecodeRaw": null,
+	"Field": {"$type":"UAssetAPI.FieldTypes.UField, UAssetAPI","Next":null},
+	"ObjectName": "ReceiveBeginPlay",
+	"ObjectFlags": "RF_Public",
+	"SerialSize": 58,
+	"SerialOffset": 4860,
+	"ScriptSerializationStartOffset": 0,
+	"ScriptSerializationEndOffset": 0,
+	"bForcedExport": false,
+	"bNotForClient": false,
+	"bNotForServer": false,
+	"PackageGuid": "{00000000-0000-0000-0000-000000000000}",
+	"IsInheritedInstance": false,
+	"PackageFlags": "PKG_None",
+	"bNotAlwaysLoadedForEditorGame": false,
+	"bIsAsset": false,
+	"GeneratePublicHash": false,
+	"SerializationBeforeSerializationDependencies": [-12],
+	"CreateBeforeSerializationDependencies": ["%i_1_ExecuteUbergraph_BP_BlueOrbFragmentBeam",-5],
+	"SerializationBeforeCreateDependencies": [],
+	"CreateBeforeCreateDependencies": ["%i_3_BP_BlueOrbFragmentBeam_C",-12],
+	"PublicExportHash": 0,
+	"Padding": null,
+	"Extras": {"$type":"System.Byte[], System.Private.CoreLib","$value":"AAAAAAAAAAA="},
+	"OuterIndex": "%i_3_BP_BlueOrbFragmentBeam_C",
+	"ClassIndex": -3,
+	"SuperIndex": -12,
+	"TemplateIndex": -11,
+	"Data": []
+},
+{
+	"$type": "UAssetAPI.ExportTypes.ClassExport, UAssetAPI",
+	"$index": "%i_3_BP_BlueOrbFragmentBeam_C",
+	"FuncMap": [["ExecuteUbergraph_BP_BlueOrbFragmentBeam","%i_1_ExecuteUbergraph_BP_BlueOrbFragmentBeam"],["ReceiveBeginPlay","%i_2_ReceiveBeginPlay"]],
+	"ClassFlags": "CLASS_Config, CLASS_Parsed, CLASS_ReplicationDataIsSetUp, CLASS_EditInlineNew, CLASS_CompiledFromBlueprint, CLASS_DefaultToInstanced, CLASS_HasInstancedReference",
+	"ClassWithin": -4,
+	"ClassConfigName": "Engine",
+	"Interfaces": [],
+	"ClassGeneratedBy": 0,
+	"bDeprecatedForceScriptOrder": false,
+	"bCooked": true,
+	"ClassDefaultObject": "%i_4_Default__BP_BlueOrbFragmentBeam_C",
+	"SuperStruct": -9,
+	"Children": ["%i_2_ReceiveBeginPlay","%i_1_ExecuteUbergraph_BP_BlueOrbFragmentBeam"],
+	"LoadedProperties": [{"$type":"UAssetAPI.FieldTypes.FStructProperty, UAssetAPI","Struct":-26,"ArrayDim":"TArray","ElementSize":16,"PropertyFlags":"CPF_Transient, CPF_DuplicateTransient","RepIndex":0,"RepNotifyFunc":"None","BlueprintReplicationCondition":"COND_None","RawValue":null,"UsmapPropertyTypeOverrides":{"$type":"System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[UAssetAPI.Unversioned.EPropertyType, UAssetAPI]], System.Private.CoreLib","MulticastInlineDelegateProperty":"MulticastDelegateProperty","ClassProperty":"ObjectProperty","SoftClassProperty":"SoftObjectProperty"},"SerializedType":"StructProperty","Name":"UberGraphFrame","Flags":"RF_Public, RF_LoadCompleted","MetaDataMap":null}],
+	"ScriptBytecode": [],
+	"ScriptBytecodeSize": 0,
+	"ScriptBytecodeRaw": null,
+	"Field": {"$type":"UAssetAPI.FieldTypes.UField, UAssetAPI","Next":null},
+	"ObjectName": "BP_BlueOrbFragmentBeam_C",
+	"ObjectFlags": "RF_Public, RF_Transactional",
+	"SerialSize": 192,
+	"SerialOffset": 4918,
+	"ScriptSerializationStartOffset": 0,
+	"ScriptSerializationEndOffset": 0,
+	"bForcedExport": false,
+	"bNotForClient": false,
+	"bNotForServer": false,
+	"PackageGuid": "{00000000-0000-0000-0000-000000000000}",
+	"IsInheritedInstance": false,
+	"PackageFlags": "PKG_None",
+	"bNotAlwaysLoadedForEditorGame": false,
+	"bIsAsset": true,
+	"GeneratePublicHash": false,
+	"SerializationBeforeSerializationDependencies": [-9,-26,-1,"%i_1_ExecuteUbergraph_BP_BlueOrbFragmentBeam"],
+	"CreateBeforeSerializationDependencies": ["%i_2_ReceiveBeginPlay"],
+	"SerializationBeforeCreateDependencies": [-6,-2],
+	"CreateBeforeCreateDependencies": [-9],
+	"PublicExportHash": 0,
+	"Padding": null,
+	"Extras": {"$type":"System.Byte[], System.Private.CoreLib","$value":""},
+	"OuterIndex": 0,
+	"ClassIndex": -6,
+	"SuperIndex": -9,
+	"TemplateIndex": -2,
+	"Data": [
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"UberGraphFunction", "Value":"%i_1_ExecuteUbergraph_BP_BlueOrbFragmentBeam" }
+	]
+},
+{
+	"$type": "UAssetAPI.ExportTypes.NormalExport, UAssetAPI",
+	"$index": "%i_4_Default__BP_BlueOrbFragmentBeam_C",
+	"ObjectName": "Default__BP_BlueOrbFragmentBeam_C",
+	"ObjectFlags": "RF_Public, RF_ClassDefaultObject, RF_ArchetypeObject",
+	"SerialSize": 2091,
+	"SerialOffset": 5110,
+	"ScriptSerializationStartOffset": 0,
+	"ScriptSerializationEndOffset": 0,
+	"bForcedExport": false,
+	"bNotForClient": false,
+	"bNotForServer": false,
+	"PackageGuid": "{00000000-0000-0000-0000-000000000000}",
+	"IsInheritedInstance": false,
+	"PackageFlags": "PKG_None",
+	"bNotAlwaysLoadedForEditorGame": false,
+	"bIsAsset": false,
+	"GeneratePublicHash": false,
+	"SerializationBeforeSerializationDependencies": [],
+	"CreateBeforeSerializationDependencies": [-10,-27,-15],
+	"SerializationBeforeCreateDependencies": ["%i_3_BP_BlueOrbFragmentBeam_C",-1],
+	"CreateBeforeCreateDependencies": [],
+	"PublicExportHash": 0,
+	"Padding": null,
+	"Extras": {"$type":"System.Byte[], System.Private.CoreLib","$value":""},
+	"OuterIndex": 0,
+	"ClassIndex": "%i_3_BP_BlueOrbFragmentBeam_C",
+	"SuperIndex": 0,
+	"TemplateIndex": -1,
+	"Data": [
+		{ "$type":"UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI", "StructType":"PointerToUberGraphFrame", "SerializeNone":true,"Name":"UberGraphFrame", "Value":[] },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"BeamLength", "Value":5000 },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"BeamLengthAnimCurve", "Value":-10 },
+		{
+			"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+			"StructType": "Color",
+			"SerializeNone": true,
+			"Name": "FoundColor",
+			"Value": [
+				{ "$type":"UAssetAPI.PropertyTypes.Structs.ColorPropertyData, UAssetAPI", "Name":"FoundColor", "Value":"0, 255, 158, 0" }
+			]
+		},
+		{
+			"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+			"StructType": "Color",
+			"SerializeNone": true,
+			"Name": "NotFoundColor",
+			"Value": [
+				{ "$type":"UAssetAPI.PropertyTypes.Structs.ColorPropertyData, UAssetAPI", "Name":"NotFoundColor", "Value":"0, 0, 255, 60" }
+			]
+		},
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Name":"StaticMesh", "Value":-27 },
+		{
+			"$type": "UAssetAPI.PropertyTypes.Objects.ArrayPropertyData, UAssetAPI",
+			"ArrayType": "ObjectProperty",
+			"Name": "OverrideMaterials",
+			"Value": [
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.ObjectPropertyData, UAssetAPI", "Value":-15 }
+			]
+		},
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"bGenerateOverlapEvents", "Value":0 },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"bUseAsOccluder", "Value":0 },
+		{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"bAffectDistanceFieldLighting", "Value":0 },
+		{
+			"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+			"ByteType": "FName",
+			"EnumType": "ECanBeCharacterBase",
+			"EnumValue": "ECB_No",
+			"Name": "CanCharacterStepUpOn"
+		},
+		{
+			"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+			"StructType": "BodyInstance",
+			"SerializeNone": true,
+			"Name": "BodyInstance",
+			"Value": [
+				{
+					"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+					"ByteType": "FName",
+					"EnumType": "ECollisionEnabled",
+					"EnumValue": "ECollisionEnabled::NoCollision",
+					"Name": "CollisionEnabled"
+				},
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"CollisionProfileName", "Value":"NoCollision" },
+				{
+					"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+					"StructType": "CollisionResponse",
+					"SerializeNone": true,
+					"Name": "CollisionResponses",
+					"Value": [
+						{
+							"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+							"StructType": "CollisionResponseContainer",
+							"SerializeNone": true,
+							"Name": "ResponseToChannels",
+							"Value": [
+								{
+									"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+									"ByteType": "FName",
+									"EnumType": "ECollisionResponse",
+									"EnumValue": "ECR_Ignore",
+									"Name": "WorldStatic"
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+									"ByteType": "FName",
+									"EnumType": "ECollisionResponse",
+									"EnumValue": "ECR_Ignore",
+									"Name": "WorldDynamic"
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+									"ByteType": "FName",
+									"EnumType": "ECollisionResponse",
+									"EnumValue": "ECR_Ignore",
+									"Name": "Pawn"
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+									"ByteType": "FName",
+									"EnumType": "ECollisionResponse",
+									"EnumValue": "ECR_Ignore",
+									"Name": "Visibility"
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+									"ByteType": "FName",
+									"EnumType": "ECollisionResponse",
+									"EnumValue": "ECR_Ignore",
+									"Name": "Camera"
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+									"ByteType": "FName",
+									"EnumType": "ECollisionResponse",
+									"EnumValue": "ECR_Ignore",
+									"Name": "PhysicsBody"
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+									"ByteType": "FName",
+									"EnumType": "ECollisionResponse",
+									"EnumValue": "ECR_Ignore",
+									"Name": "Vehicle"
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+									"ByteType": "FName",
+									"EnumType": "ECollisionResponse",
+									"EnumValue": "ECR_Ignore",
+									"Name": "Destructible"
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+									"ByteType": "FName",
+									"EnumType": "ECollisionResponse",
+									"EnumValue": "ECR_Ignore",
+									"Name": "GameTraceChannel2"
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+									"ByteType": "FName",
+									"EnumType": "ECollisionResponse",
+									"EnumValue": "ECR_Ignore",
+									"Name": "GameTraceChannel8"
+								}
+							]
+						},
+						{
+							"$type": "UAssetAPI.PropertyTypes.Objects.ArrayPropertyData, UAssetAPI",
+							"ArrayType": "StructProperty",
+							"Name": "ResponseArray",
+							"Value": [
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"WorldStatic" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"WorldDynamic" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"Pawn" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"Visibility" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"Camera" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"PhysicsBody" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"Vehicle" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"Destructible" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"Power" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								},
+								{
+									"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+									"StructType": "ResponseChannel",
+									"SerializeNone": true,
+									"Name": "ResponseArray",
+									"Value": [
+										{ "$type":"UAssetAPI.PropertyTypes.Objects.NamePropertyData, UAssetAPI", "Name":"Channel", "Value":"PuzzleBounds" },
+										{
+											"$type": "UAssetAPI.PropertyTypes.Objects.BytePropertyData, UAssetAPI",
+											"ByteType": "FName",
+											"EnumType": "ECollisionResponse",
+											"EnumValue": "ECR_Ignore",
+											"Name": "Response"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"$type": "UAssetAPI.PropertyTypes.Structs.StructPropertyData, UAssetAPI",
+			"StructType": "ActorComponentTickFunction",
+			"SerializeNone": true,
+			"Name": "PrimaryComponentTick",
+			"Value": [
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.BoolPropertyData, UAssetAPI", "Name":"bAllowTickOnDedicatedServer", "Value":0 },
+				{ "$type":"UAssetAPI.PropertyTypes.Objects.FloatPropertyData, UAssetAPI", "Name":"TickInterval", "Value":1 }
+			]
+		}
+	]
+}
+]
+}
